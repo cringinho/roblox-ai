@@ -55,7 +55,8 @@ def bevel(c: Canvas, mask: np.ndarray, outline, dark, mid, light, hi=None) -> No
     """Bevel classico de pixel art (luz topo-esquerda), consistente em qualquer orientacao:
     pixel exposto em cima/esquerda = claro; exposto embaixo/direita = escuro."""
     h, w = mask.shape
-    c.fill_mask(edge_outer(mask, 4), outline)
+    from pixelforge.raster import erode, thin_elbows
+    c.fill_mask(thin_elbows(edge_outer(mask, 4)), outline)       # contorno pixel-perfect
     pad = np.pad(mask, 1, constant_values=False)
     up = ~pad[:-2, 1:-1]
     left = ~pad[1:-1, :-2]
@@ -63,12 +64,17 @@ def bevel(c: Canvas, mask: np.ndarray, outline, dark, mid, light, hi=None) -> No
     right = ~pad[1:-1, 2:]
     tl = (up | left) & mask
     br = (down | right) & mask
+    # partes de 1 px de espessura (filigrana, pontas) ficam no tom medio: alternar claro/escuro
+    # pixel a pixel em traco fino vira ruido
+    thick = dilate(erode(mask, 4), 4) & mask
     c.fill_mask(mask, mid)
-    c.fill_mask(tl & ~br, light)
-    c.fill_mask(br & ~tl, dark)
+    c.fill_mask(tl & ~br & thick, light)
+    c.fill_mask(br & ~tl & thick, dark)
     if hi is not None:
-        corner = mask & up & left
-        c.fill_mask(corner, hi)
+        # brilho especular so onde vira cluster (2+ pixels de quina iluminada juntos)
+        corner = mask & up & left & thick
+        from pixelforge.raster import remove_specks
+        c.fill_mask(remove_specks(corner | (tl & ~br & thick & corner), 1), hi)
 
 
 def iron_ramp():
@@ -194,7 +200,9 @@ def thorn_filigree(h: int = 64, side: str = "l") -> Canvas:
     m |= thorns
     c = Canvas(w, h)
     bevel(c, m, **violet_ramp())
-    c.fill_mask(thorns, PAL["violet:5"])
+    # espinhos: cluster de 2 px com o tom claro da rampa (nao pixel solto de cor unica)
+    c.fill_mask(thorns & dilate(thorns, 4) & (np.roll(thorns, 1, axis=1) | np.roll(thorns, -1, axis=1) |
+                                               np.roll(thorns, 1, axis=0) | np.roll(thorns, -1, axis=0)), PAL["violet:4"])
     if side == "r":
         return c.flip_x()
     return c
@@ -224,20 +232,24 @@ def relic_frame(w: int = 72, h: int = 104) -> Canvas:
     blood = PAL.ramp("blood").colors
     bevel(c, band, outline=PAL["void:0"], dark=blood[2], mid=gum[2], light=gum[3], hi=gum[4])
     # veias
-    for y in range(6, h - 6, 9):
-        c.put(1, y, blood[3]); c.put(2, y + 1, blood[3])
-        c.put(w - 2, y + 4, blood[3]); c.put(w - 3, y + 5, blood[3])
+    for y in range(6, h - 6, 9):           # veias: tracos curtos de 2 px (cluster, nao ponto)
+        c.put(1, y, blood[3]); c.put(1, y + 1, blood[3])
+        c.put(w - 2, y + 4, blood[3]); c.put(w - 2, y + 5, blood[3])
     # dentes (2x3) ao longo da borda interna
     b = bone_ramp()
+    # dentes em clusters de 2 px por tom (claro na raiz, medio no meio, ponta escura)
     for x in range(7, w - 7, 5):
         for (yy, dy) in ((4, 1), (h - 5, -1)):
-            c.put(x, yy, b["light"]); c.put(x + 1, yy, b["mid"])
-            c.put(x, yy + dy, b["mid"]); c.put(x + 1, yy + dy, b["dark"])
+            for xx in (x, x + 1):
+                c.put(xx, yy, b["light"])
+                c.put(xx, yy + dy, b["mid"])
             c.put(x, yy + 2 * dy, b["dark"])
     for y in range(9, h - 9, 6):
         for (xx, dx) in ((4, 1), (w - 5, -1)):
-            c.put(xx, y, b["light"]); c.put(xx + dx, y, b["mid"]); c.put(xx + 2 * dx, y, b["dark"])
-            c.put(xx, y + 1, b["mid"])
+            for yv in (y, y + 1):
+                c.put(xx, yv, b["light"])
+                c.put(xx + dx, yv, b["mid"])
+            c.put(xx + 2 * dx, y, b["dark"])
     # nos de osso nos cantos
     for (x, y) in ((0, 0), (w - 6, 0), (0, h - 6), (w - 6, h - 6)):
         knob = np.zeros((6, 6), dtype=bool)
@@ -483,6 +495,10 @@ def main() -> int:
     }
     for i, e in enumerate(ember_frames()):
         orn[f"ember_{i}"] = e
+    # paleta fechada: tudo que nao e mascara branca volta para a paleta ALTAR
+    for k, cv in orn.items():
+        if not (k.startswith("border_") or k.startswith("glyph_")):
+            cv.px = PAL.quantize(cv.px)
     img, rects = pack(orn, width=256)
     img.save(OUT / "ForgeOrnamentAtlas.png")
     extra = "\n-- SliceCenter das mascaras de borda (ScaleType = Slice, SliceScale = fator inteiro)\n" \

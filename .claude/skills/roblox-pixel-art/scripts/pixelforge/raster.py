@@ -261,3 +261,30 @@ def points_on_circle(cx: float, cy: float, r: float, n: int, phase_deg: float = 
         a = math.radians(phase_deg + 360.0 * i / n)
         out.append((int(round(cx + r * math.cos(a))), int(round(cy + r * math.sin(a)))))
     return out
+
+
+def thin_elbows(m: np.ndarray) -> np.ndarray:
+    """Linha pixel-perfect para MASCARAS de traco (contornos): em todo bloco 2x2 com 3 pixels
+    ligados, remove o 'cotovelo' (o pixel em L) quando ele so serve de ponte entre os outros
+    dois - estes continuam ligados na diagonal. Mesmo efeito do pincel pixel-perfect do Aseprite."""
+    m = m.copy()
+    h, w = m.shape
+    changed = True
+    while changed:
+        changed = False
+        for y in range(h - 1):
+            for x in range(w - 1):
+                blk = m[y:y + 2, x:x + 2]
+                if blk.sum() != 3:
+                    continue
+                miss = [(i, j) for i in (0, 1) for j in (0, 1) if not blk[i, j]][0]
+                ey, ex = y + (1 - miss[0]), x + (1 - miss[1])
+                n = 0
+                for dy in (-1, 0, 1):
+                    for dx in (-1, 0, 1):
+                        if (dy or dx) and 0 <= ey + dy < h and 0 <= ex + dx < w and m[ey + dy, ex + dx]:
+                            n += 1
+                if n == 2:
+                    m[ey, ex] = False
+                    changed = True
+    return m

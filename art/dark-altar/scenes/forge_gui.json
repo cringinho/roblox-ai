@@ -1,0 +1,65 @@
+{
+  "name": "forge",
+  "target": "gui",
+  "loop": true,
+  "cell": [
+    320,
+    180
+  ],
+  "pad": 1,
+  "cols": 2,
+  "rows": 3,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    },
+    {
+      "x": 323,
+      "y": 1,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    },
+    {
+      "x": 1,
+      "y": 183,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    },
+    {
+      "x": 323,
+      "y": 183,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    },
+    {
+      "x": 1,
+      "y": 365,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    },
+    {
+      "x": 323,
+      "y": 365,
+      "w": 320,
+      "h": 180,
+      "ms": 100
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "kind": "scene",
+    "contrast_frames": ""
+  }
+}

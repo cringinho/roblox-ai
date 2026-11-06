@@ -692,6 +692,138 @@ def transition_iris(pal: Palette, w: int = 80, h: int = 45, steps: int = 14, ms:
     return _anim("transition_iris", out, [ms] * steps, False, kind="transition")
 
 
+# ================================================================= 13. RAIO (Saint11, VFX-17/18/20)
+def _bolt(rng, x0: float, y0: float, x1: float, y1: float, displace: float, detail: float,
+          out: List[Tuple[float, float]]) -> None:
+    """Deslocamento do ponto medio: divide o segmento, desloca o meio, repete com displace/2."""
+    if displace < detail:
+        out.append((x1, y1))
+        return
+    mx = (x0 + x1) / 2 + (rng.random() - 0.5) * displace
+    my = (y0 + y1) / 2 + (rng.random() - 0.5) * displace * 0.35
+    _bolt(rng, x0, y0, mx, my, displace / 2, detail, out)
+    _bolt(rng, mx, my, x1, y1, displace / 2, detail, out)
+
+
+def lightning(pal: Palette, w: int = 32, h: int = 64, seed: int = 13, glow: str = "abyss",
+              core: str = "flash:1") -> Animation:
+    """Raio: contraste -> choque (angulos agudos) -> branco com forma nova -> vazio ->
+    fragmentos -> vazio -> dissipar (sequencia do Saint11). Magia sombria: glow='violet'."""
+    G = pal.ramp(glow).colors
+    C = pal[core]
+    rng = np.random.default_rng(seed)
+
+    def bolt_mask(sd: int, branch_p: float = 0.3) -> np.ndarray:
+        r2 = np.random.default_rng(sd)
+        pts: List[Tuple[float, float]] = [(w / 2 + (r2.random() - 0.5) * 6, 0)]
+        _bolt(r2, pts[0][0], 0, w / 2 + (r2.random() - 0.5) * 8, h - 1, w * 0.9, 2.5, pts)
+        m = np.zeros((h, w), dtype=bool)
+        for (a, b) in zip(pts, pts[1:]):
+            for (x, y) in __import__("pixelforge.canvas", fromlist=["line_points"]).line_points(
+                    int(round(a[0])), int(round(a[1])), int(round(b[0])), int(round(b[1]))):
+                if 0 <= x < w and 0 <= y < h:
+                    m[y, x] = True
+        # ramos
+        for i in range(2, len(pts) - 2, 3):
+            if r2.random() < branch_p:
+                bx, by = pts[i]
+                side = -1 if r2.random() < 0.5 else 1
+                ex = bx + side * r2.uniform(5, 10)
+                ey = by + r2.uniform(5, 14)
+                seg: List[Tuple[float, float]] = [(bx, by)]
+                _bolt(r2, bx, by, ex, ey, 5, 2, seg)
+                for (a, b) in zip(seg, seg[1:]):
+                    for (x, y) in __import__("pixelforge.canvas", fromlist=["line_points"]).line_points(
+                            int(round(a[0])), int(round(a[1])), int(round(b[0])), int(round(b[1]))):
+                        if 0 <= x < w and 0 <= y < h:
+                            m[y, x] = True
+        return m
+
+    def paint(m: np.ndarray, core_col, glow_col) -> Canvas:
+        c = Canvas(w, h)
+        c.fill_mask(dilate(m, 4) & ~m, glow_col)
+        c.fill_mask(m, core_col)
+        return c
+
+    out: List[Canvas] = []
+    ms: List[int] = []
+    # f0 contraste: faixa escura onde o raio vai cair
+    m0 = bolt_mask(seed)
+    c = Canvas(w, h)
+    c.fill_mask(dilate(dilate(m0, 8), 4), pal["void:0"])
+    out.append(c); ms.append(ticks(2))
+    out.append(paint(m0, C, G[4])); ms.append(ticks(3))           # choque
+    m1 = bolt_mask(seed + 7, 0.45)
+    full = Canvas(w, h)
+    full.fill_mask(dilate(m1, 8), G[5])
+    full.fill_mask(dilate(m1, 4), C)
+    out.append(full); ms.append(ticks(3))                          # branco, forma nova
+    out.append(Canvas(w, h)); ms.append(ticks(2))                  # vazio (pisca)
+    frag = m0 & (np.random.default_rng(seed + 1).random((h, w)) > 0.0)
+    keep = np.zeros_like(frag)
+    ys_, xs_ = np.where(frag)
+    for y, x in zip(ys_, xs_):
+        if (y // 6) % 2 == 0:
+            keep[y, x] = True
+    out.append(paint(keep, G[5], G[3])); ms.append(ticks(3))       # fragmentos do choque
+    out.append(Canvas(w, h)); ms.append(ticks(2))                  # vazio
+    k2 = keep & (np.arange(h)[:, None] > h * 0.45)
+    out.append(paint(k2, G[4], G[2])); ms.append(ticks(4))         # dissipar
+    k3 = k2 & (np.arange(h)[:, None] > h * 0.75)
+    c = Canvas(w, h)
+    c.fill_mask(k3, G[3])
+    out.append(c); ms.append(ticks(4))
+    return _anim("lightning", out, ms, False, glow=glow, kind="oneshot", contrast_frames="0")
+
+
+# ================================================================= 14. NUMERO DE DANO
+TYPE_RAMPS = {"ATQ": ("ember", "blood"), "GRD": ("spirit", "abyss"), "BUF": ("gold", "earth"),
+              "DEB": ("violet", "void"), "SAC": ("blood", "void")}
+
+
+def damage_pop(pal: Palette, text: str = "12", kind: str = "ATQ", scale: int = 2) -> Animation:
+    """Numero de dano: surge com flash branco 1px abaixo, sobe com overshoot, assenta,
+    deriva para cima e some de cima para baixo (linhas removidas, sem alpha parcial)."""
+    from .font import text_mask
+    top, bot = TYPE_RAMPS.get(kind, TYPE_RAMPS["ATQ"])
+    T, B = pal.ramp(top).colors, pal.ramp(bot).colors
+    m = text_mask(text, scale=scale, spacing=1)
+    th_, tw_ = m.shape
+    w, h = tw_ + 4, th_ + 14
+    W = pal.ramp("flash").colors[-1]
+
+    def glyph(fill_top, fill_bot, flash: bool = False) -> Canvas:
+        c = Canvas(tw_ + 2, th_ + 2)
+        mm = np.zeros((th_ + 2, tw_ + 2), dtype=bool)
+        mm[1:-1, 1:-1] = m
+        if flash:
+            c.fill_mask(mm, W)
+        else:
+            half = np.zeros_like(mm)
+            half[: (th_ + 2) // 2 + 1] = True
+            c.fill_mask(mm & half, fill_top)
+            c.fill_mask(mm & ~half, fill_bot)
+            c.fill_mask(mm & np.roll(~mm, 1, axis=0) & half, pal.shift(fill_top, 1))   # brilho no topo
+        c.fill_mask(edge_outer(mm, 8), pal["void:0"])
+        return c
+
+    from .raster import edge_outer
+    seq = [  # (dy, flash, ms, cortar_linhas_de_cima)
+        (9, True, ticks(2), 0), (5, False, ticks(2), 0), (3, False, ticks(3), 0), (4, False, ticks(5), 0),
+        (3, False, ticks(6), 0), (2, False, ticks(6), 0), (1, False, ticks(5), 3), (0, False, ticks(5), 7),
+    ]
+    out: List[Canvas] = []
+    ms: List[int] = []
+    for dy, flash, dur, cut in seq:
+        c = Canvas(w, h)
+        g = glyph(T[4], B[3], flash)
+        if cut:
+            g.px[: cut * scale // 2 + 1] = 0
+        c.blit(g, 1, dy)
+        out.append(c); ms.append(dur)
+    return _anim(f"damage_pop_{kind.lower()}", out, ms, False, tag=f"[{kind}]", kind="oneshot")
+
+
 ALL = {
     "fire_loop": fire_loop,
     "explosion": explosion,
@@ -707,4 +839,6 @@ ALL = {
     "transition_dither": transition_dither,
     "transition_diamond": transition_diamond,
     "transition_iris": transition_iris,
+    "lightning": lightning,
+    "damage_pop": damage_pop,
 }

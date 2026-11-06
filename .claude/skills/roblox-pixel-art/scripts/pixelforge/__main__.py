@@ -9,7 +9,11 @@ Comandos:
   lint PNG [--kind K]          nota 0-100 + problemas (kind: sprite|vfx|ui|background)
   preview-luau PNG [--scale K] imprime Luau de previa por EditableImage (MCP execute_luau)
   upload PNG [PNG...]          envia como assetType Image (Open Cloud; precisa ROBLOX_API_KEY)
-  scene cathedral [--out P]    gera o cenario de catedral 320x180 (+ copia x4 p/ previa)
+  scene cathedral|forge [--out P]  gera cenario 320x180 (forja = 6 quadros animados + folha GUI)
+  sprite NOME [--out P] [--rim COR]  renderiza um sprite desenhado (sprites_lib): angel_statue, anvil, barrel
+  edition foil|holo|polychrome|negative PNG [--out D]  aplica edition estilo Balatro (8 quadros em loop)
+  luau-check CAMINHO [...]     checagem estatica leve de .luau (--!strict, sem any, sem emoji, blocos)
+  palette-check                valida as rampas da paleta (dL >= 0.06, giro de matiz <= 22 graus)
 """
 from __future__ import annotations
 
@@ -40,8 +44,14 @@ def main(argv=None) -> int:
     p.add_argument("--max-colors", type=int, default=24)
     p = sub.add_parser("preview-luau"); p.add_argument("png"); p.add_argument("--scale", type=int, default=4)
     p = sub.add_parser("upload"); p.add_argument("png", nargs="+")
-    p = sub.add_parser("scene"); p.add_argument("kind", choices=["cathedral"])
-    p.add_argument("--out", default="out/scene_cathedral.png"); p.add_argument("--seed", type=int, default=7)
+    p = sub.add_parser("scene"); p.add_argument("kind", choices=["cathedral", "forge"])
+    p.add_argument("--out", default="out/scene.png"); p.add_argument("--seed", type=int, default=7)
+    p = sub.add_parser("sprite"); p.add_argument("name"); p.add_argument("--out", default="out/sprite.png")
+    p.add_argument("--rim", default=None, help="cor do rim light, ex. ember:4 (vem da esquerda)")
+    p = sub.add_parser("luau-check"); p.add_argument("paths", nargs="+")
+    sub.add_parser("palette-check")
+    p = sub.add_parser("edition"); p.add_argument("kind", choices=["foil", "holo", "polychrome", "negative"])
+    p.add_argument("png"); p.add_argument("--out", default="out/edition")
     a = ap.parse_args(argv)
     pal = altar_palette()
 
@@ -93,13 +103,58 @@ def main(argv=None) -> int:
         print(editable_image_luau(c, Path(a.png).stem, a.scale))
         return 0
     if a.cmd == "scene":
-        from .scene import cathedral
+        from .scene import cathedral, forge
         out = Path(a.out); out.parent.mkdir(parents=True, exist_ok=True)
+        if a.kind == "forge":
+            anim = forge(pal)
+            anim.frames[0].save(out)
+            anim.frames[0].save(out.with_name(out.stem + "_x4.png"), scale=4)
+            preview.gif(anim, out.with_suffix(".gif"), scale=3, bg=None)
+            sheet.export_gui_sheet(anim, out.parent)
+            print(lint.lint_animation(anim, None, kind="background", max_colors=48).text())
+            return 0
         c = cathedral(pal, seed=a.seed)
         c.save(out)
         c.save(out.with_name(out.stem + "_x4.png"), scale=4)
         r = lint.lint_canvas(c, pal, out.name, max_colors=32, kind="background")
         print(r.text())
+        return 0
+    if a.cmd == "sprite":
+        from .sprite import render_spec
+        from .sprites_lib import LIBRARY
+        if a.name not in LIBRARY:
+            print("sprites disponiveis:", ", ".join(LIBRARY), file=sys.stderr)
+            return 2
+        out = Path(a.out); out.parent.mkdir(parents=True, exist_ok=True)
+        rim = (a.rim, (-1, 0)) if a.rim else None
+        c = render_spec(LIBRARY[a.name], pal, outline="both", rim=rim)
+        c.save(out)
+        c.save(out.with_name(out.stem + "_x6.png"), scale=6)
+        print(lint.lint_canvas(c, pal, a.name, max_colors=16, kind="sprite").text())
+        return 0
+    if a.cmd == "luau-check":
+        from .luau_check import check_paths
+        iss = check_paths([Path(x) for x in a.paths])
+        for i in iss:
+            print(i)
+        print(f"{len(iss)} problema(s)")
+        return 0 if not iss else 1
+    if a.cmd == "palette-check":
+        from .palette import validate_palette
+        v = validate_palette(pal)
+        for k, iss in v.items():
+            for i in iss:
+                print(f"{k}: {i}")
+        print("paleta OK" if not v else f"{len(v)} rampa(s) com aviso")
+        return 0 if not v else 1
+    if a.cmd == "edition":
+        from .edition import edition_anim
+        art = Canvas.from_image(Image.open(a.png))
+        ea = edition_anim(art, pal, a.kind)
+        outd = Path(a.out)
+        preview.save_strip_and_gif(ea, outd)
+        sheet.export_gui_sheet(ea, outd)
+        print("ok", outd)
         return 0
     if a.cmd == "upload":
         from .roblox import upload_images

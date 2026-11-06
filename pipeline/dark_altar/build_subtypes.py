@@ -34,6 +34,7 @@ from subtype_render import render  # noqa: E402
 LUAU_OUT = ROOT / "src" / "shared" / "Config" / "SubtypeArtCatalog120.luau"
 ATLAS_LUAU_OUT = ROOT / "src" / "shared" / "Config" / "SubtypeArtAtlas120.luau"
 ART_DIR = ROOT / "art" / "dark-altar" / "subtypes"
+HIFI_LUAU_OUT = ROOT / "src" / "shared" / "Config" / "SubtypeArtAtlas120HiFi.luau"
 MIN_CONTRAST = 5.5
 BLOCKED = (0x2600, 0x27BF)  # Misc Symbols + Dingbats (emoji)
 
@@ -363,6 +364,61 @@ def emit_atlas_luau(subs: List[data.Subtype], cols: int, cell: int) -> str:
     return "\n".join(L)
 
 
+def emit_hifi_luau(subs: List[data.Subtype], per_row: int, cell: int, per_page: int, n_pages: int) -> str:
+    L = [
+        "--!strict",
+        "--[[",
+        "\tSubtypeArtAtlas120HiFi.luau  (GERADO com --hifi - nao edite a mao)",
+        "\tColoque em: ReplicatedStorage > Shared > Config",
+        "",
+        "\tVariante x4 para MOBILE: cada pixel da arte vira um bloco 4x4 = um bloco de compressao",
+        "\tda GPU, entao a compressao com perdas do celular nao mistura cores vizinhas.",
+        f"\t{n_pages} paginas de 1024x1024 ({per_page} artes por pagina, celulas de {cell}px).",
+        "\tCusto: ~16x a memoria do atlas normal -> use so onde a cor estragar no aparelho.",
+        "\tTroque cada PAGES[i] pelo rbxassetid da pagina i depois do upload (assetType Image).",
+        "]]",
+        "",
+        "export type Entry = { page: number, offset: Vector2 }",
+        "",
+        "local SubtypeArtAtlas120HiFi = {}",
+        "",
+        f"SubtypeArtAtlas120HiFi.CELL = {cell}",
+        "SubtypeArtAtlas120HiFi.PAGES = {",
+    ]
+    for i in range(n_pages):
+        L.append(f'\t"rbxassetid://0", -- SubtypeArtAtlas120_x4_p{i + 1}.png')
+    L += ["} :: { string }", "", "local ENTRIES: { [string]: Entry } = {"]
+    for i, s_ in enumerate(subs):
+        page = i // per_page
+        j = i % per_page
+        L.append(f"\t{s_.sid} = {{ page = {page + 1}, offset = Vector2.new({(j % per_row) * cell}, {(j // per_row) * cell}) }},")
+    L += [
+        "}",
+        "",
+        "function SubtypeArtAtlas120HiFi.get(subtypeId: string): Entry?",
+        "\treturn ENTRIES[subtypeId]",
+        "end",
+        "",
+        "-- Aplica a arte; retorna false (e nao mexe na label) se o subtipo nao existir.",
+        "function SubtypeArtAtlas120HiFi.apply(label: ImageLabel, subtypeId: string): boolean",
+        "\tlocal entry = ENTRIES[subtypeId]",
+        "\tif entry == nil then",
+        "\t\twarn(`[SubtypeArtAtlas120HiFi] subtipo desconhecido: {subtypeId}`)",
+        "\t\treturn false",
+        "\tend",
+        "\tlabel.Image = SubtypeArtAtlas120HiFi.PAGES[entry.page]",
+        "\tlabel.ResampleMode = Enum.ResamplerMode.Pixelated",
+        "\tlabel.ImageRectSize = Vector2.new(SubtypeArtAtlas120HiFi.CELL, SubtypeArtAtlas120HiFi.CELL)",
+        "\tlabel.ImageRectOffset = entry.offset",
+        "\treturn true",
+        "end",
+        "",
+        "return table.freeze(SubtypeArtAtlas120HiFi)",
+        "",
+    ]
+    return "\n".join(L)
+
+
 # ---------------------------------------------------------------- previas
 def preview_sheet(items, cols: int, scale: int, title: str) -> Image.Image:
     cell = 64 * scale
@@ -385,6 +441,8 @@ def preview_sheet(items, cols: int, scale: int, title: str) -> Image.Image:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--hifi", action="store_true",
+                    help="gera tambem paginas x4 (1024x1024, 16 artes por pagina) contra a compressao do mobile")
     args = ap.parse_args()
     subs = data.all_subtypes()
     fam_bg = {f.key: f.bg_base for f in data.FAMILIES}
@@ -423,6 +481,20 @@ def main() -> int:
     atlas.save(ART_DIR / "SubtypeArtAtlas120.png")
     ATLAS_LUAU_OUT.write_text(emit_atlas_luau(subs, cols, cell), encoding="utf-8")
     print("escrito", ATLAS_LUAU_OUT.relative_to(ROOT))
+    if args.hifi:
+        k, per_row = 4, 4
+        page_cell = 64 * k
+        per_page = per_row * per_row
+        pages = []
+        for pi in range(0, len(rendered), per_page):
+            page = Image.new("RGBA", (page_cell * per_row, page_cell * per_row), (0, 0, 0, 0))
+            for j, (s_, cv) in enumerate(rendered[pi:pi + per_page]):
+                page.paste(cv.scaled(k).to_image(), ((j % per_row) * page_cell, (j // per_row) * page_cell))
+            name = f"SubtypeArtAtlas120_x4_p{len(pages) + 1}.png"
+            page.save(ART_DIR / name)
+            pages.append(name)
+        HIFI_LUAU_OUT.write_text(emit_hifi_luau(subs, per_row, page_cell, per_page, len(pages)), encoding="utf-8")
+        print(f"hi-fi: {len(pages)} paginas 1024x1024 ->", HIFI_LUAU_OUT.relative_to(ROOT))
     for f in data.FAMILIES:
         items = [(s, cv) for s, cv in rendered if s.family == f.key]
         preview_sheet(items, 7, 2, f"{f.label} ({len(items)})  ~ = isGlitchy").save(ART_DIR / f"preview_{f.key.lower()}.png")

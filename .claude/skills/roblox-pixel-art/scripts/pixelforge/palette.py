@@ -245,3 +245,26 @@ def altar_palette() -> Palette:
     # extremos absolutos (flash de impacto / whiteout e sombra total)
     p.add(Ramp("flash", [hex_to_rgb("#0A0710"), hex_to_rgb("#FFF8EC")]))
     return p
+
+
+def validate_ramp(colors: Sequence[RGB], min_dl: float = 0.06, max_dh: float = 22.0) -> List[str]:
+    """Regras medidas em paletas profissionais (dossie C-01, C-06..C-09):
+    luz estritamente crescente com dL >= 0.06 entre vizinhos; giro de matiz <= ~22 graus por passo
+    (ignorado quando o croma e muito baixo, onde o matiz nao e perceptivel)."""
+    issues: List[str] = []
+    lch = [rgb_to_oklch(c) for c in colors]
+    for i in range(1, len(lch)):
+        L0, C0, H0 = lch[i - 1]
+        L1, C1, H1 = lch[i]
+        if L1 - L0 < min_dl:
+            issues.append(f"passo {i}: dL={L1 - L0:.3f} (< {min_dl}) - tons quase iguais")
+        if min(C0, C1) > 0.03:
+            dh = abs(((H1 - H0 + 540) % 360) - 180)
+            if dh > max_dh:
+                issues.append(f"passo {i}: giro de matiz {dh:.0f} graus (> {max_dh})")
+    return issues
+
+
+def validate_palette(p: "Palette") -> Dict[str, List[str]]:
+    return {name: iss for name, r in p.ramps.items() if name != "flash"
+            for iss in [validate_ramp(r.colors)] if iss}

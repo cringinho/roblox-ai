@@ -73,5 +73,13 @@
       "q2: contraste maximo com o fundo 1.24 (< 3): some na UI escura",
       "q3: contraste maximo com o fundo 2.34 (< 3): some na UI escura"
     ]
+  },
+  "lightning": {
+    "score": 100,
+    "issues": []
+  },
+  "damage_pop": {
+    "score": 100,
+    "issues": []
   }
 }

@@ -1,0 +1,79 @@
+{
+  "name": "damage_pop_atq",
+  "target": "gui",
+  "loop": false,
+  "cell": [
+    26,
+    28
+  ],
+  "pad": 1,
+  "cols": 3,
+  "rows": 3,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 26,
+      "h": 28,
+      "ms": 33
+    },
+    {
+      "x": 29,
+      "y": 1,
+      "w": 26,
+      "h": 28,
+      "ms": 33
+    },
+    {
+      "x": 57,
+      "y": 1,
+      "w": 26,
+      "h": 28,
+      "ms": 50
+    },
+    {
+      "x": 1,
+      "y": 31,
+      "w": 26,
+      "h": 28,
+      "ms": 83
+    },
+    {
+      "x": 29,
+      "y": 31,
+      "w": 26,
+      "h": 28,
+      "ms": 100
+    },
+    {
+      "x": 57,
+      "y": 31,
+      "w": 26,
+      "h": 28,
+      "ms": 100
+    },
+    {
+      "x": 1,
+      "y": 61,
+      "w": 26,
+      "h": 28,
+      "ms": 83
+    },
+    {
+      "x": 29,
+      "y": 61,
+      "w": 26,
+      "h": 28,
+      "ms": 83
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "tag": "[ATQ]",
+    "kind": "oneshot"
+  }
+}

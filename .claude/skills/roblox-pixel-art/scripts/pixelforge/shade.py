@@ -121,17 +121,21 @@ def form_shade(c: Canvas, mask: np.ndarray, ramp: Sequence[RGB], light=LIGHT_TOP
     return idx
 
 
-def outline(c: Canvas, color: RGB, mask: Optional[np.ndarray] = None, conn: int = 4) -> None:
-    """Contorno externo de 1px. conn=4 da cantos 'cortados' (mais suave, padrao em sprites)."""
+def outline(c: Canvas, color: RGB, mask: Optional[np.ndarray] = None, conn: int = 4,
+            perfect: bool = True) -> None:
+    """Contorno externo de 1px. perfect=True remove cotovelos (linha pixel-perfect nas diagonais)."""
+    from .raster import thin_elbows
     m = c.alpha_mask() if mask is None else mask
-    c.fill_mask(edge_outer(m, conn), color)
+    e = edge_outer(m, conn)
+    c.fill_mask(thin_elbows(e) if perfect else e, color)
 
 
 def selout(c: Canvas, pal: Palette, mask: Optional[np.ndarray] = None,
            light=LIGHT_TOP_LEFT, dark_steps: int = 2, lit_steps: int = 1) -> None:
     """Sel-out: borda interna recebe a cor vizinha escurecida; menos escura no lado da luz."""
+    from .raster import thin_elbows
     m = c.alpha_mask() if mask is None else mask
-    e = edge_inner(m, 4)
+    e = thin_elbows(edge_inner(m, 4))
     lx, ly, _ = _norm(light)
     ys, xs = np.where(e)
     src = c.px.copy()

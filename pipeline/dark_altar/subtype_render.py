@@ -157,7 +157,10 @@ def render(st, size: int = S) -> Canvas:
     cx = cy = size / 2.0
 
     # 2. monograma
-    scale = 4 if len(st.watermark) == 1 else 3
+    if size >= 48:
+        scale = 4 if len(st.watermark) == 1 else 3
+    else:  # miniaturas (quadros na parede da forja, icones pequenos)
+        scale = 2
     tm = text_mask(st.watermark, scale=scale, bold=True)
     th, tw = tm.shape
     ox, oy = (size - tw) // 2, (size - th) // 2

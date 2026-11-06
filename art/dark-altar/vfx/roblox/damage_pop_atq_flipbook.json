@@ -1,0 +1,18 @@
+{
+  "name": "damage_pop_atq",
+  "target": "ParticleEmitter",
+  "texture": 1024,
+  "cell": 128,
+  "upscale": 4,
+  "gutter": 8,
+  "properties": {
+    "FlipbookLayout": "Enum.ParticleFlipbookLayout.Grid8x8",
+    "FlipbookMode": "Enum.ParticleFlipbookMode.OneShot",
+    "FlipbookFramerate": "NumberRange.new(30.00)",
+    "FlipbookBlendFrames": "false  (padrao true faz crossfade e borra a troca de quadros)",
+    "Lifetime": "NumberRange.new(2.133)",
+    "LightEmission": "1 para fogo/luz; 0 para fumaca/sangue",
+    "Orientation": "FacingCamera"
+  },
+  "note": "Particulas sao filtradas; o upscale inteiro mantem a leitura pixelada. OneShot: Lifetime = quadros/fps."
+}

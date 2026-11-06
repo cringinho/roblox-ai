@@ -64,6 +64,73 @@ def detect_upscale(c: Canvas) -> int:
     return 1
 
 
+# ---------------------------------------------------------------- detectores nivel 2
+def _runs_1d(keys: np.ndarray, min_len: int):
+    """Segmentos (inicio, fim, cor) de mesma cor numa linha; ignora transparente (-1)."""
+    out = []
+    n = len(keys)
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and keys[j + 1] == keys[i]:
+            j += 1
+        if keys[i] >= 0 and (j - i + 1) >= min_len:
+            out.append((i, j, int(keys[i])))
+        i = j + 1
+    return out
+
+
+def banding_pairs(px: np.ndarray, min_len: int = 3, ignore: Optional[set] = None) -> Tuple[int, int]:
+    """Banding (Pixel Logic): dois segmentos de cores diferentes, >= min_len, vizinhos pela
+    aresta longa e com AS DUAS pontas alinhadas. Retorna (pares, total de segmentos)."""
+    rgb = px[..., :3].astype(np.int64)
+    key = np.where(px[..., 3] > 0, (rgb[..., 0] << 16) | (rgb[..., 1] << 8) | rgb[..., 2], -1)
+    ignore = ignore or set()
+    pairs = total = 0
+    for grid_ in (key, key.T):
+        prev = None
+        for row in grid_:
+            runs = [r for r in _runs_1d(row, min_len) if r[2] not in ignore]
+            total += len(runs)
+            if prev:
+                ends = {(a, b): c for (a, b, c) in prev}
+                for (a, b, c) in runs:
+                    pc = ends.get((a, b))
+                    if pc is not None and pc != c:
+                        pairs += 1
+            prev = runs
+    return pairs, total
+
+
+def l_corners(px: np.ndarray) -> int:
+    """Cotovelos REAIS de linha de 1 px: por cor, conta os pixels que o pincel pixel-perfect
+    removeria (pixel em L com exatamente 2 vizinhos, que so faz ponte entre dois pixels ja
+    ligados na diagonal). Faixas grossas e clusters nao contam."""
+    from .raster import thin_elbows
+    rgb = px[..., :3].astype(np.int64)
+    key = np.where(px[..., 3] > 0, (rgb[..., 0] << 16) | (rgb[..., 1] << 8) | rgb[..., 2], -1)
+    total = 0
+    for v in np.unique(key[key >= 0]):
+        m = key == v
+        if m.sum() < 3:
+            continue
+        total += int((m & ~thin_elbows(m)).sum())
+    return total
+
+
+def boiling_ratio(frames: List[Canvas]) -> float:
+    """Fracao dos pixels que trocam de cor em >70% das transicoes de quadro ('fervura')."""
+    if len(frames) < 3:
+        return 0.0
+    stack = np.stack([f.px for f in frames])
+    changes = (stack[1:] != stack[:-1]).any(axis=-1).sum(axis=0)
+    opaque = (stack[..., 3] > 0).any(axis=0)
+    if not opaque.any():
+        return 0.0
+    hot = changes > 0.7 * (len(frames) - 1)
+    return float((hot & opaque).sum()) / float(opaque.sum())
+
+
 def lint_canvas(c: Canvas, pal: Optional[Palette] = None, name: str = "asset",
                 max_colors: int = 24, bg: RGB = (30, 30, 36), kind: str = "sprite",
                 allow_sparks: bool = True, check_contrast: bool = True) -> LintResult:
@@ -162,6 +229,22 @@ def lint_canvas(c: Canvas, pal: Optional[Palette] = None, name: str = "asset",
     if kind in ("sprite", "ui") and vrange < 0.30:
         res.issues.append(f"faixa de valor curta ({vrange:.2f}): forma sem leitura em escala de cinza (alvo >= 0.30)")
         res.score -= 10
+    # 5b. banding por segmentos alinhados e cotovelos (sprites e UI; nao em cenario/VFX)
+    if kind in ("sprite", "ui") and n_op > 48:
+        darkest = min(cols, key=lambda c: luma(tuple(c)))
+        dk = (int(darkest[0]) << 16) | (int(darkest[1]) << 8) | int(darkest[2])
+        pairs, total = banding_pairs(px, 3, ignore={dk})
+        ratio = pairs / max(1, total)
+        res.metrics["banding_pares"] = pairs
+        if total >= 20 and ratio > 0.18:
+            res.issues.append(f"{pairs} pares de segmentos alinhados ({ratio:.0%}): quebre as pontas das bandas (banding)")
+            res.score -= min(12, int(ratio * 40))
+        corners = l_corners(px)
+        res.metrics["cotovelos"] = corners
+        if corners > max(4, n_op // 150):
+            res.issues.append(f"{corners} cotovelos em linhas finas: limpe para linha pixel-perfect")
+            res.score -= min(8, corners // 4)
+
     best_contrast = max(contrast_ratio(tuple(col), bg) for col in cols)
     res.metrics["contraste_max_bg"] = round(best_contrast, 2)
     if check_contrast and best_contrast < 3.0:
@@ -198,6 +281,12 @@ def lint_animation(anim: Animation, pal: Optional[Palette] = None, kind: str = "
             if max(bys) - min(bys) > max(2, anim.h // 8):
                 res.issues.append("base do loop oscila muito entre quadros (pivo instavel)")
                 res.score -= 5
+    # fervura: em VFX de loop tudo pode mexer, mas em cenario/edition o fundo deve ficar parado
+    boil = boiling_ratio(anim.frames)
+    res.metrics["fervura"] = round(boil, 3)
+    if anim.loop and kind in ("background", "ui", "sprite") and boil > 0.12:
+        res.issues.append(f"{boil:.0%} da imagem troca de cor quase todo quadro (fervura): prenda o dither e anime so o necessario")
+        res.score -= 8
     if anim.w * anim.h > 0 and len(anim.frames) > 64:
         res.issues.append("mais de 64 quadros: nao cabe em Flipbook 8x8")
         res.score -= 5
