@@ -33,7 +33,16 @@ Gerador: `pixelforge.scene.cathedral(pal, w=320, h=180)`. Usa ~22 cores da palet
 - **Bigorna em primeiro plano:** silhueta escura com **rim light laranja** no lado do fogo (L-02: contraluz no lado iluminado).
 - **Parede do fundo** em pedra fria e escura (contraste de temperatura com o fogo). As cartas penduradas são o segundo ponto de interesse.
 - **Animação ideal:** palette cycling no fogo e nas brasas (TR-14), `fx.fire_loop` na lareira e `fx.embers_rising` subindo. Flicker que **só escurece** e jitter por linha (L-07, L-08).
-- *Ainda não há gerador `scene.forge`.* Siga a estrutura do `cathedral` e as regras acima (ponto de melhoria nº 1).
+- **Gerador: `scene.forge(pal, posters=[...])`.** Em 320×180 com 6 quadros, faz:
+  - lareira em arco com dois `fire_loop` defasados e leito de brasas;
+  - flicker de 0–6% que **só escurece**, com jitter de ±1 px por linha;
+  - poça de luz em 5 bandas com xadrez só na fronteira;
+  - lajotas hexagonais em perspectiva (arredondamento cúbico de coordenadas axiais);
+  - bigorna e barril do `sprites_lib` com rim light laranja à esquerda e sombra projetada para longe do fogo;
+  - painel com 5 quadros (o jogo pendura artes de subtipo reais);
+  - brasas em fase inteira.
+
+  Exporte a animação como folha GUI de 644×546 (6 quadros) e toque com o `SpriteAnimator`.
 
 ## 4. Receita geral de cenário (ordem de pintura)
 1. **Blocos de valor** (B0–B2) e linha do horizonte. A perspectiva de 1 ponto converge onde a UI fica.

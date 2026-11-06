@@ -74,7 +74,12 @@ python -m pixelforge fx-all --out out/fx           # todos + lint_report.json
 python -m pixelforge lint caminho.png --kind sprite|vfx|ui|background
 python -m pixelforge preview-luau caminho.png      # Luau p/ prévia instantânea (EditableImage)
 python -m pixelforge scene cathedral --out out/cathedral.png
+python -m pixelforge scene forge --out out/forge.png     # 6 quadros animados + folha GUI
+python -m pixelforge sprite angel_statue --out out/anjo.png   # sprite desenhado em texto
+python -m pixelforge edition holo arte.png --out out/holo     # foil/holo/polychrome/negative
 python -m pixelforge upload a.png b.png            # Open Cloud (precisa ROBLOX_API_KEY no ambiente)
+python -m pixelforge luau-check ../../../../src     # checagem estática leve dos .luau
+python -m pixelforge palette-check                  # valida as rampas (ΔL e giro de matiz)
 ```
 
 API Python (para arte nova, escreva um script curto que use os módulos):
@@ -98,7 +103,29 @@ print(lint.lint_canvas(c, pal, "gema", max_colors=8).text())
 c.save("out/gema_x4.png", scale=4)                         # PRÉVIA: olhe esta imagem
 ```
 
-Módulos: `color` (OKLab/OKLCH, contraste WCAG), `palette` (rampas hue-shifted, quantize, shift), `canvas` (alpha duro, linhas pixel-perfect), `raster` (formas por SDF, ângulos limpos, máscaras), `shade` (forma, sel-out, rim, dither Bayer estilizado), `noise` (ruído periódico p/ loop perfeito), `fx` (11 VFX + 3 transições), `ui` (9-slice, máscara de borda, estados de botão), `scene` (catedral), `font` (bitmap 5×7 com `† ‡ ◆ ◇ ▲ ▸ ~ ·`), `sheet` (exports Roblox), `lint`, `preview`, `roblox` (prévia EditableImage e upload).
+Módulos:
+- **Base:**
+  - `color`: OKLab/OKLCH, contraste WCAG.
+  - `palette`: rampas hue-shifted, quantize, shift, `validate_ramp`.
+  - `canvas`: alpha duro, linhas pixel-perfect.
+  - `raster`: formas por SDF, ângulos limpos, máscaras, `thin_elbows`.
+  - `shade`: forma, sel-out, rim, dither Bayer estilizado.
+  - `noise`: ruído periódico para loop perfeito.
+  - `font`: bitmap 5×7 com `† ‡ ◆ ◇ ▲ ▸ ~ ·`.
+- **Desenho:**
+  - `sprite` + `sprites_lib`: sprites desenhados em texto, sombreados por material.
+  - `ui`: 9-slice, máscara de borda, estados de botão.
+  - `scene`: catedral e forja animada.
+  - `edition`: foil/holo/polychrome/negative estilo Balatro.
+- **Animação:**
+  - `fx`: 13 VFX + 3 transições.
+  - `anim`: timing, `palette_cycle`, `shimmer`.
+- **Saída e QA:**
+  - `sheet`: exports Roblox, alpha bleed, ×4.
+  - `lint`: nível 2, com banding alinhado, cotovelos e fervura.
+  - `luau_check`: sanidade estática de `.luau`.
+  - `preview`.
+  - `roblox`: prévia via EditableImage e upload.
 
 ## Receitas rápidas
 
@@ -112,7 +139,11 @@ Módulos: `color` (OKLab/OKLCH, contraste WCAG), `palette` (rampas hue-shifted, 
 | **VFX no mundo 3D** | `export_flipbook` → `FlipbookVFX.ensure(part, nome, spec)`. Máximo 30 fps, `FlipbookBlendFrames = false`, OneShot com Lifetime = frames/fps. |
 | **Transição de tela** | `fx.transition_dither/diamond/iris` em baixa resolução (80×45) → ImageLabel em tela cheia, Pixelated → SpriteAnimator (ida e volta). |
 | **Cenário** | `scene.cathedral()` como modelo de composição. Para outro ambiente, copie a estrutura (parede → focal saturado → arquitetura → piso e reflexo → luz → vinheta → quantize). Para parallax, separe camadas em PNGs. |
-| **Brilho de carta / foil** | Faixa diagonal (UIGradient com Offset animado) e foil escuro em tile. Veja `docs/specs/CURRENT_SPEC.md` §5. |
+| **Brilho de carta / foil** | Faixa diagonal (UIGradient com Offset animado) e foil escuro em tile. Veja `docs/specs/CURRENT_SPEC.md` §5. Para a carta ampliada e a coleção: `edition.edition_anim(arte, pal, "foil"\|"holo"\|"polychrome"\|"negative")` (8 quadros em loop, quantizados à paleta). |
+| **Figura orgânica** (estátua, criatura, prop com personalidade) | **Desenhe em texto** (`sprite.render_sprite`): uma letra por material, maiúscula = brilho, outros símbolos = cor fixa (frestas, olhos). O motor faz rampa, luz, vinco, sel-out pixel-perfect, rim e oclusão no chão. Escreva a metade e use `mirror_rows`. Exemplos: `sprites_lib.ANGEL_STATUE`, `ANVIL`, `BARREL`. Detalhe fino (penas, dobras) = linhas fixas diagonais 1:1; faixa estreita = no máximo 2 tons. |
+| **Raio / número de dano** | `fx.lightning` (sequência Saint11, glow `abyss` ou `violet` para magia sombria); `fx.damage_pop(pal, "12", "ATQ"\|"GRD"\|"BUF"\|"DEB"\|"SAC")`. |
+| **Ambiente vivo sem custo** | `anim.shimmer` (brilho varrendo vitral/metal) e `anim.palette_cycle` (lava, água, runas): pixels parados, só a cor muda. |
+| **Cenário de forja/lareira** | `scene.forge(pal, posters=[...])`: fogo em loop, flicker que só escurece, poça de luz em bandas, lajotas hexagonais, props desenhados com rim light. Modelo para tavernas, masmorras com tochas e altares. |
 
 ## Roblox Studio MCP (fluxo de montagem e verificação)
 
@@ -135,8 +166,7 @@ Módulos: `color` (OKLab/OKLCH, contraste WCAG), `palette` (rampas hue-shifted, 
 
 ## Limites honestos (diga ao usuário quando se aplicarem)
 
-- Formas **orgânicas complexas** (rostos, personagens, estátuas detalhadas) por puro procedimento ficam esquemáticas. Para isso:
-  - escreva a máscara à mão em ASCII (`mask_from_rows` em `build_forge.py`) e deixe o motor sombrear; ou
-  - peça um rascunho e quantize ou redesenhe sobre ele.
-- O lint é heurístico: pega ruído, cores fora da paleta, contraste e banding concêntrico, mas **não substitui** o olhar.
-- A compressão do Roblox no mobile altera cores de pixel art nativa. Teste no aparelho. Para sprites críticos, use a variante ×4 (`upscale=4`).
+- Formas **orgânicas complexas** (rostos, personagens) só ficam boas **desenhadas em texto** (`sprite`), não por geometria pura. Rostos e mãos pequenos ainda pedem iteração com prévia ×6. Para personagens animados, desenhe as poses-chave em texto e anime trocando quadros.
+- O lint é heurístico: pega ruído, cores fora da paleta, contraste, banding (concêntrico e por segmentos alinhados), cotovelos e fervura entre quadros, mas **não substitui** o olhar. Detalhes intencionais de 1 px (brilho de gema, ponta de dente) contam como órfãos: julgue na prévia.
+- `luau_check` é só sanidade estrutural. A tipagem real exige Script Analysis do Studio ou `luau-lsp`.
+- A compressão do Roblox no mobile altera cores de pixel art nativa. Teste no aparelho. Para sprites críticos, use a variante ×4 (`upscale=4`; atlas de subtipos: `build_subtypes.py --hifi`).

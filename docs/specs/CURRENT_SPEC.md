@@ -519,5 +519,8 @@ python -c "import pathlib;print(sum(1 for p in pathlib.Path('src').rglob('*.luau
 | `art/dark-altar/forge/ForgeOrnamentAtlas.png` | ornamentos +0..+5 |
 | `art/dark-altar/forge/ShapeMaskAtlas.png`, `EtchingAtlas.png` | máscaras brancas do modo PROCEDURAL |
 | `art/dark-altar/forge/mock_forge_levels.png` | referência visual dos 6 níveis |
+| `src/shared/Dev/ForgePreviewBuilder.luau` | ferramenta: monta os 6 níveis no Studio a partir dos atlas (`require(...).build()` no Command Bar ou via MCP) para conferir antes do Fusion |
+| `src/shared/Config/SubtypeArtAtlas120HiFi.luau` + `art/dark-altar/subtypes/SubtypeArtAtlas120_x4_p1..p8.png` | variante ×4 para mobile (8 páginas de 1024², `apply(label, id)`); use só se a compressão estragar a cor no aparelho |
+| `art/dark-altar/editions/*` | editions estilo Balatro (foil/holo/polychrome/negative) para a carta ampliada/coleção |
 
 **Próximos arquivos a criar** (pelo Claude Code, seguindo esta spec): `CardTypes.luau`, `CardTyping.luau`, `CardTokens.luau`, `SubtypeArtView.luau`, `CardForgeOrnaments.luau`, `CardView.luau` e uma story por nível.

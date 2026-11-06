@@ -270,24 +270,25 @@ Verificação esperada:
 
 ---
 
-## 9. Pontos de melhoria (prioridade)
-1. **`scene.forge`:** a segunda referência pedida. Poça de luz quente (L-09), lajotas hexagonais iluminadas por laje, bigorna com rim light, lareira com `fire_loop` e palette cycling.
-2. **Máscaras desenhadas + sombreamento automático:** um formato `.txt`/ASCII de silhueta por sprite (personagens, estátuas, ícones de carta específicos), com o motor fazendo rampa, sel-out, rim e lint.
-3. **Mais geradores:**
-   - raio por deslocamento do ponto médio;
-   - editions do Balatro por texel (foil/holo/polychrome quantizados);
-   - número de dano pop;
-   - "contrast frame + impact frame" para golpes críticos.
-4. **Lint de nível 2:**
-   - detector de banding por segmentos alinhados;
-   - validação de rampa (ΔL ≥ 0,06 e |ΔH| ≤ 22°);
-   - checagem de linha pixel-perfect;
-   - flicker entre quadros;
-   - calibração dos limiares contra sprites aprovados por você.
-5. **Palette cycling exportado:** sheets de 4–8 quadros por troca de cor para vitral, lava e runas (animação sem custo de CPU no Roblox).
-6. **Teste automático no Studio (MCP local):** script que monta a carta +0..+5, faz `screen_capture` e compara com o mockup, para pegar regressão visual.
-7. **Variante ×4 paginada do atlas de subtipos** (8 páginas de 1024²), caso a compressão mobile se confirme no seu aparelho.
-8. **Implementar `CardView`/`CardForgeOrnaments`** no repositório do jogo seguindo a spec, com uma story por nível.
+## 9. Pontos de melhoria (prioridade) e o que já foi feito na v2
+
+| # | Ponto | Status |
+|---|---|---|
+| 1 | `scene.forge` (segunda referência) | **feito na v2** (§11) |
+| 2 | Silhuetas desenhadas + sombreamento automático | **feito na v2** (`sprite` + `sprites_lib`) |
+| 3 | Raio, editions do Balatro, número de dano | **feito na v2** ("contrast + impact frame" para crítico continua pendente) |
+| 4 | Lint nível 2 (banding alinhado, rampa, pixel-perfect, fervura) | **feito na v2**; calibrar contra sprites aprovados por você |
+| 5 | Palette cycling | **feito na v2** (`palette_cycle`, `shimmer` no vitral) |
+| 6 | Teste visual automático no Studio | **parcial**: `ForgePreviewBuilder` monta os 6 níveis. Falta a comparação automática por `screen_capture` (exige o MCP local) |
+| 7 | Atlas ×4 paginado | **feito na v2** (`--hifi`) |
+| 8 | Implementar `CardView`/`CardForgeOrnaments` em Fusion | pendente: exige o repositório do jogo (`HudView`/`DesignTokens`) e o Studio para testar |
+
+Próximos passos (v3):
+1. **Personagens animados** desenhados em texto: poses-chave → quadros, com o mesmo sombreamento.
+2. **Impact frame** para golpes críticos: silhueta em 2 cores invertidas, 1 quadro.
+3. **Calibrar o lint** com um conjunto de sprites aprovados por você (limiares por tipo).
+4. **Comparação visual automática** via MCP local: `ForgePreviewBuilder.build()` → `screen_capture` → diferença contra o mockup.
+5. **Implementar a spec em Fusion** dentro do repositório do jogo.
 
 ---
 
@@ -301,4 +302,33 @@ Verificação esperada:
 | Qualidade visual alcançada | 7,0 | Subtipos, ornamentos, VFX e catedral coerentes e limpos (lint 90–100). Ainda abaixo do acabamento à mão das referências em fumaça, fogo e figuras orgânicas. |
 | Robustez anti-erro | 8,0 | `getOrDefault`, `validate`, pcall nos relógios, guarda contra ms = 0 e reentrância. Falta o type-check real do Luau. |
 
-**Nota geral: 8,2 / 10.** Como sistema de produção, o motor está sólido: determinístico, testável e documentado. Para chegar a 9+, faltam três coisas: o gerador da forja, as máscaras desenhadas para figuras orgânicas e a validação no Studio e no aparelho.
+**Nota geral (v1): 8,2 / 10.** Como sistema de produção, o motor está sólido: determinístico, testável e documentado. Para chegar a 9+, faltam três coisas: o gerador da forja, as máscaras desenhadas para figuras orgânicas e a validação no Studio e no aparelho.
+
+---
+
+## 11. Melhorias aplicadas (v2)
+
+| Área | O que mudou | Evidência |
+|---|---|---|
+| Figuras orgânicas | `sprite.py`: sprite desenhado em texto (letra = material, maiúscula = brilho, símbolo = cor fixa) com rampa, luz, vinco, sel-out **pixel-perfect**, rim light e oclusão no chão. `sprites_lib`: anjo de pedra, bigorna, barril. | Estátuas da catedral refeitas (asas com penas limpas). Lint: anjo 96, barril 94, bigorna 87. |
+| Forja (referência 2) | `scene.forge`: 6 quadros com fogo em loop, flicker que só escurece, jitter por linha, poça de luz em bandas, lajotas hexagonais, props desenhados, quadros com **artes de subtipo reais** (Leviatã, Dragão, Eclipse, Fogo, Diamante). | `art/dark-altar/scenes/forge.gif`, folha GUI 644×546 + `forge_Sprite.luau` |
+| Catedral viva | Vitral com `shimmer` (brilho varrendo o vidro) em 8 quadros. | `art/dark-altar/scenes/cathedral.gif` |
+| Novos VFX | `lightning` (sequência Saint11, deslocamento do ponto médio) e `damage_pop` (5 tipos de cor) | lint 100 / 100 |
+| Editions | `edition.py`: foil, holo, polychrome e negative calculados por texel e quantizados de volta à paleta | `art/dark-altar/editions/*` |
+| Lint nível 2 | banding por segmentos alinhados, cotovelos reais (critério pixel-perfect), fervura entre quadros; validação de rampas | ornamentos: moldura de relíquia 80 → 100, filigrana 79 → 97 |
+| Contornos | `thin_elbows` em todos os contornos, sel-outs e vincos (linha pixel-perfect nas diagonais); vinco não é mais aplicado contra linhas fixas | anjo: 10 cotovelos reais restantes, nota 96 (medido com o detector novo) |
+| Mobile | atlas de subtipos ×4 paginado (`--hifi`, 8 × 1024²) + `SubtypeArtAtlas120HiFi.luau` | — |
+| Studio | `ForgePreviewBuilder.luau`: monta as 6 cartas no Studio a partir dos atlas | rodar no Command Bar |
+| Robustez Luau | `luau_check`: `--!strict`, sem `any`, sem emoji, blocos e parênteses balanceados | 33/33 arquivos passam; o verificador acusa erros plantados |
+
+### Nova avaliação técnica (v2)
+
+| Critério | v1 | v2 | Por quê |
+|---|---:|---:|---|
+| Performance | 8,5 | 8,5 | Sem mudança estrutural: forja e catedral animadas em folhas ≤ 1024, sem custo de CPU extra. |
+| Organização | 9,0 | 9,0 | Novos módulos seguem o mesmo padrão (fonte → gerador → PNG + `.luau`). |
+| Legibilidade para não programador | 8,5 | 8,5 | CLI cresceu, mas segue com comandos curtos e comentários em PT-BR. |
+| Qualidade visual | 7,0 | 8,0 | Forja e estátuas desenhadas aproximam bem as referências; editions e raio no nível dos tutoriais. Fumaça e figuras animadas ainda abaixo do trabalho à mão. |
+| Robustez anti-erro | 8,0 | 8,5 | Lint nível 2 + checagem estática de Luau + validação de paleta. O type-check real continua pendente. |
+
+**Nota geral (v2): 8,6 / 10.** Para 9+: personagens animados desenhados em texto, comparação visual automática no Studio e o type-check real dos `.luau` (Script Analysis ou `luau-lsp` na sua máquina).

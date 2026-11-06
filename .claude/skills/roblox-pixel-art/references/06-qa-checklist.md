@@ -14,6 +14,13 @@
 | faixa de valor | max L − min L | < 0,30 em sprite/UI |
 | contraste com o fundo | maior contraste WCAG contra #1E1E24 | < 3 (exceto frames de contraste ou dissipação marcados) |
 | animação | pivô do loop, ≤ 64 frames | base oscila > H/8; não cabe em 8×8 |
+| banding por segmentos (nível 2) | pares de segmentos ≥ 3 px vizinhos com as duas pontas alinhadas (critério do *Pixel Logic*), ignorando a cor do contorno | > 18% dos segmentos (sprite/UI) |
+| cotovelos (nível 2) | pixels que o pincel pixel-perfect removeria (L de linha de 1 px) | > px/150 (sprite/UI) |
+| fervura (nível 2) | fração da imagem que troca de cor em > 70% dos quadros | > 12% em loops de cenário/UI (em VFX é esperado) |
+
+Checagens complementares:
+- `python -m pixelforge palette-check`: cada rampa com ΔL_OKLab ≥ 0,06 entre vizinhos e giro de matiz ≤ 22° por passo.
+- `python -m pixelforge luau-check src/`: `--!strict` na primeira linha, nenhum `any`, nenhum emoji, blocos e parênteses balanceados. Não substitui o type-check do Studio.
 
 **Notas mínimas:** sprite, ícone e UI ≥ 90; VFX ≥ 85; cenário ≥ 80.
 

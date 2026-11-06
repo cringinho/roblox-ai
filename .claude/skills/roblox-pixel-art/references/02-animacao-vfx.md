@@ -85,7 +85,18 @@ Sequência:
 6. vazio;
 7. dissipação.
 
-Polilinha por deslocamento do ponto médio (`detail` 2–3 px), núcleo 1 px claro, brilho de 1 px de cada lado. *(Ainda não há gerador; é um ponto de melhoria.)*
+Polilinha por deslocamento do ponto médio (`detail` 2–3 px), núcleo 1 px claro, brilho de 1 px de cada lado. Gerador: **`fx.lightning`** (8 quadros, 383 ms, ramos com probabilidade 0,3–0,45; `glow="violet"` para magia sombria).
+
+### Número de dano — `fx.damage_pop`
+1. Flash branco 1 px abaixo da posição final.
+2. Sobe com overshoot.
+3. Assenta em 2 tons do tipo: ATQ fogo, GRD espírito, BUF ouro, DEB violeta, SAC sangue.
+4. Deriva 1 px por quadro.
+5. Some **de cima para baixo**, removendo linhas (sem alpha parcial). Ao todo são 8 quadros, cerca de 565 ms.
+
+### Ambiente vivo — `anim.shimmer` / `anim.palette_cycle`
+- **Shimmer:** uma faixa diagonal sobe a região 1 degrau na própria rampa e anda a cada quadro. O loop fecha em `frames`. Usado no vitral da catedral.
+- **Palette cycling:** cada pixel fica parado e só a cor gira dentro do seu ciclo. Serve para lava, água e runas.
 
 ### Magia sombria × sagrada [VFX-21 a VFX-23]
 
