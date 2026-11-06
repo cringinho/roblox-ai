@@ -17,7 +17,7 @@ Marcadores:
 | **[SÍNTESE]** | Conclusão/algoritmo meu, derivado das fontes indicadas. Não é citação. Use como default ajustável. |
 | **[SECUNDÁRIA]** | Fonte de confiabilidade menor (blog/marketing/fórum/wiki comunitária). Use como ponto de partida, não como verdade. |
 
-**Unidades.** H em graus (0–360), S e V em % (modelo HSV). Para "valor perceptual" uso **L do OKLab** (0 = preto, 1 = branco), porque o V do HSV não representa a luminância percebida (azul puro e amarelo puro têm o mesmo V=100 mas luminâncias muito diferentes — ver C-09). Durações em **ms por frame**; "f" = frame; "@60" = frames de jogo a 60 fps.
+**Unidades.** H em graus (0–360), S e V em % (modelo HSV). Para "valor perceptual" uso **L do OKLab** (0 = preto, 1 = branco), porque o V do HSV não representa a luminância percebida (azul puro e amarelo puro têm o mesmo V=100 mas luminâncias muito diferentes — ver C-04). Durações em **ms por frame**; "f" = frame; "@60" = frames de jogo a 60 fps.
 
 **Sobre os tutoriais do Saint11 (Pedro Medeiros, artista de Celeste/TowerFall).** São GIFs com texto embutido; os textos foram lidos quadro a quadro e as durações foram extraídas dos metadados dos GIFs (Pillow). Índice: https://saint11.art/blog/pixel-art-tutorials/ — cada GIF está em `https://saint11.art/img/pixel-tutorials/<Nome>.gif`.
 
@@ -29,8 +29,8 @@ Marcadores:
 
 - **F-01 [FONTE]** Escalar pixel art **somente por múltiplos inteiros** (200%, 300%, 400%) com vizinho-mais-próximo; em escalas não inteiras (ex.: 193,5%) "as unidades de pixel ficam distorcidas e não são todas perfeitamente quadradas". O autor raramente passa de 4x ("chunky demais"). Composições típicas de 128×128 a 256×256 px exibidas a 2x–4x. — https://www.slynyrd.com/blog/2018/5/16/pixelblog-5-back-to-basics
 - **F-02 [FONTE]** "Pixel art must be scaled by whole number multiples to avoid distortion of the pixel units"; mockup de jogo exibido a 4x em 1920×1080. — https://www.slynyrd.com/blog/2026/7/26/pixelblog-63-horizontal-shmup
-- **F-03 [FONTE]** Resolução-alvo de tela recomendada 480×270, com "faixa de ouro" de 320×180 a 640×360 (todas escalam inteiro para 1080p). — https://www.slynyrd.com/blog/2020/12/14/pixelblog-31-shmup-sprite-design
-- **F-04 [SECUNDÁRIA]** Blasphemous (referência gótica) usa arte nativa 640×360; múltiplos inteiros (720p = 2x, 1080p = 3x) ficam pixel-perfect. — https://steamcommunity.com/app/774361/discussions/0/1638669204735629860
+- **F-03 [FONTE]** Resolução-alvo de tela recomendada 480×270, com "faixa de ouro" de 320×180 a 640×360 (320×180, 480×270 e 640×360 escalam por inteiro para 1920×1080: 6x, 4x e 3x). — https://www.slynyrd.com/blog/2020/12/14/pixelblog-31-shmup-sprite-design
+- **F-04 [SECUNDÁRIA]** Blasphemous (referência gótica): usuários relatam arte-alvo nativa de **640×360**, com múltiplos inteiros (720p = 2x, 1080p = 3x) pixel-perfect (relato de fórum, visto via resultado de busca; a página exige login/aviso de conteúdo e não pôde ser lida diretamente). — https://steamcommunity.com/app/774361/discussions/0/1638669204735629860
 - **F-05 [FONTE]** **Não escalar nem rotacionar** arte pronta para gerar o asset final: "não há saída fácil, você precisa redesenhar"; algoritmos automáticos ajudam como rascunho. Procedimento: (1) resize automático → (2) consertar outline e silhueta → downscale: (3) redesenhar informação perdida, (4) escolher detalhes a omitir, (5) consertar dither e sombreamento quebrado; upscale: (3) caçar "quadradões" e arredondar, (4) redesenhar linhas e dither quebrados, (5) achar áreas para detalhe extra. Reduzir de um conceito é "tradução, não reescala": massas grandes primeiro, escolher detalhes fortes, concentrar detalhe/contraste neles. — https://saint11.art/img/pixel-tutorials/Resizing.gif
 - **F-06 [FONTE]** "Sempre evito rotacionar pixel art; quando possível, use motion blur para fingir a rotação." — https://saint11.art/img/pixel-tutorials/Hazards.gif
 - **F-07 [FONTE]** **Mixels** = pixels de tamanhos diferentes combinados na mesma imagem/tela (inclusive quando cada sprite é consistente mas são exibidos em escalas diferentes); "um dos erros fundamentais que você deve sempre evitar". Exceção aceitável: efeitos (corações, símbolos de raiva, gotas, poeira) em resolução menor para se destacarem. — https://yari-pixels.github.io/Articles/mixels.html
@@ -73,7 +73,7 @@ Marcadores:
 - **F-25 [FONTE]** Androidarts: preto para outlines inferiores/sombreados e outline mais claro em cima (sobretudo em volta de cor clara); efeitos brilhantes (sóis, plasma) com outline todo colorido ou sem outline; não pôr linha preta sob formas que tocam o chão; linhas internas pretas só onde a separação for necessária (senão separe por contraste de cor); **não fazer outline em volta de outline**, exceto escudos/auras. — https://www.androidarts.com/pixtut/pixelart.htm
 - **F-26 [FONTE]** Outline só se o sprite precisar de separação do fundo; comece com uma cor e depois clareie/escureça trechos para casar com as cores adjacentes (= sel-out). — https://www.slynyrd.com/blog/2025/7/28/pixelblog-57-knights-monsters-amp-castles
 - **F-27 [FONTE]** Projéteis: outline é quase obrigatório; **outline duplo (claro + escuro)** como "seguro"; outlines **brancos** em projéteis os separam dos sprites (que usam outline escuro) — e por isso os fundos evitam grandes áreas brancas/muito claras. — https://www.slynyrd.com/blog/2020/12/14/pixelblog-31-shmup-sprite-design
-- **F-28 [SÍNTESE]** Algoritmo de sel-out: (1) gere a máscara de silhueta; (2) outline = pixels transparentes 4-vizinhos da máscara (1 px); (3) a cor de cada pixel de outline = tom 2 passos mais escuro da rampa do material interno adjacente (ou o tom mais escuro da paleta, se a rampa acabar); (4) no lado iluminado (produto escalar normal-da-borda·direção-da-luz > 0,5) use 1 passo mais escuro ou remova; (5) no lado da sombra/contato com o chão use a cor mais escura da paleta (não `#000`, ver C-10). Espessura: 1 px até 64 px de altura; outline de 2 px só em UI/ícones estilizados ou efeitos que precisam "saltar".
+- **F-28 [SÍNTESE]** Algoritmo de sel-out: (1) gere a máscara de silhueta; (2) outline = pixels transparentes 4-vizinhos da máscara (1 px); (3) a cor de cada pixel de outline = tom 2 passos mais escuro da rampa do material interno adjacente (ou o tom mais escuro da paleta, se a rampa acabar); (4) no lado iluminado (produto escalar normal-da-borda·direção-da-luz > 0,5) use 1 passo mais escuro ou remova; (5) no lado da sombra/contato com o chão use a cor mais escura da paleta (não `#000`, ver C-18 e C-03). Espessura: 1 px até 64 px de altura; outline de 2 px só em UI/ícones estilizados ou efeitos que precisam "saltar".
 
 ### 1.6 Banding, pillow shading e dithering
 
@@ -119,10 +119,10 @@ Método: conversão HSV dos `.hex` oficiais do Lospec (rampas consecutivas da pa
 
 **Regras derivadas das medições** (C-06 a C-09):
 
-- **C-06 [MEDIDO]** Rampas de 6 passos de paletas profissionais giram o matiz **45°–100°** do mais escuro ao mais claro (média ≈ 76°; ≈ 15°/passo). O deslocamento por passo é **maior nos escuros** (19°–37° nos 1–2 primeiros passos) e **menor nos claros** (4°–15°).
+- **C-06 [MEDIDO]** Rampas de 6 passos de paletas profissionais giram o matiz **45°–100°** do mais escuro ao mais claro (média ≈ 76°; ≈ 15°/passo). O deslocamento por passo é **maior nos escuros** (15°–37° nos 2 primeiros passos, exceto a rampa azul, que gira só 4°–6° ali) e **menor nos claros** (4°–17° nos 2 últimos).
 - **C-07 [MEDIDO]** Direção: ao clarear, o matiz caminha (pelo caminho mais curto) para **amarelo ≈ 40°–70°**; ao escurecer, para **azul-violeta ≈ 220°–290°** (ex.: vermelho começa em 290° e termina em 28°; verde 166° → 68°; azul 224° → 178°).
-- **C-08 [MEDIDO]** Saturação: ponta escura **44–59%**, pico **57–77%** no meio/meio-alto, ponta clara **23–52%** (≈ 0,4–0,75 × pico). Rampas de fogo/VFX ficam saturadas até o topo (S 62–91%).
-- **C-09 [MEDIDO]** Valor: tom mais escuro **V 15–30%** (nunca 0), mais claro **V 85–91%** (rampas de material) ou 98–100% (rampas de luz/fogo); incrementos de **13–20 pontos** na metade de baixo e **4–10** perto do topo.
+- **C-08 [MEDIDO]** Saturação: ponta escura **44–59%**, pico **50–77%** no meio/meio-alto, ponta clara **23–52%** (≈ 0,4–0,7 × pico; exceção: a rampa vermelha, que termina em laranja, mantém 72%). Rampas de fogo/VFX ficam saturadas até o topo (S 62–91%).
+- **C-09 [MEDIDO]** Valor: tom mais escuro **V 15–30%** (nunca 0), mais claro **V 85–91%** (rampas de material) ou 98–100% (rampas de luz/fogo); incrementos de **~10–22 pontos** nos 3 primeiros passos e **~4–16** nos 2 últimos (passos encolhendo perto do topo, como em C-01).
 
 ### 2.3 Gerador de rampas (algoritmo) **[SÍNTESE]** (calibrado por C-01, C-06–C-09)
 
@@ -150,7 +150,7 @@ def make_ramp(h_mid, n=6, s_peak=0.66, s_dark=0.50, s_light_ratio=0.45,
 
 Saídas de exemplo (verificadas): `h_mid=0` → `#2e1728 #652a45 #943644 #bb4e40 #d88d65 #e5c0a1` (ΔH por passo 18,18,16,14,6; L_OKLab 0,24→0,83); `h_mid=210` → `#171a2e #2a3265 #365794 #408cbb #65c6d8 #a1e5e0`; `h_mid=275` → `#22172e #462a65 #623694 #9640bb #d065d8 #e5a1da`.
 **Validação obrigatória** após gerar: (a) |ΔH| entre vizinhos ≤ 22° (C-01); (b) L_OKLab estritamente crescente com **ΔL ≥ 0,06** entre vizinhos (senão dois tons ficam indistinguíveis); (c) S nunca 0 nem 100% (exceto branco puro de núcleo de VFX); (d) V_min ≥ 0,12.
-Variações: rampas de **luz/fogo/magia** → `v_max = 1.0`, `s_light_ratio = 0.85`; rampas de **pedra gótica** → `s_peak = 0.25`, `s_dark = 0.30`, `k = 0.25` (matiz quase fixo, fria); **metal** → ver L-10 (claros mais frios/menos saturados, escuros mais quentes/saturados).
+Variações: rampas de **luz/fogo/magia** → `v_max = 1.0`, `s_light_ratio = 0.85`; rampas de **pedra gótica** → `s_peak = 0.25`, `s_dark = 0.30`, `k = 0.25` (matiz quase fixo, fria); **metal** → ver L-05 (claros mais frios/menos saturados, escuros mais quentes/saturados).
 
 ### 2.4 Quantas cores / quantos passos
 
@@ -277,7 +277,8 @@ Midnight Ablaze (7) — https://lospec.com/palette-list/midnight-ablaze
   #ff8274 #d53c6a #7c183c #460e2b #31051e #1f0510 #130208
 Dorian_Greenless (24) — https://lospec.com/palette-list/doriangreenless
   #1c0f10 #2b1102 #4c1302 #660f00 #862102 #c35e26 #fb8b41 #ffb766 #ffda83 #be7b20 #9f7d33 #6f460e #583000 #391f04 #2a2209 #171b15
-  #29342e #5e605f #6d7e74 #a2b2a8 #d2d5c6 #ffe7bd #e0b38c #b57b4d```
+  #29342e #5e605f #6d7e74 #a2b2a8 #d2d5c6 #ffe7bd #e0b38c #b57b4d
+```
 
 ### 2.6 Cores efetivamente usadas por um profissional em VFX/materiais **[MEDIDO]**
 
@@ -367,7 +368,7 @@ Teste: B4 deve ocupar **10–20%** da área (C-04); a silhueta de B3 deve ter **
 
 - **A-17 [FONTE]** Dead Cells: animações a **30 FPS** (renderizadas de 3D); personagem com ~**50 px** de altura. — https://habr.com/post/416589 (tradução do artigo de Thomas Vasseur "Art Design Deep Dive: Using a 3D pipeline for 2D animation in Dead Cells", Game Developer/Gamasutra)
 - **A-18 [FONTE]** GIF de exemplo com hold de **50 ms (20 fps)** por limitação do formato; num jogo, mire **≥ 60 fps** de renderização. — https://www.slynyrd.com/blog/2026/7/26/pixelblog-63-horizontal-shmup
-- **A-19 [SECUNDÁRIA]** 12 fps (≈ 83 ms) é o default de consenso para pixel art; 24 fps raramente compensa o dobro de trabalho. — https://divoom.com/blogs/setup-ideas/pixel-art-animation-frame-rate
+- **A-19 [SECUNDÁRIA]** 12 fps (≈ 83 ms) é "o default de consenso" para pixel art ("o ponto ideal"); 8 fps é o mínimo em que o movimento começa a parecer suave; "24 fps quase nunca é necessário" (dobra o trabalho; útil em efeitos rápidos como respingos); segure poses-chave por vários frames e passe rápido pelas transições ("ones and twos"). — https://divoom.com/blogs/setup-ideas/pixel-art-animation-frame-rate
 - **A-20 [SECUNDÁRIA]** Tabela de referência (ms/frame): idle 2–4 f × 300–500; walk 4–6 f × 100–150; run 6–8 f × 60–100; wind-up 1–2 f × 60–80; **impacto 1–2 f × 120–200 (segurado)**; recovery 1–2 f × 80–100; apex de pulo 1 f × 120–180; "durações uniformes são o erro mais comum". — https://www.sprite-ai.art/guides/animation-principles
 - **A-21 [FONTE]** Loops: no fogo, ao chegar ao último frame "continue como se o primeiro frame fosse o próximo" (desenhe o loop pensando na emenda) — https://saint11.art/img/pixel-tutorials/Fire.gif ; elementos em loop sobrepostos precisam ter **contagem de frames que divide** o total do loop maior — https://www.slynyrd.com/blog/2019/11/12/pixelblog-23-parallax-scrolling
 - **A-22 [FONTE]** Animações de "idle" para itens: itens flutuantes **oscilam (bob)**, itens no chão **quicam**; moedas **brilham**; power-ups oscilam; rotação é complexa demais, salvo itens simples; feedback ao pegar: brilhos pequenos variados + aleatoriedade; "quanto mais importante o item, mais especial o feedback". — https://www.slynyrd.com/blog/2019/12/21/pixelblog-24-items
@@ -410,7 +411,7 @@ Metadado `duration` de cada frame dos GIFs (Pillow). Representa a cadência esco
 | Brasa/faísca (vida) | 3–8 | 60–100 | — |
 | Shine sweep em botão/carta | 6–9 | 50–80 + pausa 1–3 s | — |
 | Hit-stop ao acertar carta/unidade | 4–12 frames @60 | 66–200 ms (proporcional ao dano, teto 30 f) | — |
-| Hit flash branco | 1–3 frames @60 | 16–50 ms | — |
+| Hit flash branco | 2–4 frames @60 (até 6 em golpe pesado) | 33–66 ms (≤ 100 ms) | — |
 | Transição de tela | 16–30 frames @60 (ou 8–12 passos de 33–50 ms) | 0,25–0,5 s | — |
 | Idle de ícone/carta lendária | 4–8 | 120–200 | loop de 1–2 s |
 
@@ -527,7 +528,7 @@ Não encontrei tutorial de pixel art específico e confiável; o que segue combi
 
 1. Desenhar cada anel **na resolução final** com o algoritmo de círculo de ponto médio (F-18), anéis de 1 px separados por ≥ 2 px.
 2. Simetria que respeita a grade: **4 ou 8 setores** (runas a cada 45°/90°), estrelas de 4/8 pontas ou pentagrama (sombria).
-3. "Rotação" sem rotacionar pixels: (a) **mover as runas ao longo do anel** (reposicionar glifos pré-desenhados em ângulos novos, cada glifo sempre "em pé"), ou (b) **ciclar a cor** ao longo do anel (ver TR-10), ou (c) rotação em passos de 90° + espelhamento.
+3. "Rotação" sem rotacionar pixels: (a) **mover as runas ao longo do anel** (reposicionar glifos pré-desenhados em ângulos novos, cada glifo sempre "em pé"), ou (b) **ciclar a cor** ao longo do anel (palette cycling, ver TR-14/TR-15), ou (c) rotação em passos de 90° + espelhamento.
 4. Brilho: 1 anel externo 1 px em tom médio + núcleo claro; pulso de 4–6 frames × 80–120 ms; sombria = contraste preto + roxo/verde-ácido; sagrada = ouro/branco com raios retos de cima.
 
 ### 5.11 Legibilidade de VFX sobre fundo escuro
@@ -546,7 +547,7 @@ Não encontrei tutorial de pixel art específico e confiável; o que segue combi
 - **TR-02 [SECUNDÁRIA]** Shake por "trauma" (implementação de terceiros que credita o vídeo "Math for Game Programmers" da GDC — a sessão de 2016 sobre câmeras é de Squirrel Eiserloh): `trauma ∈ [0,1]` somado a cada impacto e decaindo por frame (`trauma −= dt·taxa`); `offset = shakeMagnitude · trauma² · perlin(seed+eixo, t)` (uma amostra de Perlin por eixo, outra para rotação, também ×trauma²). — https://community.gamedev.tv/t/enhanced-camera-shake-with-perlin-noise/204230
 - **TR-03 [SÍNTESE]** Em pixel art, o deslocamento de shake é **inteiro em pixels nativos** (o mundo inteiro desloca junto; a UI não treme), amplitude 1–4 px nativos, decaimento em 4–10 frames @60, direção preferencial = direção do golpe (A-16, "camera kick"), alternando o sinal a cada 1–2 frames.
 - **TR-04 [SECUNDÁRIA]** Hit flash: o sprite "vira branco sólido por **0,1 s** e volta ao normal" (implementado com uma camada/efeito que desenha tudo em branco). — https://forum.gdevelop.io/t/sprite-flash-solid-white-when-damaged/29507 . **[SÍNTESE]** Default: 2–4 frames @60 (33–66 ms), até 6 frames (100 ms) em golpes pesados; gere o sprite branco a partir da máscara alfa (todas as cores → branco ou → tom mais claro da paleta).
-- **TR-05 [SECUNDÁRIA]** *Impact frames* (animação 2D/anime): 1–3 frames de alto contraste/inversão, formas simplificadas e angulares, reservados para momentos-chave. — https://knowyourmeme.com/memes/cultures/impact-frames . Equivalentes em pixel art com fonte primária: *contrast frame* escuro + *white flash* (VFX-01, VFX-09, VFX-17, A-13).
+- **TR-05 [SECUNDÁRIA]** *Impact frames* (animação 2D/anime): visuais marcantes que aparecem "por uma fração de segundo", com poses exageradas, **contrastes fortes** e transições rápidas; Yutaka Nakamura é considerado um dos primeiros a usá-los no mainstream. — https://knowyourmeme.com/memes/cultures/impact-frames . Equivalentes em pixel art com fonte primária: *contrast frame* escuro + *white flash* (VFX-01, VFX-09, VFX-17, A-13).
 - **TR-06 [SÍNTESE] Impact frame em Pillow:** silhueta do atacante+alvo em 1 cor (preto ou branco) sobre fundo invertido (2 cores totais), 1 frame (≤ 50 ms) seguido do frame normal com hit-stop; no máximo 1 a cada ~2 s de jogo para não cansar.
 
 ### 6.2 Transições de tela
@@ -558,8 +559,8 @@ Não encontrei tutorial de pixel art específico e confiável; o que segue combi
 - **TR-11 [FONTE] Mosaico/pixelate (SNES):** registrador `$2106` — 4 bits altos = tamanho do mosaico **0 = 1×1 … 15 = 16×16**, 4 bits baixos = quais BGs; cada bloco é coberto pelo **pixel superior esquerdo** do bloco. — https://snes.nesdev.org/wiki/PPU_registers ; uso típico: fade para mosaico → troca de cena → revelar (exemplo de ~30 frames). — https://k0b3n4irb.github.io/opensnes/mosaic_8h.html . **[SÍNTESE]** Em Pillow: para `s` em `[1,2,3,4,6,8,12,16]` → `img.resize((w//s, h//s), NEAREST).resize((w, h), NEAREST)` (amostra canto/centro); 2–3 frames @60 por passo.
 - **TR-12 [FONTE] Glitch como transição:** ver VFX-34 (deslocamento de faixas, barras, frames de ruído, scanlines deslocadas 1 px). — https://saint11.art/img/pixel-tutorials/Glitch.gif
 - **TR-13 [FONTE] CRT (Balatro, shader `CRT.fs` extraído pela comunidade):** coordenadas recentradas em [−1,1] e **abaulamento** `tc += (tc.yx²)·tc·(k − 1)`; **máscara de borda** com `smoothstep` (feather) escurecendo as bordas; **glitch** opcional = deslocamento horizontal por soma de senos em `y` e tempo; **aberração cromática horizontal** (R amostrado ~+0,0005 UV, G ~−0,0005 UV, normalizado a 1600 px de largura ≈ ±0,8 px de tela); **overlay de scanline/abertura** = cada canal RGB modulado por `sin(y·scanlines + fase)` com fases diferentes por canal e máscara de coluna `cos(x·scanlines·4)`; ruído; correção de contraste/brilho; bloom no fim. — https://github.com/balatro-src/balatro-src-reverse-engineering (arquivo `resources/shaders/CRT.fs`) **[SÍNTESE]** Aplicar CRT **depois** do upscale inteiro (na resolução da tela), nunca na resolução nativa; manter um toggle (acessibilidade).
-- **TR-14 [FONTE] Palette cycling (Mark Ferrari):** animação por **troca de cores na paleta**, não por redesenho; como lâmpadas de marquise que acendem em sequência — "cada pixel afetado fica completamente parado", vizinhos rodam laços defasados e as faixas de cor parecem se mover; usado para água, lava, luzes. — https://en.wikipedia.org/wiki/Color_cycling ; palestra GDC 2016 "8 Bit & '8 Bitish' Graphics: Outside the Box" — https://gdcvault.com/play/1023586/8-Bit-8-Bitish-Graphics ; demo Canvas Cycle (J. Huckaby, arte de Ferrari), que ainda **mistura linearmente as cores** durante o ciclo ("blend shift") para suavizar — https://experiments.withgoogle.com/canvas-cycle
-- **TR-15 [SÍNTESE] Palette cycling em Pillow:** gere a cena em modo `"P"` com faixas de índices reservadas (ex.: 8 índices para o brilho da forja, 6 para o tremeluzir do vitral, 4 para runas); a cada tick, rotacione `palette[lo:hi]`; frames de 80–200 ms; para "blend shift", interpole linearmente cada entrada entre a cor atual e a próxima em 2–4 subpassos e **quantize de volta** para a paleta mestra se o estilo exigir paleta fechada.
+- **TR-14 [FONTE] Palette cycling (Mark Ferrari):** animação por **troca de cores na paleta**, não por redesenho; como lâmpadas de marquise que acendem em sequência — "cada pixel afetado fica completamente parado", vizinhos rodam laços defasados e as faixas de cor parecem se mover; usado para água, lava, luzes. — https://en.wikipedia.org/wiki/Color_cycling ; palestra GDC 2016 "8 Bit & '8 Bitish' Graphics: Outside the Box" — https://gdcvault.com/play/1023586/8-Bit-8-Bitish-Graphics ; demo Canvas Cycle (J. Huckaby): "implementação de um motor completo de color cycling 8-bit", com toda a arte de Mark Ferrari — https://experiments.withgoogle.com/canvas-cycle
+- **TR-15 [SÍNTESE] Palette cycling em Pillow:** gere a cena em modo `"P"` com faixas de índices reservadas (ex.: 8 índices para o brilho da forja, 6 para o tremeluzir do vitral, 4 para runas); a cada tick, rotacione `palette[lo:hi]`; frames de 80–200 ms; para suavizar, interpole linearmente cada entrada entre a cor atual e a próxima em 2–4 subpassos e **quantize de volta** para a paleta mestra se o estilo exigir paleta fechada.
 
 ---
 
@@ -590,10 +591,10 @@ Não encontrei tutorial de pixel art específico e confiável; o que segue combi
 - **UI-08 [FONTE]** Slay the Spire: raridade pela **cor do banner e da moldura** — **comum = cinza, incomum = azul, rara = dourada**; tipo pela **forma da moldura** — Ataque: retângulo com borda inferior afunilada; Skill: retangular; Power: oval. — https://slaythespire.wiki.gg/wiki/Cards
 - **UI-09 [FONTE]** Convenção MMO de qualidade (WoW): Poor `#9d9d9d`, Common `#ffffff`, Uncommon `#1eff00`, Rare `#0070dd`, Epic `#a335ee`, Legendary `#ff8000`, Artifact `#e6cc80`, Heirloom `#00ccff`. — https://warcraft.wiki.gg/wiki/Quality
 - **UI-10 [FONTE]** Inscryption (Daniel Mullins): o design visual das cartas foi acompanhado de "preocupação constante com a **legibilidade**" por causa da **baixa resolução** — detalhes pequenos ficavam difíceis de ver; soluções: **nenhum texto na carta além do nome** e **ícones cobrindo o retrato quando necessário**. — https://www.gamedeveloper.com/design/how-game-jam-sacrifices-became-inscryption
-- **UI-11 [FONTE] Editions do Balatro** (shaders extraídos pela comunidade; descrição do mecanismo, não do código): todos avaliam o efeito em **UV "floored" ao texel** (o efeito respeita a grade de pixels do sprite) e usam um campo animado `field(uv, t)` = soma de cossenos/senos das **distâncias a 3 centros que orbitam** no tempo.
+- **UI-11 [FONTE] Editions do Balatro** (shaders extraídos pela comunidade; descrição do mecanismo, não do código): **Polychrome** e **Holographic** avaliam um campo animado `field(uv, t)` = soma de cossenos/senos das **distâncias a 3 centros que orbitam** no tempo, calculado sobre **UV "floored" ao texel** (o efeito muda em blocos do tamanho do pixel da arte, respeitando a grade); o **Foil** usa UV contínuo.
   - **Polychrome**: converte para HSL; dessatura levemente R/G de pixels pouco saturados; `hue += res` (res ∈ [0,1] vindo do campo, i.e. **rotação de matiz completa variando em manchas suaves**) e `sat = min(0,6; sat + 0,5)`.
   - **Holographic**: mistura a cor 50% com azul antes do HSL; mesmo campo com escala ~5× mais fina; soma uma **grade diagonal** (picos de `cos` em `x` e em `y·45 ± x·20`, limiarizados) ao matiz; `sat ×1,3`; `light = light·0,6 + 0,4`; mistura com o original por um peso que cresce com a croma; tinge `×(0,9; 0,8; 1,2)` (azul-violeta).
-  - **Foil**: máscara de **anéis radiais** + **faixas angulares que giram** + faixas lineares em x/y; onde a máscara é alta, reduz R e G e **aumenta B** (brilho metálico azulado).
+  - **Foil**: escurece R e G da arte inteira por um `delta` que depende do brilho do pixel e devolve parte deles onde uma máscara é alta, somando **muito B** ali; a máscara = **anéis radiais** + **faixas angulares que giram** + faixas lineares em x/y → aparência prata-azulada com reflexos que varrem a carta.
   - **Negative**: **inverte a luminosidade** (L → 1 − L), espelha o matiz (`h → −h + 0,2`) e soma um cinza-azulado `0,8·(79, 99, 103)/255`.
   — https://github.com/balatro-src/balatro-src-reverse-engineering (arquivos `resources/shaders/polychrome.fs`, `holo.fs`, `foil.fs`, `negative.fs`); porte do foil para Godot: https://godotshaders.com/shader/balatro-foil-card-effect/
 - **UI-12 [SÍNTESE] Editions em Python (frames estáticos/animados):** para cada texel `(x, y)` do sprite nativo calcule `field` com 3 centros orbitando (períodos de 40–150 frames), gere o deslocamento e aplique em HSL; depois **quantize o resultado para a paleta mestra** (ou para uma sub-paleta "holo" de 12–16 cores) para continuar pixel art; aplique só na **arte e na moldura**, nunca no texto/números; gere 8–16 frames em loop (80–100 ms).
@@ -608,7 +609,7 @@ Não encontrei tutorial de pixel art específico e confiável; o que segue combi
 - **IC-03 [FONTE]** Silhueta: "a silhueta é o prólogo"; formas de cobra, membros longos, **pontas** e formas **complicadas e afiadas** transmitem **perigo**; adicione **elementos fortes** à silhueta (ex.: cabeça achatada, esteiras); processo **silhueta → detalhes → animação**. — https://saint11.art/img/pixel-tutorials/Silhouette.gif
 - **IC-04 [FONTE]** Caveiras em baixa resolução (útil para ícones góticos): quando não cabe tudo, prioridade **olhos → maxila → zigomático → dentes → osso nasal → mandíbula → fossa temporal**; nas menores, foque em **olhos e nariz**; há versões para largura par e ímpar; ossos diagonais usam menos pixels; ossos simples em forma de "fita"; pilhas de ossos com formas ruidosas/irregulares; "moscas de 1 px são legais". — https://saint11.art/img/pixel-tutorials/skull.gif
 - **IC-05 [FONTE]** Perigo em objetos: um *tell* antes da ação; aparência perigosa; ritmo/previsibilidade; impacto; **vermelho ou verde-claro** são ótimos para zonas de perigo; objetos estáticos podem ter alguma animação (facilita a detecção); **luzes piscando** sinalizam perigo; formas afiadas e movimento espasmódico = perigo. — https://saint11.art/img/pixel-tutorials/Hazards.gif
-- **IC-06 [SECUNDÁRIA]** Teste de valor: dessature o sprite; se as formas não se separarem, espalhe mais os valores; a legibilidade vem quase toda do **contraste de valor**, não da cor; posterizar em 2–3 valores mostra se as massas de luz/sombra se sustentam. — https://www.wayline.io/learn/color-palettes/1
+- **IC-06 [SECUNDÁRIA]** Teste de valor: "a legibilidade — distinguir formas — vem quase toda do **contraste de valor**, não da cor"; dessature a paleta/o sprite: se as formas continuarem claras, os valores funcionam; se virar um cinza chapado, os valores estão próximos demais. — https://www.wayline.io/learn/color-palettes/1 . **[SÍNTESE]** Complemento: posterizar L em 3 níveis e verificar se luz/meio-tom/sombra formam massas contínuas (não salpicadas).
 - **IC-07 [SÍNTESE] Regras por tamanho:**
 
 | Tamanho | Outline | Cores | AA | Detalhe | Fundo/plate |
@@ -622,3 +623,441 @@ Comuns a todos: luz do alto-esquerda (L-01) igual em todo o conjunto; **ΔL ≥ 
 
 - **IC-08 [SÍNTESE] Tiers de raridade sugeridos (gótico, compatíveis com UI-08/UI-09):** Comum = ferro `#5d5d5d→#b4b4b4` (Endesga 64 cinzas); Incomum = prata-azulada/aço `#424c6e→#c7cfdd`; Rara = ouro-velho `#8a4836→#edab50→#ffc825`; Épica = ametista `#3b1443→#93388f→#ca52c9`; Lendária = carmim + ouro `#571c27→#c42430→#ffc825` com animação. Cada tier deve diferir também em **valor e forma da moldura** (não só matiz) para daltônicos (IC-01).
 
+
+---
+
+## 9. Cenários (backgrounds): profundidade, catedral gótica, forja
+
+### 9.1 Profundidade, planos e parallax
+
+- **BG-01 [FONTE]** Perspectiva atmosférica: "quanto mais distante o objeto, mais ele assume a cor da névoa atmosférica"; perto = mais saturado e com contraste claro entre luz e sombra; longe = menos saturação, menos contraste, **menos cores**; quanto mais perto da linha do horizonte, mais distante parece. — https://www.slynyrd.com/blog/2018/11/16/pixelblog-11-landscape-pixeling
+- **BG-02 [FONTE]** "O plano mais próximo é o **mais saturado e com o maior contraste** entre luz e sombra"; a saturação **cai a cada plano** que recua; o matiz migra para a cor do céu/névoa a cada plano; **reaproveite cores entre planos** (ex.: sombra de montanha distante = cor do céu); consistência de clusters e escala por plano (grama próxima com lâminas grossas, plano seguinte com clusters de 1–2 px); "a ilusão de profundidade é transmitida principalmente pela escolha de cor"; comece pelo horizonte com barras horizontais sólidas; "fundos devem servir à cena sem distrair do gameplay" — em jogos de ação podem precisar ser **abafados ou simplificados**; limite de ≤ 16 cores; canvas 192×144. — https://www.slynyrd.com/blog/2026/5/27/pixelblog-62-landscape-backgrounds
+- **BG-03 [FONTE]** Parallax: o plano mais distante a **1 px/frame**, cada plano mais próximo na próxima velocidade inteira; para mais lento, 1 px a cada 2 frames; "camadas equilibradas, sem pontos de interesse dominantes, ajudam a esconder o loop"; exemplo com delay de 0,08 s. — https://www.slynyrd.com/blog/2019/11/12/pixelblog-23-parallax-scrolling ; velocidades de um shmup (px/frame): grama 4, árvores 3 e 2, montanhas+nuvens 1, nuvens distantes 0,5, céu 0. — https://www.slynyrd.com/blog/2026/7/26/pixelblog-63-horizontal-shmup
+- **BG-04 [SÍNTESE]** Em interiores escuros a "névoa" é a **cor ambiente escura** (B0, violeta-azulada), não o céu claro: planos distantes descem em L e S em direção a B0; só onde há luz (feixes, janelas) a névoa clareia em direção à cor da luz. Use 3–4 planos: fundo (B0/B1), arquitetura média (B1/B2), primeiro plano de gameplay (B3), elementos de primeiríssimo plano escuros em silhueta (contre-jour, L-02) nas bordas para emoldurar.
+
+### 9.2 Anatomia de um interior de catedral gótica
+
+**Arquitetura (referência real).** Elementos definidores: **arco ogival** (pontiagudo) nas arcadas e abóbadas; **abóbada de nervuras** (*rib vault*) cobrindo cada tramo; **pilares compostos** (feixes de colunas); **nave** dividida em **tramos regulares**, ladeada por **naves laterais**; **elevação em três níveis — arcada (embaixo), trifório (galeria/passagem no meio), clerestório (janelas no alto que iluminam a nave)**; **rosácea** sobre o portal; **janelas lanceta** (altas e estreitas), depois agrupadas por **rendilhado** (*tracery*); **deambulatório** em volta do coro; forte **verticalidade**; a teologia "pedia mais luz" (Suger: "luz maravilhosa e ininterrupta"). — https://en.wikipedia.org/wiki/Gothic_architecture
+**Vitrais (referência real).** Em Chartres, entre as cores principais estão o **vermelho-rubi brilhante (óxido de cobre)** e o **azul-safira (óxido de cobalto)**; como o vidro colorido era opaco demais, uma camada fina colorida era aplicada sobre vidro transparente/branco mais grosso; pedaços de vidro presos em **bordas de chumbo** formando painéis numa armadura metálica; uma lanceta pode ter **mais de 50 painéis**; rosáceas de 10,15 m (norte) e 15,42 m (oeste, que "pega a luz suave do pôr do sol"). — https://www.worldhistory.org/article/1277/the-stained-glass-windows-of-chartres-cathedral/
+**Referência de direção de arte.** Blasphemous: o diretor Enrique Cabeza cita a arte religiosa e a iconografia de **Sevilha**; pintores **Murillo, Goya, Ribera, Velázquez, Zurbarán** (Goya, *Procissão de Flagelantes*); a **Semana Santa** é "a principal inspiração". — https://en.wikipedia.org/wiki/Blasphemous_(video_game)
+
+Regras de geração **[SÍNTESE]** (cada uma ancorada nas fontes indicadas):
+
+- **CAT-01** Composição: vista lateral (elevação) ou ponto de fuga central ao longo da nave; ritmo vertical de **tramos** repetidos (BG-03: repetição equilibrada facilita loop/parallax); elevação em 3 faixas — arcada ≈ 45–50% da altura, trifório ≈ 10–15%, clerestório ≈ 35–40% (proporção default, ajustável).
+- **CAT-02** Arco ogival em pixel: dois arcos de círculo (algoritmo de ponto médio) com centros nas impostas, raio = vão (arco "equilátero") ou 0,8× (mais rombudo); os runs começam **verticais e longos** e encurtam até virar diagonal no ápice (F-15); o ápice é uma **ponta** (pixels quadrados criam pontas afiadas, F-17); espessura do arco 2–4 px com 1 px de luz no intradorso voltado para a janela.
+- **CAT-03** Colunas/pilares compostos: 3–5 fustes como faixas verticais alternando luz/sombra (técnica de "várias linhas de luz/sombra" de L-05), **rim light de 1 px** no lado voltado para a fonte de luz (L-02), capitel e base com 1–2 px de sombra projetada dura (F-31).
+- **CAT-04** Paleta e valor: pedra em **roxos/azuis dessaturados** (S ≤ 25%, L 0,15–0,45, bandas B0–B2 de 2.7; rampas tipo `make_ramp(h=265, s_peak=0.25, k=0.25)` ou Gothic Bit/cinzas frios de Apollo/Endesga 64); **vitrais como acento saturado** (B4) cobrindo **10–20%** da imagem (C-04): azul profundo dominante + rubi + ouro, toques de verde/violeta; nunca preto puro (C-18).
+- **CAT-05** Vitral (algoritmo): (1) contorno da janela (lanceta = retângulo alto com topo ogival; rosácea = simetria radial de 8/12/16); (2) **rendilhado de pedra** em B1 escuro, mais grosso (2–3 px); (3) **chumbo** = 1 px na cor mais escura, dividindo células (grade + diagonais, ou Voronoi com 6–20 células por painel); (4) cada célula recebe **uma** cor-joia (sorteio ponderado: azul 40%, rubi 25%, ouro 15%, verde 10%, violeta 10%) e no máx. 1 cluster de brilho de 1–3 px no canto superior-esquerdo (sem dither dentro de células pequenas, F-36); (5) L do vidro 0,55–0,85 contra parede 0,15–0,25 → leitura de **contre-jour** (L-02): pedra ao redor escurece 1 passo junto à janela.
+- **CAT-06** Feixes de luz: só visíveis com poeira/fumaça e **mais claros no meio** (L-02). Implementação: polígono (trapézio) da janela ao chão com ângulo de ~15°–35° da vertical; intensidade em **2–4 níveis quantizados** (centro mais forte, bordas com fade); aplicar como "screen/add" quantizado de volta à paleta, ou dither Bayer 4×4 a 25%/50% sobre a cor de fundo; cor da luz = tom claro **quente e pouco saturado** (o shader de referência usa `(1,0; 0,9; 0,65)`, 4 níveis de cor, fade de borda e de base) — https://godotshaders.com/shader/pixelated-god-rays/ ; manchas coloridas no chão = projeção das cores do vitral, **mais claras e menos saturadas**; partículas de poeira de 1 px caindo devagar (VFX-12) dentro do feixe.
+- **CAT-07** Piso refletivo (mármore polido): ver 9.4; reflita só elementos claros (janelas, velas, feixes, metal), com 2 passos mais escuros e ~30% menos saturação, fade por dither com a distância à linha do piso.
+- **CAT-08** Velas e candelabros: chama de 3–5 px, 2–4 frames de 100–140 ms, **flicker muito sutil** (C-19) e poça de luz pequena (L-09, r = 8–16 px nativos); loops **longos e lentos** criam clima (C-19).
+- **CAT-09** Decadência gótica (ruínas): "ruínas sempre contam uma história"; dano recente tem sinais (fogo/fumaça); **teias não muito claras**; **quebrar a simetria**; superfícies irregulares; ruínas antigas têm plantas, **baixo contraste e bordas arredondadas**; rachaduras **não exageradas, em padrão de árvore**; repetir objetos com níveis diferentes de destruição; elementos pendurados (no gótico: correntes, incensários, teias). — https://saint11.art/img/pixel-tutorials/Ruins.gif
+- **CAT-10** Ordem de renderização (gerador): `B0 abóbada → elevação distante (B1) → vitrais/rosácea (B4) → feixes de luz → pilares próximos com rim light (B2) → piso + reflexos → props (bancos, altar, velas) → poeira → vinheta (escurecer 1–2 passos nos cantos, emoldurando o centro, L-02/L-04) → QA (2.7 e seção 12)`.
+
+### 9.3 Anatomia de um interior de forja
+
+**[SÍNTESE]** apoiada em L-02 (cores de luz complementares, contraste de fundo), L-05 (metal), L-07/L-08/L-09 (falloff e flicker), C-04 (luz quente → sombras frias), C-19 (fundo de baixa saturação/temperatura), VFX-06/07/08/16 (fogo e brasas), F-32 (piso de baixo contraste).
+
+- **FOR-01** Duas luzes: **fornalha** (key, quente: amarelo-branco → laranja) e **ambiente frio** (fill: azul-violeta de uma janela/lua) — luzes complementares dão contraste forte (L-02); sombras do lado oposto ao fogo ficam **frias** (C-04).
+- **FOR-02** Falloff da fornalha em **4–6 bandas** (L-07/L-09): a cada banda o matiz desce na rampa quente (amarelo → laranja → vermelho → marrom-avermelhado) e, depois do raio, entra nos roxos frios do ambiente; bandas com dither só nas fronteiras; paredes no fundo com baixa saturação (C-19).
+- **FOR-03** Bigorna: massa de aço **fria e escura** (rampa de metal, L-05) + **rim light de 1 px** na aresta superior e na face voltada para o fogo, **na cor do fogo** (a luz define o matiz, C-04); 1–2 linhas de reflexo horizontais na face (L-05); sombra projetada dura no chão, para longe do fogo (F-31, L-04).
+- **FOR-04** Piso de lajes hexagonais: grade hex (lado 5–8 px nativos); argamassa 1 px no tom mais escuro; cada laje sorteia 1 de 2–3 tons vizinhos da rampa de pedra; aresta superior-esquerda +1 tom, inferior-direita −1 tom; **iluminação por laje** (quantizar a intensidade no centro da laje; leitura mais limpa que gradiente por pixel), per-pixel só perto da fornalha; rachaduras em árvore (CAT-09); **sem dither dentro das lajes** e contraste baixo (F-32).
+- **FOR-05** Animação: brasas (VFX-16) subindo da fornalha; fumaça na chaminé (VFX-11); flicker da poça de luz (L-09); brilho das brasas no carvão por **palette cycling** (TR-15) de 4–6 cores; distorção de calor opcional = deslocar 1 px linhas horizontais acima do fogo em frames alternados (técnica de 9.4).
+- **FOR-06** Props em silhueta legível (martelo, tenaz, fole, barril de têmpera, ferraduras/lâminas na parede) com rim light do fogo; detalhe só no que está em foco, menos detalhe ao longe (PIPE-01).
+
+### 9.4 Reflexos
+
+- **RF-01 [FONTE]** Reflexo estático: "simplesmente **inverter a imagem** e aplicar alguns highlights"; o reflexo muitas vezes é **levemente encurtado**; acerte o reflexo antes de animar; ripples lentos e sutis; brilho da cachoeira em loop de 6 frames. — https://www.slynyrd.com/blog/2018/10/12/pixelblog-10-water-in-motion
+- **RF-02 [FONTE]** Poças com chuva (4 frames): pinte **versões escuras e apagadas** das fontes de luz de cima dentro das poças; nos frames 2 e 4 desloque linhas horizontais do reflexo **1 px** para esquerda/direita, nos frames 1 e 3 volte; chuva: 10–15 riscos de 1 px a 2:1, descendo 4–6 px por frame; respingo: linha de 2 px → anel de 4 px → 2 pontos → some. — https://budgetpixel.com/blog/how-to-animate-pixel-art-rain-and-reflections-in-4-frames
+- **RF-03 [SÍNTESE] Piso refletivo (catedral/forja):** região do piso abaixo da linha `y0`; para cada pixel do piso a `k` px da linha, amostra a cena em `y0 − 1 − k·s` (`s` = 1,0–1,3, "encurtado") → escurece 2 passos de rampa, dessatura ~30%, desloca matiz 10° para o ambiente; **fade**: mostra o reflexo só se `limiar_Bayer(x,y) < f(k)` com `f` decrescendo de 0,75 a 0 em 8–24 px; juntas das lajes (1 px escuro a cada 8–16 px) quebram o reflexo; para animação, desloque linhas alternadas ±1 px (RF-02).
+
+### 9.5 Tochas e iluminação de ambiente
+
+- **TO-01 [FONTE]** Flicker "muito sutil"; loops longos e lentos para clima. — https://saint11.art/img/pixel-tutorials/indoors.gif
+- **TO-02 [FONTE]** Ver VFX-06 (fogo) e L-07/L-08 (falloff, flicker por linha, dither temporal).
+- **TO-03 [SÍNTESE]** Tocha de parede: chama 6–8 frames × 100 ms (VFX-06), base estável que preserva volume; 1–2 brasas por ciclo; poça de luz r = 24–40 px nativos com 4 bandas; mude só 1 banda por frame no flicker (evita "pulsar" o cenário inteiro).
+
+---
+
+## 10. Pipeline de produção e estudos de caso
+
+- **PIPE-01 [FONTE]** Processo do Saint11 (ilustração 48×48): tamanho (na dúvida, menor) → fundo **de trás para frente** → esboço (forma e ideia geral, sem detalhes) → **silhueta** (personagem reconhecível só pela silhueta) → **blocos de cor** (grandes massas) → **outline** (contorno de objetos importantes; e de coisas na frente) → **luz** (cor por cor; evitar ruído; "prefiro clusters grandes") → **detalhes** (continuar adicionando cores; detalhes por último nas coisas em foco, menos detalhe ao longe) → **ajustes finais** (limpar ruído e órfãos; pequenos highlights; checar proporção, direção da luz e áreas difíceis de ler) — e "continuar consertando a silhueta". — https://saint11.art/img/pixel-tutorials/Pipeline.gif
+- **PIPE-02 [FONTE]** Personagens: "esboço de silhueta → detalhes → animação"; dá para esboçar a animação inteira em silhuetas para garantir que a ação seja fácil de ler. — https://saint11.art/img/pixel-tutorials/Silhouette.gif
+- **PIPE-03 [FONTE]** Castelos: começar por uma torre com telhado, que define **esquema de cor e direção da luz**; plano estrutural; depois detalhes; luz definida com **clusters simples e proeminentes**; evitar muitos clusters pequenos espalhados e transições de cor graduais demais (geram ruído e borrão). — https://www.slynyrd.com/blog/2025/7/28/pixelblog-57-knights-monsters-amp-castles
+- **PIPE-04 [FONTE] Dead Cells (3D → pixel):** folha de modelo em pixel art → modelo 3D simples + esqueleto (3ds Max, FBX) → animação por **keyframes** e depois intercalações → ferramenta interna renderiza o modelo **muito pequeno e sem anti-aliasing** → cada frame salvo em **PNG + normal map** → **toon shader** usa o normal map para volume → 30 FPS; rebalancear = mover keyframes; reuso de partes economizou "centenas de horas"; desvantagens: **pixels que cintilam** e menos qualidade de detalhe que o desenho à mão. — https://habr.com/post/416589
+- **PIPE-05 [FONTE] Eastward:** arte base no Aseprite → dividir em partes pela estrutura (telhado, parede…) → reconstruir em 3D → pintar à mão um **bump map** por peça → motor próprio com luz, neblina em camadas e feixes de sol ao amanhecer/entardecer. — https://www.gamedeveloper.com/art/eastward-s-creators-share-insights-on-making-pixel-art-adventures
+- **PIPE-06 [FONTE] Sea of Stars:** o projeto começou pela ideia da iluminação dinâmica; Jeakim Hamel, um dos dois primeiros a trabalhar no jogo, dedicou-se a ela em tempo integral por cinco anos; "todo o pipeline, toda a produção, todos os assets que fazemos têm que responder às necessidades técnicas" da iluminação dinâmica. Lição: decida cedo o modelo de luz, porque ele dita como cada asset é feito. — https://mobilesyrup.com/2023/09/11/sea-of-stars-level-design-sabotage-studio-thierry-boulanger-interview/
+- **PIPE-07 [FONTE] HD-2D (Octopath Traveler):** combina elementos 2D (sprites em pixel art) com ambientes 3D; uma luz pontual na cena faz personagens e objetos **projetarem sombras** e reforça a sensação de **diorama**; pós-processos: **depth of field, bloom, tilt-shift**, luz volumétrica, névoa e partículas; o time de Tomoya Asano enfatizou luz e sombra para mostrar como a luz interage com ambientes de pixel. — https://en.wikipedia.org/wiki/HD-2D . **[SECUNDÁRIA]** Num resumo de entrevista de Octopath Traveler II, os personagens 2D "parecem folhas de papel" e foi preciso limitar a rotação da câmera (página original bloqueada para leitura direta): https://www.unrealengine.com/en-US/developer-interviews/octopath-traveler-ii-builds-a-bigger-bolder-world-in-its-stunning-hd-2d-style
+- **PIPE-08 [SÍNTESE] Pipeline do agente (Pillow):**
+  1. **Spec** (tipo de asset, tamanho nativo, paleta/sub-paleta, orçamento de cores de C-16, direção de luz, banda de valor de 2.7).
+  2. **Silhueta** (máscara 1-bit) → teste de silhueta (RT-01).
+  3. **Valor** (3–5 níveis de cinza por região: luz, meio-tom, sombra, sombra projetada) → teste de grayscale/blur (RT-02, RT-03).
+  4. **Cor** = mapear cada nível de valor para o passo correspondente da rampa do material (2.3), nunca colorir com RGB livre.
+  5. **Luz** (direcional + pontual quantizada, L-07/L-09) e **sel-out** (F-28).
+  6. **Detalhes e highlights** (poucos sweet spots, C-05) só nas áreas de foco.
+  7. **Limpeza automática** (seção 12: órfãos, banding, jaggies, cores fora da paleta, alpha parcial).
+  8. **Animação** (keyframes → intercalações com easing, A-01; tabela 4.5; smears 1 frame).
+  9. **Export**: sprite sheet em grade fixa (célula = maior frame + margem 1 px), PNG indexado ou RGBA sem alpha parcial, JSON com `duration_ms` por frame e pivot; preview em escala inteira (F-01).
+  10. **QA** automático (seção 12) + contato visual em 1x e em 3x.
+
+---
+
+## 11. Testes de legibilidade (automatizáveis)
+
+- **RT-01 Silhueta [FONTE + SÍNTESE]** Preencha a máscara alfa de preto: o objeto deve continuar reconhecível (PIPE-01, PIPE-02, IC-01, IC-03). Automação **[SÍNTESE]**: para um conjunto de ícones, IoU entre máscaras (após alinhar pelo centro de massa) **< 0,75** para qualquer par; razão de aspecto do bounding box e número de "protuberâncias" (convexity defects) devem variar entre ícones de funções diferentes.
+- **RT-02 Squint/blur [SÍNTESE]** Reduza para 1/2 e 1/4 com filtro box (ou Gaussian σ = 1–1,5 px nativo) e meça em L_OKLab: o ponto focal deve continuar sendo a região de **maior contraste local**; ΔL silhueta–fundo ≥ 0,20 após o blur. (Relacionado: checar "áreas difíceis de ler", PIPE-01; foco nas massas grandes, F-05.)
+- **RT-03 Grayscale [FONTE]** Dessaturar e verificar se as formas se separam (IC-06). Automação: histograma de L por região deve ter picos separados por ≥ 0,12.
+- **RT-04 Visão 1x [FONTE]** Mantenha uma visão a 100% (ou dê zoom out periodicamente) para julgar AA e detalhe. — https://pixelparmesan.com/anti-aliasing-fundamentals-for-pixel-artists
+- **RT-05 Três fundos [SÍNTESE]** Renderize ícones/VFX sobre fundo claro (L 0,85), médio (0,50) e escuro (0,15): a silhueta precisa de ΔL ≥ 0,20 em pelo menos 2 dos 3 (ou ter outline que garanta isso).
+- **RT-06 Animação [SÍNTESE]** Em cada animação: (a) flicker — % de pixels que mudam entre frames consecutivos numa área que deveria ser estática < 2%; (b) emenda do loop — diferença último→primeiro frame dentro de ±50% da diferença média entre frames vizinhos; (c) durações não todas iguais em animações de personagem/ataque (A-20) — VFX em loop podem ser uniformes.
+
+
+---
+
+## 12. Erros comuns e como detectar automaticamente
+
+Formato: **definição (fonte)** → **heurística de detecção** → **limiar default** → **correção automática**. Todas as heurísticas e limiares são **[SÍNTESE]** (devem ser calibrados contra sprites de referência aprovados); as definições vêm das fontes indicadas. Convenções: `opaque` = alpha 255; L = OKLab L; vizinhança 4 = N/S/L/O, 8 = inclui diagonais.
+
+### E-01 Pixels órfãos
+- **Definição:** pixel que não está em nenhum "chunk"; órfãos demais adicionam ruído (F-11); "ruído e pixels órfãos desnecessários" vêm de detalhe demais (F-12); só aceitáveis em resolução muito baixa ou no último frame de uma partícula (F-14), ou como detalhe forte (F-11).
+- **Detecção:** para cada pixel opaco `p` de cor `c`, `n8 = nº de vizinhos-8 com cor c`; órfão se `n8 == 0`. "Quase-órfão" se `n4 == 0` e `n8 ≥ 1` (só ligação diagonal — "pixels diagonais não conectam bem", F-11). `taxa = órfãos / opacos`.
+- **Limiar:** sprites ≥ 32 px: taxa ≤ 1%; ≤ 16 px: ≤ 3%, e só se o órfão for "detalhe forte" (whitelist: highlights com L ≥ 0,85, pupilas, pixels de outline); VFX: órfãos só nos 2 últimos frames de vida de uma partícula.
+- **Correção:** recolorir para a moda dos 8 vizinhos (exceto whitelist).
+
+### E-02 Banding
+- **Definição:** dois segmentos de cores diferentes com ≥ 2 px, adjacentes pela aresta longa, com extremidades alinhadas (F-29); linhas paralelas de mesmo comprimento reforçam a grade (F-20).
+- **Detecção:** RLE de cada linha da imagem (só pixels opacos, sem a cor de outline): runs `(x0, x1, cor)` com `x1 − x0 + 1 ≥ 2`. Par em banding se, nas linhas `y` e `y+1`, `cor ≠ cor'`, `x0 == x0'` e `x1 == x1'`. Repetir em colunas. Variante diagonal ("escada paralela"): runs consecutivos com o mesmo deslocamento `Δ = x0' − x0 = x1' − x1 ≠ 0` por ≥ 3 linhas entre duas cores. `score = comprimento das arestas em banding / comprimento total das fronteiras internas entre cores`.
+- **Limiar:** aviso > 0,15; falha > 0,30. Em cenários, aplicar também a anéis concêntricos de gradientes de luz (falloff radial com bandas de largura constante).
+- **Correção:** encolher/estender um dos segmentos em 1 px (método do Pixel Fixer, F-29); comprimir a banda (F-30/F-31); em gradientes grandes, dither só na fronteira (L-09).
+
+### E-03 Pillow shading
+- **Definição:** camadas concêntricas que seguem o contorno (F-29); gradiente radial para o centro, indiferente à forma (F-30).
+- **Detecção:** `D(p)` = transformada de distância a partir da borda da silhueta (para dentro); `ρ_D` = correlação de Spearman entre `D` e `L`; `ρ_luz` = correlação entre `L` e a projeção `p·l̂` na direção da luz especificada; "pureza de anel" = fração de pixels de cada anel `D = 1, 2, 3` que têm a cor modal do anel.
+- **Limiar:** pillow se `ρ_D > 0,6` **e** pureza média dos anéis 1–3 > 0,7 **e** `|ρ_luz| < 0,3`.
+- **Correção:** refazer o sombreamento com luz direcional (projeção `p·l̂` + terminador), ou transladar as camadas de sombra para longe da luz e perturbá-las (F-29).
+
+### E-04 Jaggies e linhas mal formadas
+- **Definição:** degraus regulares; padrões irregulares só com números adjacentes repetidos; curvas com degraus monotônicos; degraus conectados na diagonal (sem "L") (F-15, F-16); linhas desenhadas rápido ficam "serrilhadas e desordenadas" (Androidarts, ver F-16).
+- **Detecção:** extrair as linhas de 1 px (outline e linhas internas) e encadear os pixels; por trecho monotônico (octante), listar comprimentos de run. Trecho reto (resíduo do ajuste de reta ≤ 0,5 px): OK se todos os runs iguais **ou** se só existem dois valores adjacentes `{n, n+1}` em padrão periódico; curva: OK se a sequência for não-crescente até a quina e depois não-decrescente. **Cotovelos em L:** janelas 2×2 com exatamente 3 pixels da mesma linha.
+- **Limiar:** cotovelos = 0 em outlines; ≤ 10% dos trechos violando o padrão.
+- **Correção:** remover o pixel do cotovelo; redistribuir runs (F-18).
+
+### E-05 Mixels e escala não inteira
+- **Definição:** pixels de tamanhos diferentes na mesma imagem/tela (F-07); escala não inteira distorce as unidades (F-01).
+- **Detecção:** em imagens exportadas, estimar o fator `k` = MDC dos comprimentos de run de todas as linhas e colunas; falha se algum run não for múltiplo de `k` ou se a grade de blocos não estiver alinhada (bloco começando fora de `x ≡ 0 mod k`); em composições, todo layer deve ter o mesmo `k` inteiro; no código, proibir `rotate()`/`resize()` com filtro ≠ `NEAREST` e fatores não inteiros (F-09).
+- **Correção:** regerar na resolução nativa e escalar só por inteiro.
+
+### E-06 Alpha parcial / AA externo
+- **Definição:** AA na borda externa fica errado sobre outros fundos; semitransparência só para FX (F-20).
+- **Detecção:** contar pixels com `0 < alpha < 255` em sprites, ícones e UI.
+- **Limiar:** 0 (exceto camadas marcadas como FX/aditivas).
+- **Correção:** binarizar alpha (≥ 128 → 255) e recolorir a borda pela paleta.
+
+### E-07 Cores demais, fora da paleta ou quase duplicadas
+- **Definição:** orçamentos de C-10/C-11/C-16; paleta contida (C-03, androidarts).
+- **Detecção:** `len(set(cores))` vs. orçamento; qualquer RGB fora da paleta mestra = falha; pares com distância OKLab `ΔE_ok < 0,03` = quase-duplicadas (desperdiçam orçamento e geram "ruído de matiz").
+- **Correção:** quantizar por vizinho mais próximo **em OKLab** (não em RGB), depois rodar E-01/E-02 de novo (a quantização cria órfãos e banding).
+
+### E-08 Contraste de valor insuficiente
+- **Definição:** legibilidade vem do contraste de valor (IC-06); HLD: fácil de ver mesmo em baixa resolução (C-22); áreas difíceis de ler são checadas no fim (PIPE-01).
+- **Detecção:** `ΔL_borda` = mediana de `|L_dentro − L_fora|` ao longo da silhueta (1–2 px para dentro vs. 1–2 px para fora/plate); `amplitude_L` = `L_max − L_min` dentro do sprite. Texto/UI: razão de contraste WCAG ≥ **4,5:1** para texto normal, **3:1** para texto grande e para componentes de UI/objetos gráficos. — https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html , https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html
+- **Limiar:** `ΔL_borda ≥ 0,20` (sprites), `≥ 0,30` (ícone × plate); `amplitude_L ≥ 0,35` em sprites ≥ 24 px.
+- **Correção:** sel-out mais escuro (F-28), escurecer/clarear o plate, ou subir 1 passo na rampa das áreas de luz.
+
+### E-09 Ruído / clusters demais
+- **Definição:** evitar muitos clusters; repetir padrões; formas regulares (F-11); cada cluster precisa de motivo (F-13).
+- **Detecção:** componentes conexos por cor (vizinhança 4); `pequenos` = componentes com ≤ 2 px; `densidade` = componentes por 100 px² de área opaca.
+- **Limiar:** `pequenos/total ≤ 0,15`; densidade ≤ 6 em sprites ≥ 32 px (calibrar).
+- **Correção:** fundir componentes pequenos na cor modal vizinha; simplificar textura.
+
+### E-10 Dithering problemático
+- **Definição:** dither com parcimônia/textura (F-11, F-33); chão de baixo contraste (F-32); padrão deve ficar preso ao objeto/mundo, não à tela (F-35).
+- **Detecção:** regiões de xadrez (em janelas 3×3, cor alterna em x e y com exatamente 2 cores); flag se `ΔL` entre as 2 cores > 0,25, se a região tiver < 6 px (salpico), se ocorrer em sprite ≤ 32 px, ou se, numa animação, a fase do padrão não acompanhar o deslocamento do objeto.
+- **Correção:** trocar por cor intermediária da rampa ou por borda dura comprimida.
+
+### E-11 Quadrados não intencionais
+- **Definição:** pixels formam quadrados grandes quando adjacentes; use padrão de tijolo; "procure quadrados imaginários" (F-15).
+- **Detecção:** componentes que são exatamente blocos 2×2 (ou 3×3) isolados; blocos 2×2 de uma cor de transição/AA entre duas outras cores.
+- **Correção:** deslocar 1 pixel do bloco para formar degrau (padrão tijolo).
+
+### E-12 Rampas "retas", saltos de matiz e degraus indistintos
+- **Definição:** rampas boas deslocam o matiz (C-01, C-02); ≤ 20° por passo (C-01); medições em C-06–C-09.
+- **Detecção:** agrupar as cores usadas em famílias por matiz e ordenar por L; para cada família com ≥ 3 cores e `ΔL_total ≥ 0,3`: "reta" se a variação total de matiz < 8°; "salto" se algum `|ΔH|` entre vizinhos > 25°; "indistinta" se algum `ΔL` entre vizinhos < 0,06.
+- **Correção:** regerar a rampa com 2.3.
+
+### E-13 Preto/branco puros fora de lugar
+- **Definição:** evitar fundo 100% preto (C-18); não construir pontas de rampa misturando preto/branco puros (C-03).
+- **Detecção:** fração de `#000000` em fundos > 1%; rampas de material terminando em `#000000`/`#ffffff`.
+- **Exceções:** contrast frame de VFX (VFX-01), núcleo branco de luz/fogo/flash, círculo preto de magia sombria (VFX-21).
+
+### E-14 Falta de hierarquia (acento espalhado)
+- **Definição:** acento ≈ 10–20% da imagem (C-04); fundo de baixa saturação, primeiro plano saturado (C-19, BG-02).
+- **Detecção:** em cenários, `acento = fração de pixels com S ≥ 0,6 e L ≥ 0,5`; `S̄_fundo` = saturação média das regiões B0–B2.
+- **Limiar:** acento entre 5% e 20% (falha se > 35%); `S̄_fundo ≤ 0,30`.
+
+### E-15 Direção de luz inconsistente
+- **Definição:** manter a direção da luz sempre consistente (L-04); definir a luz no início (L-01).
+- **Detecção:** vetor do centróide do terço mais escuro dos pixels internos (excluindo outline) até o centróide do terço mais claro; ângulo vs. spec (ex.: luz do alto-esquerda).
+- **Limiar:** desvio ≤ 35° por sprite; desvio-padrão ≤ 25° num conjunto de ícones/cartas.
+
+### E-16 Outline grosso, duplo ou em volta de outline
+- **Definição:** outlines ocupam espaço (F-23); não fazer outline em volta de outline, exceto escudos/auras (F-25).
+- **Detecção:** pixels da(s) cor(es) de outline cujo vizinho para dentro (direção da normal) também é cor de outline → espessura > 1; dois anéis de outline separados por 1 anel de outra cor → outline duplo.
+- **Limiar:** espessura > 1 em > 10% do perímetro = aviso (a menos que o estilo do asset declare 2 px).
+
+### E-17 Problemas de animação
+- **Definição:** durações uniformes são o erro mais comum em animação de personagem (A-20); acompanhar e não quebrar clusters (F-11); pixels cintilando foram a principal desvantagem do pipeline 3D→pixel de Dead Cells (PIPE-04); padrão de dither "se movendo erraticamente" (F-35).
+- **Detecção:** (a) durações todas iguais em animações de ataque/personagem; (b) "fervura": em áreas cuja máscara não mudou entre frames, > 2% dos pixels trocam de cor; (c) emenda do loop fora de ±50% da diferença média entre frames; (d) componentes conexos grandes que se partem em ≥ 3 pedaços num único frame sem estar no roteiro (explosão/fragmentação).
+- **Correção:** variar holds (impacto mais longo); estabilizar cores de áreas paradas copiando do frame anterior; redesenhar a emenda.
+
+### E-18 VFX ilegível sobre o fundo
+- **Definição/regras:** VFX-35/VFX-36.
+- **Detecção:** núcleo com L < 0,85; `ΔL` núcleo–fundo < 0,40; nenhum tom com S ≥ 60%; flash branco > 2 frames; efeito cobrindo > 35% da tela por > 150 ms.
+
+### E-19 Texto em ícones / informação só por cor
+- **Definição:** ícones não devem depender de texto; forma antes da cor (IC-01); Inscryption: só o nome como texto na carta (UI-10).
+- **Detecção:** no spec do gerador, ícones não têm camadas de texto; raridade/estado nunca codificados só por matiz (exigir diferença de valor **ou** de forma da moldura, IC-08).
+
+### Resumo de limiares (defaults para o QA)
+
+| Check | Métrica | Aviso | Falha |
+|---|---|---|---|
+| Órfãos (≥ 32 px) | órfãos/opacos | > 1% | > 3% |
+| Banding | score de arestas alinhadas | > 0,15 | > 0,30 |
+| Pillow | ρ_D, pureza, ρ_luz | ρ_D > 0,5 | ρ_D > 0,6 & pureza > 0,7 & \|ρ_luz\| < 0,3 |
+| Cotovelos em outline | contagem | ≥ 1 | ≥ 3 |
+| Alpha parcial | pixels 0<α<255 | — | ≥ 1 (fora de FX) |
+| Cores | nº vs. orçamento C-16 | > orçamento | fora da paleta |
+| Quase-duplicadas | ΔE_ok | < 0,05 | < 0,03 |
+| Contraste silhueta | ΔL_borda | < 0,25 | < 0,20 |
+| Texto/UI | razão WCAG | < 4,5 (texto) | < 3,0 |
+| Ruído | componentes ≤ 2 px / total | > 0,15 | > 0,25 |
+| Dither | ΔL do xadrez | > 0,20 | > 0,25 |
+| Rampa | ΔH total / ΔL vizinho | ΔH < 12° | ΔH < 8° ou ΔL < 0,06 |
+| Acento (cenário) | fração saturada-clara | > 20% | > 35% |
+| Luz | desvio angular | > 25° | > 35° |
+| Animação | pixels "fervendo" em área parada | > 1% | > 2% |
+
+---
+
+## 13. Tabelas-resumo de frames e estruturas
+
+### 13.1 Contagem de frames por ação/efeito (fontes)
+
+| Ação / efeito | Frames | Estrutura | Fonte |
+|---|---|---|---|
+| Explosão (estilo Saint11) | ≥ 4 (exemplo com 14) | contraste → flash → blast → fogo rápido / fumaça lenta | VFX-01 |
+| Explosão minúscula | blast em 2 | contraste → blast → puffs | VFX-09 |
+| Faíscas | 3 | — | VFX-14 |
+| Raio | 7 (+ arcos 6) | choque → branco/forma nova → vazio → fade → vazio → dissipar ×2 | VFX-17 |
+| Propulsão | 5 (loop) | flash → esticada → massa volta → larga/escura → menor/escura | VFX-05 |
+| Ataque do jogador | 3 + 4 | sem antecipação; último = bounce | A-04 |
+| Ataque top-down | 6 | antecipação, smear(s), (rebound), follow-through, recover | A-06 |
+| Jab / cross / front kick / round kick | 5 / 7 / 4 / 7 | smear, hit (mais longo), follow-through, recover, overshoot | A-07 |
+| Ciclos de locomoção | 6 (ideal), 8 @80 ms, 4 @160 ms | contato/passagem como keyframes | A-08 |
+| Smear | 1 (2 em ação violenta) | entre keys, seguindo o arco | A-05, A-09 |
+| Impacto (personagem) | 1 frame de impacto + recuperação lenta | overshoot no 1º frame | A-13 |
+| Freeze antes do impacto | 1 | só em impactos exagerados | A-02 |
+| Hit-stop | 4–30 frames @60 (fórmula por dano) | tremor que decai | A-14, A-15 |
+| Shine de UI | 9 × 80 ms + holds 200/500 ms | faixa diagonal varrendo | VFX-31 |
+| Brilho de cachoeira | 6 (loop) | linear | RF-01 |
+| Chuva + reflexo | 4 (loop) | linhas ±1 px nos frames 2 e 4 | RF-02 |
+
+### 13.2 Estrutura de explosão por frame (14 frames, Saint11, 80 ms)
+
+| Frame | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Flash | ● | ● | | | | | | | | | | | | |
+| Blast | | | ● | ● | ● | | | | | | | | | |
+| Fogo | | | | ● | ● | ● | ● | ● | ● | ● | | | | |
+| Fumaça | | | | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |
+
+(o 1º frame do flash é o *contrast flash* escuro; o 2º é o *white flash*.)
+
+### 13.3 Rampas e cores-chave (ver 2.2, 2.6, 5.2)
+
+| Rampa | Passos | Regra |
+|---|---|---|
+| Material (pedra, pele, tecido) | 4–6 | ΔH total 45–100°, S pico no meio, V 15–30% → 85–91% |
+| Metal | 5 | salto de contraste; claros frios/dessaturados, escuros quentes/saturados |
+| Gema | 6–7 | 7 papéis (point highlight … deep shadow) |
+| Fogo/luz (VFX) | 4 + branco | amarelo → laranja → vermelho (S alta até o topo, V 64–100%) |
+| Fumaça | 2–3 | fria (índigo/violeta), S 35–50%, V 20–45% |
+| Projétil | 3–4 por lado + núcleo | núcleo quente/claro, borda fria/escura |
+| Fundo distante | 2–3 | baixa S, baixo contraste, puxado para a cor ambiente |
+
+
+---
+
+## 14. Lacunas, limites e fontes não verificadas
+
+- **"Juice it or lose it" (Jonasson & Purho):** não consegui acessar vídeo, slides ou transcrição; nenhuma regra deste documento depende dela.
+- **"The Art of Screenshake":** a lista de ajustes vem da cronologia de um comentarista (A-16); o `sleep(20)` é atribuição não verificada.
+- **Pixel Logic (Michael Azzi):** livro pago; usei apenas as definições de banding/pillow shading citadas pelo pôster da TU Delft (F-29).
+- **Dead Cells:** o artigo original (Game Developer) não carregou; usei a tradução integral em russo no Habr (PIPE-04).
+- **Balatro:** shaders são código proprietário extraído pela comunidade; descrevi só o mecanismo (UI-11, TR-13), sem reproduzir o código.
+- **Children of Morta, Owlboy, Eastward (detalhes de luz), Hyper Light Drifter (paleta):** sem fonte técnica acessível com números; registrei só o que foi verificado (C-22, PIPE-05).
+- **Saint11:** os textos estão dentro dos GIFs (lidos frame a frame); os tempos de 4.4 são metadados dos GIFs, não "regras" declaradas pelo autor.
+- **Slynyrd:** vários posts trazem números só dentro de GIFs; usei apenas o que está no texto.
+- **r/PixelArt wiki, MortMort, AdamCYounis, Brandon James Greer:** conteúdo majoritariamente em vídeo/Reddit, inacessível aqui; a única contribuição verificada de AdamCYounis é a paleta Apollo (medida em 2.2).
+- **Círculos mágicos, botões pixel, catedral, forja, vitrais, pisos refletivos:** não há tutorial de pixel art com números confiáveis; as regras correspondentes são **[SÍNTESE]** ancoradas em princípios com fonte.
+- **Calibração:** todos os limiares da seção 12 são defaults iniciais; calibre rodando os detectores sobre 20–50 sprites de referência aprovados e ajuste para ~5% de falsos positivos.
+
+
+---
+
+## 15. Fontes (todas as URLs citadas neste documento)
+
+**Saint11 (Pedro Medeiros)**
+
+- https://saint11.art/blog/pixel-art-tutorials/
+- https://saint11.art/img/pixel-tutorials/AttackSheet.gif
+- https://saint11.art/img/pixel-tutorials/Blood.GIF
+- https://saint11.art/img/pixel-tutorials/Bullets.gif
+- https://saint11.art/img/pixel-tutorials/DarkMagic.gif
+- https://saint11.art/img/pixel-tutorials/Darkness.gif
+- https://saint11.art/img/pixel-tutorials/Death.GIF
+- https://saint11.art/img/pixel-tutorials/Easings.gif
+- https://saint11.art/img/pixel-tutorials/Electric.gif
+- https://saint11.art/img/pixel-tutorials/Explosion.gif
+- https://saint11.art/img/pixel-tutorials/Fire.gif
+- https://saint11.art/img/pixel-tutorials/Fundamentals.gif
+- https://saint11.art/img/pixel-tutorials/Fundamentals2.gif
+- https://saint11.art/img/pixel-tutorials/Glitch.gif
+- https://saint11.art/img/pixel-tutorials/Hazards.gif
+- https://saint11.art/img/pixel-tutorials/Holograms-Ghosts.gif
+- https://saint11.art/img/pixel-tutorials/IlluminationTechniques.gif
+- https://saint11.art/img/pixel-tutorials/Impact-export.gif
+- https://saint11.art/img/pixel-tutorials/LightMagic.gif
+- https://saint11.art/img/pixel-tutorials/Metal.gif
+- https://saint11.art/img/pixel-tutorials/MotionBlur.gif
+- https://saint11.art/img/pixel-tutorials/Outlines.gif
+- https://saint11.art/img/pixel-tutorials/Pipeline.gif
+- https://saint11.art/img/pixel-tutorials/Resizing.gif
+- https://saint11.art/img/pixel-tutorials/RocketTrail.gif
+- https://saint11.art/img/pixel-tutorials/Ruins.gif
+- https://saint11.art/img/pixel-tutorials/Shading.gif
+- https://saint11.art/img/pixel-tutorials/Shine.gif
+- https://saint11.art/img/pixel-tutorials/Silhouette.gif
+- https://saint11.art/img/pixel-tutorials/SmokeSheet.gif
+- https://saint11.art/img/pixel-tutorials/Squash.gif
+- https://saint11.art/img/pixel-tutorials/Stars.gif
+- https://saint11.art/img/pixel-tutorials/Subpixel.gif
+- https://saint11.art/img/pixel-tutorials/Swords.gif
+- https://saint11.art/img/pixel-tutorials/UI-9-Slice.gif
+- https://saint11.art/img/pixel-tutorials/gems.gif
+- https://saint11.art/img/pixel-tutorials/indoors.gif
+- https://saint11.art/img/pixel-tutorials/skull.gif
+
+**Slynyrd (Raymond Schlitter)**
+
+- https://www.gamedev.net/articles/visual-arts/color-palettes-r4964/
+- https://www.slynyrd.com/blog/2018/1/10/pixelblog-1-color-palettes
+- https://www.slynyrd.com/blog/2018/10/12/pixelblog-10-water-in-motion
+- https://www.slynyrd.com/blog/2018/11/16/pixelblog-11-landscape-pixeling
+- https://www.slynyrd.com/blog/2018/5/16/pixelblog-5-back-to-basics
+- https://www.slynyrd.com/blog/2018/6/15/pixelblog-6-light-and-shadow
+- https://www.slynyrd.com/blog/2018/8/19/pixelblog-8-intro-to-animation
+- https://www.slynyrd.com/blog/2018/9/8/pixelblog-9-melee-attacks
+- https://www.slynyrd.com/blog/2019/11/12/pixelblog-23-parallax-scrolling
+- https://www.slynyrd.com/blog/2019/12/21/pixelblog-24-items
+- https://www.slynyrd.com/blog/2020/12/14/pixelblog-31-shmup-sprite-design
+- https://www.slynyrd.com/blog/2020/2/23/pixelblog-26-uxui-design-basics
+- https://www.slynyrd.com/blog/2022/3/19/pixelblog-37-classic-castlevania-study
+- https://www.slynyrd.com/blog/2024/11/25/pixelblog-53-punches-and-kicks
+- https://www.slynyrd.com/blog/2025/5/23/pixelblog-56-top-down-character-attack-animation
+- https://www.slynyrd.com/blog/2025/7/28/pixelblog-57-knights-monsters-amp-castles
+- https://www.slynyrd.com/blog/2026/5/27/pixelblog-62-landscape-backgrounds
+- https://www.slynyrd.com/blog/2026/7/26/pixelblog-63-horizontal-shmup
+
+**Lospec**
+
+- https://lospec.com/palette-list/aap-64
+- https://lospec.com/palette-list/apollo
+- https://lospec.com/palette-list/bloodmoon21
+- https://lospec.com/palette-list/darkseed-16
+- https://lospec.com/palette-list/dawnbringer-16
+- https://lospec.com/palette-list/dawnbringer-32
+- https://lospec.com/palette-list/doriangreenless
+- https://lospec.com/palette-list/endesga-32
+- https://lospec.com/palette-list/endesga-64
+- https://lospec.com/palette-list/gothic-bit
+- https://lospec.com/palette-list/gothic-temple
+- https://lospec.com/palette-list/grim32
+- https://lospec.com/palette-list/horror-dark
+- https://lospec.com/palette-list/journey
+- https://lospec.com/palette-list/midnight-ablaze
+- https://lospec.com/palette-list/oil-6
+- https://lospec.com/palette-list/resurrect-64
+- https://lospec.com/palette-list/rpgvania
+- https://lospec.com/palette-list/slso8
+- https://lospec.com/palette-list/sweetie-16
+- https://lospec.com/palette-list/tag/gothic
+- https://lospec.com/palette-list/twilioquest-76
+
+**Outros tutoriais de pixel art**
+
+- https://budgetpixel.com/blog/how-to-animate-pixel-art-rain-and-reflections-in-4-frames
+- https://cse3000-research-project.github.io/static/38fffaaa7e934fdd5d9b8416b1ee386e/poster.pdf
+- https://divoom.com/blogs/setup-ideas/pixel-art-animation-frame-rate
+- https://medibangpaint.com/en/use/2022/09/how-to-draw-a-magic-circle
+- https://pixelparmesan.com/anti-aliasing-fundamentals-for-pixel-artists
+- https://pixelparmesan.com/blog/color-theory-for-pixel-artists-its-all-relative
+- https://prolificstudio.co/blog/smear-frames/
+- https://web.cs.wpi.edu/~claypool/courses/frontiers-06/samples/pixel-artist/chapter6.htm
+- https://www.alanzucconi.com/?p=10365
+- https://www.androidarts.com/pixtut/pixelart.htm
+- https://www.sprite-ai.art/guides/animation-principles
+- https://www.wayline.io/learn/color-palettes/1
+- https://yari-pixels.github.io/Articles/mixels.html
+
+**Jogos / estudos de caso**
+
+- https://automaton-media.com/articles/interviewsjp/20170525-47328/
+- https://en.wikipedia.org/wiki/Blasphemous_(video_game)
+- https://en.wikipedia.org/wiki/HD-2D
+- https://gamedeveloper.com/design/vlambeer-co-founder-shares-advice-on-building-better-action-games
+- https://github.com/balatro-src/balatro-src-reverse-engineering
+- https://godotshaders.com/shader/balatro-foil-card-effect/
+- https://habr.com/post/416589
+- https://mobilesyrup.com/2023/09/11/sea-of-stars-level-design-sabotage-studio-thierry-boulanger-interview/
+- https://slaythespire.wiki.gg/wiki/Cards
+- https://sourcegaming.info/2015/11/11/thoughts-on-hitstop-sakurais-famitsu-column-vol-490-1/
+- https://steamcommunity.com/app/774361/discussions/0/1638669204735629860
+- https://theengineeringofconsciousexperience.com/jan-willem-nijman-vlambeer-the-art-of-screenshake/
+- https://warcraft.wiki.gg/wiki/Quality
+- https://www.gamedeveloper.com/art/eastward-s-creators-share-insights-on-making-pixel-art-adventures
+- https://www.gamedeveloper.com/design/how-game-jam-sacrifices-became-inscryption
+- https://www.gamedeveloper.com/design/icon-design-rules-you-should-know
+- https://www.ssbwiki.com/Hitlag
+- https://www.unrealengine.com/en-US/developer-interviews/octopath-traveler-ii-builds-a-bigger-bolder-world-in-its-stunning-hd-2d-style
+
+**Algoritmos, shaders e transições**
+
+- https://c.eev.ee/particle-wipe-generator/
+- https://community.gamedev.tv/t/enhanced-camera-shake-with-perlin-noise/204230
+- https://ddrkirby.com/articles/shader-based-transitions/shader-based-transitions.html
+- https://en.wikipedia.org/wiki/Color_cycling
+- https://en.wikipedia.org/wiki/Ordered_dithering
+- https://experiments.withgoogle.com/canvas-cycle
+- https://fabiensanglard.net/doom_fire_psx/
+- https://forum.gdevelop.io/t/sprite-flash-solid-white-when-damaged/29507
+- https://gdcvault.com/play/1023586/8-Bit-8-Bitish-Graphics
+- https://github.com/fabiensanglard/DoomFirePSX
+- https://godotshaders.com/shader/2d-retro-dithered-lighting-fog-of-war/
+- https://godotshaders.com/shader/pixelated-god-rays/
+- https://hackernoon.com/lighting-by-hand-3-breath-of-life-7a775617697e
+- https://k0b3n4irb.github.io/opensnes/mosaic_8h.html
+- https://krazydad.com/bestiary/bestiary_lightning.html
+- https://snes.nesdev.org/wiki/PPU_registers
+
+**Referências gerais**
+
+- https://dev.to/nicm42/how-to-make-a-button-looked-like-it-s-staying-pressed-down-58k
+- https://en.wikipedia.org/wiki/Gothic_architecture
+- https://gegx.itch.io/pixel-ui-kit
+- https://indieklem.substack.com/p/8-better-designed-buttons
+- https://knowyourmeme.com/memes/cultures/impact-frames
+- https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
+- https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html
+- https://www.worldhistory.org/article/1277/the-stained-glass-windows-of-chartres-cathedral/
