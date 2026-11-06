@@ -1,0 +1,34 @@
+--!strict
+-- Gerado pelo PixelForge. Animacao: magic_circle
+-- Coloque em ReplicatedStorage/Shared/Sprites/ e troque 'image' pelo ID enviado.
+-- Uso: SpriteAnimator.play(imageLabel, require(este_modulo))
+
+export type Frame = { x: number, y: number, w: number, h: number, ms: number }
+export type SpriteData = {
+	name: string,
+	image: string,
+	loop: boolean,
+	pivotX: number,
+	pivotY: number,
+	frames: { Frame },
+}
+
+local data: SpriteData = {
+	name = "magic_circle",
+	image = "rbxassetid://0",
+	loop = true,
+	pivotX = 24,
+	pivotY = 24,
+	frames = {
+		{ x = 1, y = 1, w = 48, h = 48, ms = 83 },
+		{ x = 51, y = 1, w = 48, h = 48, ms = 83 },
+		{ x = 101, y = 1, w = 48, h = 48, ms = 83 },
+		{ x = 1, y = 51, w = 48, h = 48, ms = 83 },
+		{ x = 51, y = 51, w = 48, h = 48, ms = 83 },
+		{ x = 101, y = 51, w = 48, h = 48, ms = 83 },
+		{ x = 1, y = 101, w = 48, h = 48, ms = 83 },
+		{ x = 51, y = 101, w = 48, h = 48, ms = 83 },
+	},
+}
+
+return table.freeze(data)

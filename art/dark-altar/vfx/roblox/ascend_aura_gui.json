@@ -1,0 +1,80 @@
+{
+  "name": "ascend_aura",
+  "target": "gui",
+  "loop": true,
+  "cell": [
+    32,
+    48
+  ],
+  "pad": 1,
+  "cols": 4,
+  "rows": 2,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 35,
+      "y": 1,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 69,
+      "y": 1,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 103,
+      "y": 1,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 1,
+      "y": 51,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 35,
+      "y": 51,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 69,
+      "y": 51,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    },
+    {
+      "x": 103,
+      "y": 51,
+      "w": 32,
+      "h": 48,
+      "ms": 83
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "ramp": "gold",
+    "tag": "[BUF]",
+    "kind": "loop"
+  }
+}

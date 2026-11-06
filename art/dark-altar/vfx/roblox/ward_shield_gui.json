@@ -1,0 +1,80 @@
+{
+  "name": "ward_shield",
+  "target": "gui",
+  "loop": false,
+  "cell": [
+    40,
+    40
+  ],
+  "pad": 1,
+  "cols": 3,
+  "rows": 3,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 40,
+      "h": 40,
+      "ms": 33
+    },
+    {
+      "x": 43,
+      "y": 1,
+      "w": 40,
+      "h": 40,
+      "ms": 50
+    },
+    {
+      "x": 85,
+      "y": 1,
+      "w": 40,
+      "h": 40,
+      "ms": 50
+    },
+    {
+      "x": 1,
+      "y": 43,
+      "w": 40,
+      "h": 40,
+      "ms": 67
+    },
+    {
+      "x": 43,
+      "y": 43,
+      "w": 40,
+      "h": 40,
+      "ms": 67
+    },
+    {
+      "x": 85,
+      "y": 43,
+      "w": 40,
+      "h": 40,
+      "ms": 67
+    },
+    {
+      "x": 1,
+      "y": 85,
+      "w": 40,
+      "h": 40,
+      "ms": 83
+    },
+    {
+      "x": 43,
+      "y": 85,
+      "w": 40,
+      "h": 40,
+      "ms": 100
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "ramp": "spirit",
+    "tag": "[GRD]",
+    "kind": "oneshot"
+  }
+}

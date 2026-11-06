@@ -1,0 +1,79 @@
+{
+  "name": "holy_pillar",
+  "target": "gui",
+  "loop": true,
+  "cell": [
+    24,
+    64
+  ],
+  "pad": 1,
+  "cols": 5,
+  "rows": 2,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 27,
+      "y": 1,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 53,
+      "y": 1,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 79,
+      "y": 1,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 105,
+      "y": 1,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 1,
+      "y": 67,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 27,
+      "y": 67,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    },
+    {
+      "x": 53,
+      "y": 67,
+      "w": 24,
+      "h": 64,
+      "ms": 83
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "ramp": "gold",
+    "kind": "loop"
+  }
+}

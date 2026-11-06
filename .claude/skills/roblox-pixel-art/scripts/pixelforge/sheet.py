@@ -28,6 +28,34 @@ from .anim import Animation
 from .canvas import Canvas
 
 MAX_IMAGE = 1024
+MAX_FLIPBOOK_FPS = 30.0  # limite do ParticleEmitter
+
+
+def alpha_bleed(img: Image.Image, passes: int = 8) -> Image.Image:
+    """Copia a cor das bordas para os pixels TRANSPARENTES (alpha continua 0).
+
+    Motivo: o upload do Roblox transforma RGB de pixels transparentes em preto e a
+    filtragem (particulas, mipmaps, compressao no mobile) mistura esse preto com a
+    borda -> franja escura. Com o bleed, a mistura acontece com a propria cor."""
+    import numpy as np
+    a = np.array(img.convert("RGBA"))
+    rgb = a[..., :3].astype(np.int32)
+    filled = a[..., 3] > 0
+    for _ in range(passes):
+        if filled.all():
+            break
+        acc = np.zeros_like(rgb)
+        cnt = np.zeros(filled.shape, dtype=np.int32)
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)):
+            sh_f = np.roll(np.roll(filled, dy, 0), dx, 1)
+            sh_c = np.roll(np.roll(rgb, dy, 0), dx, 1)
+            acc += sh_c * sh_f[..., None]
+            cnt += sh_f
+        grow = (~filled) & (cnt > 0)
+        rgb[grow] = acc[grow] // cnt[grow][:, None]
+        filled = filled | grow
+    a[..., :3] = rgb.astype(np.uint8)
+    return Image.fromarray(a, "RGBA")
 
 
 @dataclass
@@ -103,11 +131,15 @@ def luau_sprite_module(anim: Animation, sheet: GuiSheet, asset_id: str = "rbxass
 
 
 def export_gui_sheet(anim: Animation, out_dir: Path, pad: int = 1,
-                     asset_id: str = "rbxassetid://0") -> Dict[str, Path]:
+                     asset_id: str = "rbxassetid://0", upscale: int = 1) -> Dict[str, Path]:
+    """upscale=4 ('hi-fi mobile'): cada pixel da arte vira um bloco 4x4 = exatamente um
+    bloco de compressao de GPU -> a compressao com perdas do mobile nao mistura cores.
+    Custa 16x memoria: use em sprites pequenos/criticos. Retangulos saem ja multiplicados."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    sheet = pack_grid(anim.frames, pad)
-    png = out_dir / f"{anim.name}_gui.png"
-    sheet.image.save(png)
+    frames = [f.scaled(upscale) for f in anim.frames] if upscale > 1 else anim.frames
+    sheet = pack_grid(frames, pad * upscale)
+    png = out_dir / f"{anim.name}_gui{'_x' + str(upscale) if upscale > 1 else ''}.png"
+    alpha_bleed(sheet.image).save(png)
     meta = {
         "name": anim.name, "target": "gui", "loop": anim.loop,
         "cell": [sheet.cell_w, sheet.cell_h], "pad": pad, "cols": sheet.cols, "rows": sheet.rows,
@@ -134,14 +166,14 @@ def flipbook_frames(anim: Animation, layout: Optional[int] = None,
     Retorna (quadros, n_grade, fps)."""
     if fps is None:
         fps = round(1000.0 / min(anim.durations_ms))
-        fps = max(8.0, min(30.0, float(fps)))
+    fps = max(4.0, min(MAX_FLIPBOOK_FPS, float(fps)))
     frames = anim.resample_fixed(fps)
     n = len(frames)
     if layout is None:
         layout = 4 if n <= 4 else (16 if n <= 16 else 64)
     if n > layout:
         # comprime o tempo: reamostra para caber na grade (mantem a duracao total)
-        fps = layout * 1000.0 / anim.total_ms
+        fps = min(MAX_FLIPBOOK_FPS, layout * 1000.0 / anim.total_ms)
         frames = anim.resample_fixed(fps)[:layout]
     while len(frames) < layout:
         # one-shot: completa com quadro vazio (a particula deve morrer antes);
@@ -157,7 +189,9 @@ def export_flipbook(anim: Animation, out_dir: Path, texture: int = 1024,
     frames, n, fps = flipbook_frames(anim, layout, fps)
     enum_name, g = FLIPBOOK_LAYOUTS[n]
     cell = texture // g
-    k = max(1, min(cell // anim.w, cell // anim.h))
+    # margem garantida (doc Roblox: espacamento entre quadros; mipmaps pedem mais)
+    gutter = max(4, cell // 16)
+    k = max(1, min((cell - 2 * gutter) // anim.w, (cell - 2 * gutter) // anim.h))
     img = Image.new("RGBA", (texture, texture), (0, 0, 0, 0))
     for i, f in enumerate(frames):
         big = f.scaled(k).to_image()
@@ -165,15 +199,16 @@ def export_flipbook(anim: Animation, out_dir: Path, texture: int = 1024,
         y = (i // g) * cell + (cell - big.height) // 2
         img.alpha_composite(big, (x, y))
     png = out_dir / f"{anim.name}_flipbook_{enum_name}.png"
-    img.save(png)
+    alpha_bleed(img).save(png)
     lifetime = n / fps
     meta = {
         "name": anim.name, "target": "ParticleEmitter",
-        "texture": texture, "cell": cell, "upscale": k,
+        "texture": texture, "cell": cell, "upscale": k, "gutter": gutter,
         "properties": {
             "FlipbookLayout": f"Enum.ParticleFlipbookLayout.{enum_name}",
             "FlipbookMode": "Enum.ParticleFlipbookMode." + ("Loop" if anim.loop else "OneShot"),
             "FlipbookFramerate": f"NumberRange.new({fps:.2f})",
+            "FlipbookBlendFrames": "false  (padrao true faz crossfade e borra a troca de quadros)",
             "Lifetime": f"NumberRange.new({lifetime:.3f})" if not anim.loop else "livre (loop)",
             "LightEmission": "1 para fogo/luz; 0 para fumaca/sangue",
             "Orientation": "FacingCamera",

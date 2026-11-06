@@ -1,0 +1,65 @@
+{
+  "name": "impact_spark",
+  "target": "gui",
+  "loop": false,
+  "cell": [
+    32,
+    32
+  ],
+  "pad": 1,
+  "cols": 2,
+  "rows": 3,
+  "frames": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 32,
+      "h": 32,
+      "ms": 67
+    },
+    {
+      "x": 35,
+      "y": 1,
+      "w": 32,
+      "h": 32,
+      "ms": 33
+    },
+    {
+      "x": 1,
+      "y": 35,
+      "w": 32,
+      "h": 32,
+      "ms": 50
+    },
+    {
+      "x": 35,
+      "y": 35,
+      "w": 32,
+      "h": 32,
+      "ms": 50
+    },
+    {
+      "x": 1,
+      "y": 69,
+      "w": 32,
+      "h": 32,
+      "ms": 67
+    },
+    {
+      "x": 35,
+      "y": 69,
+      "w": 32,
+      "h": 32,
+      "ms": 67
+    }
+  ],
+  "roblox": {
+    "ResampleMode": "Pixelated",
+    "ScaleType": "Stretch",
+    "note": "ImageRectSize = (w,h); ImageRectOffset = (x,y); tamanho na tela = multiplo inteiro de (w,h)"
+  },
+  "tags": {
+    "ramp": "gold",
+    "kind": "oneshot"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "fire_loop": {
+    "score": 100,
+    "issues": []
+  },
+  "explosion": {
+    "score": 93,
+    "issues": [
+      "q6: contraste maximo com o fundo 1.80 (< 3): some na UI escura"
+    ]
+  },
+  "slash_arc": {
+    "score": 100,
+    "issues": []
+  },
+  "impact_spark": {
+    "score": 100,
+    "issues": []
+  },
+  "magic_circle": {
+    "score": 100,
+    "issues": []
+  },
+  "ward_shield": {
+    "score": 100,
+    "issues": []
+  },
+  "ascend_aura": {
+    "score": 100,
+    "issues": []
+  },
+  "curse_smoke": {
+    "score": 93,
+    "issues": [
+      "q4: contraste maximo com o fundo 1.78 (< 3): some na UI escura"
+    ]
+  },
+  "blood_burst": {
+    "score": 96,
+    "issues": [
+      "q2: 6 pixels orfaos (cor sem vizinho igual) -> ruido; limpe clusters",
+      "q4: 5 pixels orfaos (cor sem vizinho igual) -> ruido; limpe clusters",
+      "q5: 4 pixels orfaos (cor sem vizinho igual) -> ruido; limpe clusters"
+    ]
+  },
+  "embers_rising": {
+    "score": 95,
+    "issues": [
+      "base do loop oscila muito entre quadros (pivo instavel)"
+    ]
+  },
+  "holy_pillar": {
+    "score": 100,
+    "issues": []
+  },
+  "transition_dither": {
+    "score": 90,
+    "issues": [
+      "q0: contraste maximo com o fundo 1.24 (< 3): some na UI escura",
+      "q15: imagem parece ampliada 5x: trabalhe/lint na resolucao nativa (16x9)"
+    ]
+  },
+  "transition_diamond": {
+    "score": 90,
+    "issues": [
+      "q1: contraste maximo com o fundo 1.24 (< 3): some na UI escura",
+      "q14: imagem parece ampliada 5x: trabalhe/lint na resolucao nativa (16x9)"
+    ]
+  },
+  "transition_iris": {
+    "score": 90,
+    "issues": [
+      "q2: contraste maximo com o fundo 1.24 (< 3): some na UI escura",
+      "q3: contraste maximo com o fundo 2.34 (< 3): some na UI escura"
+    ]
+  }
+}

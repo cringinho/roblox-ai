@@ -66,7 +66,7 @@ def detect_upscale(c: Canvas) -> int:
 
 def lint_canvas(c: Canvas, pal: Optional[Palette] = None, name: str = "asset",
                 max_colors: int = 24, bg: RGB = (30, 30, 36), kind: str = "sprite",
-                allow_sparks: bool = True) -> LintResult:
+                allow_sparks: bool = True, check_contrast: bool = True) -> LintResult:
     """kind: 'sprite' (icone/personagem), 'vfx', 'ui', 'background'."""
     res = LintResult(name, 100)
     px = c.px
@@ -164,7 +164,7 @@ def lint_canvas(c: Canvas, pal: Optional[Palette] = None, name: str = "asset",
         res.score -= 10
     best_contrast = max(contrast_ratio(tuple(col), bg) for col in cols)
     res.metrics["contraste_max_bg"] = round(best_contrast, 2)
-    if best_contrast < 3.0:
+    if check_contrast and best_contrast < 3.0:
         res.issues.append(f"contraste maximo com o fundo {best_contrast:.2f} (< 3): some na UI escura")
         res.score -= 12
 
@@ -176,10 +176,15 @@ def lint_animation(anim: Animation, pal: Optional[Palette] = None, kind: str = "
                    max_colors: int = 16) -> LintResult:
     res = LintResult(anim.name, 100)
     scores = []
+    # quadros onde baixo contraste e INTENCIONAL: contrast frame declarado na tag e
+    # a cauda de dissipacao (ultimos 30%) de efeitos one-shot
+    intentional = {int(x) for x in anim.tags.get("contrast_frames", "").split(",") if x.strip().isdigit()}
+    tail_start = int(len(anim.frames) * 0.7) if not anim.loop else len(anim.frames)
     for i, f in enumerate(anim.frames):
         if f.bbox() is None:
             continue
-        r = lint_canvas(f, pal, f"{anim.name}#{i}", max_colors, kind=kind)
+        r = lint_canvas(f, pal, f"{anim.name}#{i}", max_colors, kind=kind,
+                        check_contrast=(i not in intentional and i < tail_start))
         scores.append(r.score)
         for iss in r.issues:
             res.issues.append(f"q{i}: {iss}")

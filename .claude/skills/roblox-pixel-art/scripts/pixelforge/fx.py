@@ -143,11 +143,12 @@ def explosion(pal: Palette, size: int = 48, seed: int = 1, fire: str = "ember",
     out: List[Canvas] = []
     ms: List[int] = []
 
-    # f0 antecipacao (nucleo pequeno)
+    # f0 CONTRAST FRAME (Saint11, VFX-01): disco quase preto faz o flash seguinte parecer
+    # mais claro. Anel quente de 1px para o disco nao sumir sobre fundo escuro.
     c = Canvas(size, size)
-    m = (xs - cx) ** 2 + (ys - cy) ** 2 <= 3.2 ** 2
-    c.fill_mask(dilate(m, 4) & ~m, F[4])
-    c.fill_mask(m, F[6])
+    m = (xs - cx) ** 2 + (ys - cy) ** 2 <= (0.22 * size) ** 2
+    c.fill_mask(m, S[0])
+    c.fill_mask(edge_inner(m, 4), F[1])
     out.append(c); ms.append(ticks(2))
 
     # f1 flash (quadro de impacto) - disco claro com borda quente
@@ -214,7 +215,7 @@ def explosion(pal: Palette, size: int = 48, seed: int = 1, fire: str = "ember",
             ember = remove_specks(alive & (fv > 0.74) & (value_noise2(size, size, 9, seed + i) > 0.5), 2)
             c.fill_mask(ember, F[1])
         out.append(c); ms.append(ticks(dur))
-    return _anim("explosion", out, ms, False, fire=fire, smoke=smoke, kind="oneshot")
+    return _anim("explosion", out, ms, False, fire=fire, smoke=smoke, kind="oneshot", contrast_frames="0")
 
 
 # ================================================================= 3. SLASH [ATQ]
@@ -582,6 +583,7 @@ def blood_burst(pal: Palette, size: int = 40, ramp: str = "blood", seed: int = 9
 # ================================================================= 10. BRASAS (loop)
 def embers_rising(pal: Palette, w: int = 24, h: int = 48, frames: int = 12, count: int = 7,
                   ramp: str = "ember", seed: int = 10) -> Animation:
+    """Brasas subindo em loop (fase inteira por particula): forja, altar, carta +4."""
     R = pal.ramp(ramp).colors
     rng = np.random.default_rng(seed)
     P = [(rng.uniform(3, w - 4), rng.uniform(0, 1), int(rng.integers(1, 3)), rng.uniform(1.0, 2.5)) for _ in range(count)]
@@ -639,6 +641,57 @@ def holy_pillar(pal: Palette, w: int = 24, h: int = 64, frames: int = 8, ramp: s
     return _anim("holy_pillar", out, [ticks(5)] * frames, True, ramp=ramp, kind="loop")
 
 
+# ================================================================= 12. TRANSICOES DE TELA
+def _transition(name: str, cover_fn, w: int, h: int, steps: int, color, ms: int) -> Animation:
+    """Gera mascaras de cobertura (0 = tela livre .. 1 = coberta). Mostre num ImageLabel
+    em tela cheia com ResampleMode Pixelated (baixa resolucao nativa = blocos grandes).
+    Ida: quadros 0..N-1. Volta: toque ao contrario (SpriteAnimator com lista invertida)."""
+    out: List[Canvas] = []
+    for i in range(steps):
+        t = (i + 1) / steps
+        c = Canvas(w, h)
+        c.fill_mask(cover_fn(t), color)
+        out.append(c)
+    return _anim(name, out, [ms] * steps, False, kind="transition")
+
+
+def transition_dither(pal: Palette, w: int = 80, h: int = 45, steps: int = 16, ms: int = 33) -> Animation:
+    """Dither fade Bayer 4x4 (TR-07): 16 passos exatos, padrao preso a tela (nao cintila)."""
+    th = dither_threshold(w, h, 4)
+    return _transition("transition_dither", lambda t: th < t, w, h, steps, pal["void:0"], ms)
+
+
+def transition_diamond(pal: Palette, w: int = 80, h: int = 45, steps: int = 16, cell: int = 8, ms: int = 33) -> Animation:
+    """Diamond wipe (TR-08): losangos crescem varrendo do canto superior esquerdo."""
+    xs, ys = grid(w, h)
+    xd = np.abs((xs / cell) % 1.0 - 0.5)
+    yd = np.abs((ys / cell) % 1.0 - 0.5)
+    u, v = xs / w, ys / h
+    return _transition("transition_diamond", lambda t: (xd + yd + u + v) < t * 3.0, w, h, steps, pal["void:0"], ms)
+
+
+def transition_iris(pal: Palette, w: int = 80, h: int = 45, steps: int = 14, ms: int = 33) -> Animation:
+    """Iris wipe (TR-09) fechando: raio inteiro com easeInOutCubic; borda de 1px no acento."""
+    xs, ys = grid(w, h)
+    cx, cy = w / 2.0, h / 2.0
+    rmax = math.hypot(cx, cy) + 1
+    d = np.sqrt((xs - cx) ** 2 + (ys - cy) ** 2)
+
+    def ease(t: float) -> float:
+        return 4 * t ** 3 if t < 0.5 else 1 - (-2 * t + 2) ** 3 / 2
+
+    out: List[Canvas] = []
+    for i in range(steps):
+        t = (i + 1) / steps
+        r = int(round((1 - ease(t)) * rmax))
+        c = Canvas(w, h)
+        cover = d >= r
+        c.fill_mask(cover, pal["void:0"])
+        c.fill_mask(cover & ~dilate(~cover, 4) & (d < r + 1.5), pal["blood:3"])
+        out.append(c)
+    return _anim("transition_iris", out, [ms] * steps, False, kind="transition")
+
+
 ALL = {
     "fire_loop": fire_loop,
     "explosion": explosion,
@@ -651,4 +704,7 @@ ALL = {
     "blood_burst": blood_burst,
     "embers_rising": embers_rising,
     "holy_pillar": holy_pillar,
+    "transition_dither": transition_dither,
+    "transition_diamond": transition_diamond,
+    "transition_iris": transition_iris,
 }
