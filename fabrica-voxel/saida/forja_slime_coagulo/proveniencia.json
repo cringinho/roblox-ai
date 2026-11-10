@@ -1,0 +1,22 @@
+{
+ "id": "monstro.forja_slime_coagulo",
+ "hash_ficha": "d8c4123dcf1c6525be0206f3bdf1a80f61de5de965c9c88880393d585a0a55c6",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_ForjaSlimeCoagulo.luau": "5d1ac21b7fb9adaa0e08cf26893b799dac47bd2439c3540419baccd52fc34135",
+  "Dados_ForjaSlimeCoagulo.luau": "4779b4c1943e98a229671a929b5f1747401d7469d156b61caafc2559f5931b98",
+  "anim.gif": "3026fdcb6226d5e007f6ad18f7358771b305c27905fa51408d53fc98c1d6088a",
+  "anim_Andar.png": "1f6b73d2215302f422f77aa84966bbde927639f3b7dc44ffc5c2bacb90e32a4e",
+  "anim_Ataque.png": "5e49a1836171e0fca082a9eeaeab34aa369107dfba77e9f4b765d49fcbd80baf",
+  "anim_Morte.png": "ba41f0b8eb78386b4b80daaf0b14cdd28cd101280fed75e4aaed2e131faa21f5",
+  "anim_Parado.png": "81de986aef5f844f8d58019aa22efd43c62f4109e515a3c437518b9b8aa963a4",
+  "folha.png": "56896e085e9b8825f5a1537d703ce5d441f55e497efac6ec080884d1c606e332",
+  "icone_64.png": "e4aa4fae04686a2c52116fca88e98e0413af996730025f3549acf7b4c1b31284",
+  "modelo.glb": "370dbfd3b2504c443b9dd972328d30e4982cb007c85b22baee5e4ae597dbe2ed",
+  "modelo.vox": "300e46bab262bf77e4680cd1bb7738d7d58c96454c7335801679b7cb696bbdfe"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

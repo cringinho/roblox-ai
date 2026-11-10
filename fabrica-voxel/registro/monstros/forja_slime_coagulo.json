@@ -1,0 +1,37 @@
+{
+ "id": "monstro.forja_slime_coagulo",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Slime Coágulo",
+ "tier": 1,
+ "tier_manual": true,
+ "origem": "Forja antiga do dono (legado/forja_alta). As pecas, as cores e as animacoes vem do codigo original; a fabrica so audita e exporta.",
+ "legado": {
+  "modulo": "slimes",
+  "construtor": "slime",
+  "args": [
+   0
+  ],
+  "pose": "slimes.pose",
+  "clipes": [
+   {
+    "nome": "parado",
+    "duracao": 2.8,
+    "laco": true
+   },
+   {
+    "nome": "mover",
+    "duracao": 0.9,
+    "laco": true
+   },
+   {
+    "nome": "ataque",
+    "duracao": 1.0
+   },
+   {
+    "nome": "morte",
+    "duracao": 1.2
+   }
+  ]
+ }
+}

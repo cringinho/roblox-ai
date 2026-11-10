@@ -1,0 +1,42 @@
+{
+ "id": "monstro.forja_hidra_adulta",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Hidra do Vazio adulta",
+ "tier": 9,
+ "tier_manual": true,
+ "origem": "Forja antiga do dono (legado/forja_alta). As pecas, as cores e as animacoes vem do codigo original; a fabrica so audita e exporta.",
+ "legado": {
+  "modulo": "hidra_adulta",
+  "construtor": "hidra",
+  "pose": "hidra_adulta.pose",
+  "clipes": [
+   {
+    "nome": "parado",
+    "duracao": 4.0,
+    "laco": true
+   },
+   {
+    "nome": "andar",
+    "duracao": 2.0,
+    "laco": true
+   },
+   {
+    "nome": "raio",
+    "duracao": 3.6
+   },
+   {
+    "nome": "mordida",
+    "duracao": 2.6
+   },
+   {
+    "nome": "pisao",
+    "duracao": 2.8
+   },
+   {
+    "nome": "rugido",
+    "duracao": 3.0
+   }
+  ]
+ }
+}
