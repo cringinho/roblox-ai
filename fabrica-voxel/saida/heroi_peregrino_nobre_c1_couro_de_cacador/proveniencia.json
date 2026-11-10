@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_peregrino_nobre_c1_couro_de_cacador",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiPeregrinoNobreC1CouroDeCacador.luau": "e864315f78fcd53f263caf3082200d500e49f085c37dfd51e2a7fbc03cde0c45",
+  "Dados_HeroiPeregrinoNobreC1CouroDeCacador.luau": "4fa7a89f3f465b99af4e6a9267d46afa1a5c943fbbccf673609ab1448ce241a7",
+  "anim.gif": "10c2dc177552eec10852b2ffbcf3e9cff71e3277a8bbc980def5cef01282d0c1",
+  "anim_Andar.png": "ef5a06334605b321593cae7ea547736e73e79e4da17a9b25ec206baabbd52502",
+  "anim_Dano.png": "ecae95edda0d38e15c16134fa473389b5134b4f2690e9fb882f9acc0f180f00d",
+  "anim_Golpe.png": "84e0d5f3820e1e578df5ace03a91dfc2c21cfbd8ed6387024f87c828715157ce",
+  "anim_Morte.png": "f7b9272c719441e83b0349cd040a496bd6b1122f12a4658f6b5d59cc3e844099",
+  "anim_Parado.png": "b8eae720f72c35fc6c7a3ec67c1b7f3f2030158e9a9c95eba99d3e8e420995a4",
+  "folha.png": "1ed5e69db6f093f891b7b37cb0e31521c4a5d2a7216bc7a894234fd83d60e9bb",
+  "icone_64.png": "33de03f6f23a3a1dacfaa7e7325359bc4afc4c45ac0f71c67beb717f56641da4",
+  "modelo.glb": "c242f4636071a0b2d84c49eb26b251179681b3e350a16d7218bed8a89593dfc4",
+  "modelo.vox": "6bbbd7e3b2bdba70b192f6c395384e196489887a1b844c7369a7b9dd08c59e52"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}
