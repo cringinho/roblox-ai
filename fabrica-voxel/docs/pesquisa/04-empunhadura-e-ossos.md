@@ -51,8 +51,8 @@ Resultado [M]: 60 combinações (15 linhagens × 4 conjuntos) com 0% de voxels d
 
 | | Antes | Depois |
 | --- | --- | --- |
-| Ossos por arquétipo | 2 a 13 | 11 a 25 |
-| Voxels por arquétipo | 630 a 3916 (7 abaixo de 1000) | 1064 a 4513 |
+| Ossos por arquétipo, sem contar a Raiz | 2 a 13 | 10 a 24 |
+| Voxels por arquétipo | 630 a 3916 (7 abaixo de 1000) | 1142 a 4503 |
 | Arquétipos aprovados | 20 | 20 |
 
 ## Fontes
