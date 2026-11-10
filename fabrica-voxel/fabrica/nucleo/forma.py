@@ -16,7 +16,7 @@ import numpy as np
 from . import sdf
 from .contrato import CORTES, Grade, Peca, desloc_semantico
 
-OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels")
+OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels", "placas")
 MODOS = ("uniao", "so_vazio", "cortar", "pintar")
 # normal (em voxels) de cada ancora simples; combinacoes somam (ex.: topo_frente)
 _NORMAIS = {"topo": (0, 1, 0), "base": (0, -1, 0), "frente": (0, 0, -1), "tras": (0, 0, 1),
@@ -129,6 +129,45 @@ def _expandir(formas: list[dict]) -> list[dict]:
     return out
 
 
+_NOME_EIXO = {0: ("direita", "esquerda"), 1: ("cima", "baixo"), 2: ("tras", "frente")}
+
+
+def _placas(op: dict, caixas: "_Caixas", peca: str, onde: str) -> list[dict]:
+    """"op": "placas" cobre uma face de uma forma com uma grade de placas em relevo (escamas, couraca, rebites).
+    {"op": "placas", "em": "t", "face": "topo", "tam": [3, 1, 3], "vao": 1, "margem": 2, "material": "detalhe"}
+    "tam" e o tamanho de UMA placa nos eixos do modelo; "so_borda": true deixa so o anel de fora (coroa de espinhos)."""
+    ref, face = op.get("em", ""), op.get("face", "topo")
+    if face not in sdf.FACES:
+        raise ErroFicha(f'{onde}: "face": "{face}" invalida; use uma de {list(sdf.FACES)}.')
+    chave = ref if ref in caixas.cx else f"{peca}.{ref}"
+    if chave not in caixas.cx:
+        raise ErroFicha(f'{onde}: "placas" precisa de "em" com o nome de uma forma ja feita. Existem: {sorted(caixas.cx)}.')
+    mn, mx = caixas.cx[chave]
+    F = sdf.FACES[face]
+    eu, ev = F["u"][0], F["v"][0]
+    tam = [int(x) for x in op.get("tam", [3, 1, 3])]
+    vao, mar = int(op.get("vao", 1)), int(op.get("margem", 1))
+    out = []
+    conta = []
+    for e in (eu, ev):
+        livre = (mx[e] - mn[e]) - 2 * mar
+        n = int((livre + vao) // (tam[e] + vao))
+        conta.append((n, tam[e] + vao))
+    (nu, pu), (nv, pv) = conta
+    for i in range(nu):
+        for j in range(nv):
+            if op.get("so_borda") and 0 < i < nu - 1 and 0 < j < nv - 1:
+                continue
+            du = (i - (nu - 1) / 2) * pu
+            dv = (j - (nv - 1) / 2) * pv
+            d = {}
+            for e, val in ((eu, du), (ev, dv)):
+                if val:
+                    d[_NOME_EIXO[e][0] if val > 0 else _NOME_EIXO[e][1]] = abs(val)
+            out.append({"op": "caixa", "tam": tam, "em": f"{chave}.{face}", "desloc": d, "material": op.get("material", "")})
+    return out
+
+
 def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple[list[Peca], dict]:
     """Constroi todas as pecas. Devolve (pecas, ancoras em studs)."""
     indice = {n: i + 1 for i, n in enumerate(nomes_materiais)}
@@ -154,11 +193,19 @@ def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple
         # as caixas guardadas estao em voxels DESTE corte quando todas as pecas usam o mesmo corte; pecas de
         # cortes diferentes sao convertidas por fator inteiro
         g = np.zeros((_CAMPO,) * 3, np.uint8)
-        for i, op in enumerate(_expandir(sp.get("formas", []))):
+        fila = list(_expandir(sp.get("formas", [])))
+        i = -1
+        while fila:
+            op = fila.pop(0)
+            i += 1
             onde = f'peca "{nome}", forma {i + 1}'
             tipo = op.get("op")
             if tipo not in OPS:
                 raise ErroFicha(f'{onde}: "op": "{tipo}" nao existe. Use uma de {list(OPS)}.{_sugerir(tipo, OPS)}')
+            if tipo == "placas":                          # vira varias caixas, com as medidas da forma de referencia
+                fila[:0] = _placas(op, caixas, nome, onde)
+                i -= 1
+                continue
             modo = op.get("modo", "uniao")
             if modo not in MODOS:
                 raise ErroFicha(f'{onde}: "modo": "{modo}" invalido; use um de {list(MODOS)}.')

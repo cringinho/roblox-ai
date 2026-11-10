@@ -35,8 +35,15 @@ def materiais_da_ficha(lista, paleta: Paleta) -> list[Material]:
 
 
 def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = True) -> Modelo:
+    tier = int(ficha.get("tier", 1) or 1)
+    if tier > 1 and ficha.get("tipo") in ("monstro", "arquetipo", "npc") and not ficha.get("_tier_aplicado"):
+        from .tier import elevar
+        ficha = elevar(ficha, tier)                       # T2..T10: maior, mais repeticoes, mais ossos, mais ornamento
     mats = materiais_da_ficha(ficha.get("materiais"), paleta)
     pecas, anc = construir_pecas(ficha["pecas"], [m.nome for m in mats])
+    if tier > 1:
+        for p in pecas:
+            _colar_soltos(p)
     res = anc["resolver"]
     nomes_pecas = [p.nome for p in pecas]
     ossos: list[Osso] = []
@@ -55,7 +62,7 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
             a, b = p.grade.caixa()
             ossos.append(Osso(p.osso, "Raiz", (float((a[0] + b[0]) / 2), float(a[1]), float((a[2] + b[2]) / 2)), "corpo"))
     modelo = Modelo(id=ficha["id"].split(".", 1)[-1], nome=ficha.get("nome", ficha["id"]), pecas=pecas,
-                    ossos=ossos, materiais=mats, meta=dict(ficha.get("meta", {})))
+                    ossos=ossos, materiais=mats, meta={**dict(ficha.get("meta", {})), "tier": tier})
     juntas = {o["nome"]: float(o["junta"]) for o in ficha.get("ossos", []) if o.get("junta")}
     _segmentar(modelo, ficha, juntas)
     _juntas(modelo, juntas)
@@ -74,6 +81,44 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
             cl = assar_clipe(modelo, r, H=H, fator_tempo=float(np.sqrt(k)) if ficha.get("tempo_por_porte", True) else 1.0)
             modelo.clipes[cl.nome] = cl
     return modelo
+
+
+def _colar_soltos(p: Peca, alcance: int = 4):
+    """Ao subir de tier, as medidas sao arredondadas e um detalhe pequeno (garra, presa, placa de borda) pode ficar a
+    1 ou 2 voxels do corpo. Cada pedaco solto anda o minimo, numa das 6 direcoes, ate encostar no maior pedaco."""
+    from . import util_grade as ug
+    g = p.grade
+    rot, n = ug.componentes(g.mat > 0)
+    if n <= 1:
+        return
+    mat = np.pad(g.mat, alcance)
+    rot = np.pad(rot, alcance)
+    maior = int(np.bincount(rot[rot > 0]).argmax())
+    corpo = rot == maior
+    for k in range(1, n + 1):
+        if k == maior:
+            continue
+        comp = rot == k
+        feito = False
+        for d in range(1, alcance + 1):
+            for eixo in range(3):
+                for s in (1, -1):
+                    mv = np.roll(comp, s * d, axis=eixo)
+                    if (ug.dilatar(mv, 1, 6) & corpo).any():
+                        vals = np.roll(np.where(comp, mat, 0), s * d, axis=eixo)
+                        mat[comp] = 0
+                        mat[mv & (mat == 0)] = vals[mv & (mat == 0)]
+                        corpo = corpo | mv
+                        feito = True
+                        break
+                if feito:
+                    break
+            if feito:
+                break
+    idx = np.argwhere(mat > 0)
+    a, b = idx.min(0), idx.max(0) + 1
+    g.origem = g.origem + (a - alcance) * g.v
+    g.mat = mat[a[0]:b[0], a[1]:b[1], a[2]:b[2]].copy()
 
 
 def _repouso(o: dict):
@@ -110,6 +155,20 @@ def _segmentar(modelo: Modelo, ficha: dict, juntas: dict):
                 raise ErroFicha(f'osso "{o["nome"]}": "seguir_pai.modo" deve ser um de {list(MODOS_SEGUIR)}.')
             seguir[o["nome"]] = {"modo": sp.get("modo", "livre"), "ganho": float(sp.get("ganho", 0.5)),
                                  "atraso_s": float(sp.get("atraso_s", 0.07))}
+        if o.get("cadeia_com"):                              # cadeia entre dois ossos ja declarados (heroi: Perna + Pe)
+            filho = o["cadeia_com"]
+            if filho not in {x.nome for x in modelo.ossos}:
+                raise ErroFicha(f'osso "{o["nome"]}": "cadeia_com": "{filho}" nao existe.')
+            pr, pf = np.array(modelo.osso(o["nome"]).pivo), np.array(modelo.osso(filho).pivo)
+            if abs(pr[0] - pf[0]) > 1e-6 or abs(pr[2] - pf[2]) > 1e-6 or pf[1] >= pr[1]:
+                raise ErroFicha(f'osso "{o["nome"]}": para "cadeia_com", o pivo de "{filho}" precisa estar reto abaixo do pivo de '
+                                f'"{o["nome"]}" (mesmo x e z). Use a mesma coluna para as duas pecas.')
+            base = min(p.grade.caixa()[0][1] for p in modelo.pecas if p.osso == filho)
+            dobra = o.get("dobra", {"perna": "joelho", "braco": "cotovelo"}.get(o.get("papel", ""), "livre"))
+            cadeias[o["nome"]] = {"ossos": [o["nome"], filho], "comprimentos": [round(float(pr[1] - pf[1]), 4), round(float(pf[1] - base), 4)],
+                                  "eixo": 1, "sentido": -1.0, "dobra": dobra}
+            seguir[filho] = {"modo": dobra, "ganho": float(o.get("ganho_seguir", 0.5)), "atraso_s": float(o.get("atraso_seguir_s", 0.07))}
+            continue
         seg = o.get("segmentos")
         if not seg:
             continue
@@ -132,6 +191,11 @@ def _segmentar(modelo: Modelo, ficha: dict, juntas: dict):
         sentido = 1.0 if abs(piv[eixo] - mn[eixo]) <= abs(piv[eixo] - mx[eixo]) else -1.0
         ini, comp, v = (mn[eixo] if sentido > 0 else mx[eixo]), float(mx[eixo] - mn[eixo]), pcs[0].grade.v
         lim = [0.0] + [float(round(c * comp / v) * v) for c in np.cumsum(fr)[:-1]] + [comp]
+        while o.get("segmentos_tolerante") and len(fr) > 1 and any(b - a < 2 * v for a, b in zip(lim[:-1], lim[1:])):
+            fr = np.ones(len(fr) - 1) / (len(fr) - 1)     # peca curta: um segmento a menos, ate caber
+            lim = [0.0] + [float(round(c * comp / v) * v) for c in np.cumsum(fr)[:-1]] + [comp]
+        if len(fr) < 2:
+            continue
         if any(b - a < v for a, b in zip(lim[:-1], lim[1:])):
             raise ErroFicha(f'osso "{nome}": a peca tem {int(round(comp / v))} voxels no eixo comprido; e pouco para '
                             f'{len(fr)} segmentos. Use menos segmentos ou alongue a peca.')

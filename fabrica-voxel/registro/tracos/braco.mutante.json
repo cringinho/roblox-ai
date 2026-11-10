@@ -1,7 +1,7 @@
 {
  "id": "traco.braco.mutante",
  "tipo": "traco",
- "versao": 1,
+ "versao": 2,
  "nome": "Braco mutante de osso",
  "material": "chifre",
  "pecas": [
@@ -17,7 +17,7 @@
       3,
       3
      ],
-     "em": "Mao_E.centro",
+     "em": "Mao_E.base",
      "encaixe": "centro"
     },
     {

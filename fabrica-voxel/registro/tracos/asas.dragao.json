@@ -1,7 +1,7 @@
 {
  "id": "traco.asas.dragao",
  "tipo": "traco",
- "versao": 1,
+ "versao": 2,
  "nome": "Asas de dragao",
  "material": "pele",
  "pecas": [
@@ -77,7 +77,7 @@
      "em": "Tronco.t.tras",
      "desloc": {
       "direita": 8,
-      "baixo": 3,
+      "baixo": 2,
       "tras": 3
      }
     },
@@ -169,7 +169,7 @@
      "em": "Tronco.t.tras",
      "desloc": {
       "esquerda": 8,
-      "baixo": 3,
+      "baixo": 2,
       "tras": 3
      }
     },

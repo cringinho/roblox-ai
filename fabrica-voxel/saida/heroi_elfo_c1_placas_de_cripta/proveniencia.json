@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_elfo_c1_placas_de_cripta",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiElfoC1PlacasDeCripta.luau": "ac93dd02ec9414cd60de027e0934224b57a36d145c3732c82a131c814c00c37c",
+  "Dados_HeroiElfoC1PlacasDeCripta.luau": "98b5ccc9b6e329267fd490416b15761320a7ef3612af1d9938c56073add2fc1a",
+  "anim.gif": "0bcc7ea75a3b2728c412069ced637c9a69a71feec54be6a65af22e91fad00d28",
+  "anim_Andar.png": "a93382f6531808b79220a428ede6228f7a4c7930e7e91af43f0b60f50af7cad7",
+  "anim_Dano.png": "4210fa551eeba410304340b62b9c8e9bc9aba27df294ec4760bbcc61126d4098",
+  "anim_Golpe.png": "48ebeb1bed533f544ef0b715c1d7c07548c35053af5dfb7d8eff9a683f2b0c36",
+  "anim_Morte.png": "6cc00f039222cf6111b88cce262f1d72992b2cf1a7d4edee1cc4f08ad4e3e22c",
+  "anim_Parado.png": "bd7c573d9369c1e7f5c6b7a5ac4dca6c07f14a3d2bd8c23c7461dea5158b9bd8",
+  "folha.png": "b27dad4d74f2b293e0dc4133f6ea5431f15f293b29845f2ad882a15b1e236509",
+  "icone_64.png": "84291d5072101633e1653f39849c93d52a86ad5dc0c2ccf287f1b21a24748b14",
+  "modelo.glb": "b8c2c699093f76f90a7747659b7ab473413c3e710fae8522748b1cd03f6bdf18",
+  "modelo.vox": "71f24e0b0a45a5a3e42945fd52abd908493fbb28a2c761bb79d8965a301f3bfd"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

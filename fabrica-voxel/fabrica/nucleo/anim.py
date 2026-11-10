@@ -18,7 +18,7 @@ CANAIS_ROT = ("frente", "esquerda", "tombar_direita")
 CANAIS_TRANS = {"direita": (0, 1), "esquerda_t": (0, -1), "cima": (1, 1), "baixo": (1, -1),
                 "frente_t": (2, -1), "tras": (2, 1)}
 CURVAS = ("linear", "suave", "entra", "sai", "entra_sai", "passa_e_volta", "degrau", "golpe")
-TIPOS = ("onda", "poses", "passos", "seguir", "tremor", "golpe")
+TIPOS = ("onda", "poses", "passos", "seguir", "tremor", "golpe", "soltar_bracos")
 
 
 def curva(nome: str, t):
@@ -61,6 +61,8 @@ class _Acum:
         self.modelo = modelo
         self.dirigidos: set[int] = set()      # ossos resolvidos por IK neste clipe (o seguimento automatico nao mexe)
         self.agacho = None                    # quanto o corpo desceu para o joelho ter folga (uma vez por clipe)
+        self.ABS: dict[int, np.ndarray] = {}  # rotacao final do osso, ja resolvida (braco no golpe): vale no lugar de E e Q
+        self.golpes: list[dict] = []          # golpes de braco articulado, resolvidos depois de todas as camadas
 
     def ossos(self, spec) -> list[int]:
         pads = spec if isinstance(spec, list) else [spec]
@@ -288,6 +290,8 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
     f = c["ficha"]
     lado = 1.0 if c.get("mao", "Mao_D").endswith("_D") else -1.0
     k = ac.ossos(c.get("mao", "Mao_D"))[0]
+    pai_mao = modelo.osso(modelo.osso(ac.nomes[k]).pai) if modelo.osso(ac.nomes[k]).pai else None
+    articulado = pai_mao is not None and pai_mao.papel == "braco"
     tp = np.cumsum(f.get("tempos", [0.30, 0.10, 0.05, 0.25, 0.30]))
     tp = tp / tp[-1]
     a0, a1 = np.radians(f["arco"]["inicio_graus"]), np.radians(f["arco"]["fim_graus"])
@@ -296,7 +300,15 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
     peso = np.zeros(ac.n)                                    # 0 = mao em repouso, 1 = mao no arco
     for q, t in enumerate(fase_t):
         if t < tp[0]:
-            u = curva("suave", t / tp[0]); ang[q] = a0; peso[q] = u
+            if articulado:           # com braco: sobe PELA GUARDA e depois pelo proprio arco, nunca em linha reta por dentro do corpo
+                u = t / tp[0]
+                gd = np.radians(f["arco"].get("guarda_graus", 35))
+                if u < 0.4:
+                    ang[q] = gd; peso[q] = curva("suave", u / 0.4)
+                else:
+                    ang[q] = gd + (a0 - gd) * curva("suave", (u - 0.4) / 0.6); peso[q] = 1
+            else:
+                u = curva("suave", t / tp[0]); ang[q] = a0; peso[q] = u
         elif t < tp[2]:
             u = curva("golpe", (t - tp[0]) / (tp[2] - tp[0])); ang[q] = a0 + (a1 - a0) * u; peso[q] = 1
         elif t < tp[3]:
@@ -314,6 +326,12 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
     e1 = np.array([0.0, 0.0, -1.0])                                   # frente
     e2 = np.array([lado * np.cos(p), np.sin(p), 0.0])                 # lado da arma, subindo com o plano
     tronco = modelo.osso(c.get("tronco", "Tronco"))
+    if articulado:
+        _golpe_tronco(ac, c, f, fase_t, tp, ang, a0, a1, peso, lado)
+        ac.golpes.append({"mao": k, "braco": ac.i[pai_mao.nome], "lado": lado, "ang": ang, "peso": peso, "e1": e1, "e2": e2,
+                          "ficha": f, "tronco": ac.i[tronco.nome],
+                          "carga": np.clip((ang - a1) / (a0 - a1 + 1e-9), 0, 1)})
+        return
     ctr = f.get("centro_H", {})
     centro = np.array(tronco.pivo) + np.array([lado * float(ctr.get("lado", 0.12)), float(ctr.get("cima", 0.30)),
                                                 -float(ctr.get("frente", 0.0))]) * ac.H
@@ -333,6 +351,12 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
         qa = quat_mul(matriz_para_quat(Rm), q_item)
         Q[q] = _nlerp(np.array([0, 0, 0, 1.0]), qa, peso[q])
     ac.Q[k] = Q
+    _golpe_tronco(ac, c, f, fase_t, tp, ang, a0, a1, peso, lado, desce_H=0.05)
+
+
+def _golpe_tronco(ac: _Acum, c: dict, f: dict, fase_t, tp, ang, a0, a1, peso, lado, desce_H: float = 0.0):
+    """Parte do golpe que e do corpo: o tronco gira (quadril lidera, ombro atrasa), inclina no contato, a cabeca
+    compensa metade. desce_H so vale para o heroi de pecas soltas (com pernas, o tronco nao pode sair de cima delas)."""
     tr = f.get("tronco", {})
     giro = float(tr.get("giro_graus", 35))
     atraso = float(tr.get("atraso_ombro_s", 0.06))
@@ -344,10 +368,90 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
     ac.E[:, kt, 0] += float(tr.get("inclinacao_graus", 10)) * (1 - np.clip(carga, 0, 1)) * peso
     if "Cabeca" in ac.i:
         ac.E[:, ac.i["Cabeca"], 1] -= 0.5 * np.concatenate([np.repeat(g[:1], d), g[:-d or None]])[:ac.n]
-    desce = np.exp(-((fase_t - tp[2]) / 0.07) ** 2) * 0.05 * ac.H      # corpo desce ~5% de H no contato
-    ac.T[:, kt, 1] -= desce
+    if desce_H:
+        ac.T[:, kt, 1] -= np.exp(-((fase_t - tp[2]) / 0.07) ** 2) * desce_H * ac.H   # corpo desce no contato
     dur = f.get("duracao_s", 0.7)
     ac.marc += [("Golpe", tp[0] * dur), ("Impacto", tp[1] * dur)]
+
+
+def _soltar_bracos(ac: _Acum, c: dict, fase_t):
+    """Queda e morte: a mao larga a pose de empunhadura. O antebraco estica (desfaz a dobra de repouso) e o item
+    fica ao comprido do braco, apontando para longe do corpo. Entre "de_t" e "ate_t" a mudanca entra suave."""
+    t0, t1 = float(c.get("de_t", 0.2)), float(c.get("ate_t", 0.55))
+    w = curva("suave", np.clip((fase_t - t0) / max(t1 - t0, 1e-6), 0, 1))
+    ident = np.array([0.0, 0.0, 0.0, 1.0])
+    vira = np.array([0.0, 0.0, 1.0, 0.0])                      # meia volta: a ponta do item vai para o lado da mao
+    for o in ac.modelo.ossos:
+        if o.papel != "item" or o.nome not in ac.i:
+            continue
+        mao = ac.modelo.osso(o.pai)
+        ac.ABS[ac.i[o.nome]] = np.array([_nlerp(ident, quat_mul(quat_conj(np.array(o.repouso)), vira), x) for x in w])
+        if tuple(mao.repouso) != (0.0, 0.0, 0.0, 1.0) and mao.nome in ac.i:
+            ac.ABS[ac.i[mao.nome]] = np.array([_nlerp(ident, quat_conj(np.array(mao.repouso)), x) for x in w])
+            ac.dirigidos.add(ac.i[mao.nome])
+
+
+def _arco_curto(de, para):
+    """Matriz da menor rotacao que leva o vetor `de` ao vetor `para` (sem torcer). So e instavel se forem opostos."""
+    a, b = de / np.linalg.norm(de), para / np.linalg.norm(para)
+    v, c = np.cross(a, b), float(np.dot(a, b))
+    if c < -0.9999:                                   # opostos: meia volta em torno de X
+        return np.diag([1.0, -1.0, -1.0])
+    K = np.array([[0, -v[2], v[1]], [v[2], 0, -v[0]], [-v[1], v[0], 0]])
+    return np.eye(3) + K + K @ K / (1.0 + c)
+
+
+def _resolver_golpes(ac: _Acum):
+    """Golpe com braco de dois ossos. A mao segue o arco ate onde o braco alcanca (personagem cabecudo tem braco
+    curto: o arco encolhe sozinho); cotovelo por IK analitico com polo para baixo e para fora; o item gira no punho
+    para a lamina seguir o arco com o gume na frente. Roda depois de todas as camadas, com o tronco ja na pose final."""
+    m = ac.modelo
+    for g in ac.golpes:
+        kB, kM, kT, lado, f = g["braco"], g["mao"], g["tronco"], g["lado"], g["ficha"]
+        oB, oM, oT = m.osso(ac.nomes[kB]), m.osso(ac.nomes[kM]), m.osso(ac.nomes[kT])
+        item = next((o for o in m.ossos if o.pai == oM.nome and o.papel == "item"), None)
+        pS, pE = np.array(oB.pivo), np.array(oM.pivo)
+        soq = next((s for s in m.soquetes if s.osso == oM.nome and s.nome.startswith("Pegada")), None)
+        pG = np.array(item.pivo) if item is not None else (np.array(soq.pos) if soq else pE + (pE - pS))
+        L1, L2 = float(np.linalg.norm(pE - pS)), float(np.linalg.norm(pG - pE))
+        ctr = f.get("centro_H", {})
+        centro = pS + np.array([lado * float(ctr.get("lado", 0.0)), float(ctr.get("cima", -0.02)), -float(ctr.get("frente", 0.05))]) * ac.H
+        raio = float(f["arco"].get("alcance", 0.92)) * (L1 + L2)
+        RrB, RrI = quat_para_matriz(oB.repouso), (quat_para_matriz(item.repouso) if item is not None else np.eye(3))
+        RrM = quat_para_matriz(oM.repouso)            # o antebraco pode ter dobra de repouso (empunhadura)
+        polo = np.array([lado * 0.5, -0.7, 0.5])
+        QB, QM, QI = (np.zeros((ac.n, 4)) for _ in range(3))
+        for q in range(ac.n):
+            e = ac.E[q, kT]
+            qT = quat_semantico(e[0], e[1], e[2])
+            if kT in ac.Q:
+                qT = quat_mul(qT, ac.Q[kT][q])
+            RT = quat_para_matriz(qT)
+            S = np.array(oT.pivo) + ac.T[q, kT] + RT @ (pS - np.array(oT.pivo))        # ombro no mundo
+            a = g["ang"][q]
+            u_r = np.cos(a) * g["e1"] + np.sin(a) * g["e2"]
+            tg = np.sin(a) * g["e1"] - np.cos(a) * g["e2"]
+            # estocada: o braco recolhe na preparacao ("recuo" = fracao do alcance) e estica no golpe
+            d = centro + u_r * raio * (1.0 - float(f["arco"].get("recuo", 0.0)) * g["carga"][q]) - S
+            D = float(np.clip(np.linalg.norm(d), abs(L1 - L2) + 1e-4, (L1 + L2) * 0.999))
+            dn = d / (np.linalg.norm(d) + 1e-9)
+            pp = polo - np.dot(polo, dn) * dn
+            pp = pp / (np.linalg.norm(pp) + 1e-9)
+            ca = np.clip((L1 * L1 + D * D - L2 * L2) / (2 * L1 * D), -1, 1)
+            cot = S + L1 * (ca * dn + np.sqrt(1 - ca * ca) * pp)
+            mao = S + D * dn
+            R1 = _arco_curto(np.array([0.0, -1.0, 0.0]), cot - S)          # braco em repouso aponta para baixo
+            R2 = _arco_curto(cot - S, mao - cot) @ R1
+            w = g["peso"][q]
+            eb, em = ac.E[q, kB], ac.E[q, kM]
+            QB[q] = _nlerp(quat_semantico(eb[0], eb[1], eb[2]), matriz_para_quat(RrB.T @ RT.T @ R1), w)
+            QM[q] = _nlerp(quat_semantico(em[0], em[1], em[2]), matriz_para_quat(RrM.T @ R1.T @ R2), w)
+            Rt = np.stack([np.cross(u_r, tg), u_r, tg], axis=1)
+            QI[q] = _nlerp(np.array([0, 0, 0, 1.0]), matriz_para_quat(RrI.T @ R2.T @ Rt), w)
+        ac.ABS[kB], ac.ABS[kM] = QB, QM
+        if item is not None and item.nome in ac.i:
+            ac.ABS[ac.i[item.nome]] = QI
+        ac.dirigidos |= {kB, kM}
 
 
 def _nlerp(a, b, t):
@@ -384,12 +488,15 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
                 _tremor(ac, c, fase_t)
             elif tipo == "golpe":
                 _golpe(ac, c, fase_t, modelo)
+            elif tipo == "soltar_bracos":
+                _soltar_bracos(ac, c, fase_t)
             else:
                 raise ValueError(f'tipo de camada "{tipo}" nao existe; use um de {list(TIPOS)}')
         except (KeyError, ValueError) as e:
             raise ValueError(f'clipe "{receita.get("nome")}", camada {i + 1} ({tipo}): {e}') from None
     _pernas_acompanham(ac)
     _seguir_cadeias(ac, laco, antes)
+    _resolver_golpes(ac)
     cl = Clipe.vazio(receita["nome"], dur, ac.nomes, laco=laco)
     cl.trans[:] = ac.T
     for q in range(n):
@@ -398,6 +505,8 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
             qq = quat_semantico(e[0], e[1], e[2]) if e.any() else np.array([0, 0, 0, 1.0])
             if k in ac.Q:
                 qq = quat_mul(qq, ac.Q[k][q])
+            if k in ac.ABS:
+                qq = ac.ABS[k][q]
             cl.rot[q, k] = qq
     if not np.allclose(ac.S, 1.0):
         cl.escala = ac.S.astype(np.float32)
@@ -406,6 +515,8 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
                            [(nm, round(float(fr) * dur, 3)) for nm, fr in receita.get("marcadores", [])],
                            key=lambda m: m[1])
     cl.meta = {"acerto": receita.get("acerto")} if receita.get("acerto") else {}
+    if receita.get("largar_item"):
+        cl.meta["largar_item"] = True
     return cl
 
 

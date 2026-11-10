@@ -4,6 +4,8 @@ from __future__ import annotations
 import copy
 import json
 
+import numpy as np
+
 from PIL import Image, ImageDraw
 
 from .. import esteira
@@ -48,10 +50,10 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
                             {"t": 0.94, "curva": "golpe", "pose": {}}]})
             if est == "espasmodico":
                 cam.append({"tipo": "tremor", "osso": "Cabeca", "canal": "tombar_direita", "amp": 9, "de_t": 0.42, "ate_t": 0.5, "segurar": 2})
-                cam.append({"tipo": "tremor", "ossos": ["Mao_D", "Mao_E"], "canal": "cima", "amp": 0.02, "de_t": 0.44, "ate_t": 0.55, "segurar": 2})
+                cam.append({"tipo": "tremor", "ossos": ["Braco_D", "Braco_E"], "canal": "frente", "amp": 7, "de_t": 0.44, "ate_t": 0.55, "segurar": 2})
             if est == "pesado":
                 cam.append({"tipo": "poses", "chaves": [{"t": 0, "pose": {}}, {"t": 0.55, "curva": "linear", "pose": {}},
-                            {"t": 0.62, "curva": "golpe", "pose": {"Tronco": {"tombar_direita": 4, "baixo": 0.012}, "Pe_D": {"cima": 0.0}}},
+                            {"t": 0.62, "curva": "golpe", "pose": {"Tronco": {"tombar_direita": 4}}},
                             {"t": 0.72, "curva": "passa_e_volta", "pose": {"Tronco": {"tombar_direita": -3}}}, {"t": 0.95, "curva": "suave", "pose": {}}]})
             if est == "manco":
                 cam.append({"tipo": "onda", "osso": "Tronco", "canal": "tombar_direita", "amp": 3, "harm": 1, "fase": 0.4})
@@ -74,11 +76,16 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
                 cam.append({"tipo": "onda", "osso": "Asa_E", "canal": "esquerda", "amp": -15 if voa else -5, "harm": bat, "forma": "asa", "fase": 0.03})
                 cam.append({"tipo": "poses", "chaves": [{"t": 0, "pose": {"Asa_D": {"esquerda": 33 if voa else 8}, "Asa_E": {"esquerda": -33 if voa else -8}}},
                                                          {"t": 1, "pose": {"Asa_D": {"esquerda": 33 if voa else 8}, "Asa_E": {"esquerda": -33 if voa else -8}}}]})
-            if voa and nome == "Parado":       # pairar: o corpo inteiro sobe e desce 0,08 stud a cada 1,2 s
+            if voa and laco:                    # pairar: corpo e pernas sobem juntos; as pernas pendem um pouco para tras
                 h = modelo.meta.get("H", 3.0)
-                cam.append({"tipo": "onda", "ossos": ["Tronco", "Pe_D", "Pe_E"], "canal": "cima", "amp": 0.08 / h, "harm": 5, "fase_por_osso": 0.02})
-                cam.append({"tipo": "poses", "chaves": [{"t": 0, "pose": {"Tronco": {"cima": 0.25 / h}, "Pe_D": {"cima": 0.25 / h, "frente": -25}, "Pe_E": {"cima": 0.25 / h, "frente": -18}}},
-                                                         {"t": 1, "pose": {"Tronco": {"cima": 0.25 / h}, "Pe_D": {"cima": 0.25 / h, "frente": -25}, "Pe_E": {"cima": 0.25 / h, "frente": -18}}}]})
+                sobe = {"Tronco": {"cima": 0.25 / h}, "Perna_D": {"cima": 0.25 / h, "frente": 24}, "Perna_E": {"cima": 0.25 / h, "frente": 16}}
+                cam[:] = [c for c in cam if c.get("tipo") != "passos"]     # voando nao pisa
+                if nome == "Andar":
+                    r["vel_raiz"] = 8.0 / r["duracao"]
+                cam.append({"tipo": "onda", "ossos": ["Tronco", "Perna_D", "Perna_E"], "canal": "cima", "amp": 0.08 / h, "harm": 5})
+                cam.append({"tipo": "onda", "osso": "Perna_D", "canal": "frente", "amp": 6, "harm": 2, "fase": 0.1})
+                cam.append({"tipo": "onda", "osso": "Perna_E", "canal": "frente", "amp": 5, "harm": 2, "fase": 0.4})
+                cam.append({"tipo": "poses", "chaves": [{"t": 0, "pose": sobe}, {"t": 1, "pose": sobe}]})
         if "Cauda" in ossos and laco:
             cam.append({"tipo": "onda", "osso": "Cauda", "canal": "esquerda", "amp": 14 if est != "pesado" else 6, "harm": 2 if nome == "Parado" else 1, "fase": 0.2, "harm2": 0.3})
             cam.append({"tipo": "onda", "osso": "Cauda", "canal": "frente", "amp": 5, "harm": 2, "fase": 0.45})
@@ -104,35 +111,95 @@ def _ajustar_golpe(m, receita, cam, H) -> dict:
 
     def pior(cl):
         from ..nucleo.contrato import matrizes_do_quadro
-        return max(c.dentro(matrizes_do_quadro(m, cl, q)) for q in range(cl.n_quadros) for c in cenas)
+        return max(c.dentro(matrizes_do_quadro(m, cl, q)) for q in range(0, cl.n_quadros, 2) for c in cenas)
 
     melhor = (pior(m.clipes[receita["nome"]]), None, m.clipes[receita["nome"]])
     if melhor[0] > 0:
-        for plano in (base.get("plano_graus", 35), 25, 15, 5):
-            for frente in (0.0, 0.06, 0.12, 0.18):
-                for raio in (base["arco"].get("raio_mao_H", 0.30), 0.36, 0.42, 0.50):
+        # primeiro o corte em pe, cada vez mais aberto; se a cabeca for grande demais para o braco (porte P), o corte
+        # deita: varre na horizontal, abaixo da cabeca
+        for plano in (base.get("plano_graus", 70), 60, 50, 80, 12, 4):
+            for frente in (base.get("centro_H", {}).get("frente", 0.05), 0.10, 0.16):
+                for raio in (-0.02, -0.08, -0.14, -0.2):           # com braco: "raio" = altura do centro do arco (mais baixo livra a cabeca)
                     f = copy.deepcopy(base)
                     f["plano_graus"] = plano
-                    f["arco"]["raio_mao_H"] = raio
                     f.setdefault("centro_H", {})["frente"] = frente
+                    f["centro_H"]["cima"] = raio
                     cam["ficha"] = f
                     cl = assar_clipe(m, receita, H=H)
                     d = pior(cl)
                     if d < melhor[0] - 1e-9:
-                        melhor = (d, {"plano_graus": plano, "centro_frente_H": frente, "raio_mao_H": raio}, cl)
+                        melhor = (d, {"plano_graus": plano, "centro_frente_H": frente, "centro_cima_H": raio}, cl)
                     if d == 0:
                         break
                 if melhor[0] == 0:
                     break
             if melhor[0] == 0:
                 break
+        if melhor[0] > 0:          # nenhum corte livra (cabeca grande, braco curto): estocada baixa, pelo lado da arma
+            for lado_c in (0.06, 0.10, 0.14):
+                for cima in (-0.14, -0.2, -0.1):
+                    f = copy.deepcopy(base)
+                    f["plano_graus"] = 0
+                    f["arco"].update({"inicio_graus": 22, "fim_graus": -6, "guarda_graus": 8, "recuo": 0.55})
+                    f["centro_H"] = {"lado": lado_c, "cima": cima, "frente": 0.0}
+                    f.setdefault("tronco", {})["giro_graus"] = 10
+                    cam["ficha"] = f
+                    cl = assar_clipe(m, receita, H=H)
+                    d = pior(cl)
+                    if d < melhor[0] - 1e-9:
+                        melhor = (d, {"estocada": True, "centro_lado_H": lado_c, "centro_cima_H": cima}, cl)
+                    if d == 0:
+                        break
+                if melhor[0] == 0:
+                    break
         cam["ficha"] = base
         m.clipes[receita["nome"]] = melhor[2]
     return {"dentro_antes_do_desvio": round(melhor[0], 4), "mudou": melhor[1]}
 
 
 def clipes_do_heroi(reg, modelo) -> list[dict]:
-    base = reg.fichas["clipe.heroi"]["clipes"]
+    base = copy.deepcopy(reg.fichas["clipe.heroi"]["clipes"])
+    cad = modelo.meta.get("cadeias", {}).get("Perna_D")
+    armado = {o.pai for o in modelo.ossos if o.papel == "item"}
+    for mao in armado:               # antebraco que segura item fica na dobra escolhida pela empunhadura; nao balanca sozinho
+        modelo.meta.get("seguir", {}).pop(mao, None)
+    # morte: o tronco deita para a frente em torno do quadril; desce so o bastante para encostar no chao, sem afundar
+    tr = modelo.osso("Tronco")
+    pt = next((p for p in modelo.pecas if p.nome == "Tronco"), None)
+    if pt is not None:
+        a, b = pt.grade.caixa()
+        queda = max(0.0, (tr.pivo[1] - (b[2] - a[2]) / 2 - 0.0625) / modelo.meta.get("H", 4.0))
+        for r in base:
+            if r["nome"] == "Morte":
+                for c in r["camadas"]:
+                    if c["tipo"] == "poses":
+                        for ch in c["chaves"]:
+                            if "baixo" in ch.get("pose", {}).get("Tronco", {}):
+                                ch["pose"]["Tronco"]["baixo"] = round(queda * min(1.0, ch["pose"]["Tronco"]["baixo"] / 0.2), 4)
+    for r in base:
+        if r["nome"] == "Andar" and cad:
+            # a grade manda na velocidade (8 studs por ciclo do clipe); perna curta da mais passos no mesmo tempo
+            L = sum(cad["comprimentos"])
+            ciclos = int(np.clip(round(8.0 / (3.3 * L)), 2, 3))
+            modelo.meta["passos_por_clipe"] = ciclos
+            for c in r["camadas"]:
+                if c["tipo"] == "passos":
+                    c["ciclos"], c["passada_H"] = ciclos, c["passada_H"] / ciclos
+                    c["altura_H"] = min(c.get("altura_H", 0.05), 0.2 * L / modelo.meta.get("H", 4.0))
+                elif c["tipo"] == "onda":
+                    c["harm"] = int(c.get("harm", 1)) * ciclos
+        for c in r["camadas"]:                                   # mao que segura item balanca menos e fica um pouco a frente
+            if c["tipo"] == "onda" and f'Mao_{c.get("osso", "")[-1:]}' in armado and c.get("osso", "").startswith("Braco_"):
+                c["amp"] *= 0.35
+        if armado and r["nome"] != "Morte":
+            for c in r["camadas"]:
+                if c["tipo"] == "poses":
+                    for ch in c["chaves"]:
+                        for osso, pose in ch.get("pose", {}).items():
+                            if osso.startswith("Braco_") and f"Mao_{osso[-1]}" in armado:
+                                for canal in ("frente", "esquerda", "tombar_direita"):
+                                    if canal in pose:
+                                        pose[canal] *= 0.3
     return jeito(base, modelo)
 
 

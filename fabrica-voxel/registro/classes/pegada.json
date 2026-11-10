@@ -13,7 +13,8 @@
    ],
    "descanso": {
     "frente": 50,
-    "fora": 8
+    "fora": 8,
+    "antebraco": 20
    }
   },
   "duas_maos": {
@@ -27,7 +28,8 @@
    ],
    "descanso": {
     "frente": 40,
-    "fora": 8
+    "fora": 8,
+    "antebraco": 30
    }
   },
   "haste": {
@@ -41,7 +43,8 @@
    ],
    "descanso": {
     "frente": 10,
-    "fora": 8
+    "fora": 8,
+    "antebraco": 30
    }
   },
   "escudo": {
@@ -58,7 +61,8 @@
      0,
      90
     ],
-    "max_inclinacao": 16
+    "max_inclinacao": 16,
+    "antebraco": 80
    }
   },
   "luz": {
@@ -73,7 +77,8 @@
    "descanso": {
     "frente": 0,
     "fora": 0,
-    "max_inclinacao": 16
+    "max_inclinacao": 16,
+    "antebraco": 70
    }
   },
   "arremesso": {
@@ -85,7 +90,8 @@
    "golpes": [],
    "descanso": {
     "frente": 30,
-    "fora": 8
+    "fora": 8,
+    "antebraco": 20
    }
   },
   "arco": {
@@ -97,9 +103,11 @@
    "golpes": [],
    "descanso": {
     "frente": 30,
-    "fora": 8
+    "fora": 8,
+    "antebraco": 40
    }
   }
  },
- "_ajuda_descanso": "descanso = como o item fica na mao parado, em graus: \"frente\" inclina a ponta para a frente, \"fora\" para o lado da mao. A fabrica parte daqui e inclina mais ate o item nao tocar o corpo. \"giros\": [0, 90] deixa a fabrica virar o item de lado (escudo preso ao braco) se de frente ele tocar o corpo."
+ "_ajuda_descanso": "descanso = como o item fica na mao parado, em graus: \"frente\" inclina a ponta para a frente, \"fora\" para o lado da mao. A fabrica parte daqui e inclina mais ate o item nao tocar o corpo. \"giros\": [0, 90] deixa a fabrica virar o item de lado (escudo preso ao braco) se de frente ele tocar o corpo. \"antebraco\": quanto o cotovelo fica dobrado para a frente quando o heroi segura esta classe (escudo e lanterna vao a frente do corpo).",
+ "_ajuda_porte": "Os itens de mao sao gerados no porte do heroi: P usa 0,75 do tamanho da ficha, M usa 1 e G usa 1,2 (fabrica/heroi/montar.py, PORTE_ITEM)."
 }

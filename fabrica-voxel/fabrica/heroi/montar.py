@@ -81,9 +81,9 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         "olho_branco", "escuro", "boca", "ouro",
     ]
     tw, th, td = t["tronco"]
-    pe, vao, mao = t["pe"], t["vao"], t["mao"]
+    pn, br = t["perna"], t["braco"]
     tronco = [{"op": "caixa", "nome": "t", "tam": [tw + co["robusto"], th, td + co["robusto"]], "chanfro": 1,
-               "em": "chao", "desloc": {"cima": pe[1] + vao}, "material": "roupa"}]
+               "em": "chao", "desloc": {"cima": pn["coxa"] + pn["canela"]}, "material": "roupa"}]
     if co["ombro"]:
         tronco.append({"op": "caixa", "tam": [tw + co["robusto"] + co["ombro"], max(2, th // 3), td + co["robusto"]],
                        "em": "t.topo", "encaixe": "dentro", "material": "roupa"})
@@ -156,20 +156,39 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         for f in fs:
             f.setdefault("material", "cabelo")
         pecas.append({"nome": "Cabelo", "osso": "Cabeca", "formas": fs})
+    # ---- bracos e pernas: dois ossos cada (Braco + Mao, Perna + Pe). "Mao" e o antebraco com a mao pintada na ponta;
+    # "Pe" e a canela com o pe. Assim luva cobre o antebraco e bota cobre a canela, como em armadura de verdade.
+    sap = "chifre" if escolha["l"] == "taurino" else "sapato"
     for lado, nome in ((1, "D"), (-1, "E")):
         d = "direita" if lado > 0 else "esquerda"
-        pecas.append({"nome": f"Mao_{nome}", "formas": [{"op": "caixa", "tam": [mao] * 3, "em": "Tronco.t.dir" if lado > 0 else "Tronco.t.esq",
-                      "desloc": {d: t["mao_vao"] + longe + co["ombro"] // 2, "baixo": 1}, "material": "pele"}]})
+        face = "dir" if lado > 0 else "esq"
+        pecas.append({"nome": f"Braco_{nome}", "formas": [
+            {"op": "caixa", "nome": "b", "tam": [br["larg"], br["braco"], br["larg"]], "em": f"Tronco.t.{face}",
+             "desloc": {d: co["ombro"] // 2 + longe, "cima": (th - br["braco"]) / 2 - 1}, "material": "roupa"}]})
+        pecas.append({"nome": f"Mao_{nome}", "formas": [
+            {"op": "caixa", "nome": "ante", "tam": [br["larg"], br["ante"], br["larg"]], "em": f"Braco_{nome}.b.base", "material": "roupa"},
+            {"op": "caixa", "nome": "palma", "tam": [br["larg"], br["mao"], br["larg"]], "em": "ante.base", "encaixe": "dentro",
+             "material": "pele", "modo": "pintar"}]})
     for lado, nome in ((1, "D"), (-1, "E")):
         d = "direita" if lado > 0 else "esquerda"
-        pecas.append({"nome": f"Pe_{nome}", "formas": [{"op": "caixa", "tam": pe, "em": "chao", "desloc": {d: t["pe_x"], "frente": 0.5},
-                      "material": "chifre" if escolha["l"] == "taurino" else "sapato"}]})
+        pecas.append({"nome": f"Perna_{nome}", "formas": [
+            {"op": "caixa", "nome": "coxa", "tam": [pn["larg"], pn["coxa"], pn["fundo"]], "em": "chao",
+             "desloc": {d: t["pe_x"], "cima": pn["canela"]}, "material": "roupa"}]})
+        sola = max(1, pn["canela"] // 2)
+        pecas.append({"nome": f"Pe_{nome}", "formas": [
+            {"op": "caixa", "nome": "canela", "tam": [pn["larg"], pn["canela"], pn["fundo"]], "em": "chao", "desloc": {d: t["pe_x"]}, "material": "roupa"},
+            {"op": "caixa", "tam": [pn["larg"], sola, pn["fundo"]], "em": "canela.base", "encaixe": "dentro", "material": sap, "modo": "pintar"},
+            {"op": "caixa", "nome": "ponta", "tam": [pn["larg"], sola, pn["ponta"]], "em": "canela.frente",
+             "desloc": {"baixo": (pn["canela"] - sola) / 2}, "material": sap}]})
     ossos = [{"nome": "Tronco", "pai": "Raiz", "pivo": {"em": "Tronco.t.base"}, "papel": "corpo"},
-             {"nome": "Cabeca", "pai": "Tronco", "pivo": {"em": "Cabeca.cranio.base"}, "papel": "cabeca"},
-             {"nome": "Mao_D", "pai": "Tronco", "pivo": {"em": "Mao_D.centro"}, "papel": "mao"},
-             {"nome": "Mao_E", "pai": "Tronco", "pivo": {"em": "Mao_E.centro"}, "papel": "mao"},
-             {"nome": "Pe_D", "pai": "Raiz", "pivo": {"em": "Pe_D.centro"}, "papel": "pe"},
-             {"nome": "Pe_E", "pai": "Raiz", "pivo": {"em": "Pe_E.centro"}, "papel": "pe"}]
+             {"nome": "Cabeca", "pai": "Tronco", "pivo": {"em": "Cabeca.cranio.base"}, "papel": "cabeca"}]
+    for nome in ("D", "E"):
+        ossos += [{"nome": f"Braco_{nome}", "pai": "Tronco", "pivo": {"em": f"Braco_{nome}.b.topo"}, "papel": "braco",
+                   "cadeia_com": f"Mao_{nome}", "dobra": "cotovelo", "ganho_seguir": 0.5},
+                  {"nome": f"Mao_{nome}", "pai": f"Braco_{nome}", "pivo": {"em": f"Mao_{nome}.ante.topo"}, "papel": "mao"},
+                  {"nome": f"Perna_{nome}", "pai": "Raiz", "pivo": {"em": f"Perna_{nome}.coxa.topo"}, "papel": "perna",
+                   "cadeia_com": f"Pe_{nome}", "dobra": "joelho"},
+                  {"nome": f"Pe_{nome}", "pai": f"Perna_{nome}", "pivo": {"em": f"Pe_{nome}.canela.topo"}, "papel": "pe"}]
     regras = {}
     tracos = list(lin.get("tracos", [])) + list(escolha.get("tracos_extra", []))
     for tid in tracos:
@@ -190,11 +209,15 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
             regras[p["nome"]] = {"traco": tid, **tr.get("regras", {})}
     soq = [("Cabeca_Topo", "Cabeca", "Cabeca.cranio.topo"), ("Rosto", "Cabeca", "Cabeca.cranio.frente"),
            ("Costas", "Tronco", "Tronco.t.tras"), ("Ombro_D", "Tronco", "Tronco.t.topo_dir"), ("Ombro_E", "Tronco", "Tronco.t.topo_esq"),
-           ("Pegada_D", "Mao_D", "Mao_D.centro"), ("Pegada_E", "Mao_E", "Mao_E.centro"), ("Cintura", "Tronco", "Tronco.t.base_frente"),
-           ("Assento", "Tronco", "Tronco.t.base"), ("Pe_D", "Pe_D", "Pe_D.base"), ("Pe_E", "Pe_E", "Pe_E.base")]
+           ("Cintura", "Tronco", "Tronco.t.base_frente"),
+           ("Assento", "Tronco", "Tronco.t.base"), ("Pe_D", "Pe_D", "Pe_D.canela.base"), ("Pe_E", "Pe_E", "Pe_E.canela.base")]
     H = t["H_voxels"] * V
+    soquetes = [{"nome": n, "osso": o, "em": e} for n, o, e in soq]
+    for nome in ("D", "E"):                                   # a pegada fica no meio da mao (ponta do antebraco)
+        soquetes.append({"nome": f"Pegada_{nome}", "osso": f"Mao_{nome}", "em": f"Mao_{nome}.ante.base",
+                         "desloc": {"cima": br["mao"] / 2}})
     return {"id": f'heroi.{escolha["l"]}_c{corpo}', "tipo": "modelo", "nome": lin["nome"], "materiais": mats, "pecas": pecas,
-            "ossos": ossos, "soquetes": [{"nome": n, "osso": o, "em": e} for n, o, e in soq],
+            "ossos": ossos, "soquetes": soquetes,
             "altura_ref_H": H, "tempo_por_porte": False,
             "meta": {"linhagem": escolha["l"], "corpo": str(corpo), "tamanho": lin["tamanho"], "classe_cabeca": lin["classe_cabeca"],
                      "escolha": escolha, "regras_tracos": regras, "cranio": [cw, ch, cd], "jeito": lin.get("jeito", "natural"),
@@ -312,8 +335,15 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
                         x, y = cx - len(linha) // 2 + ci, cy + len(L) // 2 - li
                         if 0 <= x < g.mat.shape[0] and 0 <= y < g.mat.shape[1] and oc[x, y, zf]:
                             g.mat[x, y, zf] = mi(emb["material"])
+        for n in ("Braco_D", "Braco_E", "Mao_D", "Mao_E", "Perna_D", "Perna_E"):       # a casca nao entra nos membros
+            if n in P:
+                g.mat[_na_rede(P[n].grade, g)] = 0
         t.grade = g
         recortar(t, "tronco", mi(conjunto["tronco"]["faixas"][-1]["material"]))
+        fx = conjunto["tronco"]["faixas"]
+        for n, f in (("Braco_D", fx[-1]), ("Braco_E", fx[-1]), ("Perna_D", fx[0]), ("Perna_E", fx[0])):   # manga e calca
+            if n in P:
+                P[n].grade.mat[P[n].grade.mat > 0] = mi(f["material"])
     if "luvas" in conjunto and "luvas" not in esc:
         for n in ("Mao_D", "Mao_E"):
             g = _margem(P[n].grade, 1)
@@ -435,12 +465,19 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
             if m.nome not in nomes:
                 modelo.materiais.append(m)
                 nomes.append(m.nome)
-        pcs, anc = construir_pecas(fi["pecas"], nomes)
-        soq = {s["nome"]: anc["resolver"]({"em": s.get("em", "centro"), "desloc": s.get("desloc")}, pcs[0].nome) for s in fi.get("soquetes", [])}
+        k_porte = PORTE_ITEM.get(modelo.meta.get("tamanho", "M"), 1.0)
+        pcs = None
+        for kk in ([k_porte, 1.0] if k_porte != 1.0 else [1.0]):          # gera o item no porte do heroi; se partir, usa o original
+            pcs, anc = construir_pecas(_no_porte(fi["pecas"], kk), nomes)
+            if all(ug.componentes(p.grade.mat > 0)[1] <= 1 for p in pcs):
+                break
+        soq = {s["nome"]: anc["resolver"]({"em": s.get("em", "centro"), "desloc": _no_porte_desloc(s.get("desloc"), kk)}, pcs[0].nome)
+               for s in fi.get("soquetes", [])}
         if "Pegada" not in soq:
             raise ErroFicha(f'{fi["id"]}: item de mao precisa do soquete "Pegada" (e de "Ponta" e "Base"). '
                             f'Ex.: {{"nome": "Pegada", "osso": "{pcs[0].nome}", "em": "cabo.centro"}}')
-        alvo = np.array(modelo.osso(mao).pivo)
+        peg = next((x for x in modelo.soquetes if x.nome == ("Pegada_D" if mao == "Mao_D" else "Pegada_E")), None)
+        alvo = np.round(np.array(peg.pos if peg else modelo.osso(mao).pivo) / (V / 2)) * (V / 2)
         d = np.round((alvo - soq["Pegada"]) / V) * V
         nome = "Item_D" if mao == "Mao_D" else "Item_E"
         for k, p in enumerate(pcs):
@@ -463,6 +500,35 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
     rel["empunhadura"] = {n: i["empunhadura"] for n, i in modelo.meta.get("itens", {}).items()}
     modelo.meta["equipamento"] = {"conjunto": conjunto.get("id"), **rel}
     return rel
+
+
+PORTE_ITEM = {"P": 0.75, "M": 1.0, "G": 1.2}
+
+
+def _no_porte_desloc(d, k):
+    if not d or k == 1.0:
+        return d
+    return {n: (round(v * k * 2) / 2 if isinstance(v, (int, float)) else v) for n, v in d.items()}
+
+
+def _no_porte(pecas: list[dict], k: float) -> list[dict]:
+    """GERAR, NAO DEFORMAR: a mesma ficha de item, com as medidas multiplicadas pelo porte e arredondadas para voxel
+    inteiro (minimo 1). Heroi pequeno recebe espada pequena feita de voxels do mesmo tamanho, nao uma espada encolhida."""
+    if k == 1.0:
+        return pecas
+    out = copy.deepcopy(pecas)
+    for p in out:
+        for f in p.get("formas", []):
+            if isinstance(f.get("tam"), list):
+                f["tam"] = [max(1, int(round(t * k))) for t in f["tam"]]
+            for campo in ("raio", "chanfro"):
+                if isinstance(f.get(campo), (int, float)) and f[campo] > 1:
+                    f[campo] = max(1, int(round(f[campo] * k)))
+            if f.get("desloc"):
+                f["desloc"] = _no_porte_desloc(f["desloc"], k)
+            if isinstance(f.get("repetir"), dict) and f["repetir"].get("passo"):
+                f["repetir"]["passo"] = {n: max(1, int(round(v * k))) for n, v in f["repetir"]["passo"].items()}
+    return out
 
 
 def _maior_componente(mat):

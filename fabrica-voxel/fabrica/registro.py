@@ -39,7 +39,7 @@ _MODELO = {
     "porte_k": ((int, float), False, "altura do quadril relativa ao heroi medio"),
     "altura_ref_H": ((int, float), False, "altura de referencia H, em studs, para as translacoes dos clipes"),
     "perfil_auditoria": (str, False, "monstro, heroi, item, prop ou estrutura (padrao: pelo tipo)"),
-    "tier": (int, False, "1 a 10"), "elemento": (str, False, ""), "pegada_ladrilhos": (int, False, "1 = 1x1, 2 = 2x2"),
+    "tier": (int, False, "1 a 10: a fabrica aumenta, articula e ornamenta a criatura conforme o tier (cartoes/monstro.md)"), "elemento": (str, False, ""), "pegada_ladrilhos": (int, False, "1 = 1x1, 2 = 2x2"),
     "estilo_movimento": (str, False, "natural, pesado, eterio, manco, espasmodico, marionete, staccato"),
     "susto": (dict, False, "dados do susto na dungeon"), "arquetipo": (str, False, "id do arquetipo (atalho de herda)"),
     "slot": (str, False, "slot do item"), "pegada": (str, False, "classe de pegada do item de mao"),

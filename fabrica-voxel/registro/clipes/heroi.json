@@ -1,43 +1,478 @@
-{"id": "clipe.heroi", "tipo": "clipe", "versao": 1,
- "_ajuda": "Clipes base do heroi de pecas soltas. Translacoes em fracao de H, entao servem em P, M e G. O jeito da linhagem entra por cima (fabrica/heroi/cli.py, funcao jeito).",
+{
+ "id": "clipe.heroi",
+ "tipo": "clipe",
+ "versao": 2,
+ "_ajuda": "Clipes base do heroi com bracos e pernas (Braco + Mao, Perna + Pe). O antebraco e a canela nao tem camada: o joelho sai do IK no andar e o resto acompanha sozinho. Translacoes em fracao de H. O jeito da linhagem entra por cima (fabrica/heroi/cli.py, funcao jeito).",
  "clipes": [
-  {"nome": "Parado", "duracao": 6.0, "laco": true, "camadas": [
-   {"tipo": "onda", "osso": "Tronco", "canal": "cima", "amp": 0.010, "harm": 2, "forma": "pulso"},
-   {"tipo": "onda", "osso": "Tronco", "canal": "tombar_direita", "amp": 1.2, "harm": 1},
-   {"tipo": "onda", "osso": "Cabeca", "canal": "frente", "amp": 1.6, "harm": 2, "fase": 0.12},
-   {"tipo": "onda", "osso": "Cabeca", "canal": "esquerda", "amp": 5, "harm": 1, "fase": 0.3, "harm2": 0.4},
-   {"tipo": "onda", "osso": "Mao_D", "canal": "cima", "amp": 0.014, "harm": 2, "fase": 0.20},
-   {"tipo": "onda", "osso": "Mao_E", "canal": "cima", "amp": 0.012, "harm": 2, "fase": 0.33},
-   {"tipo": "onda", "osso": "Mao_D", "canal": "frente_t", "amp": 0.008, "harm": 1, "fase": 0.1},
-   {"tipo": "onda", "osso": "Mao_E", "canal": "frente_t", "amp": 0.009, "harm": 1, "fase": 0.62}]},
-  {"nome": "Andar", "duracao": 0.8888, "laco": true, "escala_tempo": false,
-   "_ajuda": "Grade: 1 passo por ladrilho de 4 studs, 0,4444 s por ladrilho; o ciclo de 2 passos cobre 2 ladrilhos (8 studs).",
+  {
+   "nome": "Parado",
+   "duracao": 6.0,
+   "laco": true,
    "camadas": [
-   {"tipo": "passos", "modo": "solto", "apoio": 0.55, "passada_H": 2.0, "altura_H": 0.09,
-    "pes": [{"osso": "Pe_D", "fase": 0.0}, {"osso": "Pe_E", "fase": 0.53}]},
-   {"tipo": "onda", "osso": "Tronco", "canal": "cima", "amp": 0.035, "harm": 2, "forma": "abs", "fase": 0.1},
-   {"tipo": "onda", "osso": "Tronco", "canal": "frente", "amp": 3, "harm": 2, "fase": 0.2},
-   {"tipo": "poses", "chaves": [{"t": 0, "pose": {"Tronco": {"frente": 8}}}, {"t": 1, "pose": {"Tronco": {"frente": 8}}}]},
-   {"tipo": "onda", "osso": "Tronco", "canal": "esquerda", "amp": 6, "harm": 1, "fase": 0.25},
-   {"tipo": "onda", "osso": "Cabeca", "canal": "frente", "amp": -4, "harm": 2, "fase": 0.28},
-   {"tipo": "onda", "osso": "Cabeca", "canal": "esquerda", "amp": -4, "harm": 1, "fase": 0.3},
-   {"tipo": "onda", "osso": "Mao_D", "canal": "frente_t", "amp": 0.16, "harm": 1, "fase": 0.5},
-   {"tipo": "onda", "osso": "Mao_E", "canal": "frente_t", "amp": 0.145, "harm": 1, "fase": 0.03},
-   {"tipo": "onda", "osso": "Mao_D", "canal": "cima", "amp": 0.03, "harm": 2, "fase": 0.4},
-   {"tipo": "onda", "osso": "Mao_E", "canal": "cima", "amp": 0.03, "harm": 2, "fase": 0.92}]},
-  {"nome": "Golpe", "duracao": 0.7, "escala_tempo": false, "acerto": {"quadro": "contato", "alcance_H": 0.9}, "camadas": [
-   {"tipo": "golpe", "mao": "Mao_D", "ficha": {"duracao_s": 0.7, "plano_graus": 35, "arco": {"inicio_graus": 140, "fim_graus": -60, "raio_mao_H": 0.30},
-     "tempos": [0.30, 0.10, 0.05, 0.25, 0.30], "tronco": {"giro_graus": 40, "atraso_ombro_s": 0.06, "inclinacao_graus": 12}}},
-   {"tipo": "poses", "chaves": [{"t": 0, "pose": {}}, {"t": 0.3, "pose": {"Pe_E": {"frente_t": 0.06}, "Mao_E": {"tras": 0.08, "cima": 0.03}}},
-     {"t": 0.45, "curva": "golpe", "pose": {"Pe_E": {"frente_t": 0.16}, "Mao_E": {"tras": 0.14}}}, {"t": 1, "pose": {}}]}]},
-  {"nome": "Dano", "duracao": 0.4, "escala_tempo": false, "camadas": [
-   {"tipo": "poses", "chaves": [{"t": 0, "pose": {}},
-     {"t": 0.18, "curva": "sai", "pose": {"Tronco": {"frente": -16, "tras": 0.06}, "Cabeca": {"frente": -18}, "Mao_D": {"cima": 0.08, "tras": 0.05}, "Mao_E": {"cima": 0.06, "tras": 0.07}}},
-     {"t": 0.5, "curva": "suave", "pose": {"Tronco": {"frente": 5}, "Cabeca": {"frente": 8}}}, {"t": 1, "pose": {}}]}]},
-  {"nome": "Morte", "duracao": 1.1, "escala_tempo": false, "marcadores": [["Queda", 0.55]], "camadas": [
-   {"tipo": "poses", "chaves": [{"t": 0, "pose": {}},
-     {"t": 0.25, "curva": "sai", "pose": {"Tronco": {"frente": -12, "cima": 0.03}, "Cabeca": {"frente": -20}}},
-     {"t": 0.55, "curva": "golpe", "pose": {"Tronco": {"frente": 80, "baixo": 0.30, "frente_t": 0.15}, "Cabeca": {"frente": 12}, "Mao_D": {"baixo": 0.25, "direita": 0.10}, "Mao_E": {"baixo": 0.22, "esquerda_t": 0.08}, "Pe_D": {"tras": 0.08}, "Pe_E": {"tras": 0.05}}},
-     {"t": 0.7, "curva": "sai", "pose": {"Tronco": {"frente": 86, "baixo": 0.33, "frente_t": 0.17}, "Cabeca": {"frente": 22}, "Mao_D": {"baixo": 0.30, "direita": 0.16}, "Mao_E": {"baixo": 0.29, "esquerda_t": 0.13}, "Pe_D": {"tras": 0.10, "frente": 30}, "Pe_E": {"tras": 0.07, "frente": -20}}},
-     {"t": 1, "pose": {"Tronco": {"frente": 84, "baixo": 0.33, "frente_t": 0.17}, "Cabeca": {"frente": 18}, "Mao_D": {"baixo": 0.30, "direita": 0.16}, "Mao_E": {"baixo": 0.29, "esquerda_t": 0.13}, "Pe_D": {"tras": 0.10, "frente": 30}, "Pe_E": {"tras": 0.07, "frente": -20}}}]}]}
- ]}
+    {
+     "tipo": "onda",
+     "osso": "Tronco",
+     "canal": "cima",
+     "amp": 0.006,
+     "harm": 2,
+     "fase": 0.0,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Tronco",
+     "canal": "tombar_direita",
+     "amp": 1.2,
+     "harm": 1,
+     "fase": 0.0
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "frente",
+     "amp": 1.6,
+     "harm": 2,
+     "fase": 0.12
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.3,
+     "harm2": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "frente",
+     "amp": 2.6,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "frente",
+     "amp": 2.2,
+     "harm": 2,
+     "fase": 0.33
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "tombar_direita",
+     "amp": 1.5,
+     "harm": 1,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "tombar_direita",
+     "amp": -1.3,
+     "harm": 1,
+     "fase": 0.62
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Braco_D": {
+         "tombar_direita": 4
+        },
+        "Braco_E": {
+         "tombar_direita": -4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Braco_D": {
+         "tombar_direita": 4
+        },
+        "Braco_E": {
+         "tombar_direita": -4
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 0.8888,
+   "laco": true,
+   "escala_tempo": false,
+   "_ajuda": "Grade: o ciclo cobre 2 ladrilhos (8 studs) em 0,8888 s. Pernas curtas dao mais passos por ladrilho: a fabrica escolhe 'ciclos' pelo comprimento da perna e multiplica os 'harm' por ele.",
+   "camadas": [
+    {
+     "tipo": "passos",
+     "modo": "perna",
+     "apoio": 0.5,
+     "passada_H": 2.0,
+     "altura_H": 0.05,
+     "agacho": 0.09,
+     "pes": [
+      {
+       "osso": "Perna_D",
+       "fase": 0.0
+      },
+      {
+       "osso": "Perna_E",
+       "fase": 0.5
+      }
+     ]
+    },
+    {
+     "tipo": "onda",
+     "osso": "Tronco",
+     "canal": "cima",
+     "amp": 0.012,
+     "harm": 2,
+     "fase": 0.1,
+     "forma": "abs"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Tronco",
+     "canal": "frente",
+     "amp": 2.5,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Tronco": {
+         "frente": 7
+        },
+        "Braco_D": {
+         "tombar_direita": 5
+        },
+        "Braco_E": {
+         "tombar_direita": -5
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Tronco": {
+         "frente": 7
+        },
+        "Braco_D": {
+         "tombar_direita": 5
+        },
+        "Braco_E": {
+         "tombar_direita": -5
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "onda",
+     "osso": "Tronco",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 1,
+     "fase": 0.25
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "frente",
+     "amp": -3.5,
+     "harm": 2,
+     "fase": 0.28
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": -4,
+     "harm": 1,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "frente",
+     "amp": 26,
+     "harm": 1,
+     "fase": 0.25
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "frente",
+     "amp": 23,
+     "harm": 1,
+     "fase": 0.78
+    }
+   ]
+  },
+  {
+   "nome": "Golpe",
+   "duracao": 0.7,
+   "escala_tempo": false,
+   "acerto": {
+    "quadro": "contato",
+    "alcance_H": 0.9
+   },
+   "camadas": [
+    {
+     "tipo": "golpe",
+     "mao": "Mao_D",
+     "ficha": {
+      "duracao_s": 0.7,
+      "plano_graus": 70,
+      "arco": {
+       "inicio_graus": 105,
+       "fim_graus": -28,
+       "guarda_graus": 32,
+       "alcance": 0.92
+      },
+      "centro_H": {
+       "lado": 0.0,
+       "cima": -0.02,
+       "frente": 0.05
+      },
+      "tempos": [
+       0.3,
+       0.1,
+       0.05,
+       0.25,
+       0.3
+      ],
+      "tronco": {
+       "giro_graus": 18,
+       "atraso_ombro_s": 0.06,
+       "inclinacao_graus": 12
+      },
+      "_ajuda": "Corte vertical pelo lado da arma: braco curto e cabeca grande nao deixam o corte cruzar o corpo. plano_graus 90 = plano em pe; 70 = topo inclinado 20 graus para fora, longe da cabeca."
+     }
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.3,
+       "pose": {
+        "Braco_E": {
+         "frente": 18,
+         "tombar_direita": -10
+        },
+        "Perna_E": {
+         "frente": -10
+        },
+        "Perna_D": {
+         "frente": 8
+        }
+       }
+      },
+      {
+       "t": 0.45,
+       "curva": "golpe",
+       "pose": {
+        "Braco_E": {
+         "frente": 32,
+         "tombar_direita": -16
+        },
+        "Perna_E": {
+         "frente": -24
+        },
+        "Perna_D": {
+         "frente": 14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.18,
+       "curva": "sai",
+       "pose": {
+        "Tronco": {
+         "frente": -15
+        },
+        "Cabeca": {
+         "frente": -18
+        },
+        "Braco_D": {
+         "frente": -16,
+         "tombar_direita": 34
+        },
+        "Braco_E": {
+         "frente": -12,
+         "tombar_direita": -38
+        },
+        "Perna_D": {
+         "frente": -8
+        }
+       }
+      },
+      {
+       "t": 0.5,
+       "curva": "suave",
+       "pose": {
+        "Tronco": {
+         "frente": 5
+        },
+        "Cabeca": {
+         "frente": 8
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.1,
+   "marcadores": [
+    [
+     "Queda",
+     0.55
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.25,
+       "curva": "sai",
+       "pose": {
+        "Tronco": {
+         "frente": -12
+        },
+        "Cabeca": {
+         "frente": -20
+        },
+        "Braco_D": {
+         "frente": -14,
+         "tombar_direita": 28
+        },
+        "Braco_E": {
+         "frente": -10,
+         "tombar_direita": -30
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Tronco": {
+         "frente": 80,
+         "baixo": 0.2,
+         "frente_t": 0.06
+        },
+        "Cabeca": {
+         "frente": 12
+        },
+        "Braco_D": {
+         "frente": -20,
+         "tombar_direita": 62
+        },
+        "Braco_E": {
+         "frente": -12,
+         "tombar_direita": -66
+        }
+       }
+      },
+      {
+       "t": 0.7,
+       "curva": "sai",
+       "pose": {
+        "Tronco": {
+         "frente": 87,
+         "baixo": 0.23,
+         "frente_t": 0.07
+        },
+        "Cabeca": {
+         "frente": 22
+        },
+        "Braco_D": {
+         "frente": -26,
+         "tombar_direita": 74
+        },
+        "Braco_E": {
+         "frente": -16,
+         "tombar_direita": -78
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Tronco": {
+         "frente": 85,
+         "baixo": 0.23,
+         "frente_t": 0.07
+        },
+        "Cabeca": {
+         "frente": 18
+        },
+        "Braco_D": {
+         "frente": -26,
+         "tombar_direita": 72
+        },
+        "Braco_E": {
+         "frente": -16,
+         "tombar_direita": -76
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "soltar_bracos",
+     "de_t": 0.1,
+     "ate_t": 0.5
+    }
+   ],
+   "largar_item": true
+  }
+ ]
+}

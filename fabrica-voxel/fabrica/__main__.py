@@ -16,6 +16,7 @@ def main(argv=None) -> int:
     for nome, ajuda in (("validar", "P0: confere a ficha"), ("construir", "esteira completa"), ("auditar", "P1 + P2 sem imagens")):
         s = sub.add_parser(nome, help=ajuda)
         s.add_argument("ids", nargs="+")
+        s.add_argument("--tier", type=int, default=None, help="constroi no tier pedido (1 a 10), sem mexer na ficha")
         s.add_argument("--semente", type=int, default=0)
         s.add_argument("--data", default="")
     s = sub.add_parser("lote", help="constroi varios: ids, 'tipo:monstro' ou arquivo .txt com um id por linha")
@@ -66,7 +67,7 @@ def main(argv=None) -> int:
             ruim = 0
             for i in a.ids:
                 rel = esteira.construir(i, registro=reg, semente=a.semente, data=a.data, imagens=a.cmd == "construir",
-                                        exportar=a.cmd == "construir")
+                                        exportar=a.cmd == "construir", tier=a.tier)
                 print(esteira.resumo(rel))
                 ruim += rel["status"] != "aprovado"
             return 1 if ruim else 0

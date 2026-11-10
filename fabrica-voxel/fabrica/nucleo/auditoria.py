@@ -67,7 +67,9 @@ def atravessamento(modelo, *, passo: int = 2, so_repouso: bool = False) -> dict:
             continue
         P = np.concatenate(pts)
         P1 = np.concatenate([P, np.ones((len(P), 1))], 1)
-        corpo = [p for p in modelo.pecas if papel.get(p.osso) != "item" and p.osso != pai.get(it) and pai.get(p.osso) != pai.get(it)]
+        mao = pai.get(it)
+        braco = pai.get(mao) if papel.get(pai.get(mao)) == "braco" else None
+        corpo = [p for p in modelo.pecas if papel.get(p.osso) != "item" and p.osso not in (mao, braco) and pai.get(p.osso) != mao]
         pior_it = (0.0, None)
         for clipe, q, M in poses:
             mundo = P1 @ M[it].T
@@ -125,12 +127,16 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
                   'Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo "corte" em todas as pecas do modelo; '
                   "se precisa de mais detalhe, suba o corte do modelo inteiro."))
     if pf.get("voxels_min") or pf.get("ossos_min"):
+        from .tier import minimos
+        tier = int(modelo.meta.get("tier", 1) or 1)
+        mi = minimos(tier)
         nv, nb = modelo.n_voxels(), sum(1 for o in modelo.ossos if o.pai is not None)
-        ok = nv >= pf.get("voxels_min", 0) and nb >= pf.get("ossos_min", 0)
-        out.append(_r("detalhe_minimo", ok, {"voxels": nv, "ossos": nb},
-                      f'>= {pf.get("voxels_min", 0)} voxels e >= {pf.get("ossos_min", 0)} ossos',
-                      'Criatura simples demais. Mais ossos: "segmentos": 2 nos bracos e pernas, mandibula, orelhas, cauda em '
-                      'cadeia. Mais voxels: garras, dentes, espinhos e placas com "repetir"; ou aumente o corpo.'))
+        ok = nv >= mi["voxels_min"] and nb >= mi["ossos_min"]
+        out.append(_r("detalhe_minimo", ok, {"tier": tier, "voxels": nv, "ossos": nb},
+                      f'T{tier}: >= {mi["voxels_min"]} voxels e >= {mi["ossos_min"]} ossos',
+                      f'Criatura simples demais para o tier {tier}. Mais ossos: "segmentos" nos bracos, pernas, cauda e pescoco, '
+                      'mandibula, orelhas, dedos, mais pecas com osso proprio. Mais voxels: garras, dentes e espinhos com '
+                      '"repetir", "op": "placas" no dorso, ou um corpo maior. Tabela: cartoes/monstro.md.'))
     tri = contar_triangulos(modelo)
     modelo.meta["triangulos"] = tri["total"]
     out.append(_r("triangulos_por_malha", tri["maior"] <= TETO_TRIANGULOS, tri["maior"], TETO_TRIANGULOS,
@@ -139,6 +145,15 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
     out.append(_r("brilho", gv["brilho"] <= pf["brilho_max"], gv["brilho"], pf["brilho_max"],
                   "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."))
     mn, mx = modelo.caixa()
+    if any(tuple(o.repouso) != (0.0, 0.0, 0.0, 1.0) for o in modelo.ossos):      # ha giro de repouso: mede a pose de repouso
+        from .contrato import matrizes_dos_ossos
+        M = matrizes_dos_ossos(modelo.ossos)
+        ys = []
+        for p in modelo.pecas:
+            a, b = p.grade.caixa()
+            cantos = np.array([[x, y, z, 1.0] for x in (a[0], b[0]) for y in (a[1], b[1]) for z in (a[2], b[2])])
+            ys.append((cantos @ M[p.osso].T)[:, 1].min())
+        mn = np.array([mn[0], min(ys), mn[2]])
     out.append(_r("pe_no_chao", abs(mn[1]) <= 0.26 or modelo.meta.get("flutua"), round(float(mn[1]), 3), "0 +- 0.25",
                   'O modelo nao encosta no chao. A primeira forma deve usar "em": "chao"; se ele flutua de proposito, '
                   'ponha "meta": {"flutua": true}.'))

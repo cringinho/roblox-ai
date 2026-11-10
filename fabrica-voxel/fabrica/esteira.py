@@ -22,7 +22,7 @@ def _hash(obj) -> str:
 
 
 def construir(ref: str, *, registro: Registro | None = None, paleta: Paleta | None = None, saida: Path | None = None,
-              semente: int = 0, data: str = "", imagens: bool = True, exportar: bool = True) -> dict:
+              semente: int = 0, data: str = "", imagens: bool = True, exportar: bool = True, tier: int | None = None) -> dict:
     """Constroi um asset de ponta a ponta. Devolve o relatorio (tambem gravado em saida/<id>/relatorio.json)."""
     t0 = time.time()
     registro = registro or Registro()
@@ -36,8 +36,12 @@ def construir(ref: str, *, registro: Registro | None = None, paleta: Paleta | No
         if erros:
             return rel
         ficha = registro.resolver(idc)
+        if tier:                                          # construir a mesma ficha noutro tier (prova da escada)
+            ficha = {**ficha, "tier": int(tier)}
         rel["hash_ficha"] = _hash(ficha)
         modelo = montar(ficha, paleta, semente=semente)
+        if tier:
+            modelo.id = f"{modelo.id}_t{int(tier)}"
     except (ErroFicha, ErroRegistro, ValueError, KeyError) as e:
         rel.setdefault("id", ref)
         rel["p0"] = {"passou": False, "erros": [str(e)]}

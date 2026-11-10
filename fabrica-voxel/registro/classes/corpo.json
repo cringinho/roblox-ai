@@ -1,57 +1,72 @@
 {
  "id": "classe_corpo.tabela",
  "tipo": "classe_corpo",
- "_ajuda": "Medidas em voxels de 0,125. tronco = [largura, altura, fundo]; vao = espaco entre pe e tronco. A cabeca tem o mesmo tamanho em P, M e G.",
+ "_ajuda": "Medidas em voxels de 0,125. tronco = [largura, altura, fundo]. perna: coxa e canela sao alturas; ponta = quanto o pe avanca. braco: braco e ante (antebraco) sao alturas; mao = linhas de pele na ponta. A cabeca tem o mesmo tamanho em P, M e G.",
  "tamanhos": {
   "P": {
    "H_voxels": 24,
    "tronco": [
     6,
-    7,
+    6,
     4
    ],
-   "pe": [
-    2,
-    2,
-    3
-   ],
-   "vao": 1,
-   "mao": 2,
-   "mao_vao": 1,
+   "perna": {
+    "larg": 2,
+    "fundo": 3,
+    "coxa": 2,
+    "canela": 2,
+    "ponta": 1
+   },
+   "braco": {
+    "larg": 2,
+    "braco": 3,
+    "ante": 3,
+    "mao": 1
+   },
    "pe_x": 2
   },
   "M": {
    "H_voxels": 32,
    "tronco": [
     8,
-    11,
+    10,
     5
    ],
-   "pe": [
-    3,
-    3,
-    4
-   ],
-   "vao": 3,
-   "mao": 3,
-   "mao_vao": 2,
+   "perna": {
+    "larg": 3,
+    "fundo": 3,
+    "coxa": 3,
+    "canela": 4,
+    "ponta": 1
+   },
+   "braco": {
+    "larg": 3,
+    "braco": 4,
+    "ante": 5,
+    "mao": 2
+   },
    "pe_x": 2
   },
   "G": {
    "H_voxels": 40,
    "tronco": [
     11,
-    17,
+    15,
     7
    ],
-   "pe": [
-    4,
-    4,
-    5
-   ],
-   "vao": 4,
-   "mao": 4,
-   "mao_vao": 2,
+   "perna": {
+    "larg": 4,
+    "fundo": 4,
+    "coxa": 5,
+    "canela": 5,
+    "ponta": 1
+   },
+   "braco": {
+    "larg": 4,
+    "braco": 7,
+    "ante": 7,
+    "mao": 3
+   },
    "pe_x": 3
   }
  },
