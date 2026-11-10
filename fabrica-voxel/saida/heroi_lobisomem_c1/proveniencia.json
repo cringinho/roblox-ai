@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_lobisomem_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiLobisomemC1.luau": "ff75fc9a22ef4b28427b050c8523da94bf5854fa48af82c0c167db91be68a7a2",
+  "Dados_HeroiLobisomemC1.luau": "4ba2485fc2af56cbc61c390f05a7f6e01bf57605d192e2ea5c6e448531a4b6cf",
+  "anim.gif": "ee6640ded2c5cb443b1cf2fa5b13cec18ba86130ecadc47c5b2d0c3423e48004",
+  "anim_Andar.png": "0613d67ada288d75c5bf8ff6523ceb67b1282c0b689238bca2bb6c9545426b20",
+  "anim_Dano.png": "5e0b96b7a1681c71e65db1285d47f9c515edf4c3afc1187adf2249371abe63d6",
+  "anim_Golpe.png": "f7b32e1c1d3d2e0432ab29e1592755afa61fba87fd0b66b8c20f296b20ff3aba",
+  "anim_Morte.png": "ee33b1856ee71a64736aed6ebbc0452384e1e5315a8abbad819179ce4a7dc9a8",
+  "anim_Parado.png": "e6900384c05922255da362d2a15076e930da703a5eca03aa513ad7621c3d1787",
+  "folha.png": "cc58bbaf75b211d35fbd62fb68ce232bec71a73921d91ce7a5013ca7f5a5bcfa",
+  "icone_64.png": "81f94621fcd11050bfc6966f19c42d9ba02f87312156a95929a780edf6378af7",
+  "modelo.glb": "341bd9cf6460351464281d5693c79305e7db6991c23360ad36d6bcc72168b29b",
+  "modelo.vox": "581a9a0eca8311efdc4f46b8f97fbf5713cf9ef1700f0b085a8c29a7a6488e45"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

@@ -4,18 +4,26 @@
 return {
 	Id = "heroi_solto", Nome = "Heroi de pecas soltas", VersaoFabrica = "4.0.0",
 	Altura = 3.375,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Tronco", Pai = "Raiz", Peca = true, Pivo = {0, 0.75, 0.0625}, Centro = {0, 1.4375, 0.0625}, Tamanho = {1, 1.375, 0.625}, Papel = "corpo", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cabeca", Pai = "Tronco", Peca = true, Pivo = {0, 2, 0.0625}, Centro = {0, 2.6875, 0.0625}, Tamanho = {1.5, 1.375, 1.375}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Mao_D", Pai = "Tronco", Peca = true, Pivo = {0.9375, 1.3125, 0.0625}, Centro = {0.9375, 1.3125, 0.0625}, Tamanho = {0.375, 0.375, 0.375}, Papel = "mao", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Mao_E", Pai = "Tronco", Peca = true, Pivo = {-0.9375, 1.3125, 0.0625}, Centro = {-0.9375, 1.3125, 0.0625}, Tamanho = {0.375, 0.375, 0.375}, Papel = "mao", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pe_D", Pai = "Raiz", Peca = true, Pivo = {0.3125, 0.1875, 0}, Centro = {0.3125, 0.1875, 0}, Tamanho = {0.375, 0.375, 0.5}, Papel = "pe", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pe_E", Pai = "Raiz", Peca = true, Pivo = {-0.1875, 0.1875, 0}, Centro = {-0.1875, 0.1875, 0}, Tamanho = {0.375, 0.375, 0.5}, Papel = "pe", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Tronco", Pai = "Raiz", Pivo = {0, 0.75, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Cabeca", Pai = "Tronco", Pivo = {0, 2, 0.0625}, Papel = "cabeca", Mola = nil},
+		{Nome = "Mao_D", Pai = "Tronco", Pivo = {0.9375, 1.3125, 0.0625}, Papel = "mao", Mola = nil},
+		{Nome = "Mao_E", Pai = "Tronco", Pivo = {-0.9375, 1.3125, 0.0625}, Papel = "mao", Mola = nil},
+		{Nome = "Pe_D", Pai = "Raiz", Pivo = {0.3125, 0.1875, 0}, Papel = "pe", Mola = nil},
+		{Nome = "Pe_E", Pai = "Raiz", Pivo = {-0.1875, 0.1875, 0}, Papel = "pe", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Tronco", Osso = "Tronco", Centro = {0, 1.4375, 0.0625}, Tamanho = {1, 1.375, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0, 2.6875, 0.0625}, Tamanho = {1.5, 1.375, 1.375}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Mao_D", Osso = "Mao_D", Centro = {0.9375, 1.3125, 0.0625}, Tamanho = {0.375, 0.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Mao_E", Osso = "Mao_E", Centro = {-0.9375, 1.3125, 0.0625}, Tamanho = {0.375, 0.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pe_D", Osso = "Pe_D", Centro = {0.3125, 0.1875, 0}, Tamanho = {0.375, 0.375, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pe_E", Osso = "Pe_E", Centro = {-0.1875, 0.1875, 0}, Tamanho = {0.375, 0.375, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Tronco = {
 			{-0.4375, 1.25, -0.0625, 0.125, 0.75, 0.125, "505264", 0},
 			{-0.1875, 1, 0.125, 0.625, 0.25, 0.25, "38354B", 0},

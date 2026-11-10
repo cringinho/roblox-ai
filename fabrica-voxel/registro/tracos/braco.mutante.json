@@ -11,6 +11,7 @@
    "formas": [
     {
      "op": "caixa",
+     "nome": "punho",
      "tam": [
       3,
       3,
@@ -21,14 +22,16 @@
     },
     {
      "op": "caixa",
+     "nome": "g1",
      "tam": [
       2,
       2,
       7
      ],
-     "em": "Mao_E.frente",
+     "em": "punho.frente",
      "desloc": {
-      "baixo": 1
+      "baixo": 1,
+      "tras": 1
      }
     },
     {
@@ -38,35 +41,38 @@
       2,
       6
      ],
-     "em": "Mao_E.frente",
+     "em": "punho.frente",
      "desloc": {
-      "esquerda": 2,
-      "cima": 1
+      "esquerda": 1,
+      "cima": 1,
+      "tras": 1
      }
     },
     {
      "op": "caixa",
+     "nome": "h",
      "tam": [
       1,
       6,
       1
      ],
-     "em": "Mao_E.topo",
+     "em": "punho.topo",
      "desloc": {
-      "esquerda": 1
+      "baixo": 1
      }
     },
     {
      "op": "caixa",
+     "nome": "r",
      "tam": [
       4,
       1,
       1
      ],
-     "em": "Mao_E.topo",
+     "em": "h.topo",
+     "encaixe": "dentro",
      "desloc": {
-      "esquerda": 2,
-      "cima": 5
+      "esquerda": 1
      }
     },
     {
@@ -76,10 +82,10 @@
       3,
       1
      ],
-     "em": "Mao_E.topo",
+     "em": "r.esq",
+     "encaixe": "dentro",
      "desloc": {
-      "esquerda": 4,
-      "cima": 6
+      "cima": 2
      }
     }
    ]

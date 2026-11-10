@@ -4,17 +4,24 @@
 return {
 	Id = "flutuante", Nome = "Flutuante", VersaoFabrica = "4.0.0",
 	Altura = 2.75,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0.0625, 2.125, 0}, Centro = {0.0625, 2.125, 0}, Tamanho = {1.125, 1.25, 1}, Papel = "corpo", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pano_1", Pai = "Corpo", Peca = true, Pivo = {0.0625, 1.5, 0}, Centro = {0.0625, 1.375, 0.0625}, Tamanho = {1.125, 0.75, 0.875}, Papel = "pano", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 1.5, Amort = 0.6, MaxGraus = 25}},
-		{Nome = "Pano_2", Pai = "Pano_1", Peca = true, Pivo = {0.0625, 1, 0.0625}, Centro = {0.1875, 0.9375, 0.0625}, Tamanho = {0.875, 0.625, 0.625}, Papel = "pano", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 1.5, Amort = 0.6, MaxGraus = 25}},
-		{Nome = "Mao_D", Pai = "Corpo", Peca = true, Pivo = {1.0625, 2.1875, -0.1875}, Centro = {1.0625, 2.1875, -0.1875}, Tamanho = {0.375, 0.375, 0.375}, Papel = "mao", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Mao_E", Pai = "Corpo", Peca = true, Pivo = {-0.9375, 2.0625, -0.1875}, Centro = {-0.9375, 2.0625, -0.1875}, Tamanho = {0.375, 0.375, 0.375}, Papel = "mao", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0.0625, 2.125, 0}, Papel = "corpo", Mola = nil},
+		{Nome = "Pano_1", Pai = "Corpo", Pivo = {0.0625, 1.5, 0}, Papel = "pano", Mola = {FreqHz = 1.5, Amort = 0.6, MaxGraus = 25}},
+		{Nome = "Pano_2", Pai = "Pano_1", Pivo = {0.0625, 1, 0.0625}, Papel = "pano", Mola = {FreqHz = 1.5, Amort = 0.6, MaxGraus = 25}},
+		{Nome = "Mao_D", Pai = "Corpo", Pivo = {1.0625, 2.1875, -0.1875}, Papel = "mao", Mola = nil},
+		{Nome = "Mao_E", Pai = "Corpo", Pivo = {-0.9375, 2.0625, -0.1875}, Papel = "mao", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0.0625, 2.125, 0}, Tamanho = {1.125, 1.25, 1}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Pano_1", Osso = "Pano_1", Centro = {0.0625, 1.375, 0.0625}, Tamanho = {1.125, 0.75, 0.875}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pano_2", Osso = "Pano_2", Centro = {0.1875, 0.9375, 0.0625}, Tamanho = {0.875, 0.625, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Mao_D", Osso = "Mao_D", Centro = {1.0625, 2.1875, -0.1875}, Tamanho = {0.375, 0.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Mao_E", Osso = "Mao_E", Centro = {-0.9375, 2.0625, -0.1875}, Tamanho = {0.375, 0.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.0625, 1.6875, -0.1875, 0.875, 0.125, 0.125, "5D4D38", 0},
 			{-0.1875, 1.6875, 0.0625, 0.625, 0.125, 0.375, "382B1D", 0},

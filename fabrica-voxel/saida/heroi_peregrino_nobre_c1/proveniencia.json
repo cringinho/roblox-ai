@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_peregrino_nobre_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiPeregrinoNobreC1.luau": "797455681f00511ca6d8c8e18abbebb137941291a6daa00b0cfd7e8524c2bb76",
+  "Dados_HeroiPeregrinoNobreC1.luau": "9e1db5ba49d525ed6941f75a2dac56f2aef2d5abe2c0fbe47ff44f79ce208168",
+  "anim.gif": "081206e0cea1c5abbb4c458029d7eedcef514228cfc31ab3e10b8d20128a8365",
+  "anim_Andar.png": "115089d04d4ab1402ab3f7d6978da4fc1f141d99710fc3ea0e3d3a2177c0808e",
+  "anim_Dano.png": "43585f5bd2ab886ee71d512ed22d8ea3d74bb06963a8f62d2fad4837b130873c",
+  "anim_Golpe.png": "a094c38770d485496354deb43ef894aec32d8440f3feb194da4a1149990b98b3",
+  "anim_Morte.png": "d76cf9a45047b1053fb6ab955dcaa5072945a2138b5d4623fb92811474977783",
+  "anim_Parado.png": "c05eaf209364294fd93f2ad48d1a0941aff872baef255ac6264174da17362e17",
+  "folha.png": "05417b93085747069e3bace13445b1d7b532bf208f8729541378e2686a99b757",
+  "icone_64.png": "dd3264b032323244ae70841fe703ed58dda78ac156f30a81bfe0c684b97a9d5a",
+  "modelo.glb": "db78ec7607aae3aa1bc80b4b9635ea8d23cf6552322d19540cea659a5688ffdd",
+  "modelo.vox": "d3d47993c280b3a3cc19b2e3f019c462165b8e5eee09431c11c7c599d3229d83"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

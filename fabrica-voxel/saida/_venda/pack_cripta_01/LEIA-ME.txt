@@ -1,0 +1,20 @@
+pack_cripta_01
+Gerado pela Fabrica de Voxel 4.0.0.
+
+CONTEUDO (por modelo)
+  modelo_studs.glb    1 unidade = 1 stud (Roblox Studio). Frente = -Z, cima = +Y.
+  modelo_metros.glb   1 unidade = 1 metro (Unity, Godot, Unreal, Blender). 1 stud = 0,28 m.
+  modelo.vox          MagicaVoxel, um objeto por peca rigida.
+  vitrine.png         imagem de vitrine
+  giro.gif            giro de 360 graus
+  anim.gif            animacoes (quando houver)
+  ficha_tecnica.json  voxels, triangulos, pecas, ossos, clipes
+
+COMO IMPORTAR
+  Roblox Studio: File > Import 3D, escolha modelo_studs.glb, unidade Studs. Cada peca vira um MeshPart com o
+    nome da peca. As cores estao no vertice (sem textura). As animacoes do arquivo servem de referencia; no
+    Roblox, use os modulos Luau da Fabrica ou anime por conta propria.
+  Unity / Godot / Unreal / Blender: importe modelo_metros.glb. O material deve usar a cor de vertice.
+  MagicaVoxel: abra modelo.vox.
+
+O modelo usa pecas rigidas (sem pele que dobra): um osso por peca.

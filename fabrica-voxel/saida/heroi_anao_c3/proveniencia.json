@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_anao_c3",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiAnaoC3.luau": "6da2944ee5667872e535b8342e375b37aae7026d556b4f9ac0d6953beb107c7f",
+  "Dados_HeroiAnaoC3.luau": "6b6e8d8981d3ad73e65dd756d4ccc0e818ede9f2ef4da9e5aa6efab85fffd922",
+  "anim.gif": "cdb949e752a5e0a16d269793c01823e6e042c6235850812c9c01ce907d1116b4",
+  "anim_Andar.png": "19c4b4c5a10edc2bb08f70b6fa80a11722118274cd1dd478d89010eb37a6fdc2",
+  "anim_Dano.png": "132632904bcb89bf510c9ade17b16085f5f51bfc8176e5a0fdcd76704ca90ffc",
+  "anim_Golpe.png": "92f85ed6b0132114b80f148debf7ccf52cc669e4c9ed4377f54cdef67231f660",
+  "anim_Morte.png": "8940f4302022a652d0aa23dd52ba8acb476bc1ce9476dc6368892031bc762bf0",
+  "anim_Parado.png": "568bac5d00068aca7c0bea934148fcc5cc901eff18185d64d5e025ebc8e8418e",
+  "folha.png": "47ff9df2ce3cb381ba7c9843ceb19d2a95d3cd92ab6bc5dea73703cdc10ebb02",
+  "icone_64.png": "e2f0a57f220ffd977509e1d78637478d6896bc3a4d999ee3ae3dc5865fd1187c",
+  "modelo.glb": "0dc83d20221a0a49d7418a8248770e29183be47254b76ff54651368769af8753",
+  "modelo.vox": "3df4fe7ca7610ba7c7ff4088d31fff3a9739d36e50b0c1bd61878066c4f5b3cf"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

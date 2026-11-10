@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_peregrino_mutacao_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiPeregrinoMutacaoC1.luau": "445f37db6c4bf81549bc723bfb167080a946a4cdecbe8ce0a5daf1218959cd2c",
+  "Dados_HeroiPeregrinoMutacaoC1.luau": "681d4bf9836ca03cf4d94e9d5931f66e341349ee9e3b3c82529ecca5afcd888f",
+  "anim.gif": "08501c01d775ff22b83403127013526dd59c88f01de38bf26d4a8e263e36a232",
+  "anim_Andar.png": "ae89e9c3b5df0aefb1f4f5c17079f6984d41085357172e04af1f9e619acfa537",
+  "anim_Dano.png": "14009a4a1435308c018b0640e9e8aa1bdf6ca3409262c8403bfdb5b8b775a2df",
+  "anim_Golpe.png": "daf7943d1fcb7c24768db9d368ff72037953a19b329e22e6746c995c39576247",
+  "anim_Morte.png": "5beb45253dfcb7f5274f2b7fa99986c9c995f8385c6b1e8a53ba94038eb2f087",
+  "anim_Parado.png": "18a4a79a98b96058f92a7cd1005acebaeca22793ff36bd05795181ec7f4e40bb",
+  "folha.png": "fa69b6bbf3d1c94524ff535748ae8b751465f70031478887ef242aa64adc841a",
+  "icone_64.png": "0d426a12cfe42d1988ce2834819195a1379be8499f56df6624b04deac5cd5ef1",
+  "modelo.glb": "e17f2fb8fea612ac5f2cbb999caeecef703939c93a40e50391f4d15268e147f8",
+  "modelo.vox": "1f340460a1cdead58d384fb0db3a59993429646b0ff93e1d9e0c4faa6993522a"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

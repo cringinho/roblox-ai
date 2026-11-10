@@ -1,0 +1,21 @@
+{
+ "id": "gargulho",
+ "nome": "Gargulho",
+ "voxels": 630,
+ "triangulos": 686,
+ "pecas": 4,
+ "ossos": 5,
+ "clipes": {
+  "Parado": 3.0,
+  "Andar": 0.75,
+  "Ataque": 0.98,
+  "Dano": 0.3,
+  "Morte": 0.75
+ },
+ "tamanho_studs": [
+  3.0,
+  2.25,
+  1.125
+ ],
+ "nota_p2": 89.5
+}

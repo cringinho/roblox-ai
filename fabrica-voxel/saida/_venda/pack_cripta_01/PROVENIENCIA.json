@@ -1,0 +1,51 @@
+{
+ "pack": "pack_cripta_01",
+ "data": "2026-11-10",
+ "fabrica": "4.0.0",
+ "modelos": [
+  {
+   "id": "esporinho",
+   "hash_ficha": "fc476545b04ee4fb75bbde69bae786f27abd36b82ec3f7118fa5b7516b8c69e0",
+   "semente": 0,
+   "arquivos": {
+    "anim.gif": "da84e7568bfb3faf813eadb36aaac94bbc3e59660de7e05a9cbdb9cf74e020b0",
+    "ficha_tecnica.json": "00e27ece67ecac958336b13b8652fe2998a3befbfec417e4dd85aa5bc2235520",
+    "giro.gif": "ac93f24c86b615eb8e827b916fe67f5850a1d80d0fb1d0b04c1090f83899c984",
+    "modelo.vox": "84e14740adec15d1a7ebf56798316ab0686e9f1a05ed4cec8b405e779ca1be9b",
+    "modelo_metros.glb": "cc6a4639a975fc1b6ff528098b54210f0a5ae6e7c63ccec9443dac335b9fe1b1",
+    "modelo_studs.glb": "ae06efd82b2b63ff467b990fdcc50db2d8853743189df2a3ef4f598ade366184",
+    "vitrine.png": "5844087a2b4963935ea2f5c96cc2693d046315ccc2495c5092553e769e2d7c2b"
+   }
+  },
+  {
+   "id": "mastim_relicario",
+   "hash_ficha": "44d0cda380e64880ec9891ec97b6972f34a94aa9727bf6c75b12d6f3dfcfb78d",
+   "semente": 0,
+   "arquivos": {
+    "anim.gif": "fb0fa6d71252049c17fce0805a7e3a709b165225233af002fe43918704af73c9",
+    "ficha_tecnica.json": "a98b8bcdba47baddacb28942ed689302b471fd79e6e565f3f2e02558de999e31",
+    "giro.gif": "182595b75c9ee922916896577865aaa1798abf117a97fd74662af15196e01354",
+    "modelo.vox": "dc8e628eeccd6e141a44f7e46dee1e317b1e033588b96d696d4f5c57535d39a8",
+    "modelo_metros.glb": "09f96c13bea36aa8f8ceee808033014e84910bcbdc5d03753f8c563ad10a9342",
+    "modelo_studs.glb": "b9ebe5c0496da5003c7ea3d1f2e580c64550ea124f823ca4fd66aedd2351f111",
+    "vitrine.png": "f546131de4adfa7796128645a11380199a8cdf059d8daeef0b07078ef0ad5356"
+   }
+  },
+  {
+   "id": "gargulho",
+   "hash_ficha": "5ff0ccca6b9b0208fd9dbca19fbca399086570e95b6e8f3a8213a2a3a6e4929a",
+   "semente": 0,
+   "arquivos": {
+    "anim.gif": "406d46e70a9e2be77dadf185c2eb54c82af36ef80d9b9f7f5d2b86007d4adef5",
+    "ficha_tecnica.json": "901495683137298f80cbcf2bd31a92958808c20fc9fc37478849e384a159e1e3",
+    "giro.gif": "03979dd82fbfcb1f6f14765170e4df8d1001de1eb6a3ae212447284dfb9813e1",
+    "modelo.vox": "3f01c35b3f8402a710743e7a0bd26f8d7fe32cc880d3fff41602b319ed31b92a",
+    "modelo_metros.glb": "37392137defb71619f7dcd001a0efab794d0cf5e7eb1a65a7aafe5901c77f90f",
+    "modelo_studs.glb": "48c0ec14273637cf4ccf40f034f892107f38c4645d004970c68adb6b8e239c90",
+    "vitrine.png": "3646d5cfc1a5602a26a1b621848b09126036e4a70efd9ee91f1e77e2ac195445"
+   }
+  }
+ ],
+ "metodo": "Gerado por codigo procedural a partir de fichas de dados, sob direcao de arte humana, com assistencia de IA de texto na escrita do codigo e das fichas. Sem IA de imagem, sem modelos de terceiros.",
+ "declaracao_ia_para_lojas": "Assistido por IA (codigo e dados escritos com IA de texto); arte gerada por algoritmo proprio."
+}

@@ -11,6 +11,7 @@
    "formas": [
     {
      "op": "caixa",
+     "nome": "b",
      "tam": [
       1,
       4,
@@ -18,21 +19,23 @@
      ],
      "em": "Cabeca.cranio.topo",
      "desloc": {
-      "direita": 3
+      "direita": 3,
+      "baixo": 1
      },
      "espelhar": true
     },
     {
      "op": "caixa",
+     "nome": "g",
      "tam": [
       3,
       1,
       1
      ],
-     "em": "Cabeca.cranio.topo",
+     "em": "b.topo",
+     "encaixe": "dentro",
      "desloc": {
-      "direita": 5,
-      "cima": 3
+      "direita": 1
      },
      "espelhar": true
     },
@@ -43,10 +46,9 @@
       2,
       1
      ],
-     "em": "Cabeca.cranio.topo",
+     "em": "g.topo",
      "desloc": {
-      "direita": 6,
-      "cima": 4
+      "direita": 1
      },
      "espelhar": true
     },
@@ -57,12 +59,7 @@
       2,
       1
      ],
-     "em": "Cabeca.cranio.topo",
-     "desloc": {
-      "esquerda": 2,
-      "cima": 4,
-      "frente": 0
-     }
+     "em": "b.topo"
     }
    ]
   }

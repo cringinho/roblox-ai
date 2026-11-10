@@ -4,21 +4,29 @@
 return {
 	Id = "constructo", Nome = "Constructo", VersaoFabrica = "4.0.0",
 	Altura = 2.875,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0, 0.75, 0.0625}, Centro = {0, 1.4375, 0.0625}, Tamanho = {1.5, 1.375, 0.875}, Papel = "corpo", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cabeca", Pai = "Corpo", Peca = true, Pivo = {0.0625, 2, 0.0625}, Centro = {0.0625, 2.3125, 0.0625}, Tamanho = {0.875, 1.125, 0.875}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Braco_D", Pai = "Corpo", Peca = true, Pivo = {1, 2.125, 0}, Centro = {1, 1.5, 0}, Tamanho = {0.5, 1.5, 0.5}, Papel = "braco", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Braco_E", Pai = "Corpo", Peca = true, Pivo = {-1, 2.125, 0}, Centro = {-1, 1.5, 0}, Tamanho = {0.5, 1.5, 0.5}, Papel = "braco", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_D", Pai = "Raiz", Peca = true, Pivo = {0.5, 0.875, 0.0625}, Centro = {0.5, 0.4375, 0.0625}, Tamanho = {0.5, 0.875, 0.625}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_E", Pai = "Raiz", Peca = true, Pivo = {-0.5, 0.875, 0.0625}, Centro = {-0.5, 0.4375, 0.0625}, Tamanho = {0.5, 0.875, 0.625}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0.75, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Cabeca", Pai = "Corpo", Pivo = {0.0625, 2, 0.0625}, Papel = "cabeca", Mola = nil},
+		{Nome = "Braco_D", Pai = "Corpo", Pivo = {1, 2.125, 0}, Papel = "braco", Mola = nil},
+		{Nome = "Braco_E", Pai = "Corpo", Pivo = {-1, 2.125, 0}, Papel = "braco", Mola = nil},
+		{Nome = "Perna_D", Pai = "Raiz", Pivo = {0.5, 0.875, 0.0625}, Papel = "perna", Mola = nil},
+		{Nome = "Perna_E", Pai = "Raiz", Pivo = {-0.5, 0.875, 0.0625}, Papel = "perna", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0, 1.4375, 0.0625}, Tamanho = {1.5, 1.375, 0.875}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0.0625, 2.3125, 0.0625}, Tamanho = {0.875, 1.125, 0.875}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Braco_D", Osso = "Braco_D", Centro = {1, 1.5, 0}, Tamanho = {0.5, 1.5, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Braco_E", Osso = "Braco_E", Centro = {-1, 1.5, 0}, Tamanho = {0.5, 1.5, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Perna_D", Osso = "Perna_D", Centro = {0.5, 0.4375, 0.0625}, Tamanho = {0.5, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Perna_E", Osso = "Perna_E", Centro = {-0.5, 0.4375, 0.0625}, Tamanho = {0.5, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 		{Nome = "Pegada_D", Osso = "Braco_D", Pos = {1, 0.75, 0}},
 		{Nome = "Pegada_E", Osso = "Braco_E", Pos = {-1, 0.75, 0}},
 		{Nome = "Cabeca_Topo", Osso = "Cabeca", Pos = {0.0625, 2.875, 0.0625}},
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.25, 0.9375, -0.1875, 1, 0.125, 0.125, "505264", 0},
 			{-0.4375, 0.9375, 0.125, 0.625, 0.125, 0.5, "38354B", 0},

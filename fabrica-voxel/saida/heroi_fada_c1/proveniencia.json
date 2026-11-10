@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_fada_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiFadaC1.luau": "d8ba6ace45785f8728776c537b23015132ba442a824cf8614e1b3227d5d4741c",
+  "Dados_HeroiFadaC1.luau": "625125947de6187c8a3d87aa6e0429acc7a89f81455983265e88633a3aa300b1",
+  "anim.gif": "e1eea99475556dec2e239cf21d4ff545f0be182e997bfc2002246534a55fd936",
+  "anim_Andar.png": "d64a44f371d3ba578d8278fba522970da4a4f67b6fd963aae458e0c409d1df6a",
+  "anim_Dano.png": "e0350adf7b5cb48eaebfd594466d55402adc8ddb4f3f93186af1895b08b45776",
+  "anim_Golpe.png": "4d504a4ded0494aa283cc3a1c15fda01f01639134f9ddac763124cb5a21082b4",
+  "anim_Morte.png": "228da49a068060f8376bc263d14391348fa817f96f6bcd22d7dde7260476b367",
+  "anim_Parado.png": "1150e8c498a2b8151fb5cd7ada7b35f384b10508db041e13f8543dbecf4ebe69",
+  "folha.png": "a66f891e929c65cd7c1a1a9d67a8a1be014d195d13de1942d7170459267e101d",
+  "icone_64.png": "cab75e2bfb928b7149701eec4835dd6f09ee4bf2c2d27d6d708e19b47f6be941",
+  "modelo.glb": "697ec02bec14cbfd1d17bdaa88fd03162886d6cce5d2beaf616fdb250d3eda2f",
+  "modelo.vox": "94f82e0f00b50de8f66ce866c0f31e221fd437f2562ed85d06e2d8489ef5ccc3"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

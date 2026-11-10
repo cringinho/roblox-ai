@@ -4,18 +4,26 @@
 return {
 	Id = "nadador", Nome = "Nadador", VersaoFabrica = "4.0.0",
 	Altura = 2.5,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cabeca", Pai = "Raiz", Peca = true, Pivo = {0.0625, 1.6875, -0.875}, Centro = {0.0625, 1.6875, -1.25}, Tamanho = {0.625, 0.875, 0.75}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Seg_1", Pai = "Cabeca", Peca = true, Pivo = {0, 1.9375, -1}, Centro = {0, 1.9375, -0.8125}, Tamanho = {0.5, 1.125, 0.625}, Papel = "segmento", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Seg_2", Pai = "Seg_1", Peca = true, Pivo = {0, 2, -0.625}, Centro = {0, 2, -0.4375}, Tamanho = {0.5, 0.75, 0.625}, Papel = "segmento", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Seg_3", Pai = "Seg_2", Peca = true, Pivo = {0, 2.0625, -0.25}, Centro = {0, 2.0625, -0.0625}, Tamanho = {0.5, 0.625, 0.625}, Papel = "segmento", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Seg_4", Pai = "Seg_3", Peca = true, Pivo = {0.0625, 2.0625, 0.125}, Centro = {0.0625, 2.0625, 0.3125}, Tamanho = {0.375, 0.625, 0.625}, Papel = "segmento", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Seg_5", Pai = "Seg_4", Peca = true, Pivo = {0.0625, 2, 0.5}, Centro = {0.0625, 2, 0.875}, Tamanho = {0.375, 1, 1}, Papel = "segmento", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Cabeca", Pai = "Raiz", Pivo = {0.0625, 1.6875, -0.875}, Papel = "cabeca", Mola = nil},
+		{Nome = "Seg_1", Pai = "Cabeca", Pivo = {0, 1.9375, -1}, Papel = "segmento", Mola = nil},
+		{Nome = "Seg_2", Pai = "Seg_1", Pivo = {0, 2, -0.625}, Papel = "segmento", Mola = nil},
+		{Nome = "Seg_3", Pai = "Seg_2", Pivo = {0, 2.0625, -0.25}, Papel = "segmento", Mola = nil},
+		{Nome = "Seg_4", Pai = "Seg_3", Pivo = {0.0625, 2.0625, 0.125}, Papel = "segmento", Mola = nil},
+		{Nome = "Seg_5", Pai = "Seg_4", Pivo = {0.0625, 2, 0.5}, Papel = "segmento", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0.0625, 1.6875, -1.25}, Tamanho = {0.625, 0.875, 0.75}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Seg_1", Osso = "Seg_1", Centro = {0, 1.9375, -0.8125}, Tamanho = {0.5, 1.125, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Seg_2", Osso = "Seg_2", Centro = {0, 2, -0.4375}, Tamanho = {0.5, 0.75, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Seg_3", Osso = "Seg_3", Centro = {0, 2.0625, -0.0625}, Tamanho = {0.5, 0.625, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Seg_4", Osso = "Seg_4", Centro = {0.0625, 2.0625, 0.3125}, Tamanho = {0.375, 0.625, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Seg_5", Osso = "Seg_5", Centro = {0.0625, 2, 0.875}, Tamanho = {0.375, 1, 1}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Cabeca = {
 			{-0.1875, 1.3125, -1.25, 0.125, 0.125, 0.75, "382B1D", 0},
 			{-0.0625, 1.4375, -1.5625, 0.375, 0.125, 0.125, "5D4D38", 0},

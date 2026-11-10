@@ -1,0 +1,19 @@
+{
+ "id": "esporinho",
+ "nome": "Esporinho",
+ "voxels": 1862,
+ "triangulos": 728,
+ "pecas": 6,
+ "ossos": 7,
+ "clipes": {
+  "Parado": 3.0,
+  "Andar": 0.6,
+  "Ataque": 0.75
+ },
+ "tamanho_studs": [
+  2.0,
+  2.25,
+  2.0
+ ],
+ "nota_p2": 96.7
+}

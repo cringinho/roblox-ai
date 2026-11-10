@@ -39,6 +39,7 @@ class _Caixas:
     def __init__(self):
         self.cx: dict[str, tuple[np.ndarray, np.ndarray]] = {}
         self.eixo_x = 0.0
+        self.eixos: dict[str, float] = {}   # formas criadas com "espelhar" guardam o eixo, para encadear
 
     def por(self, nome, mn, mx):
         if nome in self.cx:
@@ -70,7 +71,7 @@ class _Caixas:
                             f'deve usar "em": "chao" ou a ancora de outra peca, ex.: "Tronco.topo".')
         mn, mx = self.cx[chave]
         p = (mn + mx) / 2
-        self.eixo_x = float(p[0])      # eixo de espelho = centro da caixa de referencia
+        self.eixo_x = self.eixos.get(chave, float(p[0]))   # eixo de espelho = centro da caixa de referencia
         n = np.zeros(3)
         for parte in anc.split("_"):
             v = np.array(_NORMAIS[parte], float)
@@ -161,7 +162,11 @@ def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple
                     if len(idx):
                         bmn, bmx = mn + idx.min(0), mn + idx.max(0) + 1
                         caixas.por(nome, bmn, bmx)
+                        if op.get("nome") and op.get("espelhar"):
+                            caixas.eixos[f'{nome}.{op["nome"]}'] = caixas.eixo_x
                         if op.get("nome"):
+                            if lado == 1:
+                                caixas.cx.pop(f'{nome}.{op["nome"]}', None)
                             caixas.por(f'{nome}.{op["nome"]}' + ("" if lado == 1 or not op.get("espelhar") else "_E"),
                                        bmn, bmx)
         idx = np.argwhere(g > 0)

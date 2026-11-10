@@ -4,23 +4,34 @@
 return {
 	Id = "mastim_relicario", Nome = "Mastim Relicario", VersaoFabrica = "4.0.0",
 	Altura = 2.375,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0.0625, 0.75, 0.0625}, Centro = {0.0625, 1.5625, 0.0625}, Tamanho = {1.125, 1.625, 1.625}, Papel = "corpo", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cabeca", Pai = "Corpo", Peca = true, Pivo = {0, 1.25, -0.75}, Centro = {0, 1.375, -1.1875}, Tamanho = {0.75, 1, 1.375}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_DD", Pai = "Raiz", Peca = true, Pivo = {0.25, 0.875, -0.5625}, Centro = {0.25, 0.4375, -0.5625}, Tamanho = {0.25, 0.875, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_DE", Pai = "Raiz", Peca = true, Pivo = {-0.25, 0.875, -0.5625}, Centro = {-0.25, 0.4375, -0.5625}, Tamanho = {0.25, 0.875, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_TD", Pai = "Raiz", Peca = true, Pivo = {0.25, 0.875, 0.6875}, Centro = {0.25, 0.4375, 0.6875}, Tamanho = {0.25, 0.875, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Perna_TE", Pai = "Raiz", Peca = true, Pivo = {-0.25, 0.875, 0.6875}, Centro = {-0.25, 0.4375, 0.6875}, Tamanho = {0.25, 0.875, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cauda_1", Pai = "Corpo", Peca = true, Pivo = {0, 1.125, 0.75}, Centro = {0, 1.125, 0.875}, Tamanho = {0.25, 0.25, 0.5}, Papel = "cauda", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
-		{Nome = "Cauda_2", Pai = "Cauda_1", Peca = true, Pivo = {0, 1.125, 1}, Centro = {0, 1.125, 1.125}, Tamanho = {0.25, 0.25, 0.5}, Papel = "cauda", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
-		{Nome = "Cauda_3", Pai = "Cauda_2", Peca = true, Pivo = {0.0625, 1.1875, 1.25}, Centro = {0.0625, 1.1875, 1.375}, Tamanho = {0.375, 0.375, 0.5}, Papel = "cauda", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0.0625, 0.75, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Cabeca", Pai = "Corpo", Pivo = {0, 1.25, -0.75}, Papel = "cabeca", Mola = nil},
+		{Nome = "Perna_DD", Pai = "Raiz", Pivo = {0.25, 0.875, -0.5625}, Papel = "perna", Mola = nil},
+		{Nome = "Perna_DE", Pai = "Raiz", Pivo = {-0.25, 0.875, -0.5625}, Papel = "perna", Mola = nil},
+		{Nome = "Perna_TD", Pai = "Raiz", Pivo = {0.25, 0.875, 0.6875}, Papel = "perna", Mola = nil},
+		{Nome = "Perna_TE", Pai = "Raiz", Pivo = {-0.25, 0.875, 0.6875}, Papel = "perna", Mola = nil},
+		{Nome = "Cauda_1", Pai = "Corpo", Pivo = {0, 1.125, 0.75}, Papel = "cauda", Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
+		{Nome = "Cauda_2", Pai = "Cauda_1", Pivo = {0, 1.125, 1}, Papel = "cauda", Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
+		{Nome = "Cauda_3", Pai = "Cauda_2", Pivo = {0.0625, 1.1875, 1.25}, Papel = "cauda", Mola = {FreqHz = 2.5, Amort = 0.35, MaxGraus = 30}},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0.0625, 1.5625, 0.0625}, Tamanho = {1.125, 1.625, 1.625}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0, 1.375, -1.1875}, Tamanho = {0.75, 1, 1.375}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Perna_DD", Osso = "Perna_DD", Centro = {0.25, 0.4375, -0.5625}, Tamanho = {0.25, 0.875, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Perna_DE", Osso = "Perna_DE", Centro = {-0.25, 0.4375, -0.5625}, Tamanho = {0.25, 0.875, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Perna_TD", Osso = "Perna_TD", Centro = {0.25, 0.4375, 0.6875}, Tamanho = {0.25, 0.875, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Perna_TE", Osso = "Perna_TE", Centro = {-0.25, 0.4375, 0.6875}, Tamanho = {0.25, 0.875, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cauda_1", Osso = "Cauda_1", Centro = {0, 1.125, 0.875}, Tamanho = {0.25, 0.25, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cauda_2", Osso = "Cauda_2", Centro = {0, 1.125, 1.125}, Tamanho = {0.25, 0.25, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cauda_3", Osso = "Cauda_3", Centro = {0.0625, 1.1875, 1.375}, Tamanho = {0.375, 0.375, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 		{Nome = "Dorso", Osso = "Corpo", Pos = {0.0625, 1.5, 0.0625}},
 		{Nome = "Boca", Osso = "Cabeca", Pos = {0, 1.1875, -1.875}},
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.4375, 1.1875, -0.6875, 0.125, 0.125, 0.125, "505264", 0},
 			{-0.3125, 1.1875, -0.5625, 0.375, 0.125, 0.125, "413C50", 0},

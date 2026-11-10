@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_vampiro_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiVampiroC1.luau": "43a8973157e96d4ce3d0ef9927995269a22a338c1b81b3fd9f04ee26797c7395",
+  "Dados_HeroiVampiroC1.luau": "1fcab0444a118abf1bf882c1c7ff4be621cdae1e4be0b6529bfbe7b321ddf4c5",
+  "anim.gif": "8b5a9b8f944020f539df1cc290b34375fcc28fd810ed3280979e97b80dacfc2b",
+  "anim_Andar.png": "c710e91494116ad4f282fcfd0c217ec00fddf6e0a9fc6d1752efe7513cef0722",
+  "anim_Dano.png": "5f533611520895639ba85b92227c2d6fb6b4c7da574b9c46e6c4111b5f42a4b7",
+  "anim_Golpe.png": "997b493ac67cc07aad89de68fcd1530252c65eb6ce6826701935aad9cbe6179a",
+  "anim_Morte.png": "cd8ce5280ce819c7e39894cf5f4f7c076dbe80f7126e6b338ab28d9f46535ef1",
+  "anim_Parado.png": "8745a19a6142b5989069622a09150455d51207d56807e4f7eb39c54f4457587b",
+  "folha.png": "46e6e53c26df60cc5a32996e21ff4459610c48297b98c534b1765cae80084ef8",
+  "icone_64.png": "48766ff375942afd920eca55768c4aa4b1da5b8210381b5c884f402e7ea4e7f0",
+  "modelo.glb": "b175e36eb435c45ed9c75d96166ddefd58e8be561a16a43dcd67d4585b23c6a4",
+  "modelo.vox": "2187b88d49efb177d7817e7e184529139a6d71aa6bd07c8dcacf7dd1a085dfc8"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

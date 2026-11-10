@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_peregrino_corrompido_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiPeregrinoCorrompidoC1.luau": "d1743eb81a767043935fc90006f94aa661ac49178e01aff8f8cc3985fc745acf",
+  "Dados_HeroiPeregrinoCorrompidoC1.luau": "56cfa5f8673bb6da0337dfc1862fcb3d17509b163c370cc868013ee7f46d4ae8",
+  "anim.gif": "0ad5a2e5f31a6adebfc5d268b39ea511b6422da0cf32d8be74e4cf47db4ecc8e",
+  "anim_Andar.png": "b5e2ba4fa3a5b1db5a2818969f612a6052afc282a8a4acf8764b824b2e91e7ad",
+  "anim_Dano.png": "63cfab200711ab465c2fd0ad665fc263cfc50eb80e57514b39f358113deabea0",
+  "anim_Golpe.png": "8a9fc312dd97c5778b918af65b534860c76d6caedd11ea8ed8d018eef7a00bb8",
+  "anim_Morte.png": "83b4b5374c3d7d35e98c6c276684dbda11577c7260044a893eb093b5aa83f4cb",
+  "anim_Parado.png": "f3d556e9331950a456b2a214f1616c70c2455a67abdbf947f4032b124bd2ad2f",
+  "folha.png": "ba1c8f2e947669aefd4da59bc5a0107652589bde8f4fc735fea6c08227003838",
+  "icone_64.png": "031b2e3d52d3197697b23a07d19e2578d0b2ea260967bde95723b83bf16039e2",
+  "modelo.glb": "e896542a61ae758eb5da7ec3474282fc56c862fb2943ba7b83e84d2f676ae423",
+  "modelo.vox": "125e49fc8c0d352f1579ca62b86ee144aeeeefc28789efb2e3d6b99d0be77675"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

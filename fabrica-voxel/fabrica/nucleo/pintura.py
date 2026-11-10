@@ -34,17 +34,18 @@ def _hash3(x, y, z, semente=0):
 
 def pintar(modelo: Modelo, paleta: Paleta, *, acabamentos: list[dict] | None = None, semente: int = 0) -> dict:
     """Preenche grade.cor de todas as pecas e modelo.cores / cores_brilho. Devolve metricas."""
-    tabela: dict[str, int] = {}
+    tabela: dict = {}
     cores: list[str] = []
     brilho: set[int] = set()
 
     def idx_cor(hexa: str, eh_brilho: bool) -> int:
-        if hexa not in tabela:
+        chave = (hexa, bool(eh_brilho))      # a mesma cor pode existir acesa (Neon) e apagada
+        if chave not in tabela:
             cores.append(hexa)
-            tabela[hexa] = len(cores)
-        if eh_brilho:
-            brilho.add(tabela[hexa])
-        return tabela[hexa]
+            tabela[chave] = len(cores)
+            if eh_brilho:
+                brilho.add(tabela[chave])
+        return tabela[chave]
 
     alt_min, alt_max = modelo.caixa()[0][1], modelo.caixa()[1][1]
     orfaos = 0

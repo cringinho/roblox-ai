@@ -4,15 +4,20 @@
 return {
 	Id = "objeto_animado", Nome = "Objeto animado", VersaoFabrica = "4.0.0",
 	Altura = 1.625,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0, 0.25, 0}, Centro = {0, 0.5625, 0}, Tamanho = {2.25, 1.125, 1.25}, Papel = "corpo", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Tampa", Pai = "Corpo", Peca = true, Pivo = {0, 1.125, 0.625}, Centro = {0, 1.375, -0.0625}, Tamanho = {1.75, 0.5, 1.375}, Papel = "mandibula", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Lingua", Pai = "Corpo", Peca = true, Pivo = {0, 0.9375, 0.25}, Centro = {0, 0.9375, -0.125}, Tamanho = {0.5, 0.125, 0.75}, Papel = "lingua", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0.25, 0}, Papel = "corpo", Mola = nil},
+		{Nome = "Tampa", Pai = "Corpo", Pivo = {0, 1.125, 0.625}, Papel = "mandibula", Mola = nil},
+		{Nome = "Lingua", Pai = "Corpo", Pivo = {0, 0.9375, 0.25}, Papel = "lingua", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0, 0.5625, 0}, Tamanho = {2.25, 1.125, 1.25}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Tampa", Osso = "Tampa", Centro = {0, 1.375, -0.0625}, Tamanho = {1.75, 0.5, 1.375}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Lingua", Osso = "Lingua", Centro = {0, 0.9375, -0.125}, Tamanho = {0.5, 0.125, 0.75}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-1, 0.6875, 0, 0.25, 0.125, 0.5, "505264", 0},
 			{-1.0625, 0.8125, 0, 0.125, 0.125, 0.5, "505264", 0},

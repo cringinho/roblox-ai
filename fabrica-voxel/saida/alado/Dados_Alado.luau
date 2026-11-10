@@ -4,16 +4,22 @@
 return {
 	Id = "alado", Nome = "Alado", VersaoFabrica = "4.0.0",
 	Altura = 3.5,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0, 2.1875, 0.0625}, Centro = {0, 2.1875, 0.0625}, Tamanho = {0.75, 0.875, 0.625}, Papel = "corpo", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Cabeca", Pai = "Corpo", Peca = true, Pivo = {0, 2.5, -0.375}, Centro = {0, 2.875, -0.375}, Tamanho = {0.75, 1.25, 0.75}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Asa_D", Pai = "Corpo", Peca = true, Pivo = {0.375, 2.1875, 0.0625}, Centro = {0.875, 1.9375, 0.0625}, Tamanho = {1.25, 1.375, 0.375}, Papel = "asa", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Asa_E", Pai = "Corpo", Peca = true, Pivo = {-0.375, 2.1875, 0.0625}, Centro = {-0.875, 1.9375, 0.0625}, Tamanho = {1.25, 1.375, 0.375}, Papel = "asa", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 2.1875, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Cabeca", Pai = "Corpo", Pivo = {0, 2.5, -0.375}, Papel = "cabeca", Mola = nil},
+		{Nome = "Asa_D", Pai = "Corpo", Pivo = {0.375, 2.1875, 0.0625}, Papel = "asa", Mola = nil},
+		{Nome = "Asa_E", Pai = "Corpo", Pivo = {-0.375, 2.1875, 0.0625}, Papel = "asa", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0, 2.1875, 0.0625}, Tamanho = {0.75, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0, 2.875, -0.375}, Tamanho = {0.75, 1.25, 0.75}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Asa_D", Osso = "Asa_D", Centro = {0.875, 1.9375, 0.0625}, Tamanho = {1.25, 1.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Asa_E", Osso = "Asa_E", Centro = {-0.875, 1.9375, 0.0625}, Tamanho = {1.25, 1.375, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.125, 1.9375, -0.0625, 0.5, 0.125, 0.125, "5D4D38", 0},
 			{-0.1875, 1.9375, 0.125, 0.375, 0.125, 0.25, "382B1D", 0},

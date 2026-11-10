@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_elfo_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiElfoC1.luau": "c644a084b0ac3f285098eda62775ed7204038207195d83324034352dc57f3cfd",
+  "Dados_HeroiElfoC1.luau": "2eaab8038af9d225c6dc81101f947df91132055b7bf19d84fc7f9f41774f5643",
+  "anim.gif": "4642a820a482d9c0af6fc0c6a973b8cc59c6358b8bd3f62545883d32193ec752",
+  "anim_Andar.png": "66c026e2b46478072cb201a7dc62d8d949a8d818197c32932287b7d13323cb8f",
+  "anim_Dano.png": "bf502235df951d53931e237e70c56768351aa5f854ab01c4a9fd9aa73899ddad",
+  "anim_Golpe.png": "6c999536dad1f2902c6502f9cf6b90b995dbfbb2f15635060a1a58e991840e15",
+  "anim_Morte.png": "ca96619f63e1e8b50aea0bc9afef71d860b318519dfcd67649ff146ad6dc9f1a",
+  "anim_Parado.png": "0e30dd07ca8ab72cd7f43ae305ee741de382f435140d58ccf3cc6cfd3c474527",
+  "folha.png": "c96496dc11330c9f512a32f30e3384f9f59f629a1d577cb3e1867d27d9523b54",
+  "icone_64.png": "dfd20b299f08cbffef7f005c0934a960697c9110a71538701d670f9784e84aa5",
+  "modelo.glb": "43abcff461eed5570f4c2545373a9008399f35d4d13eb00ea0bb5207aa643eca",
+  "modelo.vox": "54bbf2a37e39ddf07a608f3da44920c6e217ce6ec5b7c787a441de8b3286c214"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

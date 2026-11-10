@@ -146,7 +146,7 @@ def rodar(a, reg) -> int:
         i.split(".", 1)[1] for i in reg.listar("linhagem") if i.split(".", 1)[1] not in ORDEM)
     if a.cmd == "heroi":
         m = construir_heroi(reg, pal, a.linhagem, corpo=a.corpo if a.corpo != "1" else None, predef=a.predef, conjunto=a.conjunto)
-        rel = esteira.finalizar(m, "heroi", perfil="heroi")
+        rel = esteira.finalizar(m, "heroi", {"fabrica": "4", "id": "heroi." + m.id, "p0": {"passou": True, "erros": []}}, perfil="heroi")
         print(esteira.resumo(rel))
         if m.meta.get("equipamento"):
             print("  equipamento:", json.dumps(m.meta["equipamento"], ensure_ascii=False))

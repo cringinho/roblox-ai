@@ -11,17 +11,17 @@
    "formas": [
     {
      "op": "caixa",
+     "nome": "b",
      "tam": [
       2,
       2,
       4
      ],
-     "em": "Cabeca.cranio.topo_tras",
-     "encaixe": "centro",
+     "em": "Cabeca.cranio.topo",
      "desloc": {
       "direita": 3,
-      "cima": 1,
-      "tras": 1
+      "tras": 3,
+      "baixo": 1
      },
      "espelhar": true
     },
@@ -32,12 +32,9 @@
       2,
       2
      ],
-     "em": "Cabeca.cranio.topo_tras",
-     "encaixe": "centro",
+     "em": "b.topo",
      "desloc": {
-      "direita": 3,
-      "cima": 3,
-      "tras": 4
+      "tras": 2
      },
      "espelhar": true
     }

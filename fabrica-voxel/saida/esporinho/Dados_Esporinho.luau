@@ -4,19 +4,27 @@
 return {
 	Id = "esporinho", Nome = "Esporinho", VersaoFabrica = "4.0.0",
 	Altura = 2.25,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0, 0.625, 0}, Centro = {0, 1.0625, 0.125}, Tamanho = {1, 0.875, 1.25}, Papel = "corpo", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
-		{Nome = "Chapeu", Pai = "Corpo", Peca = true, Pivo = {0, 1.5, 0}, Centro = {0, 1.8125, 0}, Tamanho = {2, 0.875, 2}, Papel = "cabeca", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 3, Amort = 0.45, MaxGraus = 14}},
-		{Nome = "Pata_FD", Pai = "Raiz", Peca = true, Pivo = {0.5625, 0.75, -0.3125}, Centro = {0.5625, 0.375, -0.3125}, Tamanho = {0.375, 0.75, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pata_FE", Pai = "Raiz", Peca = true, Pivo = {-0.4375, 0.75, -0.3125}, Centro = {-0.4375, 0.375, -0.3125}, Tamanho = {0.375, 0.75, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pata_TD", Pai = "Raiz", Peca = true, Pivo = {0.5625, 0.75, 0.4375}, Centro = {0.5625, 0.375, 0.4375}, Tamanho = {0.375, 0.75, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Pata_TE", Pai = "Raiz", Peca = true, Pivo = {-0.4375, 0.75, 0.4375}, Centro = {-0.4375, 0.375, 0.4375}, Tamanho = {0.375, 0.75, 0.375}, Papel = "perna", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0.625, 0}, Papel = "corpo", Mola = nil},
+		{Nome = "Chapeu", Pai = "Corpo", Pivo = {0, 1.5, 0}, Papel = "cabeca", Mola = {FreqHz = 3, Amort = 0.45, MaxGraus = 14}},
+		{Nome = "Pata_FD", Pai = "Raiz", Pivo = {0.5625, 0.75, -0.3125}, Papel = "perna", Mola = nil},
+		{Nome = "Pata_FE", Pai = "Raiz", Pivo = {-0.4375, 0.75, -0.3125}, Papel = "perna", Mola = nil},
+		{Nome = "Pata_TD", Pai = "Raiz", Pivo = {0.5625, 0.75, 0.4375}, Papel = "perna", Mola = nil},
+		{Nome = "Pata_TE", Pai = "Raiz", Pivo = {-0.4375, 0.75, 0.4375}, Papel = "perna", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0, 1.0625, 0.125}, Tamanho = {1, 0.875, 1.25}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
+		{Nome = "Chapeu", Osso = "Chapeu", Centro = {0, 1.8125, 0}, Tamanho = {2, 0.875, 2}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pata_FD", Osso = "Pata_FD", Centro = {0.5625, 0.375, -0.3125}, Tamanho = {0.375, 0.75, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pata_FE", Osso = "Pata_FE", Centro = {-0.4375, 0.375, -0.3125}, Tamanho = {0.375, 0.75, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pata_TD", Osso = "Pata_TD", Centro = {0.5625, 0.375, 0.4375}, Tamanho = {0.375, 0.75, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Pata_TE", Osso = "Pata_TE", Centro = {-0.4375, 0.375, 0.4375}, Tamanho = {0.375, 0.75, 0.375}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 		{Nome = "Cabeca_Topo", Osso = "Chapeu", Pos = {0, 2.25, 0}},
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.3125, 0.8125, -0.1875, 0.375, 0.125, 0.375, "9F8B77", 0},
 			{-0.375, 0.9375, 0.0625, 0.25, 0.375, 0.125, "9F8B77", 0},

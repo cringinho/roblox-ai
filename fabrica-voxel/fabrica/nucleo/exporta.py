@@ -296,46 +296,41 @@ def _id_luau(s: str) -> str:
 
 
 def luau_dados(modelo: Modelo, *, com_caixas: bool = True) -> str:
+    v3 = lambda t: "{" + ", ".join(_n(x) for x in t) + "}"
     L = [f"-- Coloque este ModuleScript em ReplicatedStorage > Fabrica > Dados, com o nome Dados_{_id_luau(modelo.id)}",
          "-- Gerado pela Fabrica de Voxel. NAO edite a mao: mude a ficha e construa de novo.",
          "-- Studs, repouso, chao em Y = 0, frente = -Z, +X = lado direito (_D).",
          "return {",
          f'\tId = "{modelo.id}", Nome = "{modelo.nome}", VersaoFabrica = "{VERSAO_FABRICA}",',
-         f"\tAltura = {_n(modelo.caixa()[1][1])},", "\tRig = {"]
-    pecas = {p.osso: p for p in modelo.pecas}
+         f"\tAltura = {_n(modelo.caixa()[1][1])},",
+         "\tOssos = { -- pais antes dos filhos"]
     for o in modelo.ossos:
-        p = pecas.get(o.nome)
-        if p is not None:
-            a, b = p.grade.caixa()
-            cen, tam, corte = (a + b) / 2, b - a, p.grade.v
-            tb = bool(set(np.unique(p.grade.cor)) & set(modelo.cores_brilho))
-        else:
-            cen, tam, corte, tb = np.array(o.pivo), np.zeros(3), 0, False
-        mola = "nil" if not o.mola else "{" + ", ".join(f"{k} = {_n(v)}" for k, v in
-                                                        (("FreqHz", o.mola.get("freq_hz", 2.5)), ("Amort", o.mola.get("amort", 0.6)),
-                                                         ("MaxGraus", o.mola.get("max_graus", 25)))) + "}"
-        L.append(f'\t\t{{Nome = "{o.nome}", Pai = "{o.pai or ""}", Peca = {"true" if p is not None else "false"}, '
-                 f'Pivo = {{{", ".join(_n(v) for v in o.pivo)}}}, Centro = {{{", ".join(_n(v) for v in cen)}}}, '
-                 f'Tamanho = {{{", ".join(_n(v) for v in tam)}}}, Papel = "{o.papel}", Corte = {_n(corte)}, '
-                 f'TemBrilho = {"true" if tb else "false"}, EscalaAnimada = {"true" if (p and p.escala_animada) else "false"}, '
-                 f"Mola = {mola}}},")
+        mola = "nil" if not o.mola else ("{FreqHz = " + _n(o.mola.get("freq_hz", 2.5)) + ", Amort = " +
+                                         _n(o.mola.get("amort", 0.6)) + ", MaxGraus = " + _n(o.mola.get("max_graus", 25)) + "}")
+        L.append(f'\t\t{{Nome = "{o.nome}", Pai = "{o.pai or ""}", Pivo = {v3(o.pivo)}, Papel = "{o.papel}", Mola = {mola}}},')
+    L += ["\t},", "\tPecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso"]
+    for p in modelo.pecas:
+        a, b = p.grade.caixa()
+        tb = bool(set(np.unique(p.grade.cor).tolist()) & set(modelo.cores_brilho))
+        L.append(f'\t\t{{Nome = "{p.nome}", Osso = "{p.osso}", Centro = {v3((a + b) / 2)}, Tamanho = {v3(b - a)}, '
+                 f'Corte = {_n(p.grade.v)}, TemBrilho = {"true" if tb else "false"}, '
+                 f'EscalaAnimada = {"true" if p.escala_animada else "false"}}},')
     L += ["\t},", "\tSoquetes = {"]
     for s in modelo.soquetes:
-        L.append(f'\t\t{{Nome = "{s.nome}", Osso = "{s.osso}", Pos = {{{", ".join(_n(v) for v in s.pos)}}}}},')
+        L.append(f'\t\t{{Nome = "{s.nome}", Osso = "{s.osso}", Pos = {v3(s.pos)}}},')
     L.append("\t},")
     if com_caixas:
-        L.append("\tCaixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha")
+        L.append("\tCaixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha")
         total = 0
         for p in modelo.pecas:
             cx = caixas_gulosas(p.grade)
             total += len(cx)
-            L.append(f"\t\t{p.osso} = {{")
+            L.append(f"\t\t{p.nome} = {{")
             for c in cx:
                 hx = modelo.cores[c[6] - 1].lstrip("#")
-                L.append("\t\t\t{" + ", ".join(_n(v) for v in c[:6]) + f', "{hx}", {1 if c[6] in modelo.cores_brilho else 0}}},')
+                L.append("\t\t\t{" + ", ".join(_n(x) for x in c[:6]) + f', "{hx}", {1 if c[6] in modelo.cores_brilho else 0}}},')
             L.append("\t\t},")
-        L.append("\t},")
-        L.append(f"\tTotalCaixas = {total},")
+        L += ["\t},", f"\tTotalCaixas = {total},"]
     L += ["}", ""]
     return "\n".join(L)
 

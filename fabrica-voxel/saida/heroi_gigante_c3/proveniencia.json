@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_gigante_c3",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiGiganteC3.luau": "782ea15cb7b688daeec8ec59b5f6e07fc8fdbb2d671f4ac4032a3ab113a0b4f2",
+  "Dados_HeroiGiganteC3.luau": "79d8a2f4b4c22f8cfbf387974a8cae44b5ab0294ff8d6e378a7119d7f3f85a5a",
+  "anim.gif": "509d26f8c723039fb5ea75e9ba72cbbf3f1cc4c36e336052c77b594e72b4c233",
+  "anim_Andar.png": "a0e54f3e805cf788f1766a22ac929fd494563334fec9b0211d9451087541f8ba",
+  "anim_Dano.png": "5b8e497688bde1f977d80b476bb3d77fc6928a8a57f238b5c6a84a621d8da84c",
+  "anim_Golpe.png": "e82532279211111ea557eb7ee4f763337ad8ae171d833dfaecafe742e48231fc",
+  "anim_Morte.png": "f12cafe2e8894bc7df3252e7e4fdc94d2e9086475b1236432f8d2f716f779b4f",
+  "anim_Parado.png": "9d36bc6156c4bdaf8eb6a012f140e619c003f151c0b0078eb439a9ab35c9fbef",
+  "folha.png": "c86925512983247b8a8b2f76a83f1e1ad04c754e4c3d3104487b31b558cf4fb9",
+  "icone_64.png": "5baee3c9edd3db0b179edfd9b97ecf5cbfde095dcbd76e037d010ff999945b13",
+  "modelo.glb": "caba74f1f88314456b2501f45042cf65c2be85c7b6cf290382bfabed015098ac",
+  "modelo.vox": "80a52e79a1a852d68ce3a26bddd31e93dc96ee35eb5b1e6dc3b975cb4e7ae295"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

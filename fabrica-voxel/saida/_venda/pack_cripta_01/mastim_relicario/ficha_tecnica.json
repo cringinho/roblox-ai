@@ -1,0 +1,21 @@
+{
+ "id": "mastim_relicario",
+ "nome": "Mastim Relicario",
+ "voxels": 1120,
+ "triangulos": 1022,
+ "pecas": 9,
+ "ossos": 10,
+ "clipes": {
+  "Parado": 6.16,
+  "Andar": 0.69,
+  "Ataque": 0.85,
+  "Dano": 0.31,
+  "Morte": 0.92
+ },
+ "tamanho_studs": [
+  1.125,
+  2.375,
+  3.5
+ ],
+ "nota_p2": 88.8
+}

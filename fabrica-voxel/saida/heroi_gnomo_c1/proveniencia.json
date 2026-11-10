@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_gnomo_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiGnomoC1.luau": "415f75949dde90117f148cd41ccb74f0c29eb52753f4d8c98e270554e9037cf5",
+  "Dados_HeroiGnomoC1.luau": "10bfcfabe40344f586ec38d6a74affcd52a954a32edcf74855ef70578e5e0f97",
+  "anim.gif": "1be04e1ff360e118a195721c57ee93856c424023f65080963a0e998545afc987",
+  "anim_Andar.png": "27cbdbb0a5ca672ebfcc78deb48eb2fb31bd133ab8eff60e6100b7ce441d33a1",
+  "anim_Dano.png": "e8a9acc6fcd83bdd9715023d8ad2bfd555cb8dda32db776d76a4fad1ab01d70f",
+  "anim_Golpe.png": "f3cfdd202cfde97516ef95cf31b8623c9ef8ec75665d9bcea6cb72fe776e3ffd",
+  "anim_Morte.png": "913802f4c200d3a775570057a9abaafc0f945d4a8680da52bbff50b1207a6880",
+  "anim_Parado.png": "15d3db60059034c6a3771678b9d23e0fc56b04ab8ed3ece24c5ed95670e1c4ff",
+  "folha.png": "bb98c6856c9fab3be29288b3d950b3472bc8ff82f033c005fbec3a93ca0131ef",
+  "icone_64.png": "652be10b4b914a570862ba9979a35ad82e3c1b263e66793cd78b25b5f14ac228",
+  "modelo.glb": "ce4d2fcf79d865842f818e40c6aa3e1d7269fc8a82675e6fab6071e3f17bfe88",
+  "modelo.vox": "3f8efb406d42b9c5e31a3f598ba052ba36f857ca32a495e5071ff621a2f6ef39"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

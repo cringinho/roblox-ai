@@ -4,14 +4,18 @@
 return {
 	Id = "coagulo", Nome = "Coagulo", VersaoFabrica = "4.0.0",
 	Altura = 1.875,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Corpo", Pai = "Raiz", Peca = true, Pivo = {0, 0, 0.0625}, Centro = {0, 0.6875, 0.0625}, Tamanho = {1.75, 1.375, 1.625}, Papel = "corpo", Corte = 0.125, TemBrilho = true, EscalaAnimada = true, Mola = nil},
-		{Nome = "Adorno", Pai = "Corpo", Peca = true, Pivo = {0, 1.375, 0.0625}, Centro = {-0.0625, 1.5625, 0.125}, Tamanho = {0.875, 0.625, 0.5}, Papel = "adorno", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 3, Amort = 0.4, MaxGraus = 20}},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Adorno", Pai = "Corpo", Pivo = {0, 1.375, 0.0625}, Papel = "adorno", Mola = {FreqHz = 3, Amort = 0.4, MaxGraus = 20}},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Corpo", Osso = "Corpo", Centro = {0, 0.6875, 0.0625}, Tamanho = {1.75, 1.375, 1.625}, Corte = 0.125, TemBrilho = true, EscalaAnimada = true},
+		{Nome = "Adorno", Osso = "Adorno", Centro = {-0.0625, 1.5625, 0.125}, Tamanho = {0.875, 0.625, 0.5}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Corpo = {
 			{-0.8125, 0.3125, -0.25, 0.125, 0.125, 0.25, "4C0A1D", 0},
 			{-0.25, 0.3125, 0.1875, 1.25, 0.125, 0.625, "210A0C", 0},

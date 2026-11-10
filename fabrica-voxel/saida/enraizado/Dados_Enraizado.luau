@@ -4,17 +4,24 @@
 return {
 	Id = "enraizado", Nome = "Enraizado", VersaoFabrica = "4.0.0",
 	Altura = 3.25,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Base", Pai = "Raiz", Peca = true, Pivo = {0.0625, 0, 0.0625}, Centro = {-0.25, 0.25, -0.25}, Tamanho = {1.75, 0.5, 1.75}, Papel = "corpo", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Haste_1", Pai = "Base", Peca = true, Pivo = {0.0625, 0.375, 0.0625}, Centro = {0.0625, 0.5625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Papel = "haste", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
-		{Nome = "Haste_2", Pai = "Haste_1", Peca = true, Pivo = {0.0625, 0.875, 0.0625}, Centro = {0.0625, 1.0625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Papel = "haste", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
-		{Nome = "Haste_3", Pai = "Haste_2", Peca = true, Pivo = {0.0625, 1.375, 0.0625}, Centro = {0.0625, 1.5625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Papel = "haste", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
-		{Nome = "Cabeca", Pai = "Haste_3", Peca = true, Pivo = {0.0625, 2, 0.0625}, Centro = {0, 2.5, 0}, Tamanho = {1, 1.5, 1}, Papel = "cabeca", Corte = 0.125, TemBrilho = true, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Base", Pai = "Raiz", Pivo = {0.0625, 0, 0.0625}, Papel = "corpo", Mola = nil},
+		{Nome = "Haste_1", Pai = "Base", Pivo = {0.0625, 0.375, 0.0625}, Papel = "haste", Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
+		{Nome = "Haste_2", Pai = "Haste_1", Pivo = {0.0625, 0.875, 0.0625}, Papel = "haste", Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
+		{Nome = "Haste_3", Pai = "Haste_2", Pivo = {0.0625, 1.375, 0.0625}, Papel = "haste", Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 20}},
+		{Nome = "Cabeca", Pai = "Haste_3", Pivo = {0.0625, 2, 0.0625}, Papel = "cabeca", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Base", Osso = "Base", Centro = {-0.25, 0.25, -0.25}, Tamanho = {1.75, 0.5, 1.75}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Haste_1", Osso = "Haste_1", Centro = {0.0625, 0.5625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Haste_2", Osso = "Haste_2", Centro = {0.0625, 1.0625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Haste_3", Osso = "Haste_3", Centro = {0.0625, 1.5625, 0.0625}, Tamanho = {0.625, 0.875, 0.625}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
+		{Nome = "Cabeca", Osso = "Cabeca", Centro = {0, 2.5, 0}, Tamanho = {1, 1.5, 1}, Corte = 0.125, TemBrilho = true, EscalaAnimada = false},
 	},
 	Soquetes = {
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Base = {
 			{-0.25, 0.0625, 0.25, 1.75, 0.125, 0.25, "38354B", 0},
 			{-0.9375, 0.1875, 0.1875, 0.375, 0.125, 0.125, "505264", 0},

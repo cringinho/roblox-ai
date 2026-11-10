@@ -11,6 +11,7 @@
    "formas": [
     {
      "op": "caixa",
+     "nome": "o",
      "tam": [
       5,
       2,
@@ -18,7 +19,8 @@
      ],
      "em": "Cabeca.cranio.dir",
      "desloc": {
-      "cima": 1
+      "cima": 1,
+      "esquerda": 1
      },
      "espelhar": true
     },
@@ -29,10 +31,10 @@
       2,
       2
      ],
-     "em": "Cabeca.cranio.dir",
+     "em": "o.base",
      "desloc": {
-      "direita": 5,
-      "baixo": 1
+      "direita": 2,
+      "cima": 1
      },
      "espelhar": true
     }

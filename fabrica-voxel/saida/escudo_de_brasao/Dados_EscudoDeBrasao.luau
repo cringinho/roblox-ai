@@ -4,16 +4,19 @@
 return {
 	Id = "escudo_de_brasao", Nome = "Escudo de brasao", VersaoFabrica = "4.0.0",
 	Altura = 1.375,
-	Rig = {
-		{Nome = "Raiz", Pai = "", Peca = false, Pivo = {0, 0, 0}, Centro = {0, 0, 0}, Tamanho = {0, 0, 0}, Papel = "raiz", Corte = 0, TemBrilho = false, EscalaAnimada = false, Mola = nil},
-		{Nome = "Item", Pai = "Raiz", Peca = true, Pivo = {0.0625, -0.125, 0}, Centro = {0.0625, 0.625, 0}, Tamanho = {1.125, 1.5, 0.25}, Papel = "corpo", Corte = 0.125, TemBrilho = false, EscalaAnimada = false, Mola = nil},
+	Ossos = { -- pais antes dos filhos
+		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
+		{Nome = "Item", Pai = "Raiz", Pivo = {0.0625, -0.125, 0}, Papel = "corpo", Mola = nil},
+	},
+	Pecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso
+		{Nome = "Item", Osso = "Item", Centro = {0.0625, 0.625, 0}, Tamanho = {1.125, 1.5, 0.25}, Corte = 0.125, TemBrilho = false, EscalaAnimada = false},
 	},
 	Soquetes = {
 		{Nome = "Pegada", Osso = "Item", Pos = {0.0625, 0.6875, 0.125}},
 		{Nome = "Ponta", Osso = "Item", Pos = {0.0625, 1.375, 0.0625}},
 		{Nome = "Base", Osso = "Item", Pos = {0.0625, 0, 0.0625}},
 	},
-	Caixas = { -- {cx, cy, cz, sx, sy, sz, corHex, neon} para montar com Parts, sem importar malha
+	Caixas = { -- por peca: {cx, cy, cz, sx, sy, sz, corHex, neon}; monta o modelo com Parts, sem importar malha
 		Item = {
 			{0.0625, 0.0625, 0.0625, 1.125, 0.125, 0.125, "38354B", 0},
 			{0, 0.1875, 0.0625, 1, 0.125, 0.125, "38354B", 0},

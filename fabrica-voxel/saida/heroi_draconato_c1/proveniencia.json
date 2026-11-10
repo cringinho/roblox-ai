@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_draconato_c1",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiDraconatoC1.luau": "683728f839babdb92ae14424ff1361469fa593e32903cc2db21b69e388746d41",
+  "Dados_HeroiDraconatoC1.luau": "27ce86dc567767b33c25b4350efdc72e57d1d2eaa4e0322c59cfbd976bb91944",
+  "anim.gif": "ddf18c85199a04b60b01845f0774134c674aa9e9d78635ad493e44df3b3efd8f",
+  "anim_Andar.png": "0a4858fd87b1b15f8f49f908957055537edead8a7a765fb4245e65c7dda41573",
+  "anim_Dano.png": "6fa0c46d5220d66d4bd0475f076a898b138c94e70372f38f34d8756c97de3c4e",
+  "anim_Golpe.png": "33ad6e0b406df53619f847250f4f06bd1583bb3b5c0c22470bb8b8993fb84feb",
+  "anim_Morte.png": "eb2d343c351e553b2ad8937ae7c6b1681a08638481b9441a8509daff47290d96",
+  "anim_Parado.png": "394e9d7fa2229b09ec11e3972993f88de4c48f44f92e7309c133bea327cf50d4",
+  "folha.png": "44fafbebc98b175e0381811d7ad6e2d70bae1af342083b024555d2c405ec2f63",
+  "icone_64.png": "a7700cb9ec97e9ed178176ccdb715d2a7a81168efb63e39d0aabfbb9fa91b283",
+  "modelo.glb": "854ccc066eeffce9c2d2500469d0478ca227c63afcc8a303a991f464824d6b02",
+  "modelo.vox": "e9bba960db66b9889eb60251b685e5abcffbe24f9b0b54326f839dce9e6f43f7"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

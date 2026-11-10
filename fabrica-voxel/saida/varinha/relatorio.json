@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "bc3b141aaf80091ebdf3f10e7405f562f6ea6213c32995df3e8d63d68296f6ad",
+ "hash_ficha": "87670fea976bc11af9e8260f5455c35b95f3355fc50766861093d6b6be01657a",
  "p1": {
   "passou": false,
   "regras": [
@@ -23,14 +23,14 @@
    {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 56,
+    "valor": 72,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
    {
     "regra": "brilho",
     "passou": false,
-    "valor": 0.55,
+    "valor": 0.4783,
     "limite": 0.4,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -43,6 +43,12 @@
    }
   ]
  },
+ "malha": {
+  "triangulos": 72,
+  "malhas": 2,
+  "animacoes": 0,
+  "bytes": 7072
+ },
  "p2": {
   "nota": 71.1,
   "minimo": 70,
@@ -52,10 +58,10 @@
     "metrica": "grupos_de_valor",
     "nota": 0.4,
     "valor": {
-     "escuro": 0.45,
+     "escuro": 0.522,
      "medio": 0.0,
      "claro": 0.0,
-     "brilho": 0.55
+     "brilho": 0.4783
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -64,7 +70,7 @@
    {
     "metrica": "tamanho_da_paleta",
     "nota": 1.0,
-    "valor": 3,
+    "valor": 4,
     "alvo": "3 a 24 cores",
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
     "peso": 10
@@ -88,7 +94,7 @@
    {
     "metrica": "area_de_descanso",
     "nota": 1.0,
-    "valor": 0.8,
+    "valor": 0.652,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -98,7 +104,7 @@
     "nota": 0.3,
     "valor": {
      "frente": 1.0,
-     "grade": 0.54
+     "grade": 0.534
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -115,7 +121,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.879,
+    "valor": 0.851,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -140,12 +146,12 @@
   ]
  },
  "numeros": {
-  "voxels": 20,
+  "voxels": 23,
   "pecas": 1,
   "ossos": 2,
-  "cores": 3,
-  "triangulos": 56,
+  "cores": 4,
+  "triangulos": 72,
   "clipes": [],
-  "segundos": 0.02
+  "segundos": 0.06
  }
 }

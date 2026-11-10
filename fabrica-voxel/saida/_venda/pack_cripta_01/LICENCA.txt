@@ -1,0 +1,27 @@
+LICENCA DE USO (modelo; preencha os campos entre colchetes; nao substitui orientacao de advogado)
+
+Produto: pack_cripta_01        Licenciante: [SEU NOME OU ESTUDIO]        Data: [DATA]
+
+1. O QUE VOCE PODE FAZER
+   - Usar os arquivos em quantos jogos, apps, videos e projetos quiser, comerciais ou nao.
+   - Modificar os arquivos para os seus projetos.
+2. O QUE VOCE NAO PODE FAZER
+   - Revender, sublicenciar ou redistribuir os arquivos, modificados ou nao, como asset, pack, modelo
+     avulso ou em bibliotecas de assets.
+   - Usar os arquivos para treinar modelos de inteligencia artificial.
+   - Cunhar NFT ou equivalente a partir dos arquivos.
+   - Alegar autoria dos arquivos originais.
+3. LICENCA ESTENDIDA [opcional]: permite uso em produtos em que o proprio asset e o conteudo vendido
+   (ex.: itens de UGC). Contratada a parte.
+4. EXCLUSIVIDADE [opcional]: o licenciante deixa de vender o produto a terceiros a partir de [DATA].
+5. ORIGEM: os modelos foram gerados por codigo procedural proprio, a partir de fichas de dados, sob direcao
+   de arte humana, com assistencia de IA de texto na escrita do codigo e das fichas. Nao foi usada IA de
+   imagem, nem modelos, texturas ou digitalizacoes de terceiros. O arquivo PROVENIENCIA.json registra a
+   ficha, a semente e o hash de cada arquivo.
+6. SEM OUTRAS GARANTIAS: os arquivos sao fornecidos como estao.
+
+--- ENGLISH SUMMARY ---
+Royalty-free license. You may use and modify the files in unlimited commercial and non-commercial projects.
+You may not resell or redistribute the files (modified or not) as assets, use them to train AI models, or
+mint NFTs. Made with proprietary procedural code from data sheets under human art direction, with
+text-AI assistance for code; no image-generation AI and no third-party models were used.
