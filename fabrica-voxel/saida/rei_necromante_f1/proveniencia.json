@@ -1,0 +1,25 @@
+{
+ "id": "monstro.rei_necromante_f1",
+ "hash_ficha": "a4d54d8caebfbd75345c0abb63bdd7033f3bf96242947e2aecb23dd64af2e419",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_ReiNecromanteF1.luau": "d0b4d98f29efc771d3350f23a800a08dc4e6d1c6f39880a7c2923b10f6f06cb2",
+  "Dados_ReiNecromanteF1.luau": "01064bc6cab2cd52ffa96ef7d234dd34cf99adaac57c88e095f1deaaabd895de",
+  "anim.gif": "2fef3c04ec6e5d1a1f4c2c3abfea553f4a53373f52c056a6f14b321f501d185b",
+  "anim_Andar.png": "1a5e633d245c88157f7a5430b613625206ad72c8ede03a926fadde5f3ea82d14",
+  "anim_Ataque.png": "b0c7a1ee0b27a9d5bd91043d1c8d991514056f4e20aa5bb1ea91f61bd34329bd",
+  "anim_Dano.png": "07ca84a6a5502b0fe9cf2864e2bfb85d96ccf4b37c4275ce2e8597378e9916ae",
+  "anim_Invocar.png": "9006cec31f63e7a14ad3e8b8be2b89e4ccacf625be42a1b0a93f185b275b9068",
+  "anim_Morte.png": "f119c630dc74f29549a24795fd9fa0d86daf95fad97aca8a83f7e7ca6cacda88",
+  "anim_Parado.png": "352e14f4d7a42ed6782cfb999b75779dde1081dbbb28b40bb1d9edf9e4a90f24",
+  "anim_Pisao.png": "76e4f594945bb4d2481140eaffb4c02b093569955ba3461bd79c93af8f596f83",
+  "folha.png": "3fb21666509d6424153d199373aade7aa09698a8404ee07928b8833d47d4e73d",
+  "icone_64.png": "60a82dd0372c425a762bc27d8a98dc8f0094c4c800c93fbca0c7d647d8544dfc",
+  "modelo.glb": "8e06fb24bcedefa86972669029f59c544235ce0ff5e532e853b77545fe40f816",
+  "modelo.vox": "25c15144a1735bb78865d0a71cd8d954027f456398719841006b451f5fb35498"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

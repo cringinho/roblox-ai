@@ -305,6 +305,8 @@ class Paleta:
 
     def rampa(self, nome: str) -> list[str]:
         """Tons da rampa, do escuro ao claro. Aceita faixa: "slate[2:7]"."""
+        if isinstance(nome, str) and nome.startswith("#"):          # "rampa": "#8A3FD1" gera 5 tons em volta dessa cor
+            return gerar_rampa(nome, 5)
         m = _RE_FAIXA.match(nome) if isinstance(nome, str) else None
         base = m.group(1) if m else nome
         if base not in self.rampas:

@@ -559,8 +559,8 @@ def montar_heroi(reg: Registro, paleta, linhagem: str, *, corpo: str | None = No
 
     pcs_orig = montagem.construir_pecas
 
-    def construir(spec, nomes):
-        pcs, anc = pcs_orig(spec, nomes)
+    def construir(spec, nomes, **kw):
+        pcs, anc = pcs_orig(spec, nomes, **kw)
         capt["res"], capt["caixas"] = anc["resolver"], anc["caixas"]
         return pcs, anc
 

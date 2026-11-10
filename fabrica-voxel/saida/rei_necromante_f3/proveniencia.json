@@ -1,0 +1,19 @@
+{
+ "id": "monstro.rei_necromante_f3",
+ "hash_ficha": "4965aac784c247fc1b688c9a58467f2bade408545863f39ffe540501faaee210",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_ReiNecromanteF3.luau": "8d68cf0682a8bf236313d99cf301871f6d3bb1543486f5a0b602ddbc239db0f0",
+  "Dados_ReiNecromanteF3.luau": "ca6eec31d686cda68eab51c8fb0a0f20c08dd85e4284d3b6c3509c595fbde207",
+  "anim.gif": "5a2391d776500b126f9dce358fbdb5669ebdffbbf37b37730ffdcc7a6d332dab",
+  "anim_Parado.png": "461b59d9c2213bb4a8b44813c954c55857a2b12b4f04941378dd13931d71343b",
+  "folha.png": "60ec28cc69fa9cdbd35da232535c53aaeedd0284b7dad7e6a5372ee67eb8e06a",
+  "icone_64.png": "93304b1461d797dbaa41cb5aa073dd167ff380145531f03f3b56a3b754bed00b",
+  "modelo.glb": "d1c0352bf643af0d8b62b5b95c3b8a5fc27d122afc89e6fec9adb2536d4aae77",
+  "modelo.vox": "9dcaa2ad4a8c2cb6f4b53bd064493b614cd3a45cd136b2e3c034a3c26430a681"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

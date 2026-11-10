@@ -16,7 +16,7 @@ import numpy as np
 from . import sdf
 from .contrato import CORTES, Grade, Peca, desloc_semantico
 
-OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels", "placas")
+OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels", "placas", "bloco")
 MODOS = ("uniao", "so_vazio", "cortar", "pintar")
 # normal (em voxels) de cada ancora simples; combinacoes somam (ex.: topo_frente)
 _NORMAIS = {"topo": (0, 1, 0), "base": (0, -1, 0), "frente": (0, 0, -1), "tras": (0, 0, 1),
@@ -168,8 +168,20 @@ def _placas(op: dict, caixas: "_Caixas", peca: str, onde: str) -> list[dict]:
     return out
 
 
-def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple[list[Peca], dict]:
-    """Constroi todas as pecas. Devolve (pecas, ancoras em studs)."""
+def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str], campo: int | None = None) -> tuple[list[Peca], dict]:
+    """Constroi todas as pecas. Devolve (pecas, ancoras em studs). `campo` = lado da grade de trabalho em voxels
+    (padrao 160 = 20 studs); chefe grande pede mais."""
+    global _CAMPO
+    antigo = _CAMPO
+    if campo:
+        _CAMPO = int(campo)
+    try:
+        return _construir_pecas(spec_pecas, nomes_materiais)
+    finally:
+        _CAMPO = antigo
+
+
+def _construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple[list[Peca], dict]:
     indice = {n: i + 1 for i, n in enumerate(nomes_materiais)}
     caixas = _Caixas()
     pecas: list[Peca] = []
@@ -274,6 +286,10 @@ def _avaliar(op, tipo, lado, g, caixas, peca, off, mat_de, onde):
             p[0] = 2 * caixas.eixo_x - p[0]
         return p
 
+    if tipo == "bloco":                                   # caixa em coordenada absoluta: so para ficha importada por programa
+        c, t = np.array(op["centro"], float), np.array(op["tam"], float)
+        mn, mx = np.floor(c - t / 2 + 1e-6), np.floor(c - t / 2 + 1e-6) + np.round(t)
+        return np.ones((mx - mn).astype(int), bool), mn, mx, None
     if tipo == "voxels":
         pts = np.array(op.get("pontos", []), float).reshape(-1, 3)
         base, _ = caixas.ponto(op.get("em", "centro"), peca)

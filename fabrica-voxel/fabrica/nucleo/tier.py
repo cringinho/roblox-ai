@@ -7,15 +7,16 @@ A mesma ficha de monstro sobe de tier sem ser redesenhada. `elevar(ficha, tier)`
 4. ORNAMENTA (placas no dorso a partir do T4, nas costas a partir do T7, espinhos de coroa a partir do T9).
 O portao P1 "detalhe_minimo" cobra o minimo de voxels e de ossos do tier.
 
-Referencia dos numeros: a Forja Alta do dono (T1-T2 em blocos simples; elite com 6 a 12 mil voxels e 32 a 43 ossos).
+Referencia dos numeros: a Forja Alta do dono (T1-T2 em blocos simples; elite com 6 a 12 mil voxels) e o Rei Necromante
+do bestiario (T7: 269, 399 e 747 blocos; 26, 20 e 30 ossos nas tres fases).
 """
 from __future__ import annotations
 
 import copy
 
 # tier: (voxels minimos, ossos minimos sem contar a Raiz, escala linear das formas)
-TABELA = {1: (1000, 8, 1.00), 2: (1500, 10, 1.15), 3: (2200, 12, 1.30), 4: (3200, 16, 1.48), 5: (4500, 20, 1.66),
-          6: (6000, 24, 1.83), 7: (8000, 28, 2.02), 8: (10000, 32, 2.18), 9: (13000, 36, 2.38), 10: (16000, 40, 2.55)}
+TABELA = {1: (1000, 8, 1.00), 2: (1500, 10, 1.15), 3: (2500, 12, 1.36), 4: (6000, 14, 1.82), 5: (8000, 16, 2.00),
+          6: (10000, 18, 2.16), 7: (13000, 20, 2.36), 8: (16000, 22, 2.52), 9: (20000, 24, 2.72), 10: (26000, 28, 2.97)}
 MEMBROS = ("joelho", "reverso", "cotovelo")
 CADEIA_LIVRE = ("cauda", "pescoco", "haste", "segmento", "pano", "asa", "antena", "lingua", "folha", "raiz_planta", "barbatana")
 
@@ -126,5 +127,43 @@ def elevar(ficha: dict, tier: int) -> dict:
             if tier >= 9:
                 peca["formas"].append({"op": "placas", "em": base["nome"], "face": "topo", "tam": [1, 3, 1], "vao": 4,
                                        "margem": borda, "material": mat, "so_borda": True})
+    _kits(f, tier)
     f["tier"] = tier
     return f
+
+
+def _kits(f: dict, tier: int):
+    """Detalhe por papel do osso, no espirito dos chefes desenhados a mao (cada osso com suas pontas, aneis e cristas):
+    membro ganha capa na junta de cima e anel no meio; cauda e pescoco ganham aneis; a cabeca ganha sobrolho e, nos
+    tiers altos, coroa de espinhos; o corpo ganha placas nos flancos. Tudo no material "detalhe" quando existir."""
+    nomes_mat = [(m.get("nome") if isinstance(m, dict) else m) for m in f.get("materiais", [])]
+    papel = {o["nome"]: o.get("papel", "corpo") for o in f.get("ossos", [])}
+    for p in f["pecas"]:
+        base = next((x for x in p.get("formas", []) if x.get("op") == "caixa" and isinstance(x.get("tam"), list)), None)
+        if base is None:
+            continue
+        w, h, d = base["tam"]
+        det = "detalhe" if "detalhe" in nomes_mat else base.get("material")
+        pp = papel.get(p.get("osso", p["nome"]), "corpo")
+        novas = []
+        if pp in ("perna", "braco") and h >= 6 and tier >= 4:
+            novas.append({"op": "caixa", "tam": [w + 2, 2, d + 2], "em": "topo", "encaixe": "dentro", "material": base.get("material")})
+            if tier >= 5:
+                novas.append({"op": "caixa", "tam": [w + 2, max(1, tier // 4), d + 2], "em": "centro", "encaixe": "centro", "material": det})
+            if tier >= 8:
+                novas.append({"op": "caixa", "tam": [1, 3, 2], "em": "centro", "encaixe": "centro", "desloc": {"frente": d / 2 + 1}, "material": det})
+        elif pp in ("cauda", "pescoco", "segmento", "haste") and tier >= 5 and min(w, h, d) >= 3:
+            eixo = max(range(3), key=lambda e: base["tam"][e])
+            anel = [w + 2, h + 2, d + 2]
+            anel[eixo] = max(1, tier // 4)
+            novas.append({"op": "caixa", "tam": anel, "em": "centro", "encaixe": "centro", "material": det})
+        elif pp == "cabeca" and base.get("nome") and tier >= 4:
+            novas.append({"op": "caixa", "tam": [w, max(1, tier // 4), 2], "em": f'{base["nome"]}.frente', "desloc": {"cima": h / 4}, "material": base.get("material")})
+            if tier >= 8:
+                novas.append({"op": "placas", "em": base["nome"], "face": "topo", "tam": [1, 2 + (tier >= 10), 1], "vao": 3,
+                              "margem": 1 + int(max(base.get("chanfro", 0), base.get("raio", 0))), "material": det, "so_borda": True})
+        elif pp == "corpo" and base.get("nome") and tier >= 6 and h >= 8:
+            borda = 2 + int(max(base.get("chanfro", 0), base.get("raio", 0)))
+            for face in ("dir", "esq"):
+                novas.append({"op": "placas", "em": base["nome"], "face": face, "tam": [1, 3, 4], "vao": 2, "margem": borda, "material": det})
+        p["formas"] += novas

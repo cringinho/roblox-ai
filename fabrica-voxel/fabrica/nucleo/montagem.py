@@ -36,11 +36,11 @@ def materiais_da_ficha(lista, paleta: Paleta) -> list[Material]:
 
 def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = True) -> Modelo:
     tier = int(ficha.get("tier", 1) or 1)
-    if tier > 1 and ficha.get("tipo") in ("monstro", "arquetipo", "npc") and not ficha.get("_tier_aplicado"):
+    if tier > 1 and ficha.get("tipo") in ("monstro", "arquetipo", "npc") and not ficha.get("tier_manual"):
         from .tier import elevar
         ficha = elevar(ficha, tier)                       # T2..T10: maior, mais repeticoes, mais ossos, mais ornamento
     mats = materiais_da_ficha(ficha.get("materiais"), paleta)
-    pecas, anc = construir_pecas(ficha["pecas"], [m.nome for m in mats])
+    pecas, anc = construir_pecas(ficha["pecas"], [m.nome for m in mats], campo=ficha.get("campo"))
     if tier > 1:
         for p in pecas:
             _colar_soltos(p)
@@ -52,8 +52,11 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
         ossos.append(Osso("Raiz", None, (0.0, 0.0, 0.0), "raiz"))
     for o in ficha.get("ossos", []):
         peca_ref = o["nome"] if o["nome"] in nomes_pecas else (nomes_pecas[0] if nomes_pecas else "")
-        piv = res(o.get("pivo", "base"), peca_ref) if o.get("pivo") != "origem" else np.zeros(3)
         v = CORTES["grade"]
+        if isinstance(o.get("pivo"), dict) and "abs" in o["pivo"]:        # ficha importada: pivo em voxels do modelo
+            piv = np.array(o["pivo"]["abs"], float) * v
+        else:
+            piv = res(o.get("pivo", "base"), peca_ref) if o.get("pivo") != "origem" else np.zeros(3)
         piv = np.round(np.asarray(piv) / (v / 2)) * (v / 2)
         ossos.append(Osso(o["nome"], o.get("pai", "Raiz") if o["nome"] != "Raiz" else None, tuple(float(x) for x in piv),
                           o.get("papel", "corpo"), o.get("limites"), o.get("mola"), _repouso(o)))
@@ -70,7 +73,10 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
     for s in ficha.get("soquetes", []):
         if s["osso"] not in nomes:
             raise ErroFicha(f'soquete "{s["nome"]}": osso "{s["osso"]}" nao existe. Ossos: {sorted(nomes)}.')
-        pos = res({"em": s.get("em", "centro"), "desloc": s.get("desloc")}, s["osso"] if s["osso"] in nomes_pecas else nomes_pecas[0])
+        if "abs" in s:
+            pos = np.array(s["abs"], float) * CORTES["grade"]
+        else:
+            pos = res({"em": s.get("em", "centro"), "desloc": s.get("desloc")}, s["osso"] if s["osso"] in nomes_pecas else nomes_pecas[0])
         modelo.soquetes.append(Soquete(s["nome"], _osso_do_ponto(modelo, s["osso"], pos), tuple(float(x) for x in pos)))
     modelo.meta["pintura"] = pintar(modelo, paleta, acabamentos=ficha.get("acabamentos"), semente=semente)
     if com_clipes:
@@ -123,6 +129,8 @@ def _colar_soltos(p: Peca, alcance: int = 4):
 
 def _repouso(o: dict):
     """"repouso": {"frente": 12, "esquerda": 0, "tombar_direita": 0} -> quaternion. Sem o campo, osso reto."""
+    if o.get("repouso_quat"):                              # ficha importada: giro ja em quaternion
+        return tuple(float(x) for x in o["repouso_quat"])
     r = o.get("repouso")
     if not r or not isinstance(r, dict):
         return (0.0, 0.0, 0.0, 1.0)
@@ -163,7 +171,14 @@ def _segmentar(modelo: Modelo, ficha: dict, juntas: dict):
             if abs(pr[0] - pf[0]) > 1e-6 or abs(pr[2] - pf[2]) > 1e-6 or pf[1] >= pr[1]:
                 raise ErroFicha(f'osso "{o["nome"]}": para "cadeia_com", o pivo de "{filho}" precisa estar reto abaixo do pivo de '
                                 f'"{o["nome"]}" (mesmo x e z). Use a mesma coluna para as duas pecas.')
-            base = min(p.grade.caixa()[0][1] for p in modelo.pecas if p.osso == filho)
+            desc, cresceu = {filho}, True
+            while cresceu:
+                cresceu = False
+                for x in modelo.ossos:
+                    if x.pai in desc and x.nome not in desc:
+                        desc.add(x.nome)
+                        cresceu = True
+            base = min(p.grade.caixa()[0][1] for p in modelo.pecas if p.osso in desc)
             dobra = o.get("dobra", {"perna": "joelho", "braco": "cotovelo"}.get(o.get("papel", ""), "livre"))
             cadeias[o["nome"]] = {"ossos": [o["nome"], filho], "comprimentos": [round(float(pr[1] - pf[1]), 4), round(float(pf[1] - base), 4)],
                                   "eixo": 1, "sentido": -1.0, "dobra": dobra}

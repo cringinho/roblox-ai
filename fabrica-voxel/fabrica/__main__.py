@@ -43,6 +43,10 @@ def main(argv=None) -> int:
     s = sub.add_parser("revisar", help="P3: registra a revisao visual (cartoes/revisao_visual.md)")
     s.add_argument("id"); s.add_argument("respostas", help="10 letras A1..A10: s, q, n ou -")
     s.add_argument("--por", required=True, help="quem revisou"); s.add_argument("--data", default="")
+    s = sub.add_parser("importar", help="importa um modelo de blocos da Forja antiga (script Luau) como ficha de monstro")
+    s.add_argument("arquivo"); s.add_argument("--id", required=True); s.add_argument("--nome", default=None)
+    s.add_argument("--tier", type=int, default=7); s.add_argument("--clipes", default=None, help="id da ficha de clipes, ex.: clipe.rei_f1")
+    s.add_argument("--flutua", action="store_true", help="o modelo paira (nao precisa encostar no chao)")
     a = ap.parse_args(argv)
     if not a.cmd:
         ap.print_help()
@@ -117,6 +121,10 @@ def main(argv=None) -> int:
         if a.cmd == "vender":
             from .venda import vender
             print(vender(a.ids, a.nome, reg, data=a.data, exigir_p3=not a.sem_p3))
+            return 0
+        if a.cmd == "importar":
+            from .importar_forja import importar
+            print(importar(a.arquivo, a.id, a.nome, a.tier, a.clipes, a.flutua))
             return 0
         if a.cmd == "revisar":
             from .revisao import registrar

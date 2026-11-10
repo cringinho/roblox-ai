@@ -109,7 +109,7 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
         # pedacos separados so valem se cada um encosta em outra peca do mesmo osso (ex.: duas orelhas na cabeca)
         viz = np.zeros(p.grade.mat.shape, bool)
         for q in modelo.pecas:
-            if q is not p and q.osso in (p.osso, pais.get(p.osso)) and q.grade.v == p.grade.v:
+            if q is not p and (q.osso in (p.osso, pais.get(p.osso)) or pais.get(q.osso) == p.osso) and q.grade.v == p.grade.v:
                 off = np.round((q.grade.origem - p.grade.origem) / p.grade.v).astype(int)
                 a0 = np.maximum(off, 0); b0 = np.minimum(off + np.array(q.grade.mat.shape), np.array(viz.shape))
                 if np.all(b0 > a0):
@@ -119,6 +119,8 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
         orfaos = sum(1 for k in range(1, n + 1) if not (perto & (rot == k)).any())
         if orfaos > (0 if viz.any() else 1):
             soltos[p.nome] = orfaos
+    perm = modelo.meta.get("soltos_de_origem", {})          # modelo importado: pedacos soltos que ja eram assim no desenho do dono
+    soltos = {k: v for k, v in soltos.items() if v > int(perm.get(k, 0))}
     out.append(_r("voxels_soltos", not soltos, soltos or 0, "1 componente por peca",
                   "Ha pedacos desconectados dentro da peca. Engrosse o detalhe (minimo 2 voxels), encoste-o no corpo "
                   "ou separe-o em outra peca com osso proprio."))
