@@ -11,6 +11,7 @@
 | P1 `clipe_X_laco` | o laço dá um tranco | `harm` inteiro nas ondas; última pose igual à primeira |
 | P1 `clipe_X_giro` | um osso gira demais num quadro | aumente a duração ou reduza a amplitude |
 | P1 `clipe_X_gemeos` | esquerda e direita espelhadas | mude `fase` de um lado em 0.03 a 0.08 |
+| P1 `um_tamanho_de_voxel` | peças com `corte` diferente no mesmo modelo | o mesmo `corte` em todas as peças |
 | P1 `triangulos_por_malha` | peça com cor demais ou grande demais | divida a peça; simplifique o padrão |
 | P2 `grupos_de_valor` | tudo no mesmo tom | materiais vizinhos com rampas de claridade diferente |
 | P2 `silhueta` | caixote ou esfiapado | acrescente 1 ou 2 formas que saiam do corpo, ou engrosse |

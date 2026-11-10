@@ -16,6 +16,15 @@
     "conserto": "Ha pedacos desconectados dentro da peca. Engrosse o detalhe (minimo 2 voxels), encoste-o no corpo ou separe-o em outra peca com osso proprio."
    },
    {
+    "regra": "um_tamanho_de_voxel",
+    "passou": true,
+    "valor": [
+     0.125
+    ],
+    "limite": "1 tamanho por modelo",
+    "conserto": "Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo \"corte\" em todas as pecas do modelo; se precisa de mais detalhe, suba o corte do modelo inteiro."
+   },
+   {
     "regra": "triangulos_por_malha",
     "passou": true,
     "valor": 476,
@@ -252,6 +261,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 3.13
+  "segundos": 3.36
  }
 }

@@ -66,6 +66,10 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
     out.append(_r("voxels_soltos", not soltos, soltos or 0, "1 componente por peca",
                   "Ha pedacos desconectados dentro da peca. Engrosse o detalhe (minimo 2 voxels), encoste-o no corpo "
                   "ou separe-o em outra peca com osso proprio."))
+    cortes = sorted({float(p.grade.v) for p in modelo.pecas})
+    out.append(_r("um_tamanho_de_voxel", len(cortes) <= 1, cortes, "1 tamanho por modelo",
+                  'Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo "corte" em todas as pecas do modelo; '
+                  "se precisa de mais detalhe, suba o corte do modelo inteiro."))
     tri = contar_triangulos(modelo)
     modelo.meta["triangulos"] = tri["total"]
     out.append(_r("triangulos_por_malha", tri["maior"] <= TETO_TRIANGULOS, tri["maior"], TETO_TRIANGULOS,
