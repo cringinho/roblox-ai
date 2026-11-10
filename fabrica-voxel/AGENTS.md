@@ -43,6 +43,7 @@ Saídas em `saida/<id>/`: `folha.png` (confira), `anim.gif`, `modelo.glb`, `mode
 | Linhagem, traço, rosto, cabelo | `cartoes/linhagem.md` |
 | Produzir muitos de uma vez e empacotar | `cartoes/lote.md` |
 | Entender por que reprovou | `cartoes/reprovou.md` |
+| Revisão visual antes de publicar ou vender (P3) | `cartoes/revisao_visual.md` |
 
 Leia **só** o cartão da tarefa. Não leia `docs/ARQUITETURA.md` a menos que vá mudar o código da fábrica.
 

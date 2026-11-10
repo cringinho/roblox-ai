@@ -17,9 +17,10 @@ python -m fabrica pacote        # gera saida/FabricaVoxel.rbxmx com o runtime e 
 ```
 Arraste o arquivo para o Studio, rode o Script INSTALAR uma vez. Veja `roblox/TESTE_NO_STUDIO.md`.
 
-Vender:
+Vender (antes, a revisão visual de cada um: `cartoes/revisao_visual.md`):
 ```
+python -m fabrica revisar lobo_a ssssssssss --por dono
 python -m fabrica vender lobo_a lobo_b --nome pack_lobos_01 --data 2026-11-10
 ```
 Gera `saida/_venda/pack_lobos_01.zip` com GLB em studs e em metros, .vox, vitrine, giro, animações, ficha técnica,
-LEIA-ME, licença-modelo e PROVENIENCIA.json. Só entra asset aprovado.
+LEIA-ME, licença-modelo e PROVENIENCIA.json. Só entra asset aprovado e com revisão visual válida.

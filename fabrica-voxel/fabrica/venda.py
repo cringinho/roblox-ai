@@ -7,7 +7,7 @@ import shutil
 import zipfile
 from pathlib import Path
 
-from . import esteira
+from . import esteira, revisao
 from .nucleo import exporta, render
 from .nucleo.montagem import montar
 from .nucleo.paleta import Paleta
@@ -65,19 +65,24 @@ text-AI assistance for code; no image-generation AI and no third-party models we
 """
 
 
-def vender(ids: list[str], nome: str, reg, data: str = "") -> str:
+def vender(ids: list[str], nome: str, reg, data: str = "", exigir_p3: bool = True) -> str:
     pal = Paleta.carregar()
     pasta = RAIZ / "saida" / "_venda" / nome
     if pasta.exists():
         shutil.rmtree(pasta)
     pasta.mkdir(parents=True)
     prov = {"pack": nome, "data": data, "fabrica": exporta.VERSAO_FABRICA, "modelos": []}
-    recusados = []
+    recusados, sem_p3 = [], []
     for ref in ids:
         rel = esteira.construir(ref, registro=reg, data=data, imagens=False, exportar=False)
         if rel["status"] != "aprovado":
             recusados.append(ref)
             continue
+        p3 = revisao.publicavel(rel["id"], rel.get("hash_ficha"))
+        if not p3:
+            sem_p3.append(ref)
+            if exigir_p3:
+                continue
         ficha = reg.resolver(ref)
         m = montar(ficha, pal)
         d = pasta / m.id
@@ -97,7 +102,8 @@ def vender(ids: list[str], nome: str, reg, data: str = "") -> str:
         (d / "ficha_tecnica.json").write_text(json.dumps({
             "id": m.id, "nome": m.nome, "voxels": m.n_voxels(), "triangulos": tri["total"], "pecas": len(m.pecas),
             "ossos": len(m.ossos), "clipes": {k: round(c.duracao, 2) for k, c in m.clipes.items()},
-            "tamanho_studs": [round(float(v), 3) for v in (mx - mn)], "nota_p2": rel["p2"]["nota"]}, indent=1, ensure_ascii=False), encoding="utf-8")
+            "tamanho_studs": [round(float(v), 3) for v in (mx - mn)], "nota_p2": rel["p2"]["nota"],
+            "revisao_visual": "publicavel" if p3 else "pendente"}, indent=1, ensure_ascii=False), encoding="utf-8")
         prov["modelos"].append({"id": m.id, "hash_ficha": rel.get("hash_ficha"), "semente": 0,
                                 "arquivos": {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(d.iterdir())}})
     prov["metodo"] = ("Gerado por codigo procedural a partir de fichas de dados, sob direcao de arte humana, com assistencia de IA de "
@@ -114,4 +120,7 @@ def vender(ids: list[str], nome: str, reg, data: str = "") -> str:
     msg = f"{zp}  ({len(prov['modelos'])} modelos, {zp.stat().st_size // 1024} KB)"
     if recusados:
         msg += f"\nFICARAM DE FORA (nao aprovados): {recusados}. Rode: python -m fabrica construir <id> para ver o conserto."
+    if sem_p3:
+        msg += (f"\n{'FICARAM DE FORA' if exigir_p3 else 'ENTRARAM SEM REVISAO VISUAL'} (sem P3 valido): {sem_p3}. "
+                "Siga cartoes/revisao_visual.md e rode: python -m fabrica revisar <id> <respostas> --por <nome>")
     return msg

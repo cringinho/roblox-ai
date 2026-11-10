@@ -38,6 +38,10 @@ def main(argv=None) -> int:
     s = sub.add_parser("pacote", help="gera saida/FabricaVoxel.rbxmx com o runtime e os dados aprovados")
     s = sub.add_parser("vender", help="monta o pacote de venda de um ou mais assets")
     s.add_argument("ids", nargs="+"); s.add_argument("--nome", required=True); s.add_argument("--data", default="")
+    s.add_argument("--sem-p3", action="store_true", help="aceita modelos sem revisao visual (so para teste)")
+    s = sub.add_parser("revisar", help="P3: registra a revisao visual (cartoes/revisao_visual.md)")
+    s.add_argument("id"); s.add_argument("respostas", help="10 letras A1..A10: s, q, n ou -")
+    s.add_argument("--por", required=True, help="quem revisou"); s.add_argument("--data", default="")
     a = ap.parse_args(argv)
     if not a.cmd:
         ap.print_help()
@@ -111,7 +115,11 @@ def main(argv=None) -> int:
             return 0
         if a.cmd == "vender":
             from .venda import vender
-            print(vender(a.ids, a.nome, reg, data=a.data))
+            print(vender(a.ids, a.nome, reg, data=a.data, exigir_p3=not a.sem_p3))
+            return 0
+        if a.cmd == "revisar":
+            from .revisao import registrar
+            print(registrar(a.id, a.respostas, a.por, reg, data=a.data))
             return 0
     except ErroRegistro as e:
         print(f"ERRO: {e}")
