@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.alado",
+ "hash_ficha": "63fb8009541e57efda249d4f22fc6ee4df236583bbfffbe106b1dbf4fca2cc90",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Alado.luau": "07ba77617d900f5439fdca62055ba2eaf2e3c9194f1be81d2a63101adcd768c9",
+  "Dados_Alado.luau": "c0c998378748d04471374791107e5bdb2ddc94d1e081c0d152d15799a508e33b",
+  "anim.gif": "fadea922e654af929366aff896c72dfdb2ca8040369a4239fcf6ac4aae34e2c1",
+  "anim_Andar.png": "95106a974d797c754f8ba6d0cd8700c9436ccf9724c6c5e71d21862395d1dca4",
+  "anim_Ataque.png": "349210d16da506bf48a7a0ba23a9cb98e0606c60302e563360223a80848c2f78",
+  "anim_Dano.png": "de08329cb38ed656b73350b532576d272299da72ad434823b0e3f384b4e9d74e",
+  "anim_Morte.png": "65c988fb48f21f9a3fb3ecf1dfee1272679b597a9e0c8ce983d4959b8d219127",
+  "anim_Parado.png": "e790899d57d453856d854a7a2db33e885403e23b4e476bce0a863f1bf06ca15c",
+  "folha.png": "952f452260f94b67fe81af5d750e87d7283516fee2457ce0f330fce90031cf3d",
+  "icone_64.png": "477d7a4f2ff258ddd20559e969f339c84b9ac38c20f5d162da5e28452f39a703",
+  "modelo.glb": "45de57fceb7d47770eceb906180fb1f0e2691745f5ed1da0c9e93399f69de093",
+  "modelo.vox": "911a7fe17fb6e61bcc341c40e1693f814836603eb00bc64545362b836ac53878"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

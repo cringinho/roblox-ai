@@ -1,0 +1,23 @@
+{
+ "id": "monstro.gargulho",
+ "hash_ficha": "5ff0ccca6b9b0208fd9dbca19fbca399086570e95b6e8f3a8213a2a3a6e4929a",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Gargulho.luau": "1cf4bf9982bf067b2e12699a1961d9288a544ff94a4596d011560bc144c8951d",
+  "Dados_Gargulho.luau": "ef01a5f73c092ab023c8aac2e9fe26399498e9c7fc0c1b6d1118c76dda8d214e",
+  "anim.gif": "e12423ca8f80f414f78905b48de07c672e51a3d31dd21c4fc99d59993325227d",
+  "anim_Andar.png": "4572643321eaad028058f9fe687569fb988c57f8ff0627f6e67a9cc9760da4ea",
+  "anim_Ataque.png": "d6f0290d730f8dcd4160a8d514fe0d12d7bc245ff8a000b980e49bc15be607b1",
+  "anim_Dano.png": "6d88f326d28e569f050884c8e1a14094076c7535b2d06f67846fef7de9738a14",
+  "anim_Morte.png": "a603f4ab3a327c1697611483e1affa90c4f947472878336e655ece8b1bb31981",
+  "anim_Parado.png": "74fc01c5c4595614fea94b5644c03f5998c10f18046bf3ffb2b140db5cd63296",
+  "folha.png": "c76943879d175d2c56e71bb5fdc714595289f9f29f0f3be7b854f4528740b92a",
+  "icone_64.png": "cdc43d8ae3e6e026f14b39ab2529b59d6b3a4a3704216067295faa2508717b27",
+  "modelo.glb": "48c0ec14273637cf4ccf40f034f892107f38c4645d004970c68adb6b8e239c90",
+  "modelo.vox": "3f01c35b3f8402a710743e7a0bd26f8d7fe32cc880d3fff41602b319ed31b92a"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

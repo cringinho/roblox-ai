@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.dragao",
+ "hash_ficha": "fa8b6f25f613b57843e0701a86a571ec25b7efabdd8566063d60920e82514749",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Dragao.luau": "09bfedd2b29197110c32d7aad87193dbb912ec92ba67378f47ebc2b8090ed518",
+  "Dados_Dragao.luau": "c3d9fde6bd0d9a8b9b4b7b018054a9ec4ecd7d65d209c4f91120b5b902f5e956",
+  "anim.gif": "dcd340f91ef3c558c33cb3219d6d36372432ba8c3611231d78dc52ccf2fd592e",
+  "anim_Andar.png": "a04a66e1a1408a039d25bd0bb3e60db9be291d99d6315688a61365cd807e0e58",
+  "anim_Ataque.png": "1ed052a0b56497cf3537a757ddb29320f72bbc9b4cf1dca41ef2b821da452073",
+  "anim_Dano.png": "ca9e3bc8ff324e7ea3f3344adf37798abfd7017961c8a87afa42d30288b92606",
+  "anim_Morte.png": "b2c588f473d9700a5e1ff15cdeab4f2c60f241ce2b82ba6253ad35c28d62faea",
+  "anim_Parado.png": "5386c767a6d9e2d25791bd1429ae69eb51f465b9a4766c2b8d779cc817ce73e0",
+  "folha.png": "9b23c6eee9e8d5d4dc32f7da1a4cd6dd32179181b5b8057b7cbb8b17573ee9b0",
+  "icone_64.png": "eb1a3cf973e0379df3ddcbdaf7c6fe32a866b8509a0f7a7719b60d18c2ba2474",
+  "modelo.glb": "d81e694c793228da1983ff35728fc48f3e6e68ab38137d376edb8fdd31edfb58",
+  "modelo.vox": "5ebdae585d6ab82aad9dc7d8564685aa7d02f1610cd674516d73c5dca30c156a"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.quadrupede_ungulado",
+ "hash_ficha": "80c9843357f835b4c2abe7fb2e502b800a67d2ed2ea062ab5d9da9866650fb85",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_QuadrupedeUngulado.luau": "fa09895debfa3b532bdd3063c2c0bf277941dbcca5531af54c71f661dcea89e5",
+  "Dados_QuadrupedeUngulado.luau": "95f828ccecc46cde183452fb2d23f507221930afc024820e4e4a91a27d68d951",
+  "anim.gif": "e5119fcb7ad2fe6c3ffc3c91e87660e09dba6722d0255940e124e962dbe50ac8",
+  "anim_Andar.png": "a583d214ce8ab43fa580432c1d9c01a16e994224930572657db0cc1468cedf4e",
+  "anim_Ataque.png": "93bc216b50356a0386140284bcc194ac4f75f0f28ec0353ec5fcfb5abab1203d",
+  "anim_Dano.png": "35750d7e36a32097e3951d2eda8e0c20fecfbfbaff211bf699fe03cb7c3c2f06",
+  "anim_Morte.png": "a62a1b9b16f3517584906b2ab5d8b2adde2fa33a2e52e86a73b95ae2db400343",
+  "anim_Parado.png": "8049f788932f0630bd172232c903c87e11972ec79d780ff39a61758bf7798b4b",
+  "folha.png": "0b2a46783afa2ec732ac3a5074656764a61bb945ad39f111716d0d4a53f84c42",
+  "icone_64.png": "87630f18c41647b416b2eeda8298dcdedafdda7af17086b47c66480e006a94d4",
+  "modelo.glb": "3debda8eea789a302ca35ecfa3c53f758bdd91322b6d9fa407588d65a542f65c",
+  "modelo.vox": "d86cea6e0f372f057c9905021be4087f9673a597bd4535510bc500eb4e70bdca"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

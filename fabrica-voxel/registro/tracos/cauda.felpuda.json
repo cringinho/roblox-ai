@@ -1,0 +1,60 @@
+{
+ "id": "traco.cauda.felpuda",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda felpuda",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 2.5,
+     "amort": 0.35,
+     "max_graus": 35
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      6
+     ],
+     "raio": 1,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      3
+     ],
+     "raio": 1,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 1,
+      "tras": 5
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

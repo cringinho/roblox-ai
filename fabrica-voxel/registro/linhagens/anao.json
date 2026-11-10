@@ -1,0 +1,98 @@
+{
+ "id": "linhagem.anao",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Anao",
+ "conceito": "Dwarf",
+ "tamanho": "P",
+ "classe_cabeca": "larga",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "barba.longa"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_bronze",
+   "pele_oliva"
+  ],
+  "cabelo": [
+   "cabelo_prata",
+   "cabelo_cobre",
+   "cabelo_castanho",
+   "cabelo_noite"
+  ],
+  "olhos": [
+   "void",
+   "abyss",
+   "earth"
+  ]
+ },
+ "cabeca": {
+  "corpo_padrao": "3",
+  "roupa": "ferro"
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": "nenhuma",
+   "s": 2,
+   "h": 5,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 2,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 4,
+   "cp": 2,
+   "ch": 2,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 3,
+   "h": 10,
+   "cp": 0,
+   "ch": 3,
+   "co": 2
+  },
+  {
+   "o": 5,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 7,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 2,
+   "h": 1,
+   "cp": 2,
+   "ch": 1,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "pesado",
+ "lore": "Cavou as criptas e sabe onde cada porta emperra."
+}

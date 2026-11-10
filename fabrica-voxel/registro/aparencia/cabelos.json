@@ -1,0 +1,403 @@
+{
+ "id": "aparencia.cabelos",
+ "tipo": "aparencia",
+ "_ajuda": "Formas ancoradas em Cabeca.cranio. $w $h $d = largura, altura e fundo do cranio da classe.",
+ "cabelos": {
+  "1": {
+   "nome": "curto",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      4,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      7,
+      3
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 2
+     }
+    }
+   ]
+  },
+  "2": {
+   "nome": "medio",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      5,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      "$h",
+      4
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      7,
+      6
+     ],
+     "em": "Cabeca.cranio.dir",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 1,
+      "cima": 1,
+      "tras": 1
+     },
+     "espelhar": true
+    }
+   ]
+  },
+  "3": {
+   "nome": "longo",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      5,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      "$h+6",
+      4
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "baixo": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      10,
+      5
+     ],
+     "em": "Cabeca.cranio.dir",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 1,
+      "baixo": 1,
+      "tras": 2
+     },
+     "espelhar": true
+    }
+   ]
+  },
+  "4": {
+   "nome": "coque",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      4,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      6,
+      3
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      5,
+      5
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo_tras",
+     "encaixe": "centro",
+     "desloc": {
+      "cima": 2,
+      "tras": 1
+     }
+    }
+   ]
+  },
+  "5": {
+   "nome": "raspado",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w",
+      2,
+      "$d"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 1
+     }
+    }
+   ]
+  },
+  "6": {
+   "nome": "franja",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      5,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      "$h-2",
+      4
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w",
+      3,
+      1
+     ],
+     "em": "Cabeca.cranio.topo_frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1,
+      "baixo": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      6
+     ],
+     "em": "Cabeca.cranio.dir",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 1,
+      "cima": 0,
+      "tras": 1
+     },
+     "espelhar": true
+    }
+   ]
+  },
+  "7": {
+   "nome": "moicano",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      4,
+      "$d+1"
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "baixo": 1,
+      "tras": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      "$d-4"
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "cima": 3
+     }
+    }
+   ]
+  },
+  "8": {
+   "nome": "trancas",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      4,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      6,
+      3
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      12,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 1,
+      "baixo": 4,
+      "frente": 1
+     },
+     "espelhar": true
+    }
+   ]
+  },
+  "9": {
+   "nome": "rabo",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      4,
+      "$d+2"
+     ],
+     "raio": 2,
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      6,
+      3
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1,
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      9,
+      2
+     ],
+     "em": "Cabeca.cranio.tras",
+     "desloc": {
+      "baixo": 2
+     }
+    }
+   ]
+  },
+  "10": {
+   "nome": "careca",
+   "formas": []
+  }
+ }
+}

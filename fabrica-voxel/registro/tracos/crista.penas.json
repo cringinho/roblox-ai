@@ -1,0 +1,59 @@
+{
+ "id": "traco.crista.penas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Crista de penas",
+ "material": "cabelo",
+ "pecas": [
+  {
+   "nome": "Crista",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      9
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "baixo": 1,
+      "tras": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      4
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "cima": 2,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      2
+     ],
+     "em": "Cabeca.cranio.tras",
+     "desloc": {
+      "tras": 0,
+      "cima": 1
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "esconde",
+  "chapeu": "esconde"
+ }
+}

@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.ciclope",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Ciclope",
+ "conceito": "Cyclops",
+ "tamanho": "G",
+ "classe_cabeca": "alta",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [],
+ "rampas": {
+  "pele": [
+   "pele_basalto",
+   "pele_pedra",
+   "ardosia"
+  ],
+  "cabelo": [
+   "pele_basalto"
+  ],
+  "olhos": [
+   "ember",
+   "gold",
+   "blood"
+  ]
+ },
+ "cabeca": {
+  "perfil_pele": "pedra",
+  "olhos_brilho": true,
+  "olho_unico": true,
+  "sem_cabelo": true,
+  "corpo_padrao": "3",
+  "roupa": "couro"
+ },
+ "predefinicoes": [
+  {
+   "o": "ciclope",
+   "b": "dentes_baixo",
+   "s": 1,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": "ciclope",
+   "b": "dentes_baixo",
+   "s": 1,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": "ciclope",
+   "b": 3,
+   "s": 1,
+   "h": 10,
+   "cp": 2,
+   "ch": 0,
+   "co": 2
+  },
+  {
+   "o": "ciclope",
+   "b": "dentes_baixo",
+   "s": 1,
+   "h": 5,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": "ciclope",
+   "b": "dentes_baixo",
+   "s": 1,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 2
+  },
+  {
+   "o": "ciclope",
+   "b": 3,
+   "s": 1,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "pesado",
+ "lore": "Vigia a escada com o unico olho que nunca piscou."
+}

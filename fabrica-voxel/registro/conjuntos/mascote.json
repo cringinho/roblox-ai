@@ -1,0 +1,50 @@
+{
+ "id": "conjunto.mascote",
+ "tipo": "conjunto",
+ "versao": 1,
+ "nome": "Conjunto da Mascote",
+ "materiais": [
+  "tecido_roxo",
+  "tecido_escuro",
+  "linho",
+  "couro_escuro"
+ ],
+ "elmo": {
+  "tipo": "aberto",
+  "material": "tecido_escuro",
+  "detalhe": "tecido_roxo"
+ },
+ "tronco": {
+  "faixas": [
+   {
+    "ate": 0.3,
+    "material": "tecido_roxo"
+   },
+   {
+    "ate": 0.38,
+    "material": "tecido_escuro"
+   },
+   {
+    "ate": 1,
+    "material": "tecido_escuro"
+   }
+  ],
+  "emblema": {
+   "linhas": [
+    "A",
+    "A",
+    "A"
+   ],
+   "material": "linho"
+  }
+ },
+ "luvas": {
+  "material": "tecido_escuro",
+  "detalhe": "tecido_roxo"
+ },
+ "botas": {
+  "material": "tecido_escuro",
+  "detalhe": "tecido_roxo"
+ },
+ "mao_principal": "item.varinha"
+}

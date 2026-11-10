@@ -1,0 +1,58 @@
+{
+ "id": "traco.cauda.seta",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda em seta",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 1.6,
+     "amort": 0.6,
+     "max_graus": 18
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      6
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 4
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      2,
+      2
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 4,
+      "tras": 6
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

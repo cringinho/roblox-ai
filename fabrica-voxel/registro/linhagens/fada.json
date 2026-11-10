@@ -1,0 +1,101 @@
+{
+ "id": "linhagem.fada",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Fada",
+ "conceito": "Fairy",
+ "tamanho": "P",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "asas.libelula",
+  "orelhas.longas"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim_frio",
+   "pele_crepusculo",
+   "pele_musgo_frio"
+  ],
+  "cabelo": [
+   "cabelo_fada",
+   "cabelo_prata",
+   "cabelo_vinho"
+  ],
+  "olhos": [
+   "void",
+   "moss",
+   "abyss"
+  ],
+  "asa": [
+   "asa_po"
+  ]
+ },
+ "cabeca": {
+  "roupa": "moss[1:6]",
+  "pose": "pairar"
+ },
+ "predefinicoes": [
+  {
+   "o": 4,
+   "b": 1,
+   "s": 1,
+   "h": 4,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 4,
+   "b": 2,
+   "s": 2,
+   "h": 6,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 7,
+   "b": 4,
+   "s": 1,
+   "h": 2,
+   "cp": 2,
+   "ch": 0,
+   "co": 2
+  },
+  {
+   "o": 4,
+   "b": 1,
+   "s": 3,
+   "h": 9,
+   "cp": 0,
+   "ch": 2,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 2,
+   "s": 1,
+   "h": 3,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 4,
+   "b": 5,
+   "s": 2,
+   "h": 8,
+   "cp": 2,
+   "ch": 1,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "pairar",
+ "jeito": "eterio",
+ "lore": "Menor que um ladrilho, vive nas frestas dos vitrais."
+}

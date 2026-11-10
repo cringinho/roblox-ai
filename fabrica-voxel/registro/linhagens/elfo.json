@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.elfo",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Elfo",
+ "conceito": "Elf",
+ "tamanho": "M",
+ "classe_cabeca": "alta",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "orelhas.longas"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_marfim_frio",
+   "pele_oliva"
+  ],
+  "cabelo": [
+   "cabelo_castanho",
+   "cabelo_palha",
+   "cabelo_prata",
+   "cabelo_noite"
+  ],
+  "olhos": [
+   "moss",
+   "abyss",
+   "earth"
+  ]
+ },
+ "cabeca": {
+  "roupa": "moss[1:6]"
+ },
+ "predefinicoes": [
+  {
+   "o": 2,
+   "b": 1,
+   "s": 2,
+   "h": 3,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 2,
+   "s": 1,
+   "h": 6,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 6,
+   "b": 4,
+   "s": 3,
+   "h": 2,
+   "cp": 2,
+   "ch": 2,
+   "co": 0
+  },
+  {
+   "o": 2,
+   "b": 1,
+   "s": 2,
+   "h": 9,
+   "cp": 0,
+   "ch": 3,
+   "co": 2
+  },
+  {
+   "o": 7,
+   "b": 2,
+   "s": 4,
+   "h": 8,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 1,
+   "h": 3,
+   "cp": 2,
+   "ch": 1,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "eterio",
+ "lore": "Guarda o bosque que cresceu sobre o cemiterio velho."
+}

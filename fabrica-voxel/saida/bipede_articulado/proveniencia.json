@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.bipede_articulado",
+ "hash_ficha": "36c8387b4c7d00dfbe9285f0fe20a33f2341e7326bc4a46081f9a898de804aca",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_BipedeArticulado.luau": "0e9316a9496d24ed83cb734fd66f8c82de36b87dbde694011dfcedc1f6ee4455",
+  "Dados_BipedeArticulado.luau": "c958519e2a8b1904c95abf1df954f5c6b7cbf4a33ef90a870d9c6abe1b8be7c0",
+  "anim.gif": "d7e4f91070f4a61c7dbc3d3a4dfa442823b15e9a94467c6f6a43f1fdaaf29f94",
+  "anim_Andar.png": "b684ff50a26e3eadee5b2ff651922b0115c8ee5077d33d96276fdb2420d6ad34",
+  "anim_Ataque.png": "9af7f08e316285a514ee0cce28ae382d92ad8aedc0001d9de522e258714cffeb",
+  "anim_Dano.png": "f2c31a0fb2ea38281f77f6e774e499ee8927d41c68749261f2e3b136debb4c54",
+  "anim_Morte.png": "eab9da34f1d962668db1b8c4ca69ec19de3a78bc3d72cc86bd8105c28188a2f8",
+  "anim_Parado.png": "31bcb910d81d1c10dbeffe18fa708f867bbbc2de729632d1b8c2f949ce36421d",
+  "folha.png": "4e20c4bddc2e55ada46e177c9fae9e13f222d5db0920ecbc35dd662da6b398c5",
+  "icone_64.png": "46ee417103acd394d97ae3f11c41b450f63f1099e42e81434cd6b778a381d362",
+  "modelo.glb": "7b6ec94e073a30f7d11820908cb3fe981d141b125d114bb8706bf0eeef122620",
+  "modelo.vox": "e20233d3256b00face92c9c21b6adbb5e5fd4e28022cf34cb76380d1463c3f2d"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

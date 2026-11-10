@@ -1,0 +1,59 @@
+{
+ "id": "monstro.esporinho", "tipo": "monstro", "versao": 1, "nome": "Esporinho",
+ "lore": "Cogumelo andante da colonia do Titereiro, com um saco de esporos aceso nas costas.",
+ "tier": 1, "pegada_ladrilhos": 1,
+ "materiais": ["fungo", "fungo_chapeu", "osso", "madeira_escura", "olho_pupila", "brilho_brasa"],
+ "pecas": [
+  {"nome": "Corpo", "formas": [
+   {"op": "caixa", "nome": "talo", "tam": [8, 7, 8], "raio": 2, "em": "chao", "desloc": {"cima": 5}, "material": "fungo"},
+   {"op": "caixa", "nome": "saco", "tam": [4, 4, 3], "em": "talo.tras", "desloc": {"frente": 1, "cima": 0}, "material": "brilho_brasa"},
+   {"op": "caixa", "tam": [6, 2, 4], "em": "saco.topo", "encaixe": "dentro", "desloc": {"cima": 1}, "material": "fungo"},
+   {"op": "estampa", "em": "talo", "face": "frente", "desloc": {"cima": 0}, "profundidade": -1, "fundo": "brilho_brasa",
+    "linhas": ["P....P", "P....P"], "legenda": {"P": "olho_pupila"}},
+   {"op": "estampa", "em": "talo", "face": "frente", "desloc": {"baixo": 2}, "linhas": [".PPPP."], "legenda": {"P": "olho_pupila"}}]},
+  {"nome": "Chapeu", "formas": [
+   {"op": "caixa", "nome": "aba", "tam": [16, 3, 16], "chanfro": 2, "em": "Corpo.talo.topo", "desloc": {"baixo": 1}, "material": "fungo_chapeu"},
+   {"op": "caixa", "nome": "cupula", "tam": [12, 3, 12], "chanfro": 2, "em": "aba.topo", "material": "fungo_chapeu"},
+   {"op": "caixa", "tam": [6, 1, 6], "chanfro": 1, "em": "cupula.topo", "material": "fungo_chapeu"},
+   {"op": "caixa", "tam": [12, 1, 12], "em": "aba.base", "encaixe": "dentro", "material": "osso", "modo": "pintar"},
+   {"op": "caixa", "tam": [2, 1, 2], "em": "cupula.topo", "encaixe": "dentro", "desloc": {"direita": 3, "frente": 2}, "material": "osso", "modo": "pintar"},
+   {"op": "caixa", "tam": [2, 1, 2], "em": "cupula.topo", "encaixe": "dentro", "desloc": {"esquerda": 3, "tras": 3}, "material": "osso", "modo": "pintar"},
+   {"op": "caixa", "tam": [3, 1, 2], "em": "aba.topo", "encaixe": "dentro", "desloc": {"esquerda": 5, "frente": 5}, "material": "osso", "modo": "pintar"},
+   {"op": "caixa", "tam": [2, 1, 3], "em": "aba.topo", "encaixe": "dentro", "desloc": {"direita": 6, "tras": 3}, "material": "osso", "modo": "pintar"},
+   {"op": "caixa", "tam": [3, 2, 2], "em": "aba.frente", "encaixe": "centro", "desloc": {"direita": 5}, "modo": "cortar"}]},
+  {"nome": "Pata_FD", "formas": [{"op": "caixa", "tam": [3, 6, 3], "em": "chao", "desloc": {"direita": 4, "frente": 3}, "material": "madeira_escura"}]},
+  {"nome": "Pata_FE", "formas": [{"op": "caixa", "tam": [3, 6, 3], "em": "chao", "desloc": {"esquerda": 4, "frente": 3}, "material": "madeira_escura"}]},
+  {"nome": "Pata_TD", "formas": [{"op": "caixa", "tam": [3, 6, 3], "em": "chao", "desloc": {"direita": 4, "tras": 3}, "material": "madeira_escura"}]},
+  {"nome": "Pata_TE", "formas": [{"op": "caixa", "tam": [3, 6, 3], "em": "chao", "desloc": {"esquerda": 4, "tras": 3}, "material": "madeira_escura"}]}
+ ],
+ "ossos": [
+  {"nome": "Corpo", "pai": "Raiz", "pivo": {"em": "Corpo.talo.base"}, "papel": "corpo"},
+  {"nome": "Chapeu", "pai": "Corpo", "pivo": {"em": "Corpo.talo.topo"}, "papel": "cabeca", "mola": {"freq_hz": 3, "amort": 0.45, "max_graus": 14}},
+  {"nome": "Pata_FD", "pai": "Raiz", "pivo": {"em": "Pata_FD.topo"}, "papel": "perna"},
+  {"nome": "Pata_FE", "pai": "Raiz", "pivo": {"em": "Pata_FE.topo"}, "papel": "perna"},
+  {"nome": "Pata_TD", "pai": "Raiz", "pivo": {"em": "Pata_TD.topo"}, "papel": "perna"},
+  {"nome": "Pata_TE", "pai": "Raiz", "pivo": {"em": "Pata_TE.topo"}, "papel": "perna"}
+ ],
+ "soquetes": [{"nome": "Cabeca_Topo", "osso": "Chapeu", "em": "Chapeu.topo"}],
+ "clipes": [
+  {"nome": "Parado", "duracao": 4.0, "laco": true, "camadas": [
+   {"tipo": "onda", "osso": "Corpo", "canal": "cima", "amp": 0.012, "harm": 2, "harm2": 0.2},
+   {"tipo": "onda", "osso": "Corpo", "canal": "tombar_direita", "amp": 2.5, "harm": 1},
+   {"tipo": "onda", "osso": "Chapeu", "canal": "tombar_direita", "amp": 4, "harm": 1, "fase": 0.18},
+   {"tipo": "onda", "osso": "Chapeu", "canal": "frente", "amp": 3, "harm": 2, "fase": 0.3}]},
+  {"nome": "Andar", "duracao": 0.8, "laco": true, "camadas": [
+   {"tipo": "passos", "modo": "perna", "apoio": 0.6, "passada_H": 0.55, "altura_H": 0.06, "perna_H": 0.33,
+    "pes": [{"osso": "Pata_FD", "fase": 0.0}, {"osso": "Pata_TE", "fase": 0.04}, {"osso": "Pata_FE", "fase": 0.5}, {"osso": "Pata_TD", "fase": 0.55}]},
+   {"tipo": "onda", "osso": "Corpo", "canal": "cima", "amp": 0.02, "harm": 2, "forma": "abs"},
+   {"tipo": "onda", "osso": "Corpo", "canal": "tombar_direita", "amp": 3, "harm": 1},
+   {"tipo": "onda", "osso": "Chapeu", "canal": "frente", "amp": 6, "harm": 2, "fase": 0.2},
+   {"tipo": "onda", "osso": "Chapeu", "canal": "tombar_direita", "amp": 5, "harm": 1, "fase": 0.15}]},
+  {"nome": "Ataque", "duracao": 1.0, "marcadores": [["Impacto", 0.52]], "camadas": [
+   {"tipo": "poses", "chaves": [
+    {"t": 0.0, "pose": {}},
+    {"t": 0.4, "curva": "suave", "pose": {"Corpo": {"frente": -16, "tras": 0.08, "baixo": 0.03}, "Chapeu": {"frente": -12}}},
+    {"t": 0.52, "curva": "golpe", "pose": {"Corpo": {"frente": 26, "frente_t": 0.16}, "Chapeu": {"frente": 8, "escala": [1.12, 0.8, 1.12]}}},
+    {"t": 0.66, "curva": "sai", "pose": {"Corpo": {"frente": 14, "frente_t": 0.1}, "Chapeu": {"frente": 22, "escala": [0.96, 1.08, 0.96]}}},
+    {"t": 1.0, "curva": "suave", "pose": {}}]}]}
+ ]
+}

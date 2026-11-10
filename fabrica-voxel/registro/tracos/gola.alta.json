@@ -1,0 +1,47 @@
+{
+ "id": "traco.gola.alta",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Gola alta",
+ "material": "gola",
+ "pecas": [
+  {
+   "nome": "Gola",
+   "osso": "Tronco",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      6,
+      5
+     ],
+     "em": "Tronco.t.topo",
+     "desloc": {
+      "direita": 6,
+      "baixo": 2,
+      "tras": 2
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      12,
+      6,
+      1
+     ],
+     "em": "Tronco.t.topo",
+     "desloc": {
+      "baixo": 2,
+      "tras": 4
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "nada",
+  "capa": "nada"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "id": "traco.orelhas.pontudas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Orelhas pontudas",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Orelhas",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 3,
+      "tras": 1
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "esconde",
+  "chapeu": "nada"
+ }
+}

@@ -1,0 +1,525 @@
+{
+ "id": "arquetipo.flutuante",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Flutuante",
+ "_ajuda": "Espectro, olho ou medusa: paira, sem pernas, com panos em mola.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "estilo_movimento": "eterio",
+ "meta": {
+  "flutua": true
+ },
+ "andadura": {
+  "tipo": "pairar",
+  "sobe_desce_hz": 0.45
+ },
+ "armadilhas": [
+  "Sem pes: nada de 'passos'.",
+  "Inclina 5 a 15 graus no sentido do movimento."
+ ],
+ "pecas": [
+  {
+   "nome": "Corpo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      9,
+      10,
+      8
+     ],
+     "raio": 3,
+     "em": "chao",
+     "desloc": {
+      "cima": 12
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "t",
+     "face": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "profundidade": -1,
+     "fundo": "olho",
+     "linhas": [
+      "EE..EE",
+      "EE..EE"
+     ],
+     "legenda": {
+      "E": "escuro"
+     }
+    },
+    {
+     "op": "estampa",
+     "em": "t",
+     "face": "frente",
+     "desloc": {
+      "baixo": 3
+     },
+     "linhas": [
+      "EEEE",
+      "E..E"
+     ],
+     "legenda": {
+      "E": "escuro",
+      "O": "olho"
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Pano_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      9,
+      5,
+      7
+     ],
+     "em": "Corpo.t.base",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      7
+     ],
+     "em": "Pano_1.base",
+     "encaixe": "dentro",
+     "modo": "cortar"
+    }
+   ]
+  },
+  {
+   "nome": "Pano_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      7,
+      4,
+      5
+     ],
+     "em": "Pano_1.base",
+     "desloc": {
+      "cima": 1,
+      "direita": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      5
+     ],
+     "em": "Pano_2.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 1
+     },
+     "modo": "cortar"
+    }
+   ]
+  },
+  {
+   "nome": "Mao_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      3
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "direita": 2,
+      "frente": 2
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Mao_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      3
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "esquerda": 2,
+      "frente": 2,
+      "baixo": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Corpo",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Corpo.t.centro"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Pano_1",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Corpo.t.base"
+   },
+   "papel": "pano",
+   "junta": 2,
+   "mola": {
+    "freq_hz": 1.5,
+    "amort": 0.6,
+    "max_graus": 25
+   }
+  },
+  {
+   "nome": "Pano_2",
+   "pai": "Pano_1",
+   "pivo": {
+    "em": "Pano_1.base"
+   },
+   "papel": "pano",
+   "junta": 2,
+   "mola": {
+    "freq_hz": 1.5,
+    "amort": 0.6,
+    "max_graus": 25
+   }
+  },
+  {
+   "nome": "Mao_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Mao_D.centro"
+   },
+   "papel": "mao"
+  },
+  {
+   "nome": "Mao_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Mao_E.centro"
+   },
+   "papel": "mao"
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.04,
+     "harm": 3,
+     "harm2": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "tombar_direita",
+     "amp": 3,
+     "harm": 1
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Pano_*",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 3,
+     "fase_por_osso": -0.2
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Pano_*",
+     "canal": "tombar_direita",
+     "amp": 6,
+     "harm": 2,
+     "fase_por_osso": -0.25
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mao_D",
+     "canal": "cima",
+     "amp": 0.03,
+     "harm": 3,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mao_E",
+     "canal": "cima",
+     "amp": 0.035,
+     "harm": 2,
+     "fase": 0.6
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 2.0,
+   "laco": true,
+   "vel_raiz": 2.0,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Corpo": {
+         "frente": 12
+        },
+        "Pano_1": {
+         "frente": -18
+        },
+        "Pano_2": {
+         "frente": -14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Corpo": {
+         "frente": 12
+        },
+        "Pano_1": {
+         "frente": -18
+        },
+        "Pano_2": {
+         "frente": -14
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.03,
+     "harm": 1
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Pano_*",
+     "canal": "frente",
+     "amp": 6,
+     "harm": 2,
+     "fase_por_osso": -0.2
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.1,
+   "marcadores": [
+    [
+     "Aviso",
+     0.0
+    ],
+    [
+     "Impacto",
+     0.55
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.06,
+         "baixo": 0.03
+        },
+        "Pano_1": {
+         "frente": -16
+        },
+        "Mao_D": {
+         "cima": 0.2,
+         "tras": 0.1
+        },
+        "Mao_E": {
+         "cima": 0.15,
+         "tras": 0.12
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "frente": 22,
+         "frente_t": 0.14
+        },
+        "Pano_1": {
+         "frente": 20
+        },
+        "Mao_D": {
+         "frente_t": 0.35
+        },
+        "Mao_E": {
+         "frente_t": 0.3
+        }
+       }
+      },
+      {
+       "t": 0.68,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": 10,
+         "frente_t": 0.08
+        },
+        "Pano_1": {
+         "frente": 28
+        },
+        "Mao_D": {
+         "frente_t": 0.2
+        },
+        "Mao_E": {
+         "frente_t": 0.2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Pano_1": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 1,
+       "curva": "entra",
+       "pose": {
+        "Corpo": {
+         "baixo": 0.6,
+         "escala": [
+          1.2,
+          0.3,
+          1.2
+         ]
+        },
+        "Pano_1": {
+         "frente": 30
+        },
+        "Pano_2": {
+         "frente": 40
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

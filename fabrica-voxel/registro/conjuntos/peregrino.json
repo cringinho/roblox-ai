@@ -1,0 +1,56 @@
+{
+ "id": "conjunto.peregrino",
+ "tipo": "conjunto",
+ "versao": 1,
+ "nome": "Vestes do Peregrino",
+ "materiais": [
+  "tecido_escuro",
+  "ouro",
+  "couro",
+  "couro_escuro",
+  "ferro"
+ ],
+ "chapeu": {
+  "material": "tecido_escuro",
+  "detalhe": "ouro"
+ },
+ "tronco": {
+  "faixas": [
+   {
+    "ate": 0.22,
+    "material": "tecido_escuro"
+   },
+   {
+    "ate": 0.32,
+    "material": "couro"
+   },
+   {
+    "ate": 1,
+    "material": "tecido_escuro"
+   }
+  ],
+  "emblema": {
+   "linhas": [
+    "A",
+    "A",
+    "A",
+    "A"
+   ],
+   "material": "ouro"
+  }
+ },
+ "luvas": {
+  "material": "couro",
+  "detalhe": "ouro"
+ },
+ "botas": {
+  "material": "couro_escuro",
+  "detalhe": "couro"
+ },
+ "capa": {
+  "material": "tecido_escuro",
+  "detalhe": "ouro"
+ },
+ "mao_principal": "item.cajado_de_cirio",
+ "mao_secundaria": "item.lanterna"
+}

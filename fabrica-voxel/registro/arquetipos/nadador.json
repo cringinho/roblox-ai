@@ -1,0 +1,482 @@
+{
+ "id": "arquetipo.nadador",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Nadador",
+ "_ajuda": "Peixe ou enguia: ondula no ar ou na agua, sem pes.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "andadura": {
+  "tipo": "ondulacao",
+  "comprimento_de_onda": 0.4,
+  "amplitude": 0.1
+ },
+ "armadilhas": [
+  "Sem apoio no chao: marque meta.flutua.",
+  "A ondulacao cresce para a cauda."
+ ],
+ "pecas": [
+  {
+   "nome": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "cranio",
+     "tam": [
+      5,
+      7,
+      6
+     ],
+     "raio": 1,
+     "em": "chao",
+     "desloc": {
+      "cima": 10,
+      "frente": 10
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "linhas": [
+      "O..O"
+     ],
+     "legenda": {
+      "O": "olho",
+      "E": "escuro"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      3
+     ],
+     "em": "cranio.base_frente",
+     "encaixe": "dentro",
+     "material": "detalhe",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      6,
+      4
+     ],
+     "em": "Cabeca.cranio.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      4,
+      3
+     ],
+     "em": "Seg_1.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      6,
+      4
+     ],
+     "em": "Seg_1.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      5,
+      4
+     ],
+     "em": "Seg_2.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_4",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      5,
+      4
+     ],
+     "em": "Seg_3.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_5",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      4,
+      4
+     ],
+     "em": "Seg_4.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      8,
+      4
+     ],
+     "em": "Seg_5.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Cabeca",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Cabeca.cranio.tras"
+   },
+   "papel": "cabeca"
+  },
+  {
+   "nome": "Seg_1",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Seg_1.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_2",
+   "pai": "Seg_1",
+   "pivo": {
+    "em": "Seg_2.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_3",
+   "pai": "Seg_2",
+   "pivo": {
+    "em": "Seg_3.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_4",
+   "pai": "Seg_3",
+   "pivo": {
+    "em": "Seg_4.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_5",
+   "pai": "Seg_4",
+   "pivo": {
+    "em": "Seg_5.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  }
+ ],
+ "meta": {
+  "flutua": true
+ },
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "ossos": "Seg_*",
+     "canal": "esquerda",
+     "amp": 7,
+     "harm": 2,
+     "fase_por_osso": -0.2,
+     "ganho_por_osso": 0.05
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": -4.2,
+     "harm": 2,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 3
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 1.6,
+   "laco": true,
+   "vel_raiz": 1.6,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "ossos": "Seg_*",
+     "canal": "esquerda",
+     "amp": 16,
+     "harm": 2,
+     "fase_por_osso": -0.2,
+     "ganho_por_osso": 0.05
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": -9.6,
+     "harm": 2,
+     "fase": 0.1
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.1,
+   "marcadores": [
+    [
+     "Aviso",
+     0.0
+    ],
+    [
+     "Impacto",
+     0.55
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Cabeca": {
+         "frente": -14,
+         "tras": 0.06,
+         "baixo": 0.03
+        },
+        "Seg_1": {
+         "frente": -16
+        },
+        "Seg_2": {
+         "frente": -25
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Cabeca": {
+         "frente": 22,
+         "frente_t": 0.14
+        },
+        "Seg_1": {
+         "frente": 20
+        },
+        "Seg_2": {
+         "frente": 10
+        }
+       }
+      },
+      {
+       "t": 0.68,
+       "curva": "sai",
+       "pose": {
+        "Cabeca": {
+         "frente": 10,
+         "frente_t": 0.08
+        },
+        "Seg_1": {
+         "frente": 28
+        },
+        "Seg_2": {
+         "frente": 0
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Cabeca": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Seg_1": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Cabeca": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.2,
+   "marcadores": [
+    [
+     "Queda",
+     0.5
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.5,
+       "curva": "golpe",
+       "pose": {
+        "Cabeca": {
+         "tombar_direita": 70
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Cabeca": {
+         "tombar_direita": 80
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "tremor",
+     "ossos": "Seg_*",
+     "canal": "esquerda",
+     "amp": 12,
+     "de_t": 0,
+     "ate_t": 0.5
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "id": "classe_cabeca.tabela",
+ "tipo": "classe_cabeca",
+ "_ajuda": "cranio = [largura, altura, fundo] em voxels; olhos_y = deslocamento dos olhos a partir do centro; afast = voxels entre os olhos.",
+ "classes": {
+  "redonda": {
+   "cranio": [
+    12,
+    11,
+    11
+   ],
+   "raio": 3,
+   "olhos_y": 0,
+   "afast": 4
+  },
+  "longa": {
+   "cranio": [
+    10,
+    10,
+    11
+   ],
+   "raio": 2,
+   "olhos_y": 1,
+   "afast": 2,
+   "focinho": [
+    6,
+    5,
+    4
+   ]
+  },
+  "larga": {
+   "cranio": [
+    14,
+    10,
+    11
+   ],
+   "raio": 2,
+   "olhos_y": 0,
+   "afast": 6
+  },
+  "alta": {
+   "cranio": [
+    10,
+    13,
+    10
+   ],
+   "raio": 2,
+   "olhos_y": 1,
+   "afast": 2
+  }
+ }
+}

@@ -1,0 +1,100 @@
+{
+ "id": "item.cajado_de_cirio",
+ "tipo": "item",
+ "versao": 1,
+ "nome": "Cajado de cirio",
+ "slot": "mao",
+ "pegada": "haste",
+ "lore": "Um cirio que nunca termina de queimar.",
+ "materiais": [
+  "madeira_escura",
+  "ferro",
+  "cera",
+  "brilho_brasa"
+ ],
+ "pecas": [
+  {
+   "nome": "Item",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "haste",
+     "tam": [
+      1,
+      28,
+      1
+     ],
+     "em": "chao",
+     "material": "madeira_escura"
+    },
+    {
+     "op": "caixa",
+     "nome": "aro",
+     "tam": [
+      3,
+      1,
+      3
+     ],
+     "em": "haste.topo",
+     "material": "ferro"
+    },
+    {
+     "op": "caixa",
+     "nome": "vela",
+     "tam": [
+      1,
+      3,
+      1
+     ],
+     "em": "aro.topo",
+     "material": "cera"
+    },
+    {
+     "op": "caixa",
+     "nome": "chama",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "vela.topo",
+     "material": "brilho_brasa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      1
+     ],
+     "em": "haste.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 6
+     },
+     "material": "ferro"
+    }
+   ]
+  }
+ ],
+ "soquetes": [
+  {
+   "nome": "Pegada",
+   "osso": "Item",
+   "em": "haste.base",
+   "desloc": {
+    "cima": 5
+   }
+  },
+  {
+   "nome": "Ponta",
+   "osso": "Item",
+   "em": "chama.topo"
+  },
+  {
+   "nome": "Base",
+   "osso": "Item",
+   "em": "haste.base"
+  }
+ ]
+}

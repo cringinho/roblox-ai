@@ -1,0 +1,71 @@
+{
+ "id": "traco.cauda.dragao",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda de dragao",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 4
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 1.6,
+     "amort": 0.6,
+     "max_graus": 18
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      4,
+      5
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 5
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 7,
+      "tras": 5
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      3
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 8,
+      "tras": 9
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

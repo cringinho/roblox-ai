@@ -1,0 +1,630 @@
+{
+ "id": "arquetipo.bipede_digitigrado",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Bipede digitigrado",
+ "_ajuda": "Corpo horizontal equilibrado pela cauda: teropode, ave que nao voa, cocatriz.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "estilo_movimento": "staccato",
+ "andadura": {
+  "tipo": "bipede",
+  "apoio": 0.55,
+  "fases": {
+   "Perna_D": 0,
+   "Perna_E": 0.5
+  }
+ },
+ "armadilhas": [
+  "Sem cauda ele tomba: a cauda equilibra a cabeca.",
+  "Cabeca em estalos, como ave."
+ ],
+ "pecas": [
+  {
+   "nome": "Corpo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      7,
+      7,
+      12
+     ],
+     "chanfro": 2,
+     "em": "chao",
+     "desloc": {
+      "cima": 9
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Pescoco",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      7,
+      3
+     ],
+     "em": "Corpo.t.topo_frente",
+     "encaixe": "centro",
+     "desloc": {
+      "cima": 2,
+      "tras": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "cranio",
+     "tam": [
+      5,
+      5,
+      8
+     ],
+     "raio": 1,
+     "em": "Pescoco.topo",
+     "desloc": {
+      "frente": 2,
+      "baixo": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "dir",
+     "linhas": [
+      "O"
+     ],
+     "legenda": {
+      "O": "olho"
+     }
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "esq",
+     "linhas": [
+      "O"
+     ],
+     "legenda": {
+      "O": "olho"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      3
+     ],
+     "em": "cranio.frente",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Perna_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      10,
+      4
+     ],
+     "em": "chao",
+     "desloc": {
+      "direita": 3,
+      "frente": 0
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Perna_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      10,
+      4
+     ],
+     "em": "chao",
+     "desloc": {
+      "esquerda": 3,
+      "frente": 0
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Corpo.t.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Cauda_1.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      4
+     ],
+     "em": "Cauda_2.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Corpo",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Corpo.t.base"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Pescoco",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Pescoco.base"
+   },
+   "papel": "pescoco",
+   "junta": 2
+  },
+  {
+   "nome": "Cabeca",
+   "pai": "Pescoco",
+   "pivo": {
+    "em": "Pescoco.topo"
+   },
+   "papel": "cabeca",
+   "junta": 2
+  },
+  {
+   "nome": "Perna_D",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Perna_D.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Perna_E",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Perna_E.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Cauda_1",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Cauda_1.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   }
+  },
+  {
+   "nome": "Cauda_2",
+   "pai": "Cauda_1",
+   "pivo": {
+    "em": "Cauda_2.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   }
+  },
+  {
+   "nome": "Cauda_3",
+   "pai": "Cauda_2",
+   "pivo": {
+    "em": "Cauda_3.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   }
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8.0,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.012,
+     "harm": 2,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "tombar_direita",
+     "amp": 1.5,
+     "harm": 1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": 7,
+     "harm": 1,
+     "fase": 0.3,
+     "harm2": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 8,
+     "harm": 1,
+     "fase_por_osso": -0.12,
+     "ganho_por_osso": 0.25
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 2,
+     "fase_por_osso": -0.1
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 0.9,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "passos",
+     "modo": "perna",
+     "apoio": 0.6,
+     "passada_H": 0.8,
+     "altura_H": 0.06,
+     "perna_H": 0.45,
+     "pes": [
+      {
+       "osso": "Perna_D",
+       "fase": 0
+      },
+      {
+       "osso": "Perna_E",
+       "fase": 0.5
+      }
+     ]
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.02,
+     "harm": 2,
+     "forma": "abs",
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "tombar_direita",
+     "amp": 2.5,
+     "harm": 1,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "tombar_direita",
+     "amp": -2,
+     "harm": 1,
+     "fase": 0.25
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 10,
+     "harm": 2,
+     "fase_por_osso": -0.12,
+     "ganho_por_osso": 0.25
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 2,
+     "fase_por_osso": -0.1
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.1,
+   "marcadores": [
+    [
+     "Aviso",
+     0.0
+    ],
+    [
+     "Impacto",
+     0.55
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.06,
+         "baixo": 0.03
+        },
+        "Cabeca": {
+         "frente": -16
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "frente": 22,
+         "frente_t": 0.14
+        },
+        "Cabeca": {
+         "frente": 20
+        }
+       }
+      },
+      {
+       "t": 0.68,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": 10,
+         "frente_t": 0.08
+        },
+        "Cabeca": {
+         "frente": 28
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Cabeca": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.2,
+   "marcadores": [
+    [
+     "Queda",
+     0.6
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.3,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -10,
+         "cima": 0.03
+        },
+        "Cabeca": {
+         "frente": -22
+        }
+       }
+      },
+      {
+       "t": 0.6,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 78,
+         "baixo": 0.28
+        },
+        "Cabeca": {
+         "tombar_direita": 14
+        }
+       }
+      },
+      {
+       "t": 0.74,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 86,
+         "baixo": 0.31
+        },
+        "Cabeca": {
+         "tombar_direita": 24
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 84,
+         "baixo": 0.31
+        },
+        "Cabeca": {
+         "tombar_direita": 20
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

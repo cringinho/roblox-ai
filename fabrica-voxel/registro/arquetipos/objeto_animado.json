@@ -1,0 +1,524 @@
+{
+ "id": "arquetipo.objeto_animado",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Objeto animado",
+ "_ajuda": "Mimico: bau, sino, relicario ou livro que ganha vida. Parado e indistinguivel de um prop.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "andadura": {
+  "tipo": "pulo"
+ },
+ "armadilhas": [
+  "No Parado so respira de leve: o susto e a tampa abrir.",
+  "Dentes e lingua ficam escondidos ate o Alerta."
+ ],
+ "pecas": [
+  {
+   "nome": "Corpo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      14,
+      7,
+      10
+     ],
+     "em": "chao",
+     "material": "corpo",
+     "desloc": {
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      14,
+      1,
+      10
+     ],
+     "em": "t.topo",
+     "encaixe": "dentro",
+     "material": "detalhe",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      7,
+      10
+     ],
+     "em": "t.dir",
+     "encaixe": "dentro",
+     "material": "detalhe",
+     "modo": "pintar",
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      10,
+      3,
+      7
+     ],
+     "em": "t.topo",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "cortar"
+    },
+    {
+     "op": "estampa",
+     "em": "t",
+     "face": "frente",
+     "desloc": {
+      "cima": 3
+     },
+     "linhas": [
+      "W.W.W.W.W"
+     ],
+     "legenda": {
+      "W": "olho"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "t.dir",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "detalhe",
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      3
+     ],
+     "em": "t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 5,
+      "frente": 3,
+      "baixo": 2
+     },
+     "material": "detalhe",
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      3
+     ],
+     "em": "t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 5,
+      "tras": 3,
+      "baixo": 2
+     },
+     "material": "detalhe",
+     "espelhar": true
+    }
+   ]
+  },
+  {
+   "nome": "Tampa",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      14,
+      4,
+      10
+     ],
+     "chanfro": 1,
+     "em": "Corpo.t.topo",
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      14,
+      1,
+      10
+     ],
+     "em": "t.base",
+     "encaixe": "dentro",
+     "material": "detalhe",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      1
+     ],
+     "em": "t.frente",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "estampa",
+     "em": "t",
+     "face": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "linhas": [
+      "O.....O"
+     ],
+     "legenda": {
+      "O": "olho"
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Lingua",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      1,
+      6
+     ],
+     "em": "Corpo.t.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 1,
+      "frente": 1
+     },
+     "material": "olho"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Corpo",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Corpo.t.base"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Tampa",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Corpo.t.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Lingua",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Lingua.tras"
+   },
+   "papel": "lingua"
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "osso": "Tampa",
+     "canal": "frente",
+     "amp": -1.2,
+     "harm": 2,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.004,
+     "harm": 2,
+     "forma": "pulso"
+    }
+   ]
+  },
+  {
+   "nome": "Alerta",
+   "duracao": 0.6,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.5,
+       "curva": "passa_e_volta",
+       "pose": {
+        "Tampa": {
+         "frente": -28
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Tampa": {
+         "frente": -22
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 0.7,
+   "laco": true,
+   "vel_raiz": 2.2,
+   "marcadores": [
+    [
+     "Pouso",
+     0.7
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Tampa": {
+         "frente": -10
+        }
+       }
+      },
+      {
+       "t": 0.3,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "baixo": 0.0,
+         "frente": 8
+        },
+        "Tampa": {
+         "frente": -4
+        }
+       }
+      },
+      {
+       "t": 0.5,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "cima": 0.45,
+         "frente": -10
+        },
+        "Tampa": {
+         "frente": -35
+        }
+       }
+      },
+      {
+       "t": 0.7,
+       "curva": "entra",
+       "pose": {
+        "Corpo": {
+         "frente": 6
+        },
+        "Tampa": {
+         "frente": 0
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "passa_e_volta",
+       "pose": {
+        "Tampa": {
+         "frente": -10
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.0,
+   "marcadores": [
+    [
+     "Aviso",
+     0
+    ],
+    [
+     "Impacto",
+     0.6
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.45,
+       "curva": "suave",
+       "pose": {
+        "Tampa": {
+         "frente": -75
+        },
+        "Corpo": {
+         "frente": -12
+        },
+        "Lingua": {
+         "tras": 0.1
+        }
+       }
+      },
+      {
+       "t": 0.6,
+       "curva": "golpe",
+       "pose": {
+        "Tampa": {
+         "frente": 0
+        },
+        "Corpo": {
+         "frente": 18,
+         "frente_t": 0.5
+        },
+        "Lingua": {
+         "frente_t": 0.5
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Tampa": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.0,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "sai",
+       "pose": {
+        "Tampa": {
+         "frente": -95
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "golpe",
+       "pose": {
+        "Tampa": {
+         "frente": -110
+        },
+        "Corpo": {
+         "tombar_direita": 8
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "perfil_auditoria": "prop"
+}

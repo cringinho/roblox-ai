@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.aracnideo",
+ "hash_ficha": "dcdac2ff30cae1e5570cc484dd4c6aa994fd9cb25a2778fe4cd8cce0a3b5bb57",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Aracnideo.luau": "5aa1d874d03e5bb9a8e7b76982d123b396339dfca3a228417f12abf75cf3b26f",
+  "Dados_Aracnideo.luau": "8b4ee07620af478d09cf4a0c85c4b4da210956b981d6a18db9943b8c4a578714",
+  "anim.gif": "615d4bbaf966d34bc65a959662a579f20c12d6fba5685bc180e6b74496faf769",
+  "anim_Andar.png": "3fcc0791272063ebe262cb4212d0c64efe3c293568aa38bb08317f17b8982cdf",
+  "anim_Ataque.png": "b69dde52572f42cc555b25101acd35fe4b420a935a822daad3bbde5c17023783",
+  "anim_Dano.png": "1177203307cd067516134a0b8c8f3037df8eb30e2577687401ff8d0a638dbea2",
+  "anim_Morte.png": "caab4652d7cc8b94e3075dfed6df730abc0cbc126360d0038c45b092df55d044",
+  "anim_Parado.png": "b12300b4d4282171e8fb3a51de61b9b9fd5fc356171acb933b846488425f5d03",
+  "folha.png": "9a3b6416cc2dfd08b5f6d564b32a36788ea0500366a9c92ac8dd652d30bd5eab",
+  "icone_64.png": "eb1dbd64e09accdc288d194b94c794ee30f8806ca390edd6e9c2b0e1f692f81e",
+  "modelo.glb": "f7c2687798a709db43a020cbcd83f91e748accd5830dbdd4236a3c5e1b3c11ec",
+  "modelo.vox": "542bbf6a087cf870601e74c3c1607d5e4ac93fa51fd066e4682fbd482e686cfe"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

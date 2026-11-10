@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.flutuante",
+ "hash_ficha": "66daf47db0c142bb5bae99be79e1db00f413c110915b113e10d00a8808759e7c",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Flutuante.luau": "984cd93a7e2ad6210bbf9a4d8a49fff02fc8d64613470b1aa04719612248cb91",
+  "Dados_Flutuante.luau": "df485939cdfd8dfe0f1525184f4f5df798fb746ff03cae892de7d721c38885ee",
+  "anim.gif": "71f11e9eda6ad11bd476097788604168d9dd71fc83a3cf393ae146c8984a163f",
+  "anim_Andar.png": "05e55d0229c76bf472756864095ffae986fb06e9fa89e31224b217d9ff66c65a",
+  "anim_Ataque.png": "4d6acb5b7eb70fce7baeb20494f7a50c1aeca75c4cfddc0a07af135af2f08c54",
+  "anim_Dano.png": "121f48a425f333b8b623f736f7f04aa9c443ebee07e9c45f33a44997efee3920",
+  "anim_Morte.png": "f85f05d6200d828b46d0aa47b3234058837d62521c8644311854214cf9ee1bc4",
+  "anim_Parado.png": "82ebdfc224eaa33a741df905f02c66f2e4fdd9fbb5dc291e1f48e88c58eb355b",
+  "folha.png": "6f22836ea63d3008e58346d9412df1a111518ebacecaaf9dc2706ad86c1d949a",
+  "icone_64.png": "448e7eb8655be5d9e630bbcef5e6a5c1bc19c48e332178f46491f814fe877d61",
+  "modelo.glb": "cd664e67dfc3fef80e45f1c1b915da88c666e33418b40b6290b41fc3371e9d86",
+  "modelo.vox": "576c437d3e691ae7f95075605f7a3547e50e237d0e0616ed613b1f6902246022"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

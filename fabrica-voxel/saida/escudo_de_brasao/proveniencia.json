@@ -1,0 +1,16 @@
+{
+ "id": "item.escudo_de_brasao",
+ "hash_ficha": "7eebdce0c093a384ee37e3104321f5f8576929683361c998961ee7cef0755ec8",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Dados_EscudoDeBrasao.luau": "bf47e3d5a114d691b0fbec81055f86fa527c5b9bf30a300b4fddbf3855b5eab8",
+  "folha.png": "9136ce7382afcebb6b21cad7342845b8e736be27bd996df5d3ca78be2f97d06d",
+  "icone_64.png": "b903da67786bf204b4b6d6df6cbe5ccd2d9a77bb217ce00f9f007349dbe6e628",
+  "modelo.glb": "19dae8d463fa17f58abfba2d786564a22995ee6eb70a36984f5ef9b31723610e",
+  "modelo.vox": "95a18d87e3416fbfbc34b7b168da35e7473ce139a38d3cdd05c71844339fbec5"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

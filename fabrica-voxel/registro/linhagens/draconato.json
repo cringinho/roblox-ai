@@ -1,0 +1,104 @@
+{
+ "id": "linhagem.draconato",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Draconato",
+ "conceito": "Dragonoid",
+ "tamanho": "G",
+ "classe_cabeca": "longa",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "chifres.dragao",
+  "asas.dragao",
+  "cauda.dragao"
+ ],
+ "rampas": {
+  "pele": [
+   "blood[1:6]",
+   "ember[0:5]",
+   "moss[1:6]",
+   "void[1:6]"
+  ],
+  "cabelo": [
+   "blood[0:5]"
+  ],
+  "olhos": [
+   "gold",
+   "ember"
+  ]
+ },
+ "cabeca": {
+  "focinho": [
+   6,
+   5,
+   5
+  ],
+  "focinho_ponta": null,
+  "ventre_claro": true,
+  "sem_cabelo": true,
+  "roupa_pele": true
+ },
+ "predefinicoes": [
+  {
+   "o": 3,
+   "b": "presas",
+   "s": 1,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 5,
+   "b": "presas",
+   "s": 1,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 8,
+   "b": 3,
+   "s": 1,
+   "h": 10,
+   "cp": 2,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 3,
+   "b": "presas",
+   "s": 1,
+   "h": 10,
+   "cp": 3,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 5,
+   "b": "presas",
+   "s": 1,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 3,
+   "b": 3,
+   "s": 1,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "pesado",
+ "lore": "Ultimo de uma ninhada chocada no braseiro do altar."
+}

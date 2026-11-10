@@ -1,0 +1,44 @@
+{
+ "id": "traco.barba.longa",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Barba longa",
+ "material": "cabelo",
+ "pecas": [
+  {
+   "nome": "Barba",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w-2",
+      5,
+      2
+     ],
+     "em": "Cabeca.cranio.frente",
+     "desloc": {
+      "baixo": 4
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w-6",
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.frente",
+     "desloc": {
+      "baixo": 8
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "recorta",
+  "elmo_aberto": "nada",
+  "tronco": "passa_por_cima"
+ }
+}

@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.meio_elfo",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Meio-Elfo",
+ "conceito": "Half-Elf",
+ "tamanho": "M",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "orelhas.pontudas"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_oliva",
+   "pele_bronze"
+  ],
+  "cabelo": [
+   "cabelo_castanho",
+   "cabelo_palha",
+   "cabelo_noite",
+   "cabelo_cobre"
+  ],
+  "olhos": [
+   "earth",
+   "moss",
+   "abyss"
+  ]
+ },
+ "cabeca": {
+  "roupa": "tecido_cinza"
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": 1,
+   "s": 2,
+   "h": 2,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 2,
+   "b": 2,
+   "s": 1,
+   "h": 3,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 6,
+   "b": 4,
+   "s": 3,
+   "h": 9,
+   "cp": 2,
+   "ch": 2,
+   "co": 2
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 4,
+   "h": 6,
+   "cp": 0,
+   "ch": 3,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": 3,
+   "s": 2,
+   "h": 8,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 2,
+   "s": 1,
+   "h": 1,
+   "cp": 2,
+   "ch": 1,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "natural",
+ "lore": "Nem o bosque nem a vila o reconhecem: sobrou a estrada."
+}

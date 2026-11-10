@@ -1,0 +1,29 @@
+{
+ "id": "monstro.ossario",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Ossario",
+ "arquetipo": "corrente",
+ "tier": 2,
+ "pegada_ladrilhos": 1,
+ "lore": "Centopeia de vertebras com cranio de olhos verdes.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "osso",
+   "rampa": "osso_velho"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_veneno"
+  }
+ ]
+}

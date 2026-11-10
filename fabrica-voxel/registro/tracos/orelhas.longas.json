@@ -1,0 +1,47 @@
+{
+ "id": "traco.orelhas.longas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Orelhas longas",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Orelhas",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      2,
+      1
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      1
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "direita": 3,
+      "cima": 2
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "recorta",
+  "chapeu": "passa_por_cima"
+ }
+}

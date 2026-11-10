@@ -1,0 +1,96 @@
+{
+ "id": "linhagem.gigante",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Gigante",
+ "conceito": "Giant",
+ "tamanho": "G",
+ "classe_cabeca": "larga",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "barba.curta"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_bronze",
+   "pele_oliva"
+  ],
+  "cabelo": [
+   "cabelo_castanho",
+   "cabelo_noite",
+   "cabelo_cobre"
+  ],
+  "olhos": [
+   "void",
+   "earth"
+  ]
+ },
+ "cabeca": {
+  "corpo_padrao": "3",
+  "roupa": "bone"
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": 3,
+   "s": 5,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": 1,
+   "s": 2,
+   "h": 5,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 2,
+   "b": 3,
+   "s": 5,
+   "h": 2,
+   "cp": 2,
+   "ch": 2,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 4,
+   "s": 3,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 5,
+   "b": 3,
+   "s": 5,
+   "h": 9,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 2,
+   "h": 1,
+   "cp": 2,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "pesado",
+ "lore": "Carregou as pedras do santuario e nunca foi pago."
+}

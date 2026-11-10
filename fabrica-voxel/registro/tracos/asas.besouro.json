@@ -1,0 +1,144 @@
+{
+ "id": "traco.asas.besouro",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Asas de besouro",
+ "material": "asa",
+ "pecas": [
+  {
+   "nome": "Asa_D",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 1,
+      "cima": 2,
+      "tras": 1
+     }
+    },
+    "papel": "asa",
+    "mola": {
+     "freq_hz": 3.5,
+     "amort": 0.4,
+     "max_graus": 30
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 1,
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      5,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 3,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "haste que liga o pedunculo as laminas da asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      9,
+      2
+     ],
+     "raio": 1,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 3,
+      "cima": 0,
+      "tras": 2
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Asa_E",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 1,
+      "cima": 2,
+      "tras": 1
+     }
+    },
+    "papel": "asa",
+    "mola": {
+     "freq_hz": 3.5,
+     "amort": 0.4,
+     "max_graus": 30
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 1,
+      "cima": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      5,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 3,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "haste que liga o pedunculo as laminas da asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      9,
+      2
+     ],
+     "raio": 1,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 3,
+      "cima": 0,
+      "tras": 2
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "recorta",
+  "costas": "move:Cintura"
+ },
+ "animacao": "asas"
+}

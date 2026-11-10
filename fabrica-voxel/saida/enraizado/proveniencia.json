@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.enraizado",
+ "hash_ficha": "125ff3ff57c96a3d8e99d9215f304ba07bcfd4068ec2ee7ee7a5e9988d53ce41",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Enraizado.luau": "89c3a6a6c010508ebef0e0593b4816ca89ff04198dc441473c644245c3fd57fb",
+  "Dados_Enraizado.luau": "eb931a5a17cf12c0fdac884bc7a142334ae9f54369a379a110ea9ff85343a504",
+  "anim.gif": "3a53fb4960b0e75bba0517b5c72ac329f55dcf89422eb1d8b37c72d4b27fc682",
+  "anim_Andar.png": "7f47f2ca2f38a065cabfb6c8fb27b93266d92d92a1c9eab07713a240ad97d722",
+  "anim_Ataque.png": "0fca5f13615dc8191f8fd20c70fc8997988a8e88f48cab4bf756f724a2c61e14",
+  "anim_Dano.png": "4b636266a5da45ae33a7a4a0cf441f4f60a43c3b46ec0bfa673ce000deac4d61",
+  "anim_Morte.png": "e328c6682fdd5e0aed1537bcfb3c3eb4a957d099eb5e95ba9c2d4d2ddd9c50e6",
+  "anim_Parado.png": "f82e228861cf773afdb0aaa856fe10e70999fe680a4d26e0cf882fae416a21b4",
+  "folha.png": "62d5241e7cd109809b87fb5b61b3efad11d017f52502a0d2a1bc7cf432f37ccd",
+  "icone_64.png": "306049a9b113ba16860ee46a5173d351d092b5e67dacfacc6e065d5f37839432",
+  "modelo.glb": "6edeaf7a76783e7c9a4abc54d1a56a6537ff9d6a132383d3131ae6847937a529",
+  "modelo.vox": "9f0eeaffdb5b550d996dfea3adc25faa0a9a7ba30b3869082c50023c73b16add"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

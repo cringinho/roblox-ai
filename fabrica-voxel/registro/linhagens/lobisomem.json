@@ -1,0 +1,107 @@
+{
+ "id": "linhagem.lobisomem",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Lobisomem",
+ "conceito": "Werewolf",
+ "tamanho": "G",
+ "classe_cabeca": "longa",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "orelhas.lupinas",
+  "cauda.felpuda",
+  "juba"
+ ],
+ "rampas": {
+  "pele": [
+   "pelo_noite",
+   "pelo_cinza",
+   "pelo_ruivo",
+   "pelo_neve"
+  ],
+  "cabelo": [
+   "pelo_noite",
+   "pelo_cinza",
+   "pelo_neve"
+  ],
+  "olhos": [
+   "gold",
+   "blood",
+   "spirit"
+  ]
+ },
+ "cabeca": {
+  "focinho": [
+   6,
+   5,
+   5
+  ],
+  "focinho_ponta": "escuro",
+  "olhos_brilho": true,
+  "roupa_pele": true,
+  "sem_cabelo": true
+ },
+ "predefinicoes": [
+  {
+   "o": 3,
+   "b": "presas",
+   "s": 3,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 5,
+   "b": "presas",
+   "s": 5,
+   "h": 10,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 3,
+   "b": 6,
+   "s": 3,
+   "h": 10,
+   "cp": 2,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 8,
+   "b": "presas",
+   "s": 2,
+   "h": 10,
+   "cp": 3,
+   "ch": 2,
+   "co": 1
+  },
+  {
+   "o": 3,
+   "b": "presas",
+   "s": 4,
+   "h": 10,
+   "cp": 0,
+   "ch": 2,
+   "co": 2
+  },
+  {
+   "o": 5,
+   "b": 3,
+   "s": 3,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "natural",
+ "lore": "Caca nas noites em que o sino nao toca."
+}

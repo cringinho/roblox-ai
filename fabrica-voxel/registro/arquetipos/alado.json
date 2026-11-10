@@ -1,0 +1,558 @@
+{
+ "id": "arquetipo.alado",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Alado",
+ "_ajuda": "Ave ou morcego que voa: gargulho, coruja, morcego de pedra.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "estilo_movimento": "natural",
+ "andadura": {
+  "tipo": "voo",
+  "batida": "desce rapido e largo, sobe dobrado"
+ },
+ "armadilhas": [
+  "Batida: desce rapido e largo, sobe devagar; o corpo sobe na descida.",
+  "Vista de cima a envergadura e a silhueta: nao encolha as asas."
+ ],
+ "meta": {
+  "flutua": true
+ },
+ "pecas": [
+  {
+   "nome": "Corpo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      6,
+      7,
+      5
+     ],
+     "chanfro": 1,
+     "em": "chao",
+     "desloc": {
+      "cima": 14
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "cranio",
+     "tam": [
+      6,
+      6,
+      6
+     ],
+     "raio": 1,
+     "em": "Corpo.t.topo_frente",
+     "encaixe": "centro",
+     "desloc": {
+      "cima": 2,
+      "frente": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "linhas": [
+      "O..O"
+     ],
+     "legenda": {
+      "O": "olho",
+      "E": "escuro"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "cranio.topo",
+     "desloc": {
+      "direita": 2,
+      "baixo": 1
+     },
+     "material": "corpo",
+     "espelhar": true
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "frente",
+     "desloc": {
+      "baixo": 2
+     },
+     "linhas": [
+      "EOOE"
+     ],
+     "legenda": {
+      "E": "escuro",
+      "O": "olho"
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Asa_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "braco",
+     "tam": [
+      9,
+      2,
+      2
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "cima": 2
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      9,
+      7,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "tras": 0
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      2,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "baixo": 7,
+      "direita": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "baixo": 6,
+      "esquerda": 2
+     },
+     "modo": "cortar"
+    }
+   ]
+  },
+  {
+   "nome": "Asa_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "braco",
+     "tam": [
+      9,
+      2,
+      2
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "cima": 2
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      9,
+      7,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "tras": 0
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      2,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "baixo": 7,
+      "esquerda": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      1
+     ],
+     "em": "braco.base",
+     "desloc": {
+      "baixo": 6,
+      "direita": 2
+     },
+     "modo": "cortar"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Corpo",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Corpo.t.centro"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Cabeca",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Cabeca.cranio.base"
+   },
+   "papel": "cabeca",
+   "junta": 2
+  },
+  {
+   "nome": "Asa_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Corpo.t.dir"
+   },
+   "papel": "asa",
+   "junta": 1
+  },
+  {
+   "nome": "Asa_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Corpo.t.esq"
+   },
+   "papel": "asa",
+   "junta": 1
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 4.0,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "osso": "Asa_D",
+     "canal": "tombar_direita",
+     "amp": -32,
+     "harm": 8,
+     "forma": "asa"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Asa_E",
+     "canal": "tombar_direita",
+     "amp": 32,
+     "harm": 8,
+     "forma": "asa",
+     "fase": 0.02
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.03,
+     "harm": 8,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": 8,
+     "harm": 1,
+     "harm2": 0.4
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 1.0,
+   "laco": true,
+   "vel_raiz": 3.0,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "osso": "Asa_D",
+     "canal": "tombar_direita",
+     "amp": -42,
+     "harm": 4,
+     "forma": "asa"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Asa_E",
+     "canal": "tombar_direita",
+     "amp": 42,
+     "harm": 4,
+     "forma": "asa",
+     "fase": 0.02
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.03,
+     "harm": 4,
+     "fase": 0.5
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Corpo": {
+         "frente": 18
+        },
+        "Cabeca": {
+         "frente": -14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Corpo": {
+         "frente": 18
+        },
+        "Cabeca": {
+         "frente": -14
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.3,
+   "marcadores": [
+    [
+     "Aviso",
+     0
+    ],
+    [
+     "Impacto",
+     0.72
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.35,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "cima": 0.15,
+         "frente": -15
+        },
+        "Asa_D": {
+         "tombar_direita": -55
+        },
+        "Asa_E": {
+         "tombar_direita": 55
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "baixo": 0.5,
+         "frente": 55,
+         "frente_t": 0.5
+        },
+        "Asa_D": {
+         "tombar_direita": 70
+        },
+        "Asa_E": {
+         "tombar_direita": -70
+        }
+       }
+      },
+      {
+       "t": 0.72,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "baixo": 0.2,
+         "frente": 20,
+         "frente_t": 0.3
+        },
+        "Asa_D": {
+         "tombar_direita": -40
+        },
+        "Asa_E": {
+         "tombar_direita": 40
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Cabeca": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.0,
+   "marcadores": [
+    [
+     "Queda",
+     0.7
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.7,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "baixo": 0.95,
+         "tombar_direita": 60
+        },
+        "Asa_D": {
+         "tombar_direita": 80
+        },
+        "Asa_E": {
+         "tombar_direita": -30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Corpo": {
+         "baixo": 0.97,
+         "tombar_direita": 70
+        },
+        "Asa_D": {
+         "tombar_direita": 85
+        },
+        "Asa_E": {
+         "tombar_direita": -35
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

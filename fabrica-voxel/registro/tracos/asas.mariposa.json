@@ -1,0 +1,238 @@
+{
+ "id": "traco.asas.mariposa",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Asas de mariposa",
+ "material": "asa",
+ "pecas": [
+  {
+   "nome": "Asa_D",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 1,
+      "cima": 2,
+      "tras": 1
+     }
+    },
+    "papel": "asa",
+    "mola": {
+     "freq_hz": 3.5,
+     "amort": 0.4,
+     "max_graus": 30
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      4
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 1,
+      "cima": 2
+     },
+     "material": "asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      5,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 3,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "haste que liga o pedunculo as laminas da asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      8,
+      9,
+      1
+     ],
+     "chanfro": 0,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 6,
+      "cima": 5,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 4,
+      "baixo": 3,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 7,
+      "cima": 6,
+      "tras": 3
+     },
+     "material": "asa_olho",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 5,
+      "baixo": 3,
+      "tras": 3
+     },
+     "material": "asa_olho",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Asa_E",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 1,
+      "cima": 2,
+      "tras": 1
+     }
+    },
+    "papel": "asa",
+    "mola": {
+     "freq_hz": 3.5,
+     "amort": 0.4,
+     "max_graus": 30
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      4
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 1,
+      "cima": 2
+     },
+     "material": "asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      5,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 3,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "haste que liga o pedunculo as laminas da asa"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      8,
+      9,
+      1
+     ],
+     "chanfro": 0,
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 6,
+      "cima": 5,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 4,
+      "baixo": 3,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 7,
+      "cima": 6,
+      "tras": 3
+     },
+     "material": "asa_olho",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 5,
+      "baixo": 3,
+      "tras": 3
+     },
+     "material": "asa_olho",
+     "modo": "pintar"
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "recorta",
+  "costas": "move:Cintura"
+ },
+ "animacao": "asas"
+}

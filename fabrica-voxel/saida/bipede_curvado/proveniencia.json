@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.bipede_curvado",
+ "hash_ficha": "3a7bc5d1b856687a684a4235c5891c5b2d5f2f3991942ce21b9ffbc76cae827e",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_BipedeCurvado.luau": "6b265bf2a392362fd9abf39b3d6460db830b7100d692c423419297149e1c6559",
+  "Dados_BipedeCurvado.luau": "b6059c7dab66230db70255604ae40f2f50db2c9498c19b2db0d4780d85f08386",
+  "anim.gif": "c4f756e39410b93514a6c4fbee17c9ec6a11d20f68caa9eb4b1dd5fcaf561127",
+  "anim_Andar.png": "7eb061f4f5fca04587c8012b6512148149c94b792a9ba8092abbe57ddb8b665e",
+  "anim_Ataque.png": "a34ee864cfe35b638d794706965a036c150c584d01eb37d27ce3d822f9e588f5",
+  "anim_Dano.png": "42560fa4227ec01025836f95994c66bdabdc1b2306158ae33a413db337a6ad38",
+  "anim_Morte.png": "c520aa167612ebac6897602e2dcfcb5e288d53a31abe712ebbcb50998675cc92",
+  "anim_Parado.png": "89cb043e4e6a3ca61b14788f6b9a46149f8cdc43d7b8dd14b8edd07d63d28802",
+  "folha.png": "5194f1e0d6ba6825bb389eb4f2aaa95b129e147174bba0c0d285f56ee38ef100",
+  "icone_64.png": "077131a297d8c3d219972466ca7afcbd3e4f869fad3ea758608bc03776154d7b",
+  "modelo.glb": "ca2f25fcfe3dfa968599ef533f15aee5b4478963cfbc592dc7a70ae14f23965f",
+  "modelo.vox": "f8e7e7c42913b240efa6915496403274ee254fabb38f1ab2844d1230d82200f3"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

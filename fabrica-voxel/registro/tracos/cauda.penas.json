@@ -1,0 +1,58 @@
+{
+ "id": "traco.cauda.penas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda de penas",
+ "material": "cabelo",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 2.5,
+     "amort": 0.35,
+     "max_graus": 35
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      1,
+      4
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      2
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 2,
+      "tras": 4
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

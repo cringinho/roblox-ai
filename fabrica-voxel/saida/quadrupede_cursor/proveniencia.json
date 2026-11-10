@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.quadrupede_cursor",
+ "hash_ficha": "16ddf93d706058ae63e35fe1c908ec7d8b680f42e4db75b5ef600d307e211fc8",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_QuadrupedeCursor.luau": "f5f9678f56c40128d5e72b0b8f95ea0596e4962737b5dc60b802b72beafb595d",
+  "Dados_QuadrupedeCursor.luau": "7e352659ebdc87c82cb7297e76f796dc3ff3326471774807ee4ed8fd43e071b6",
+  "anim.gif": "0f04e4f02bee86bf786c8b935b9f42a2f935b8d7b9bf6f5dd7f80c099305fcb1",
+  "anim_Andar.png": "f593b71055f47800cbb83074deff5a61234b9e4225b070cc22007b7d77327ac7",
+  "anim_Ataque.png": "77d33f73716856f14f2ed6c961ca352613987d19e0e9586510b064a0f49f09ac",
+  "anim_Dano.png": "26fd93522beb924d6b138e1b81decdab7feb06c3621574352336ca76c1e5495d",
+  "anim_Morte.png": "b82fa348f25cce8f492d30cc7eb2133e22b504d05cd18723f5f897fa8a0d95dd",
+  "anim_Parado.png": "b4ff9e6998b6b87dcdd135e933032341133bbc2876c75596f4f63f7a1141bace",
+  "folha.png": "f8f77a46b3cff520d21353542c225157daca8b5beb4e426ae4278012f1251d93",
+  "icone_64.png": "22ce6f6739288a56405293ba2c5c56665d5110ae0ffd718deb7f9a24b7bc18a7",
+  "modelo.glb": "90231171878c35bcfabb7335f5ef43c2326155a6818d2138005be374de0acd96",
+  "modelo.vox": "f1010d4c075ac2304f018c4749b61023830a75e3c93b5c26d33ab1e231f33193"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

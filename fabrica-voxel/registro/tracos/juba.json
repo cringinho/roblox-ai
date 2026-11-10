@@ -1,0 +1,33 @@
+{
+ "id": "traco.juba",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Juba",
+ "material": "cabelo",
+ "pecas": [
+  {
+   "nome": "Juba",
+   "osso": "Tronco",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      15,
+      5,
+      10
+     ],
+     "raio": 2,
+     "em": "Tronco.t.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 1,
+      "tras": 1
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "tronco": "passa_por_cima"
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "id": "conjunto.couro_de_cacador",
+ "tipo": "conjunto",
+ "versao": 1,
+ "nome": "Couro de Cacador",
+ "materiais": [
+  "couro",
+  "couro_escuro",
+  "linho",
+  "bronze"
+ ],
+ "elmo": {
+  "tipo": "aberto",
+  "material": "couro_escuro",
+  "detalhe": "bronze"
+ },
+ "tronco": {
+  "faixas": [
+   {
+    "ate": 0.25,
+    "material": "couro_escuro"
+   },
+   {
+    "ate": 0.33,
+    "material": "bronze"
+   },
+   {
+    "ate": 1,
+    "material": "couro"
+   }
+  ]
+ },
+ "luvas": {
+  "material": "couro_escuro",
+  "detalhe": "bronze"
+ },
+ "botas": {
+  "material": "couro_escuro",
+  "detalhe": "couro"
+ },
+ "ombreiras": {
+  "material": "couro_escuro",
+  "detalhe": "bronze"
+ },
+ "mao_principal": "item.espada_longa"
+}

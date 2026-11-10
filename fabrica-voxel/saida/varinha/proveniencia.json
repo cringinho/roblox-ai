@@ -1,0 +1,16 @@
+{
+ "id": "item.varinha",
+ "hash_ficha": "bc3b141aaf80091ebdf3f10e7405f562f6ea6213c32995df3e8d63d68296f6ad",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Dados_Varinha.luau": "b97eda4e44cde365af3055aa254bb86fedcfe54242fe931bd4778a8b49af0854",
+  "folha.png": "e56cbeffeda01dc83a42bcc44a25bb8647e1740138d7c27f614e88742cf85960",
+  "icone_64.png": "2f0d10e59dc69dc6468b6e47847dbae02e74a9f8389d7c8b51cef287f45d4534",
+  "modelo.glb": "7f1df8855777d15dbf2a14cd119a4da50a91caf884c2c92132dfd70cc34daa89",
+  "modelo.vox": "bbf58fa980043ee6988810aa87c9af111a8725b93ac6739132ba81a8c3961993"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

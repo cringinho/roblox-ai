@@ -1,0 +1,39 @@
+{
+ "id": "monstro.gargulho",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Gargulho",
+ "arquetipo": "alado",
+ "tier": 2,
+ "pegada_ladrilhos": 1,
+ "lore": "Morcego de pedra de asas recortadas e olhos vermelhos.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "pedra",
+   "rampa": "pele_pedra"
+  },
+  {
+   "nome": "detalhe",
+   "como": "pedra_escura"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "acabamentos": [
+  {
+   "tipo": "musgo_em_cima",
+   "forca": 0.35,
+   "pecas": [
+    "Corpo",
+    "Cabeca"
+   ]
+  }
+ ]
+}

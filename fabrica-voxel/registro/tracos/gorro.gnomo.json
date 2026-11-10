@@ -1,0 +1,82 @@
+{
+ "id": "traco.gorro.gnomo",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Gorro de gnomo",
+ "material": "gorro",
+ "pecas": [
+  {
+   "nome": "Gorro",
+   "osso": {
+    "pai": "Cabeca",
+    "pivo": {
+     "em": "Cabeca.cranio.topo"
+    },
+    "papel": "cabeca",
+    "mola": {
+     "freq_hz": 3,
+     "amort": 0.5,
+     "max_graus": 14
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w+2",
+      3,
+      "$d+2"
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "baixo": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w-2",
+      3,
+      "$d-2"
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "cima": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      "$w-6",
+      3,
+      "$d-5"
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "cima": 4
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "cima": 7,
+      "tras": 1
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "esconde",
+  "chapeu": "esconde"
+ },
+ "animacao": "chapeu"
+}

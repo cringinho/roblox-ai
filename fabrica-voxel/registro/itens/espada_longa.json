@@ -1,0 +1,108 @@
+{
+ "id": "item.espada_longa",
+ "tipo": "item",
+ "versao": 1,
+ "nome": "Espada longa",
+ "slot": "mao",
+ "pegada": "uma_mao",
+ "lore": "Lamina de peregrino, afiada em pedra de lapide.",
+ "materiais": [
+  "aco",
+  "ferro",
+  "couro_escuro",
+  "ouro"
+ ],
+ "pecas": [
+  {
+   "nome": "Item",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "pomo",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "chao",
+     "material": "ouro"
+    },
+    {
+     "op": "caixa",
+     "nome": "cabo",
+     "tam": [
+      1,
+      5,
+      1
+     ],
+     "em": "pomo.topo",
+     "material": "couro_escuro"
+    },
+    {
+     "op": "caixa",
+     "nome": "guarda",
+     "tam": [
+      1,
+      1,
+      7
+     ],
+     "em": "cabo.topo",
+     "material": "ferro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "guarda.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "ferro"
+    },
+    {
+     "op": "caixa",
+     "nome": "lamina",
+     "tam": [
+      1,
+      18,
+      3
+     ],
+     "em": "guarda.topo",
+     "material": "aco"
+    },
+    {
+     "op": "caixa",
+     "nome": "ponta",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "lamina.topo",
+     "material": "aco"
+    }
+   ]
+  }
+ ],
+ "soquetes": [
+  {
+   "nome": "Pegada",
+   "osso": "Item",
+   "em": "cabo.centro"
+  },
+  {
+   "nome": "Ponta",
+   "osso": "Item",
+   "em": "ponta.topo"
+  },
+  {
+   "nome": "Base",
+   "osso": "Item",
+   "em": "pomo.base"
+  }
+ ]
+}

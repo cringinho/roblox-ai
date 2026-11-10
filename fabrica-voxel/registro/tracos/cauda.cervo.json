@@ -1,0 +1,45 @@
+{
+ "id": "traco.cauda.cervo",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda de cervo",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 2.5,
+     "amort": 0.35,
+     "max_graus": 35
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

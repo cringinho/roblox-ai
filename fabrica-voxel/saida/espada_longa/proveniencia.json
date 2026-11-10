@@ -1,0 +1,16 @@
+{
+ "id": "item.espada_longa",
+ "hash_ficha": "52cb807e40dbb3dfce80375b9b9992e81628abffc36b296bfe6e71b18be9ca10",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Dados_EspadaLonga.luau": "107a3f72d5e260dab6d7d45e885a388c049a61b0f4fe70b0c4cd42060807aae3",
+  "folha.png": "0871d822a07c7a508b9b8fa5c75eaf0e15c5d503928973b6efe59b0154da5dea",
+  "icone_64.png": "6133c339abeff252f9ccb5bd98fa5ee65eb8215f55376cdcd7dbe7f7c777038e",
+  "modelo.glb": "8b96591851f68ca8e10539811ed7d59ba9f0bfbd1ba67d2ff1a16ddca16ad7de",
+  "modelo.vox": "a5208842ec9cba162667487ab9500a4fbdc21458f970720628960bfe08eff2a9"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

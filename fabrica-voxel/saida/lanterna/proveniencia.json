@@ -1,0 +1,16 @@
+{
+ "id": "item.lanterna",
+ "hash_ficha": "256a27947ee6dd759b280be40c0c296a834302eadb81d86052e3eff0e22dd487",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Dados_Lanterna.luau": "5c1777df6784d14ff8df70aefbd8484586aa346f9b97df94f698e5e05897a200",
+  "folha.png": "57ed899070919faca22d0eadc24ef3aacc9ba4134917df8be5e87310d6c23eb4",
+  "icone_64.png": "cbb7cb3edf55c7aa833918f9c4c58cf3bd556cadfefb16f58aabc6390761964b",
+  "modelo.glb": "431956357e3c92e921a490e17a3053756ac1957851c051fb615027b0ca4b9305",
+  "modelo.vox": "d0a6f845130f00caeee9790d78c4678bef0684d53da16ba5c538215bdd9f332f"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

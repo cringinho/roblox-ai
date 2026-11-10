@@ -1,0 +1,52 @@
+{
+ "id": "traco.chifres.dragao",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Chifres de dragao",
+ "material": "chifre",
+ "pecas": [
+  {
+   "nome": "Chifres",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      4
+     ],
+     "em": "Cabeca.cranio.topo_tras",
+     "encaixe": "centro",
+     "desloc": {
+      "direita": 3,
+      "cima": 1,
+      "tras": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "Cabeca.cranio.topo_tras",
+     "encaixe": "centro",
+     "desloc": {
+      "direita": 3,
+      "cima": 3,
+      "tras": 4
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "recorta",
+  "elmo_aberto": "recorta",
+  "chapeu": "recorta"
+ }
+}

@@ -1,0 +1,78 @@
+{
+ "id": "classe_corpo.tabela",
+ "tipo": "classe_corpo",
+ "_ajuda": "Medidas em voxels de 0,125. tronco = [largura, altura, fundo]; vao = espaco entre pe e tronco. A cabeca tem o mesmo tamanho em P, M e G.",
+ "tamanhos": {
+  "P": {
+   "H_voxels": 24,
+   "tronco": [
+    6,
+    7,
+    4
+   ],
+   "pe": [
+    2,
+    2,
+    3
+   ],
+   "vao": 1,
+   "mao": 2,
+   "mao_vao": 1,
+   "pe_x": 2
+  },
+  "M": {
+   "H_voxels": 32,
+   "tronco": [
+    8,
+    11,
+    5
+   ],
+   "pe": [
+    3,
+    3,
+    4
+   ],
+   "vao": 3,
+   "mao": 3,
+   "mao_vao": 2,
+   "pe_x": 2
+  },
+  "G": {
+   "H_voxels": 40,
+   "tronco": [
+    11,
+    17,
+    7
+   ],
+   "pe": [
+    4,
+    4,
+    5
+   ],
+   "vao": 4,
+   "mao": 4,
+   "mao_vao": 2,
+   "pe_x": 3
+  }
+ },
+ "corpos": {
+  "1": {
+   "nome": "ombro largo",
+   "ombro": 2,
+   "quadril": 0,
+   "robusto": 0
+  },
+  "2": {
+   "nome": "quadril largo",
+   "ombro": 0,
+   "quadril": 2,
+   "robusto": 0
+  },
+  "3": {
+   "nome": "robusto",
+   "ombro": 2,
+   "quadril": 2,
+   "robusto": 2
+  }
+ }
+}

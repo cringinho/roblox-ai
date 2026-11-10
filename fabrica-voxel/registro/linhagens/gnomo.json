@@ -1,0 +1,96 @@
+{
+ "id": "linhagem.gnomo",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Gnomo",
+ "conceito": "Gnome",
+ "tamanho": "P",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "gorro.gnomo",
+  "barba.longa"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_bronze"
+  ],
+  "cabelo": [
+   "bone",
+   "cabelo_prata",
+   "cabelo_palha"
+  ],
+  "olhos": [
+   "void",
+   "abyss"
+  ]
+ },
+ "cabeca": {
+  "roupa": "tecido_vinho",
+  "gorro": "blood[1:6]"
+ },
+ "predefinicoes": [
+  {
+   "o": 3,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 2,
+   "h": 10,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 8,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 10,
+   "cp": 0,
+   "ch": 2,
+   "co": 0
+  },
+  {
+   "o": 3,
+   "b": "nenhuma",
+   "s": 3,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 5,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 10,
+   "cp": 0,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 2,
+   "h": 10,
+   "cp": 1,
+   "ch": 2,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "natural",
+ "lore": "Conserta os relogios da torre e atrasa todos de proposito."
+}

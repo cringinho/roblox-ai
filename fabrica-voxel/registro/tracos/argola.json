@@ -1,0 +1,31 @@
+{
+ "id": "traco.argola",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Argola",
+ "material": "ouro",
+ "pecas": [
+  {
+   "nome": "Argola",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      1
+     ],
+     "em": "Cabeca.focinho.frente",
+     "desloc": {
+      "baixo": 2
+     },
+     "material": "ouro"
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde"
+ }
+}

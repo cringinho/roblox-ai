@@ -1,0 +1,93 @@
+{
+ "id": "linhagem.peregrino_mutacao",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Peregrino Mutante",
+ "conceito": "Pilgrim Mutation",
+ "tamanho": "M",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "braco.mutante"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim_frio",
+   "pele_cadaverica"
+  ],
+  "cabelo": [
+   "cabelo_noite",
+   "cabelo_castanho"
+  ],
+  "olhos": [
+   "violet",
+   "blood"
+  ]
+ },
+ "cabeca": {
+  "olhos_brilho": true
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": 3,
+   "s": 3,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": 1,
+   "s": 5,
+   "h": 2,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 2,
+   "b": 3,
+   "s": 2,
+   "h": 5,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 4,
+   "s": 3,
+   "h": 9,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": 3,
+   "s": 4,
+   "h": 1,
+   "cp": 0,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 5,
+   "h": 10,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "manco",
+ "lore": "O osso cresceu para fora antes de a fe acabar."
+}

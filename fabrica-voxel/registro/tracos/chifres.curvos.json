@@ -1,0 +1,64 @@
+{
+ "id": "traco.chifres.curvos",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Chifres curvos",
+ "material": "chifre",
+ "pecas": [
+  {
+   "nome": "Chifres",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 5,
+      "tras": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 5,
+      "cima": 3,
+      "frente": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 5,
+      "cima": 5,
+      "frente": 2
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "recorta",
+  "elmo_aberto": "recorta",
+  "chapeu": "recorta"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "id": "traco.orelhas.caidas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Orelhas caidas",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Orelhas",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      2,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 1
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "direita": 5,
+      "baixo": 1
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "recorta",
+  "chapeu": "passa_por_cima"
+ }
+}

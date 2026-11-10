@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.ninfa",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Ninfa",
+ "conceito": "Nymph",
+ "tamanho": "M",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "orelhas.pontudas"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_bronze",
+   "pele_oliva",
+   "pele_musgo_frio"
+  ],
+  "cabelo": [
+   "moss[1:6]",
+   "cabelo_fada",
+   "pelo_ruivo"
+  ],
+  "olhos": [
+   "moss",
+   "earth",
+   "gold"
+  ]
+ },
+ "cabeca": {
+  "roupa": "moss[1:6]",
+  "cabelo_perfil": "fungo"
+ },
+ "predefinicoes": [
+  {
+   "o": 2,
+   "b": 1,
+   "s": 1,
+   "h": 3,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 2,
+   "s": 2,
+   "h": 6,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 6,
+   "b": 4,
+   "s": 1,
+   "h": 2,
+   "cp": 2,
+   "ch": 2,
+   "co": 2
+  },
+  {
+   "o": 2,
+   "b": 1,
+   "s": 3,
+   "h": 3,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": 2,
+   "s": 1,
+   "h": 8,
+   "cp": 1,
+   "ch": 1,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 2,
+   "h": 9,
+   "cp": 2,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "eterio",
+ "lore": "Brotou das raizes que seguram o muro do adro."
+}

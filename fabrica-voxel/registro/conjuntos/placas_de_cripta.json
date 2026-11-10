@@ -1,0 +1,67 @@
+{
+ "id": "conjunto.placas_de_cripta",
+ "tipo": "conjunto",
+ "versao": 1,
+ "nome": "Placas de Cripta",
+ "materiais": [
+  "ferro",
+  "aco",
+  "ouro",
+  "tecido_vinho",
+  "couro_escuro"
+ ],
+ "elmo": {
+  "tipo": "fechado",
+  "material": "ferro",
+  "detalhe": "ouro",
+  "crista": true
+ },
+ "tronco": {
+  "faixas": [
+   {
+    "ate": 0.2,
+    "material": "couro_escuro"
+   },
+   {
+    "ate": 0.3,
+    "material": "ouro"
+   },
+   {
+    "ate": 0.8,
+    "material": "ferro"
+   },
+   {
+    "ate": 1,
+    "material": "aco"
+   }
+  ],
+  "emblema": {
+   "linhas": [
+    ".A.",
+    "AAA",
+    ".A.",
+    ".A."
+   ],
+   "material": "ouro"
+  }
+ },
+ "luvas": {
+  "material": "ferro",
+  "detalhe": "aco"
+ },
+ "botas": {
+  "material": "ferro",
+  "detalhe": "couro_escuro"
+ },
+ "ombreiras": {
+  "material": "aco",
+  "detalhe": "ouro",
+  "so_uma": "D"
+ },
+ "capa": {
+  "material": "tecido_vinho",
+  "detalhe": "ouro"
+ },
+ "mao_principal": "item.espada_longa",
+ "mao_secundaria": "item.escudo_de_brasao"
+}

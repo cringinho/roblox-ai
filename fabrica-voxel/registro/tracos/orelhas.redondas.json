@@ -1,0 +1,35 @@
+{
+ "id": "traco.orelhas.redondas",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Orelhas redondas",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Orelhas",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      5,
+      1
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 6,
+      "baixo": 2
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "recorta",
+  "chapeu": "passa_por_cima"
+ }
+}

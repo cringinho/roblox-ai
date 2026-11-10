@@ -1,0 +1,21 @@
+{
+ "id": "monstro.esporinho",
+ "hash_ficha": "fc476545b04ee4fb75bbde69bae786f27abd36b82ec3f7118fa5b7516b8c69e0",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Esporinho.luau": "52cccf1de5c6de222e6799ee16d6872eeaeaac51216e19f0171cd0513d9322f2",
+  "Dados_Esporinho.luau": "69d49f0f26fba88c1ca7167da23aebf51d642712a80f495ec0267215584d3e6d",
+  "anim.gif": "3c2dfcaf1258bcfcf989624cbbaec8e465b9be17d57203255c9824d10b6a27cc",
+  "anim_Andar.png": "07b8b8b9ecb594bed913eb804c1b754dc5ccf525c89e14354630ac35740680f8",
+  "anim_Ataque.png": "689577231dc80e9b0635059fe86f45ae851c5b09e36c497a384ab278e1c9552a",
+  "anim_Parado.png": "a4a2967137e1ac43d03f19e138e990a2a68dbb3a93ad456c3c9e45d5042197cb",
+  "folha.png": "3bc5222e47ca1fd6942ffdbd8ed7af505593c7d3ed86ee854843dd484f426a38",
+  "icone_64.png": "5663569866e44cab54b4f1e2d3f93d8429aae7f03639d36b812be3c5cd9f2aff",
+  "modelo.glb": "ae06efd82b2b63ff467b990fdcc50db2d8853743189df2a3ef4f598ade366184",
+  "modelo.vox": "84e14740adec15d1a7ebf56798316ab0686e9f1a05ed4cec8b405e779ca1be9b"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

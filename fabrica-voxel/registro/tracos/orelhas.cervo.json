@@ -1,0 +1,33 @@
+{
+ "id": "traco.orelhas.cervo",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Orelhas de cervo",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Orelhas",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      1
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 3
+     },
+     "espelhar": true
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "recorta",
+  "chapeu": "passa_por_cima"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "id": "monstro.mastim_relicario",
+ "hash_ficha": "44d0cda380e64880ec9891ec97b6972f34a94aa9727bf6c75b12d6f3dfcfb78d",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_MastimRelicario.luau": "fc63b4ef0690b3a95908d9ce9779d584e507d29c8ddc55842f25f5144614d87d",
+  "Dados_MastimRelicario.luau": "def6d405e23b9ab3aa28d63b27d0a821db3506b281a324e4ff490d9ac7fde996",
+  "anim.gif": "b515a5c43548d53b7e4f2a7a97e0dce6ad05c277df05da8bef921493775f4f9f",
+  "anim_Andar.png": "e221f05056b4f1f7bddea73ee4015d6140750e5feb2d3959156f50270a2d0517",
+  "anim_Ataque.png": "52d882cfa92ad28f7726acf66f0014cfd426dc7bb1a9b574e184f0b9aebbba67",
+  "anim_Dano.png": "f3819474cee1dac5b79a2932b107f1223c7d3e8b2f546111c484270df601b8f4",
+  "anim_Morte.png": "5a905ddd4b38953f0c5f0e43a430f6e9124ad49c5f2f6167de06fa1b310aa99a",
+  "anim_Parado.png": "5887b0c0c5f5df3f217f33b9b50f95920818863df608ed1eff7075e132f504ac",
+  "folha.png": "b337f43e358d5c98bf530412400cbe48016cbd256320d118c7c2872bbe84ac6f",
+  "icone_64.png": "802bdfb12ff4a7d4eda63434f46aadfe0635f851f736a611547c7d69a300434f",
+  "modelo.glb": "b9ebe5c0496da5003c7ea3d1f2e580c64550ea124f823ca4fd66aedd2351f111",
+  "modelo.vox": "dc8e628eeccd6e141a44f7e46dee1e317b1e033588b96d696d4f5c57535d39a8"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

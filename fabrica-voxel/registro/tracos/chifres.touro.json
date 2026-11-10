@@ -1,0 +1,63 @@
+{
+ "id": "traco.chifres.touro",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Chifres de touro",
+ "material": "chifre",
+ "pecas": [
+  {
+   "nome": "Chifres",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      2,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "cima": 3
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "direita": 3,
+      "cima": 5
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.dir",
+     "desloc": {
+      "direita": 3,
+      "cima": 5
+     },
+     "modo": "cortar",
+     "espelhar": false,
+     "_ajuda": "chifre direito quebrado: assimetria"
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "recorta",
+  "elmo_aberto": "recorta",
+  "chapeu": "recorta"
+ }
+}

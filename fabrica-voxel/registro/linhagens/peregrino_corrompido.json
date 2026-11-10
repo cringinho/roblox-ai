@@ -1,0 +1,93 @@
+{
+ "id": "linhagem.peregrino_corrompido",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Peregrino Corrompido",
+ "conceito": "Pilgrim Corrupted",
+ "tamanho": "M",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [],
+ "rampas": {
+  "pele": [
+   "void[1:6]",
+   "pele_basalto"
+  ],
+  "cabelo": [
+   "void[0:5]",
+   "cabelo_noite"
+  ],
+  "olhos": [
+   "violet",
+   "blood"
+  ]
+ },
+ "cabeca": {
+  "olhos_brilho": true,
+  "runas": true,
+  "runas_no_tronco": true
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 5,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": "nenhuma",
+   "s": 3,
+   "h": 10,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 2,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 2,
+   "b": "nenhuma",
+   "s": 5,
+   "h": 7,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": "nenhuma",
+   "s": 4,
+   "h": 5,
+   "cp": 0,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "nenhuma",
+   "s": 3,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "espasmodico",
+ "lore": "Rezou tempo demais diante do altar errado."
+}

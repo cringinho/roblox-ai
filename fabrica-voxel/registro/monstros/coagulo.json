@@ -1,0 +1,28 @@
+{
+ "id": "monstro.coagulo",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Coagulo",
+ "arquetipo": "gosma",
+ "tier": 1,
+ "pegada_ladrilhos": 1,
+ "lore": "Slime de sangue escuro com dedos de osso saindo do topo.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "sangue"
+  },
+  {
+   "nome": "detalhe",
+   "como": "osso"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ]
+}

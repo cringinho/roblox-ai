@@ -1,0 +1,58 @@
+{
+ "id": "traco.cauda.fina",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Cauda fina",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Cauda",
+   "osso": {
+    "pai": "Tronco",
+    "pivo": {
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    "papel": "cauda",
+    "mola": {
+     "freq_hz": 2.5,
+     "amort": 0.35,
+     "max_graus": 35
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      7
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 2,
+      "tras": 7
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "capa": "abre_embaixo"
+ },
+ "animacao": "cauda"
+}

@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.gosma",
+ "hash_ficha": "f68ae58e1efd1ea6666d1d57f3b2a16f6c3c7fc8a64ec95c0127882fde9d7aa3",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Gosma.luau": "34f32f38c01d077bc4f5b28a2fdb643d42604651c3ca8b6c102d6727d8c6dd8a",
+  "Dados_Gosma.luau": "22fddcca861923a0cd1f4b8e0577df56bd2c0a92789e547a5aff168af2ea96d3",
+  "anim.gif": "afc6c4c7b0312e24539166deb506f0315920eea45919d9230895c793c7626d5c",
+  "anim_Andar.png": "c66011c0815f9f01ca7f467dc232df453b0b33f96a5cf799481e2db258ffdc09",
+  "anim_Ataque.png": "cb40800e1d6f8ff544f5cbfed20974dcc636c685b37e098268f076466d20847c",
+  "anim_Dano.png": "ffa5d1f9b684769300c66254d9e2970d370fe8fbbf5dad812f2bee5a53b1521a",
+  "anim_Morte.png": "34055d0f65c3e841f789dcb90d82285363633ef8c734aa91627f4049046ed728",
+  "anim_Parado.png": "33bfd282ede51fe7fdafd1f23af3b7d5ba69bde45acd4256a2152b1b75b43c11",
+  "folha.png": "f3a29f99c131766c5b969b4f69d257f66f3e628688247632499ad1255a2947e5",
+  "icone_64.png": "edc2f079154e7763733fd94ef2aca75babf5d4f70106108296dc745a9b01d8d3",
+  "modelo.glb": "539c5ecb1410b708c5f872843f45d621b39c6e6b960671c01befb3e6f96dcc35",
+  "modelo.vox": "e7aa04b6a41aa83a20ac8a012fe0754b8ccdc5c61d1ed69b821eb12f6eec5125"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

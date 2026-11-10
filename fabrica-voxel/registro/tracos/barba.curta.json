@@ -1,0 +1,31 @@
+{
+ "id": "traco.barba.curta",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Barba curta",
+ "material": "cabelo",
+ "pecas": [
+  {
+   "nome": "Barba",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      "$w-2",
+      3,
+      1
+     ],
+     "em": "Cabeca.cranio.frente",
+     "desloc": {
+      "baixo": 4
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "nada"
+ }
+}

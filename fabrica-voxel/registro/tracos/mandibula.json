@@ -1,0 +1,51 @@
+{
+ "id": "traco.mandibula",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Mandibula solta",
+ "material": "pele",
+ "pecas": [
+  {
+   "nome": "Mandibula",
+   "osso": {
+    "pai": "Cabeca",
+    "pivo": {
+     "em": "Cabeca.cranio.base",
+     "desloc": {
+      "tras": 3
+     }
+    },
+    "papel": "mandibula"
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      8,
+      2,
+      7
+     ],
+     "em": "Cabeca.cranio.base",
+     "desloc": {
+      "frente": 2,
+      "cima": 1
+     }
+    },
+    {
+     "op": "estampa",
+     "em": "Mandibula",
+     "face": "frente",
+     "linhas": [
+      "WEWEWEWE"
+     ],
+     "legenda": {
+      "W": "olho_branco",
+      "E": "escuro"
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {},
+ "animacao": "mandibula"
+}

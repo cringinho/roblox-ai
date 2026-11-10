@@ -1,0 +1,34 @@
+{
+ "id": "golpe.uma_mao_diagonal",
+ "tipo": "golpe",
+ "versao": 1,
+ "pegada": "uma_mao",
+ "duracao_s": 0.7,
+ "plano_graus": 35,
+ "arco": {
+  "inicio_graus": 140,
+  "fim_graus": -60,
+  "raio_mao_H": 0.3
+ },
+ "tempos": [
+  0.3,
+  0.1,
+  0.05,
+  0.25,
+  0.3
+ ],
+ "tronco": {
+  "giro_graus": 40,
+  "atraso_ombro_s": 0.06,
+  "inclinacao_graus": 12
+ },
+ "peso_pe_frente": 0.7,
+ "rastro": [
+  "Base",
+  "Ponta"
+ ],
+ "acerto": {
+  "quadro": "contato",
+  "alcance_H": 0.9
+ }
+}

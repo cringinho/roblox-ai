@@ -1,0 +1,122 @@
+{
+ "id": "item.escudo_de_brasao",
+ "tipo": "item",
+ "versao": 1,
+ "nome": "Escudo de brasao",
+ "slot": "mao",
+ "pegada": "escudo",
+ "lore": "",
+ "materiais": [
+  "ferro",
+  "tecido_vinho",
+  "ouro"
+ ],
+ "pecas": [
+  {
+   "nome": "Item",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "tabua",
+     "tam": [
+      9,
+      11,
+      1
+     ],
+     "em": "chao",
+     "material": "tecido_vinho"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      9,
+      1,
+      1
+     ],
+     "em": "tabua.topo",
+     "encaixe": "dentro",
+     "material": "ferro",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      11,
+      1
+     ],
+     "em": "tabua.dir",
+     "encaixe": "dentro",
+     "material": "ferro",
+     "modo": "pintar",
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      7,
+      2,
+      1
+     ],
+     "em": "tabua.base",
+     "encaixe": "dentro",
+     "material": "ferro",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      1
+     ],
+     "em": "tabua.base",
+     "material": "ferro",
+     "desloc": {
+      "cima": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      5,
+      1
+     ],
+     "em": "tabua.frente",
+     "material": "ouro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      1
+     ],
+     "em": "tabua.frente",
+     "material": "ouro",
+     "desloc": {
+      "cima": 1
+     }
+    }
+   ]
+  }
+ ],
+ "soquetes": [
+  {
+   "nome": "Pegada",
+   "osso": "Item",
+   "em": "tabua.tras"
+  },
+  {
+   "nome": "Ponta",
+   "osso": "Item",
+   "em": "tabua.topo"
+  },
+  {
+   "nome": "Base",
+   "osso": "Item",
+   "em": "tabua.base"
+  }
+ ]
+}

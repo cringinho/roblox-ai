@@ -1,0 +1,16 @@
+{
+ "id": "item.cajado_de_cirio",
+ "hash_ficha": "801600836922c42426c8d6b6168c800d65e7806a0fb2750fc9b0234a8bbe5292",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Dados_CajadoDeCirio.luau": "49b9d456d7e23757fe3afbc2a8097b32bc1e8c7f7f3bd28ff6cd67df04d355c9",
+  "folha.png": "5d208a56e11869788a3a1e232c266174a9d0abcf40d79ac9a5e8ef3e765a20aa",
+  "icone_64.png": "6e2f67406b6def4ea9037211fa4070a94801f65b4b5fdbcb057819ef2ae8994b",
+  "modelo.glb": "2d14240db17b3cf35313c19c196cd738931bac0f60575cbf585cdcae81f9c919",
+  "modelo.vox": "ba89c22f04b681c57745c9ae85cf6a39f9184f376fa28227c5c9199463f5e170"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

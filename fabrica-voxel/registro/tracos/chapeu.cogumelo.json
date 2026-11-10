@@ -1,0 +1,130 @@
+{
+ "id": "traco.chapeu.cogumelo",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Chapeu de cogumelo",
+ "material": "chapeu",
+ "pecas": [
+  {
+   "nome": "Chapeu",
+   "osso": {
+    "pai": "Cabeca",
+    "pivo": {
+     "em": "Cabeca.cranio.topo"
+    },
+    "papel": "cabeca",
+    "mola": {
+     "freq_hz": 2.5,
+     "amort": 0.5,
+     "max_graus": 12
+    }
+   },
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "aba",
+     "tam": [
+      18,
+      3,
+      17
+     ],
+     "chanfro": 2,
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "baixo": 2
+     }
+    },
+    {
+     "op": "caixa",
+     "nome": "cupula",
+     "tam": [
+      13,
+      3,
+      12
+     ],
+     "chanfro": 2,
+     "em": "aba.topo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      7,
+      1,
+      6
+     ],
+     "em": "cupula.topo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      2
+     ],
+     "em": "cupula.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 3,
+      "frente": 2
+     },
+     "material": "chapeu_pinta",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      2
+     ],
+     "em": "aba.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 6,
+      "frente": 5
+     },
+     "material": "chapeu_pinta",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "aba.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 6,
+      "tras": 4
+     },
+     "material": "chapeu_pinta",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      2
+     ],
+     "em": "cupula.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 3,
+      "tras": 3
+     },
+     "material": "chapeu_pinta",
+     "modo": "pintar"
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "esconde",
+  "elmo_aberto": "esconde",
+  "chapeu": "esconde"
+ },
+ "animacao": "chapeu"
+}

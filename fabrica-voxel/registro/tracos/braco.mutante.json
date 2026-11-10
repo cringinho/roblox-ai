@@ -1,0 +1,91 @@
+{
+ "id": "traco.braco.mutante",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Braco mutante de osso",
+ "material": "chifre",
+ "pecas": [
+  {
+   "nome": "Garra",
+   "osso": "Mao_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      3
+     ],
+     "em": "Mao_E.centro",
+     "encaixe": "centro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      7
+     ],
+     "em": "Mao_E.frente",
+     "desloc": {
+      "baixo": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      6
+     ],
+     "em": "Mao_E.frente",
+     "desloc": {
+      "esquerda": 2,
+      "cima": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      6,
+      1
+     ],
+     "em": "Mao_E.topo",
+     "desloc": {
+      "esquerda": 1
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      1,
+      1
+     ],
+     "em": "Mao_E.topo",
+     "desloc": {
+      "esquerda": 2,
+      "cima": 5
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      1
+     ],
+     "em": "Mao_E.topo",
+     "desloc": {
+      "esquerda": 4,
+      "cima": 6
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "luvas": "nada"
+ }
+}

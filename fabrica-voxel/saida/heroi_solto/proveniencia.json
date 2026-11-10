@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.heroi_solto",
+ "hash_ficha": "978d2764aabde4c12dee5b3d640842f9a9e2f0b150c8b8234415ea6a67651fe1",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiSolto.luau": "ac7bd73cbe7a78993642e85730bb2bf838bf80b7e76e215dea042fec17b2f62f",
+  "Dados_HeroiSolto.luau": "3704a1d9cb0641b31944ded7d3e26a4ba27d0dca5dfa13834fe4fa5a48332efd",
+  "anim.gif": "b61a802621c15a6a392f0b980cb72c1c05b485d35c129de6ca37aa4fb1d1ac88",
+  "anim_Andar.png": "7213c0990e9862c834bd3ab81782f2c4b9c136288f176faee6d84bef645ad1b6",
+  "anim_Ataque.png": "a5e167be9267df5de2bd7ecbae6494d6e940aa0d16177c7aa0b47cb350f687d4",
+  "anim_Dano.png": "420ac2c082d2f5ddf621f66fffd8e61441b31f76898bbf4e32f7b7f1f2e224d4",
+  "anim_Morte.png": "c4c7c57c49832c680a6b88389a0275b49eecddc4b82786ff73ef2e7a60c8c503",
+  "anim_Parado.png": "f0edd6215ed1d721771fe68fe6f62301b908ead32d5556ef4dcbd3c30d49dae8",
+  "folha.png": "dbb781fae45f0b8954e6998c1bfc7c61d4660e73ca7e90b4d040ea4bcaa3ae51",
+  "icone_64.png": "10b713f8e24d1b3cdd662c96ed5ed359e3fafb5e7780cd5aa60975d7096a4955",
+  "modelo.glb": "6a7c6bba12f0c7a71edabd7a2c14aa80683bf9bcc5faafea88fbb5bafe13eb47",
+  "modelo.vox": "40d49068c936c74e0b3bc601c0c272d1de29101401f07ae34027b89e6a3dae74"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

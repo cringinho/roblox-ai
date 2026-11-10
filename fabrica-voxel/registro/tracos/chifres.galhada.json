@@ -1,0 +1,75 @@
+{
+ "id": "traco.chifres.galhada",
+ "tipo": "traco",
+ "versao": 1,
+ "nome": "Galhada",
+ "material": "chifre",
+ "pecas": [
+  {
+   "nome": "Chifres",
+   "osso": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      4,
+      1
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 3
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      1
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 5,
+      "cima": 3
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 6,
+      "cima": 4
+     },
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "esquerda": 2,
+      "cima": 4,
+      "frente": 0
+     }
+    }
+   ]
+  }
+ ],
+ "regras": {
+  "elmo_fechado": "recorta",
+  "elmo_aberto": "recorta",
+  "chapeu": "recorta"
+ }
+}

@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.vampiro",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Vampiro",
+ "conceito": "Vampire",
+ "tamanho": "M",
+ "classe_cabeca": "alta",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "orelhas.pontudas",
+  "gola.alta"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_cadaverica",
+   "pele_marfim_frio"
+  ],
+  "cabelo": [
+   "cabelo_noite",
+   "cabelo_prata",
+   "cabelo_vinho"
+  ],
+  "olhos": [
+   "blood",
+   "violet"
+  ]
+ },
+ "cabeca": {
+  "olhos_brilho": true,
+  "roupa": "tecido_noite",
+  "gola": "blood[1:6]"
+ },
+ "predefinicoes": [
+  {
+   "o": 2,
+   "b": "presas",
+   "s": 3,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": "presas",
+   "s": 2,
+   "h": 6,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": "presas",
+   "s": 5,
+   "h": 5,
+   "cp": 0,
+   "ch": 2,
+   "co": 1
+  },
+  {
+   "o": 2,
+   "b": 1,
+   "s": 3,
+   "h": 9,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": "presas",
+   "s": 4,
+   "h": 1,
+   "cp": 0,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 2,
+   "b": "presas",
+   "s": 2,
+   "h": 4,
+   "cp": 1,
+   "ch": 2,
+   "co": 1
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "eterio",
+ "lore": "Nobre que nao aceitou ser enterrado."
+}

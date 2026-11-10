@@ -1,0 +1,157 @@
+{
+ "fabrica": "4.0.0",
+ "semente": 0,
+ "data": "",
+ "status": "aprovado",
+ "etapas": {},
+ "id": "item.lanterna",
+ "p0": {
+  "passou": true,
+  "erros": []
+ },
+ "hash_ficha": "256a27947ee6dd759b280be40c0c296a834302eadb81d86052e3eff0e22dd487",
+ "p1": {
+  "passou": true,
+  "regras": [
+   {
+    "regra": "voxels_soltos",
+    "passou": true,
+    "valor": 0,
+    "limite": "1 componente por peca",
+    "conserto": "Ha pedacos desconectados dentro da peca. Engrosse o detalhe (minimo 2 voxels), encoste-o no corpo ou separe-o em outra peca com osso proprio."
+   },
+   {
+    "regra": "triangulos_por_malha",
+    "passou": true,
+    "valor": 168,
+    "limite": 20000,
+    "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
+   },
+   {
+    "regra": "brilho",
+    "passou": true,
+    "valor": 0.32,
+    "limite": 0.4,
+    "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
+   },
+   {
+    "regra": "pe_no_chao",
+    "passou": true,
+    "valor": 0.0,
+    "limite": "0 +- 0.25",
+    "conserto": "O modelo nao encosta no chao. A primeira forma deve usar \"em\": \"chao\"; se ele flutua de proposito, ponha \"meta\": {\"flutua\": true}."
+   }
+  ]
+ },
+ "malha": {
+  "triangulos": 168,
+  "malhas": 2,
+  "animacoes": 0,
+  "bytes": 13616
+ },
+ "p2": {
+  "nota": 99.5,
+  "minimo": 70,
+  "passou": true,
+  "metricas": [
+   {
+    "metrica": "grupos_de_valor",
+    "nota": 1.0,
+    "valor": {
+     "escuro": 0.22,
+     "medio": 0.32,
+     "claro": 0.14,
+     "brilho": 0.32
+    },
+    "alvo": "3 grupos; maior <= 62%, menor >= 10%",
+    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
+    "peso": 20
+   },
+   {
+    "metrica": "tamanho_da_paleta",
+    "nota": 1.0,
+    "valor": 8,
+    "alvo": "3 a 24 cores",
+    "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
+    "peso": 10
+   },
+   {
+    "metrica": "sem_preto_ou_branco_puros",
+    "nota": 1.0,
+    "valor": [],
+    "alvo": "nenhuma",
+    "conserto": "Troque por um tom da rampa.",
+    "peso": 5
+   },
+   {
+    "metrica": "voxels_orfaos",
+    "nota": 1.0,
+    "valor": 0.0,
+    "alvo": "<= 1.5% da superficie",
+    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
+    "peso": 15
+   },
+   {
+    "metrica": "area_de_descanso",
+    "nota": 1.0,
+    "valor": 0.37,
+    "alvo": "35% a 92% da superficie lisa",
+    "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
+    "peso": 15
+   },
+   {
+    "metrica": "silhueta",
+    "nota": 1.0,
+    "valor": {
+     "frente": 0.759,
+     "grade": 0.707
+    },
+    "alvo": "ocupa 30% a 86% da caixa vista de frente",
+    "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
+    "peso": 20
+   },
+   {
+    "metrica": "assimetria",
+    "nota": 1.0,
+    "valor": 0.181,
+    "alvo": ">= 0.0",
+    "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
+    "peso": 0
+   },
+   {
+    "metrica": "claro_em_cima",
+    "nota": 0.913,
+    "valor": 0.428,
+    "alvo": ">= 45% da luz na metade de cima",
+    "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
+    "peso": 5
+   }
+  ],
+  "piores": [
+   {
+    "metrica": "claro_em_cima",
+    "nota": 0.913,
+    "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro)."
+   },
+   {
+    "metrica": "grupos_de_valor",
+    "nota": 1.0,
+    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
+   },
+   {
+    "metrica": "tamanho_da_paleta",
+    "nota": 1.0,
+    "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal)."
+   }
+  ]
+ },
+ "numeros": {
+  "voxels": 105,
+  "pecas": 1,
+  "ossos": 2,
+  "cores": 8,
+  "triangulos": 168,
+  "clipes": [],
+  "segundos": 0.09
+ }
+}

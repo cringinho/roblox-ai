@@ -1,0 +1,97 @@
+{
+ "id": "linhagem.demonio",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Demonio",
+ "conceito": "Demon",
+ "tamanho": "M",
+ "classe_cabeca": "larga",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "chifres.curvos",
+  "cauda.seta"
+ ],
+ "rampas": {
+  "pele": [
+   "blood[1:6]",
+   "ember[0:5]",
+   "void[1:6]"
+  ],
+  "cabelo": [
+   "cabelo_noite",
+   "void[0:5]"
+  ],
+  "olhos": [
+   "gold",
+   "ember"
+  ]
+ },
+ "cabeca": {
+  "olhos_brilho": true,
+  "sobrolho": true,
+  "roupa": "couro_escuro"
+ },
+ "predefinicoes": [
+  {
+   "o": 6,
+   "b": "presas",
+   "s": 5,
+   "h": 10,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 5,
+   "b": "presas",
+   "s": 3,
+   "h": 5,
+   "cp": 1,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 6,
+   "s": 5,
+   "h": 10,
+   "cp": 2,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": "presas",
+   "s": 4,
+   "h": 7,
+   "cp": 0,
+   "ch": 0,
+   "co": 1
+  },
+  {
+   "o": 7,
+   "b": 3,
+   "s": 5,
+   "h": 10,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": "presas",
+   "s": 2,
+   "h": 5,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "natural",
+ "lore": "Assinou um contrato de peregrinacao e leu as letras miudas."
+}

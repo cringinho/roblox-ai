@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.constructo",
+ "hash_ficha": "fea1cd5917ffc9e78aee544cd864ec8bd7c33a70099f276c784e1fb62efad6a0",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Constructo.luau": "8b9603f44a78d530de79e8c116e62cd15a59cfa3365e391dd27914fc86b6375a",
+  "Dados_Constructo.luau": "7c9b2e6dcfcaa2f7def8e131a55a531bc0c4430ebc72713ec3a28830812c24fc",
+  "anim.gif": "88665c69dc68662d4624ac058421d98efaa914cb117ea0f137c4370e7eedb855",
+  "anim_Andar.png": "26fa75657be6953b0e1f9c2613c4b7cff997b79e5d09518b3d4b8b4f2ffb1ddb",
+  "anim_Ataque.png": "1509324f3b46f9d89a490ea1e68b13ef8987a59dbb54a3aedfb1e07a41575d2f",
+  "anim_Dano.png": "02f5070308b57172d8dc5e47523c184ad8a5405772a07b010106cea1c85f65dc",
+  "anim_Morte.png": "708286d427332b7e892977467410e741f1ff1bc8311f764fed466e0692ba5ddb",
+  "anim_Parado.png": "bf21445df1f18703150c1db5c47a48a3a24d9015ecea4c12662d63dc45b2874a",
+  "folha.png": "87a8bb84d558ae4e3eed3b6d0634f810e5d15d222562aeb5865720cc278160e5",
+  "icone_64.png": "df4d57ca10645a71544dbca1d329abe904d285c09289a551a8828dfc5fd38f92",
+  "modelo.glb": "8300e9db4e3efcf1b92f0bd8006d46b85b2e9bdc6230c0f8705dcc0594e1c4a5",
+  "modelo.vox": "2015fe3f93d428c5d5d354562f83cdb8d255da265180596ce27ea9e34d4a18c4"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

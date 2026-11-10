@@ -1,0 +1,482 @@
+{
+ "id": "arquetipo.enraizado",
+ "tipo": "arquetipo",
+ "versao": 1,
+ "nome": "Enraizado",
+ "_ajuda": "Planta ou torreta presa ao chao: mandragora, flor carnivora, olho de cripta.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "meta": {
+  "imovel": true
+ },
+ "andadura": {
+  "tipo": "imovel"
+ },
+ "armadilhas": [
+  "Nao anda: 'Andar' aqui e so se inclinar para o alvo.",
+  "A haste e uma corrente: a onda sobe da base para a cabeca."
+ ],
+ "pecas": [
+  {
+   "nome": "Base",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      9,
+      4,
+      9
+     ],
+     "chanfro": 2,
+     "em": "chao",
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      5
+     ],
+     "em": "t.frente",
+     "desloc": {
+      "baixo": 1,
+      "direita": 3
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      5,
+      2,
+      2
+     ],
+     "em": "t.esq",
+     "desloc": {
+      "baixo": 1,
+      "tras": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Haste_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      5,
+      3
+     ],
+     "em": "Base.t.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Haste_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      5,
+      3
+     ],
+     "em": "Haste_1.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Haste_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      5,
+      3
+     ],
+     "em": "Haste_2.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cabeca",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "cranio",
+     "tam": [
+      8,
+      7,
+      8
+     ],
+     "raio": 2,
+     "em": "Haste_3.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "linhas": [
+      "EO..OE"
+     ],
+     "legenda": {
+      "O": "olho",
+      "E": "escuro"
+     }
+    },
+    {
+     "op": "estampa",
+     "em": "cranio",
+     "face": "frente",
+     "desloc": {
+      "baixo": 2
+     },
+     "linhas": [
+      "EOEOEO",
+      "EEEEEE"
+     ],
+     "legenda": {
+      "E": "escuro",
+      "O": "olho"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "cranio.topo",
+     "desloc": {
+      "direita": 2
+     },
+     "material": "detalhe",
+     "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      4,
+      2
+     ],
+     "em": "cranio.topo",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Base",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Base.t.base"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Haste_1",
+   "pai": "Base",
+   "pivo": {
+    "em": "Haste_1.base"
+   },
+   "papel": "haste",
+   "junta": 2,
+   "mola": {
+    "freq_hz": 2,
+    "amort": 0.5,
+    "max_graus": 20
+   }
+  },
+  {
+   "nome": "Haste_2",
+   "pai": "Haste_1",
+   "pivo": {
+    "em": "Haste_2.base"
+   },
+   "papel": "haste",
+   "junta": 2,
+   "mola": {
+    "freq_hz": 2,
+    "amort": 0.5,
+    "max_graus": 20
+   }
+  },
+  {
+   "nome": "Haste_3",
+   "pai": "Haste_2",
+   "pivo": {
+    "em": "Haste_3.base"
+   },
+   "papel": "haste",
+   "junta": 2,
+   "mola": {
+    "freq_hz": 2,
+    "amort": 0.5,
+    "max_graus": 20
+   }
+  },
+  {
+   "nome": "Cabeca",
+   "pai": "Haste_3",
+   "pivo": {
+    "em": "Haste_3.topo"
+   },
+   "papel": "cabeca",
+   "junta": 2
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "ossos": "Haste_*",
+     "canal": "tombar_direita",
+     "amp": 4,
+     "harm": 1,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.3
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Haste_*",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 2,
+     "fase_por_osso": -0.12
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cabeca",
+     "canal": "esquerda",
+     "amp": 10,
+     "harm": 1,
+     "harm2": 0.5
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 2,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "onda",
+     "ossos": "Haste_*",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 1,
+     "fase_por_osso": -0.1
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.2,
+   "marcadores": [
+    [
+     "Aviso",
+     0
+    ],
+    [
+     "Impacto",
+     0.5
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.38,
+       "curva": "suave",
+       "pose": {
+        "Haste_1": {
+         "frente": -16
+        },
+        "Haste_2": {
+         "frente": -18
+        },
+        "Haste_3": {
+         "frente": -14
+        },
+        "Cabeca": {
+         "frente": -10
+        }
+       }
+      },
+      {
+       "t": 0.5,
+       "curva": "golpe",
+       "pose": {
+        "Haste_1": {
+         "frente": 30
+        },
+        "Haste_2": {
+         "frente": 30
+        },
+        "Haste_3": {
+         "frente": 26
+        },
+        "Cabeca": {
+         "frente": 14
+        }
+       }
+      },
+      {
+       "t": 0.6,
+       "curva": "degrau",
+       "pose": {
+        "Haste_1": {
+         "frente": 30
+        },
+        "Haste_2": {
+         "frente": 30
+        },
+        "Haste_3": {
+         "frente": 26
+        },
+        "Cabeca": {
+         "frente": 14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "passa_e_volta",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Haste_2": {
+         "frente": -14,
+         "tras": 0.05
+        },
+        "Cabeca": {
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Haste_2": {
+         "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 1,
+       "curva": "entra",
+       "pose": {
+        "Haste_1": {
+         "frente": 40
+        },
+        "Haste_2": {
+         "frente": 50
+        },
+        "Haste_3": {
+         "frente": 50
+        },
+        "Cabeca": {
+         "frente": 30
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

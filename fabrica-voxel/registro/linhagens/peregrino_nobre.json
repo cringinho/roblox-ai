@@ -1,0 +1,96 @@
+{
+ "id": "linhagem.peregrino_nobre",
+ "tipo": "linhagem",
+ "versao": 1,
+ "nome": "Peregrino Nobre",
+ "conceito": "Pilgrim Noble",
+ "tamanho": "M",
+ "classe_cabeca": "redonda",
+ "corpos": [
+  "1",
+  "2",
+  "3"
+ ],
+ "tracos": [
+  "barba.curta"
+ ],
+ "rampas": {
+  "pele": [
+   "pele_marfim",
+   "pele_oliva",
+   "pele_bronze",
+   "pele_ebano"
+  ],
+  "cabelo": [
+   "cabelo_noite",
+   "cabelo_castanho",
+   "cabelo_prata"
+  ],
+  "olhos": [
+   "spirit",
+   "abyss"
+  ]
+ },
+ "cabeca": {
+  "olhos_brilho": true
+ },
+ "predefinicoes": [
+  {
+   "o": 1,
+   "b": 1,
+   "s": 2,
+   "h": 1,
+   "cp": 0,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 6,
+   "b": 3,
+   "s": 5,
+   "h": 2,
+   "cp": 1,
+   "ch": 1,
+   "co": 0
+  },
+  {
+   "o": 1,
+   "b": 4,
+   "s": 2,
+   "h": 5,
+   "cp": 2,
+   "ch": 2,
+   "co": 1
+  },
+  {
+   "o": 2,
+   "b": 1,
+   "s": 3,
+   "h": 9,
+   "cp": 3,
+   "ch": 0,
+   "co": 0
+  },
+  {
+   "o": 7,
+   "b": 3,
+   "s": 2,
+   "h": 1,
+   "cp": 0,
+   "ch": 2,
+   "co": 1
+  },
+  {
+   "o": 1,
+   "b": 1,
+   "s": 5,
+   "h": 6,
+   "cp": 1,
+   "ch": 0,
+   "co": 0
+  }
+ ],
+ "pose_descanso": "parado",
+ "jeito": "natural",
+ "lore": "Chegou com ouro e fe; o santuario ficou com os dois."
+}

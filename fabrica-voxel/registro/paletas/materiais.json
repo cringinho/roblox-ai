@@ -1,0 +1,196 @@
+{
+ "materiais": {
+  "pele": {
+   "rampa": "pele_marfim",
+   "perfil": "pele",
+   "brilho": false,
+   "tom": -1
+  },
+  "cabelo": {
+   "rampa": "cabelo_castanho",
+   "perfil": "cabelo",
+   "brilho": false,
+   "tom": -1
+  },
+  "tecido": {
+   "rampa": "tecido_cinza",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "tecido_escuro": {
+   "rampa": "tecido_noite",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "tecido_vinho": {
+   "rampa": "tecido_vinho",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "tecido_roxo": {
+   "rampa": "tecido_roxo",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "linho": {
+   "rampa": "tecido_linho",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "couro": {
+   "rampa": "couro",
+   "perfil": "couro",
+   "brilho": false,
+   "tom": -1
+  },
+  "couro_escuro": {
+   "rampa": "couro_escuro",
+   "perfil": "couro",
+   "brilho": false,
+   "tom": -1
+  },
+  "ferro": {
+   "rampa": "ferro",
+   "perfil": "metal",
+   "brilho": false,
+   "tom": -1
+  },
+  "aco": {
+   "rampa": "aco",
+   "perfil": "metal",
+   "brilho": false,
+   "tom": -1
+  },
+  "ouro": {
+   "rampa": "gold",
+   "perfil": "metal",
+   "brilho": false,
+   "tom": -1
+  },
+  "bronze": {
+   "rampa": "bronze",
+   "perfil": "metal",
+   "brilho": false,
+   "tom": -1
+  },
+  "osso": {
+   "rampa": "bone",
+   "perfil": "osso",
+   "brilho": false,
+   "tom": -1
+  },
+  "pedra": {
+   "rampa": "pedra_catedral",
+   "perfil": "pedra",
+   "brilho": false,
+   "tom": -1
+  },
+  "pedra_escura": {
+   "rampa": "ardosia",
+   "perfil": "pedra",
+   "brilho": false,
+   "tom": -1
+  },
+  "madeira": {
+   "rampa": "madeira",
+   "perfil": "madeira",
+   "brilho": false,
+   "tom": -1
+  },
+  "madeira_escura": {
+   "rampa": "madeira_escura",
+   "perfil": "madeira",
+   "brilho": false,
+   "tom": -1
+  },
+  "cera": {
+   "rampa": "cera",
+   "perfil": "pele",
+   "brilho": false,
+   "tom": -1
+  },
+  "fungo": {
+   "rampa": "casca_fungo",
+   "perfil": "fungo",
+   "brilho": false,
+   "tom": -1
+  },
+  "fungo_chapeu": {
+   "rampa": "chapeu_rubro",
+   "perfil": "fungo",
+   "brilho": false,
+   "tom": -1
+  },
+  "musgo": {
+   "rampa": "moss",
+   "perfil": "fungo",
+   "brilho": false,
+   "tom": -1
+  },
+  "sangue": {
+   "rampa": "blood",
+   "perfil": "tecido",
+   "brilho": false,
+   "tom": -1
+  },
+  "olho_branco": {
+   "rampa": "bone",
+   "perfil": "chapado",
+   "brilho": false,
+   "tom": 5
+  },
+  "olho_pupila": {
+   "rampa": "void",
+   "perfil": "chapado",
+   "brilho": false,
+   "tom": 1
+  },
+  "boca": {
+   "rampa": "blood",
+   "perfil": "chapado",
+   "brilho": false,
+   "tom": 1
+  },
+  "escuro": {
+   "rampa": "void",
+   "perfil": "chapado",
+   "brilho": false,
+   "tom": 0
+  },
+  "brilho_brasa": {
+   "rampa": "ember",
+   "perfil": "brilho",
+   "brilho": true,
+   "tom": 4
+  },
+  "brilho_alma": {
+   "rampa": "spirit",
+   "perfil": "brilho",
+   "brilho": true,
+   "tom": 4
+  },
+  "brilho_veneno": {
+   "rampa": "moss",
+   "perfil": "brilho",
+   "brilho": true,
+   "tom": 4
+  },
+  "brilho_vazio": {
+   "rampa": "violet",
+   "perfil": "brilho",
+   "brilho": true,
+   "tom": 4
+  },
+  "brilho_ouro": {
+   "rampa": "gold",
+   "perfil": "brilho",
+   "brilho": true,
+   "tom": 4
+  }
+ }
+}

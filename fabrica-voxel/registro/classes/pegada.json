@@ -1,0 +1,70 @@
+{
+ "id": "classe_pegada.tabela",
+ "tipo": "classe_pegada",
+ "classes": {
+  "uma_mao": {
+   "caixa_max": [
+    10,
+    35,
+    10
+   ],
+   "golpes": [
+    "golpe.uma_mao_diagonal"
+   ]
+  },
+  "duas_maos": {
+   "caixa_max": [
+    12,
+    44,
+    12
+   ],
+   "golpes": [
+    "golpe.duas_maos_vertical"
+   ]
+  },
+  "haste": {
+   "caixa_max": [
+    12,
+    48,
+    12
+   ],
+   "golpes": [
+    "golpe.haste_estocada"
+   ]
+  },
+  "escudo": {
+   "caixa_max": [
+    14,
+    16,
+    4
+   ],
+   "golpes": []
+  },
+  "luz": {
+   "caixa_max": [
+    8,
+    14,
+    8
+   ],
+   "golpes": [
+    "golpe.luz_erguer"
+   ]
+  },
+  "arremesso": {
+   "caixa_max": [
+    6,
+    14,
+    6
+   ],
+   "golpes": []
+  },
+  "arco": {
+   "caixa_max": [
+    4,
+    26,
+    10
+   ],
+   "golpes": []
+  }
+ }
+}

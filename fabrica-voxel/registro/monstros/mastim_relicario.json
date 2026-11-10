@@ -1,0 +1,134 @@
+{
+ "id": "monstro.mastim_relicario",
+ "tipo": "monstro",
+ "versao": 1,
+ "nome": "Mastim Relicario",
+ "arquetipo": "quadrupede_cursor",
+ "tier": 2,
+ "pegada_ladrilhos": 1,
+ "lore": "Cao de guarda que carrega no dorso o relicario do dono.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "couro_escuro",
+   "rampa": "pelo_noite"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_alma"
+  },
+  "ouro"
+ ],
+ "extras": {
+  "Corpo": [
+   {
+    "op": "caixa",
+    "nome": "relicario",
+    "tam": [
+     5,
+     5,
+     6
+    ],
+    "em": "t.topo",
+    "material": "detalhe"
+   },
+   {
+    "op": "caixa",
+    "tam": [
+     3,
+     3,
+     1
+    ],
+    "em": "relicario.dir",
+    "encaixe": "dentro",
+    "material": "olho",
+    "modo": "pintar"
+   },
+   {
+    "op": "caixa",
+    "tam": [
+     5,
+     1,
+     6
+    ],
+    "em": "relicario.topo",
+    "encaixe": "dentro",
+    "material": "ouro",
+    "modo": "pintar"
+   },
+   {
+    "op": "caixa",
+    "tam": [
+     1,
+     2,
+     1
+    ],
+    "em": "relicario.topo",
+    "material": "ouro"
+   },
+   {
+    "op": "caixa",
+    "tam": [
+     9,
+     2,
+     2
+    ],
+    "em": "t.frente",
+    "encaixe": "dentro",
+    "desloc": {
+     "cima": 1
+    },
+    "material": "detalhe",
+    "modo": "so_vazio"
+   }
+  ],
+  "Cabeca": [
+   {
+    "op": "caixa",
+    "tam": [
+     1,
+     3,
+     2
+    ],
+    "em": "cranio.topo",
+    "desloc": {
+     "direita": 2,
+     "baixo": 1
+    },
+    "material": "corpo"
+   },
+   {
+    "op": "caixa",
+    "tam": [
+     1,
+     2,
+     2
+    ],
+    "em": "cranio.topo",
+    "desloc": {
+     "esquerda": 2,
+     "baixo": 1
+    },
+    "material": "corpo",
+    "_ajuda": "orelha esquerda rasgada: assimetria"
+   }
+  ]
+ },
+ "acabamentos": [
+  {
+   "tipo": "ferrugem_nas_arestas",
+   "forca": 0.25,
+   "materiais": [
+    "detalhe"
+   ]
+  }
+ ]
+}

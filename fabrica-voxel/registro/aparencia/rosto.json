@@ -1,0 +1,113 @@
+{
+ "id": "aparencia.rosto",
+ "tipo": "aparencia",
+ "_ajuda": "Arte em texto. Olhos: desenhe o olho da ESQUERDA da tela; o outro e espelhado. Letras: B branco, P iris/pupila, E escuro, G brilho, C sobrancelha (cor do cabelo), M boca, W dente.",
+ "olhos": {
+  "1": [
+   "BP",
+   "BP"
+  ],
+  "2": [
+   "PB",
+   "PB"
+  ],
+  "3": [
+   "P",
+   "P"
+  ],
+  "4": [
+   "BBP",
+   "BPP",
+   "BPP"
+  ],
+  "5": [
+   "PP"
+  ],
+  "6": [
+   "BP",
+   "PP"
+  ],
+  "7": [
+   "PPB",
+   "BPP"
+  ],
+  "8": [
+   "P"
+  ],
+  "caveira": [
+   "EE",
+   "EG",
+   "EE"
+  ],
+  "fenda": [
+   "G",
+   "G",
+   "G"
+  ],
+  "brasa": [
+   "EG",
+   "EE"
+  ],
+  "ciclope": [
+   "EGGE",
+   "GGGG",
+   "EGGE"
+  ]
+ },
+ "bocas": {
+  "1": [
+   "MM"
+  ],
+  "2": [
+   "M..M",
+   ".MM."
+  ],
+  "3": [
+   "MMMM"
+  ],
+  "4": [
+   ".M."
+  ],
+  "5": [
+   ".MM.",
+   "M..M"
+  ],
+  "6": [
+   "MWWM"
+  ],
+  "presas": [
+   "WMMW",
+   "W..W"
+  ],
+  "dentes_baixo": [
+   "MMMM",
+   "W..W"
+  ],
+  "caveira": [
+   "WEWEWE",
+   "EWEWEW"
+  ],
+  "nenhuma": [
+   "."
+  ]
+ },
+ "sobrancelhas": {
+  "1": [
+   "."
+  ],
+  "2": [
+   "CC"
+  ],
+  "3": [
+   "C.",
+   ".C"
+  ],
+  "4": [
+   ".C",
+   "C."
+  ],
+  "5": [
+   "CCC"
+  ]
+ }
+}

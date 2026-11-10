@@ -1,0 +1,23 @@
+{
+ "id": "monstro.coagulo",
+ "hash_ficha": "08e51306e63205889a18b110cef34fecf743cb6fccd47c2a312cbd60cb0be301",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Coagulo.luau": "3a26855fb8d4f290e052187dcddcc2f8ce1881277664b0ec058bea298b312d92",
+  "Dados_Coagulo.luau": "45a2aaef19ca5794be9b71b3d092534345a3dfe0191e175b9e748a90fe63daea",
+  "anim.gif": "232b6f14de6f8616a71fa23f90f04ae60eaa97c688fc542540199d53833ccb1d",
+  "anim_Andar.png": "292fd8ae8ce11695ce796ca212ebddf250fe4207a664cdf1bd0c53b0fbe97da4",
+  "anim_Ataque.png": "07313cb2823cdca1fbc05e6b3d17c905c22e5246ebefa6fe2a1ed6a01d4d3a6a",
+  "anim_Dano.png": "05c1e3e142269e2fd0eb686011b9d18dfbb79b5930a55026e1bf0a5176e88c93",
+  "anim_Morte.png": "32d6023d59696be16274d4a78e9e9132a9a13ed8b4046ae8a005176477aaa4a4",
+  "anim_Parado.png": "e3ebe49d2080722059df713b52bbc02682d01479a9da2c645656df9054141fe6",
+  "folha.png": "1c3e647319cfbf4df4c71be43b824d4b84502d146dca5d67ac28dbeac6784131",
+  "icone_64.png": "f074d25ae2b09f5960986ef833c589d15f011f604c17c7a355244d04bbd41953",
+  "modelo.glb": "11a01d8d42b4f642fe34a623c7c24e1db4eb8a144072547c0ef49849344a6bb7",
+  "modelo.vox": "31636da2be36e424ca385ae0b9c73ac76f8decbd1892a72db6f44b28c287f84c"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}
