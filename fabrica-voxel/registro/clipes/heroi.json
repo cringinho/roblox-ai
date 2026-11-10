@@ -1,7 +1,7 @@
 {
  "id": "clipe.heroi",
  "tipo": "clipe",
- "versao": 2,
+ "versao": 3,
  "_ajuda": "Clipes base do heroi com bracos e pernas (Braco + Mao, Perna + Pe). O antebraco e a canela nao tem camada: o joelho sai do IK no andar e o resto acompanha sozinho. Translacoes em fracao de H. O jeito da linhagem entra por cima (fabrica/heroi/cli.py, funcao jeito).",
  "clipes": [
   {
@@ -10,38 +10,9 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "cima",
-     "amp": 0.006,
-     "harm": 2,
-     "fase": 0.0,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "tombar_direita",
-     "amp": 1.2,
-     "harm": 1,
-     "fase": 0.0
-    },
-    {
-     "tipo": "onda",
-     "osso": "Cabeca",
-     "canal": "frente",
-     "amp": 1.6,
-     "harm": 2,
-     "fase": 0.12
-    },
-    {
-     "tipo": "onda",
-     "osso": "Cabeca",
-     "canal": "esquerda",
-     "amp": 5,
-     "harm": 1,
-     "fase": 0.3,
-     "harm2": 0.4
+     "tipo": "vida",
+     "corpo": "Tronco",
+     "cadeias_ganho": 0.6
     },
     {
      "tipo": "onda",
@@ -130,13 +101,8 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "cima",
-     "amp": 0.012,
-     "harm": 2,
-     "fase": 0.1,
-     "forma": "abs"
+     "tipo": "impacto",
+     "corpo": "Tronco"
     },
     {
      "tipo": "onda",

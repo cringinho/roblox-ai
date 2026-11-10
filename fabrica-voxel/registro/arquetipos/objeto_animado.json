@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.objeto_animado",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Objeto animado",
  "_ajuda": "Mimico: bau, sino, relicario ou livro que ganha vida. Parado e indistinguivel de um prop.",
  "materiais": [
@@ -595,18 +595,13 @@
    "laco": true,
    "camadas": [
     {
+     "tipo": "vida"
+    },
+    {
      "tipo": "onda",
      "osso": "Tampa",
      "canal": "frente",
      "amp": -1.2,
-     "harm": 2,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.004,
      "harm": 2,
      "forma": "pulso"
     }
@@ -648,7 +643,6 @@
    "nome": "Andar",
    "duracao": 0.7,
    "laco": true,
-   "vel_raiz": 2.2,
    "marcadores": [
     [
      "Pouso",
@@ -720,7 +714,7 @@
      "tipo": "passos",
      "modo": "perna",
      "apoio": 0.5,
-     "passada_H": 0.3,
+     "passada_H": 0.42,
      "altura_H": 0.05,
      "perna_H": 0.2,
      "pes": [
@@ -741,6 +735,26 @@
        "fase": 0.05
       }
      ]
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Lingua*",
+     "canal": "frente",
+     "amp": 5,
+     "harm": 2,
+     "fase": 0.15,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.5
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Lingua*",
+     "canal": "esquerda",
+     "amp": 4,
+     "harm": 1,
+     "fase": 0.4,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.5
     }
    ]
   },

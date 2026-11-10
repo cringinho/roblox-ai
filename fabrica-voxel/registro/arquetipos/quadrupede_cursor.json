@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.quadrupede_cursor",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Quadrupede cursor",
  "_ajuda": "Canino ou felino: lobo, mastim, gato grande.",
  "materiais": [
@@ -403,15 +403,15 @@
     {
      "op": "caixa",
      "tam": [
-      2,
-      2,
+      3,
+      3,
       3
      ],
+     "material": "corpo",
      "em": "Corpo.t.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "corpo"
+     }
     }
    ]
   },
@@ -421,15 +421,15 @@
     {
      "op": "caixa",
      "tam": [
-      2,
-      2,
+      3,
+      3,
       3
      ],
+     "material": "corpo",
      "em": "Cauda_1.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "corpo"
+     }
     }
    ]
   },
@@ -439,15 +439,69 @@
     {
      "op": "caixa",
      "tam": [
-      1,
-      1,
+      2,
+      2,
       3
      ],
+     "material": "corpo",
      "em": "Cauda_2.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "corpo"
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_4",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "material": "corpo",
+     "em": "Cauda_3.tras",
+     "desloc": {
+      "frente": 1
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_5",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "material": "corpo",
+     "em": "Cauda_4.tras",
+     "desloc": {
+      "frente": 1
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_6",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      2
+     ],
+     "material": "corpo",
+     "em": "Cauda_5.tras",
+     "desloc": {
+      "frente": 1
+     }
     }
    ]
   },
@@ -614,6 +668,9 @@
     "freq_hz": 2.5,
     "amort": 0.35,
     "max_graus": 30
+   },
+   "repouso": {
+    "frente": -18
    }
   },
   {
@@ -628,6 +685,9 @@
     "freq_hz": 2.5,
     "amort": 0.35,
     "max_graus": 30
+   },
+   "repouso": {
+    "frente": -10
    }
   },
   {
@@ -642,6 +702,60 @@
     "freq_hz": 2.5,
     "amort": 0.35,
     "max_graus": 30
+   },
+   "repouso": {
+    "frente": -6
+   }
+  },
+  {
+   "nome": "Cauda_4",
+   "pai": "Cauda_3",
+   "pivo": {
+    "em": "Cauda_4.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   },
+   "repouso": {
+    "frente": -2
+   }
+  },
+  {
+   "nome": "Cauda_5",
+   "pai": "Cauda_4",
+   "pivo": {
+    "em": "Cauda_5.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   },
+   "repouso": {
+    "frente": 6
+   }
+  },
+  {
+   "nome": "Cauda_6",
+   "pai": "Cauda_5",
+   "pivo": {
+    "em": "Cauda_6.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "mola": {
+    "freq_hz": 2.5,
+    "amort": 0.35,
+    "max_graus": 30
+   },
+   "repouso": {
+    "frente": 10
    }
   },
   {
@@ -698,19 +812,7 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.012,
-     "harm": 2,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 1.5,
-     "harm": 1
+     "tipo": "vida"
     },
     {
      "tipo": "onda",
@@ -731,29 +833,32 @@
     },
     {
      "tipo": "onda",
-     "ossos": "Cauda_*",
-     "canal": "esquerda",
-     "amp": 9,
-     "harm": 1,
-     "fase_por_osso": -0.12,
-     "ganho_por_osso": 0.25
-    },
-    {
-     "tipo": "onda",
-     "ossos": "Cauda_*",
-     "canal": "frente",
-     "amp": 3,
-     "harm": 2,
-     "fase_por_osso": -0.1
-    },
-    {
-     "tipo": "onda",
      "osso": "Mandibula",
      "canal": "frente",
      "amp": 3,
      "harm": 3,
      "fase": 0.15,
      "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 4.2,
+     "harm": 4,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467,
+     "harm2": 0.18
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 1.68,
+     "harm": 6,
+     "fase": 0.25,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467
     }
    ]
   },
@@ -789,21 +894,7 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.02,
-     "harm": 2,
-     "forma": "abs",
-     "fase": 0.1
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 2.5,
-     "harm": 1,
-     "fase": 0.2
+     "tipo": "impacto"
     },
     {
      "tipo": "onda",
@@ -823,28 +914,38 @@
     },
     {
      "tipo": "onda",
-     "ossos": "Cauda_*",
-     "canal": "esquerda",
-     "amp": 7,
-     "harm": 2,
-     "fase_por_osso": -0.12,
-     "ganho_por_osso": 0.25
-    },
-    {
-     "tipo": "onda",
-     "ossos": "Cauda_*",
-     "canal": "frente",
-     "amp": 3,
-     "harm": 2,
-     "fase_por_osso": -0.1
-    },
-    {
-     "tipo": "onda",
      "osso": "Mandibula",
      "canal": "frente",
      "amp": 4,
      "harm": 2,
      "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 6.0,
+     "harm": 2,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467,
+     "harm2": 0.18
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 2.4,
+     "harm": 2,
+     "fase": 0.25,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467
+    },
+    {
+     "tipo": "seguir",
+     "osso": "Cauda_1",
+     "de": "Corpo",
+     "atraso_s": 0.05,
+     "ganho": -0.4
     }
    ]
   },

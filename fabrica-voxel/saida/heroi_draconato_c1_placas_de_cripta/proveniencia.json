@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_draconato_c1_placas_de_cripta",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiDraconatoC1PlacasDeCripta.luau": "4b523566447b251e2a9c2bda183fa30223c8f52b96373396d17ca7d5c41b6656",
+  "Dados_HeroiDraconatoC1PlacasDeCripta.luau": "7e9272344060a769d332a406b04b3000d45518ad0f4896dea6c954fc9b339415",
+  "anim.gif": "95a946655484cb297bd3b2a4eee3ab24696759bbaa2e1eab710757581088f7b2",
+  "anim_Andar.png": "fa5594885220b5b73cbaf8c49eb44e4b5660b11c55533db2233dfb40add1c122",
+  "anim_Dano.png": "c3590266344dd48cdd53915fa1237214c465375fa9a3dada5a2d11c1334b1008",
+  "anim_Golpe.png": "d421d056780433e16f004eeeebc228595c029f49161c91da178de4656411198e",
+  "anim_Morte.png": "b63f87962d275a0f5d06a13dae113b020571c2a10e6f3ce74879c87a3c6096a8",
+  "anim_Parado.png": "527e2775812f63415cd3ee77a830ff979eaff8e5f124ebc6579f8d104557d3bb",
+  "folha.png": "6266fe3ac8409e01cfd70c9bb42149308b60b8391b1ecca6a2ada5c0163433fd",
+  "icone_64.png": "d632da5a96132e4ae086720ee218ea6ad404f168fb5e9cd84df0f3f2cc49729c",
+  "modelo.glb": "07c0fe6d42ce78c85e6f4689a01a70851136413b78522679823e874600b3c335",
+  "modelo.vox": "eac451e50a0f4525dd3aa14119ff15eb6c3ea7449f1cc98f3825a061a16ee76c"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

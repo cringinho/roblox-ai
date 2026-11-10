@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.bipede_curvado",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Bipede curvado",
  "_ajuda": "Tronco para a frente e bracos longos pendurados: carnical de cera, ghoul.",
  "materiais": [
@@ -437,16 +437,16 @@
     {
      "op": "caixa",
      "tam": [
-      2,
-      2,
-      3
+      3,
+      3,
+      4
      ],
+     "material": "corpo",
      "em": "Corpo.t.tras",
      "desloc": {
       "frente": 1,
       "baixo": 2
-     },
-     "material": "corpo"
+     }
     }
    ]
   },
@@ -456,15 +456,15 @@
     {
      "op": "caixa",
      "tam": [
-      2,
-      2,
+      3,
+      3,
       3
      ],
+     "material": "corpo",
      "em": "Cauda_1.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "corpo"
+     }
     }
    ]
   },
@@ -474,15 +474,69 @@
     {
      "op": "caixa",
      "tam": [
-      1,
-      1,
+      2,
+      2,
       3
      ],
+     "material": "corpo",
      "em": "Cauda_2.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "corpo"
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_4",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      3
+     ],
+     "material": "corpo",
+     "em": "Cauda_3.tras",
+     "desloc": {
+      "frente": 1
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_5",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "material": "corpo",
+     "em": "Cauda_4.tras",
+     "desloc": {
+      "frente": 1
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_6",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      2
+     ],
+     "material": "corpo",
+     "em": "Cauda_5.tras",
+     "desloc": {
+      "frente": 1
+     }
     },
     {
      "op": "caixa",
@@ -491,11 +545,11 @@
       3,
       2
      ],
-     "em": "Cauda_3.tras",
+     "material": "detalhe",
+     "em": "Cauda_6.tras",
      "desloc": {
       "frente": 1
-     },
-     "material": "detalhe"
+     }
     }
    ]
   },
@@ -637,7 +691,10 @@
     "em": "Cauda_1.frente"
    },
    "papel": "cauda",
-   "junta": 1
+   "junta": 1,
+   "repouso": {
+    "frente": -8
+   }
   },
   {
    "nome": "Cauda_2",
@@ -647,10 +704,8 @@
    },
    "papel": "cauda",
    "junta": 1,
-   "seguir_pai": {
-    "modo": "livre",
-    "ganho": 0.95,
-    "atraso_s": 0.1
+   "repouso": {
+    "frente": -4
    }
   },
   {
@@ -661,10 +716,41 @@
    },
    "papel": "cauda",
    "junta": 1,
-   "seguir_pai": {
-    "modo": "livre",
-    "ganho": 0.95,
-    "atraso_s": 0.1
+   "repouso": {
+    "frente": -2
+   }
+  },
+  {
+   "nome": "Cauda_4",
+   "pai": "Cauda_3",
+   "pivo": {
+    "em": "Cauda_4.frente"
+   },
+   "papel": "cauda",
+   "junta": 1
+  },
+  {
+   "nome": "Cauda_5",
+   "pai": "Cauda_4",
+   "pivo": {
+    "em": "Cauda_5.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 3
+   }
+  },
+  {
+   "nome": "Cauda_6",
+   "pai": "Cauda_5",
+   "pivo": {
+    "em": "Cauda_6.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 5
    }
   },
   {
@@ -718,19 +804,7 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.012,
-     "harm": 2,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 1.5,
-     "harm": 1
+     "tipo": "vida"
     },
     {
      "tipo": "onda",
@@ -792,20 +866,23 @@
     },
     {
      "tipo": "onda",
-     "osso": "Cauda_1",
+     "ossos": "Cauda_*",
      "canal": "esquerda",
-     "amp": 9,
-     "harm": 1,
-     "fase": 0.2,
-     "harm2": 0.4
+     "amp": 4.2,
+     "harm": 4,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467,
+     "harm2": 0.18
     },
     {
      "tipo": "onda",
-     "osso": "Cauda_1",
+     "ossos": "Cauda_*",
      "canal": "frente",
-     "amp": 3,
-     "harm": 2,
-     "fase": 0.5
+     "amp": 1.53,
+     "harm": 6,
+     "fase": 0.25,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467
     }
    ]
   },
@@ -833,21 +910,7 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.02,
-     "harm": 2,
-     "forma": "abs",
-     "fase": 0.1
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 2.5,
-     "harm": 1,
-     "fase": 0.2
+     "tipo": "impacto"
     },
     {
      "tipo": "onda",
@@ -907,19 +970,30 @@
     },
     {
      "tipo": "onda",
-     "osso": "Cauda_1",
+     "ossos": "Cauda_*",
      "canal": "esquerda",
-     "amp": 8,
+     "amp": 6.6,
      "harm": 1,
-     "fase": 0.3
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467,
+     "harm2": 0.18
     },
     {
      "tipo": "onda",
-     "osso": "Cauda_1",
+     "ossos": "Cauda_*",
      "canal": "frente",
-     "amp": 3,
-     "harm": 2,
-     "fase": 0.1
+     "amp": 2.4,
+     "harm": 1,
+     "fase": 0.25,
+     "fase_por_osso": -0.1,
+     "ganho_por_osso": 0.467
+    },
+    {
+     "tipo": "seguir",
+     "osso": "Cauda_1",
+     "de": "Corpo",
+     "atraso_s": 0.05,
+     "ganho": -0.4
     }
    ]
   },

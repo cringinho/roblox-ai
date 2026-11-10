@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "8162628e5dde0e906161b3be9d4d360e38c1c1e7da278c9eef155c890be24776",
+ "hash_ficha": "b4b7a6c66826eeb4bf5174afa0843dd47b819e5c57166879affa5d2df5a377b9",
  "p1": {
   "passou": true,
   "regras": [
@@ -33,11 +33,12 @@
     "regra": "detalhe_minimo",
     "passou": true,
     "valor": {
-     "voxels": 1246,
-     "ossos": 16
+     "tier": 1,
+     "voxels": 1424,
+     "ossos": 20
     },
-    "limite": ">= 1000 voxels e >= 8 ossos",
-    "conserto": "Criatura simples demais. Mais ossos: \"segmentos\": 2 nos bracos e pernas, mandibula, orelhas, cauda em cadeia. Mais voxels: garras, dentes, espinhos e placas com \"repetir\"; ou aumente o corpo."
+    "limite": "T1: >= 1000 voxels e >= 8 ossos",
+    "conserto": "Criatura simples demais para o tier 1. Mais ossos: \"segmentos\" nos bracos, pernas, cauda e pescoco, mandibula, orelhas, dedos, mais pecas com osso proprio. Mais voxels: garras, dentes e espinhos com \"repetir\", \"op\": \"placas\" no dorso, ou um corpo maior. Tabela: cartoes/monstro.md."
    },
    {
     "regra": "triangulos_por_malha",
@@ -49,7 +50,7 @@
    {
     "regra": "brilho",
     "passou": true,
-    "valor": 0.0025,
+    "valor": 0.0021,
     "limite": 0.04,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -63,21 +64,21 @@
    {
     "regra": "clipe_Parado_giro",
     "passou": true,
-    "valor": 0.72,
+    "valor": 3.51,
     "limite": "70 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Parado_laco",
     "passou": true,
-    "valor": 0.6585000157356262,
+    "valor": 0.4603999853134155,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Parado_vivo",
     "passou": true,
-    "valor": 8,
+    "valor": 12,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -105,7 +106,7 @@
    {
     "regra": "clipe_Andar_vivo",
     "passou": true,
-    "valor": 16,
+    "valor": 20,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -161,13 +162,13 @@
   ]
  },
  "malha": {
-  "triangulos": 1202,
-  "malhas": 17,
+  "triangulos": 1532,
+  "malhas": 21,
   "animacoes": 5,
-  "bytes": 142524
+  "bytes": 180504
  },
  "p2": {
-  "nota": 87.6,
+  "nota": 82.7,
   "minimo": 75,
   "passou": true,
   "metricas": [
@@ -175,10 +176,10 @@
     "metrica": "grupos_de_valor",
     "nota": 1.0,
     "valor": {
-     "escuro": 0.297,
-     "medio": 0.351,
-     "claro": 0.349,
-     "brilho": 0.0025
+     "escuro": 0.276,
+     "medio": 0.381,
+     "claro": 0.342,
+     "brilho": 0.0021
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -202,16 +203,16 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.753,
-    "valor": 0.0074,
+    "nota": 0.518,
+    "valor": 0.0144,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 0.419,
-    "valor": 0.205,
+    "nota": 0.331,
+    "valor": 0.183,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -221,7 +222,7 @@
     "nota": 1.0,
     "valor": {
      "frente": 0.759,
-     "grade": 0.542
+     "grade": 0.401
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -230,7 +231,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.3302,
+    "valor": 0.3222,
     "alvo": ">= 0.004",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 10
@@ -238,7 +239,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.602,
+    "valor": 0.658,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -247,12 +248,12 @@
   "piores": [
    {
     "metrica": "area_de_descanso",
-    "nota": 0.419,
+    "nota": 0.331,
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.753,
+    "nota": 0.518,
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
    },
    {
@@ -263,11 +264,11 @@
   ]
  },
  "numeros": {
-  "voxels": 1246,
-  "pecas": 16,
-  "ossos": 17,
+  "voxels": 1424,
+  "pecas": 20,
+  "ossos": 21,
   "cores": 13,
-  "triangulos": 1202,
+  "triangulos": 1532,
   "clipes": [
    "Parado",
    "Andar",
@@ -275,6 +276,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 2.75
+  "segundos": 3.17
  }
 }

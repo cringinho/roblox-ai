@@ -52,3 +52,24 @@ Regras: nada menor que 1 voxel; detalhe fino com 2 voxels de espessura; peça pe
 | `"repouso": {"frente": 12}` | giro fixo do osso em graus (a grade continua reta) |
 
 Uma peça pode pender de um segmento: `"pai": "Braco_D_2"` (a mão na ponta do antebraço).
+
+## Forma em curva: `tubo` (cauda, pescoço, tentáculo, corpo de serpente)
+
+```json
+{"op": "tubo", "de": {"em": "Corpo.tras"}, "pontos": [{"tras": 10, "cima": 2}, {"tras": 20, "cima": 6}, {"tras": 28}],
+ "r0": 4, "r1": 1.5, "material": "corpo", "ventre": "ventre",
+ "escamas": {"tam": [4, 3], "borda": "sombra", "clara": "clara"},
+ "aneis": {"material": "sombra", "passo": 4, "so_ventre": true},
+ "espinhos": {"material": "detalhe", "passo": 7, "altura": 2}}
+```
+
+- A curva sai de `de` e passa pelos `pontos` (deslocamentos a partir do início, de 1 a 6). O raio afina de `r0` a `r1`;
+  ou dê o perfil inteiro em `"raios": [3, 4, 4, 3, 1.2]`.
+- A cor segue a anatomia: `ventre` (faixa de baixo), `dorso` (faixa de cima), `aneis` (a cada `passo` voxels do
+  comprimento), `escamas` (em tijolo, com um traço de sombra e uma em três mais clara), `espinhos` (fileira no dorso).
+- Para a sombra e a clara das escamas, declare dois materiais vizinhos do corpo: `{"nome": "sombra", "rampa": "#27402a"}`.
+  Nunca use `escuro` (preto) como borda de escama: vira grade.
+- Para articular, ponha `"segmentos": 8` (ou mais) e `"eixo": "z"` no osso da peça. O tubo precisa andar sempre no
+  mesmo sentido nesse eixo. Exemplo completo: `registro/arquetipos/serpente.json`.
+- Em corpo que ondula, a cabeça é **filha** do primeiro segmento. Se a cabeça for a mãe, qualquer giro dela arrasta o
+  corpo inteiro como uma vara.

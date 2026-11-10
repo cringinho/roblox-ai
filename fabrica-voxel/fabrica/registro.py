@@ -39,6 +39,11 @@ _MODELO = {
     "porte_k": ((int, float), False, "altura do quadril relativa ao heroi medio"),
     "altura_ref_H": ((int, float), False, "altura de referencia H, em studs, para as translacoes dos clipes"),
     "perfil_auditoria": (str, False, "monstro, heroi, item, prop ou estrutura (padrao: pelo tipo)"),
+    "lapidar": (int, False, "1 ou 2: tira as quinas dos volumes grossos, para o modelo nao ficar quadrado"),
+    "lapidar_pecas": (list, False, "so lapida estas pecas (padrao: todas)"),
+    "lapidar_grosso": (int, False, "espessura minima, em voxels, para lapidar (padrao 4)"),
+    "capas": (list, False, 'capas de tecido: {"nome", "pai", "topo", "base", "larg_topo", "larg_base", "z", "afasta", "abraca", "segmentos", "fora", "forro", "debrum"} (cartoes/forma.md)'),
+    "legado": (dict, False, 'modelo da forja antiga: {"modulo", "construtor", "args", "pose", "clipes": [{"nome", "duracao", "laco"}]} (fabrica/importar_legado.py)'),
     "tier_manual": (bool, False, "true = a ficha ja foi desenhada no tier; a fabrica nao aumenta nem ornamenta"),
     "campo": (int, False, "lado da grade de trabalho em voxels (padrao 160); chefe com mais de 18 studs pede mais"),
     "origem": (str, False, "de onde a ficha veio, quando foi importada"),
@@ -208,6 +213,8 @@ class Registro:
                 erros.append(f'campo "{k}" deveria ser {esq[k][0]}, veio {type(v).__name__}: {esq[k][2]}')
         for k, (_, obrig, desc) in esq.items():
             if obrig and k not in f and tipo != "arquetipo":
+                if f.get("legado") and k in ("materiais", "pecas"):
+                    continue                              # modelo da forja antiga: as pecas vem do codigo em legado/
                 erros.append(f'falta o campo obrigatorio "{k}": {desc}')
         ids = [p.get("nome") for p in f.get("pecas", []) if isinstance(p, dict)]
         if len(set(ids)) != len(ids):

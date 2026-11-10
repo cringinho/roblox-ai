@@ -27,7 +27,7 @@
    {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 444,
+    "valor": 512,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
@@ -55,14 +55,14 @@
    {
     "regra": "clipe_Parado_laco",
     "passou": true,
-    "valor": 0.8165000081062317,
+    "valor": 0.8294000029563904,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Parado_vivo",
     "passou": true,
-    "valor": 12,
+    "valor": 14,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -83,16 +83,23 @@
    {
     "regra": "clipe_Andar_laco",
     "passou": true,
-    "valor": 0.8172000050544739,
+    "valor": 0.8345000147819519,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Andar_vivo",
     "passou": true,
-    "valor": 12,
+    "valor": 14,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
+   },
+   {
+    "regra": "clipe_Andar_pe_desliza",
+    "passou": true,
+    "valor": 0.0,
+    "limite": "<= 2.5% do comprimento da perna",
+    "conserto": "O pe escorrega no chao durante o apoio: e o defeito que o olho ve primeiro. Diminua \"passada_H\" (a perna nao alcanca), aumente \"agacho\", ou troque a perna rigida por \"segmentos\": 2. Em aranha, inseto e centopeia use \"passos\" com \"modo\": \"patas\" no lugar de ondas nas patas."
    },
    {
     "regra": "clipe_Andar_gemeos",
@@ -146,23 +153,23 @@
   ]
  },
  "malha": {
-  "triangulos": 1520,
-  "malhas": 14,
+  "triangulos": 1764,
+  "malhas": 16,
   "animacoes": 5,
-  "bytes": 196704
+  "bytes": 223652
  },
  "p2": {
-  "nota": 87.1,
+  "nota": 90.5,
   "minimo": 75,
   "passou": true,
   "metricas": [
    {
     "metrica": "grupos_de_valor",
-    "nota": 0.988,
+    "nota": 1.0,
     "valor": {
-     "escuro": 0.098,
-     "medio": 0.514,
-     "claro": 0.387,
+     "escuro": 0.103,
+     "medio": 0.518,
+     "claro": 0.38,
      "brilho": 0.0
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
@@ -172,7 +179,7 @@
    {
     "metrica": "tamanho_da_paleta",
     "nota": 1.0,
-    "valor": 25,
+    "valor": 26,
     "alvo": "8 a 40 cores",
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
     "peso": 10
@@ -187,16 +194,16 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.296,
-    "valor": 0.0211,
+    "nota": 0.563,
+    "valor": 0.0131,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 0.944,
-    "valor": 0.336,
+    "nota": 0.869,
+    "valor": 0.317,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -205,8 +212,8 @@
     "metrica": "silhueta",
     "nota": 1.0,
     "valor": {
-     "frente": 0.561,
-     "grade": 0.596
+     "frente": 0.568,
+     "grade": 0.598
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -215,7 +222,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.2676,
+    "valor": 0.2759,
     "alvo": ">= 0.0",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 0
@@ -223,7 +230,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.7,
+    "valor": 0.685,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -232,28 +239,28 @@
   "piores": [
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.296,
+    "nota": 0.563,
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 0.944,
+    "nota": 0.869,
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
    },
    {
     "metrica": "grupos_de_valor",
-    "nota": 0.988,
+    "nota": 1.0,
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
    }
   ]
  },
  "status": "aprovado",
  "numeros": {
-  "voxels": 2724,
-  "pecas": 14,
-  "ossos": 13,
-  "cores": 25,
-  "triangulos": 1520,
+  "voxels": 2220,
+  "pecas": 16,
+  "ossos": 15,
+  "cores": 26,
+  "triangulos": 1764,
   "clipes": [
    "Parado",
    "Andar",
@@ -261,6 +268,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 3.49
+  "segundos": 3.48
  }
 }

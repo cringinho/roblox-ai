@@ -16,7 +16,7 @@ import numpy as np
 from . import sdf
 from .contrato import CORTES, Grade, Peca, desloc_semantico
 
-OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels", "placas", "bloco")
+OPS = ("caixa", "elipsoide", "capsula", "cilindro", "cone", "estampa", "voxels", "placas", "bloco", "tubo")
 MODOS = ("uniao", "so_vazio", "cortar", "pintar")
 # normal (em voxels) de cada ancora simples; combinacoes somam (ex.: topo_frente)
 _NORMAIS = {"topo": (0, 1, 0), "base": (0, -1, 0), "frente": (0, 0, -1), "tras": (0, 0, 1),
@@ -301,6 +301,8 @@ def _avaliar(op, tipo, lado, g, caixas, peca, off, mat_de, onde):
         return oc, mn, mx, None
     if tipo == "estampa":
         return _estampa(op, g, caixas, peca, off, mat_de, onde)
+    if tipo == "tubo":
+        return _tubo(op, esp, caixas, peca, mat_de, onde)
     if tipo == "capsula":
         a = esp(_ponto_livre(op.get("de"), op, caixas, peca))
         b = esp(_ponto_livre(op.get("ate"), op, caixas, peca))
@@ -320,9 +322,13 @@ def _avaliar(op, tipo, lado, g, caixas, peca, off, mat_de, onde):
     mn, mx = np.floor(c - t / 2 - 1), np.ceil(c + t / 2 + 1)
     P = sdf.eixos((mx - mn).astype(int), mn)
     if tipo == "caixa":
-        fino = min(tam) < 5   # regra de arte: nada de chanfro/raio grande em peca pequena (vira "cruz")
+        # regra de arte: nada de chanfro/raio grande em peca pequena (vira "cruz"). Com "arredondar": "y" (ou x, z) so
+        # contam as duas dimensoes que arredondam: uma calota fina de cabelo ou a aba de um chapeu podem ser redondas
+        arr = op.get("arredondar", "tudo")
+        contam = [tam[i] for i in range(3) if arr == "tudo" or i != "xyz".index(arr)] if arr in ("tudo", "x", "y", "z") else tam
+        fino = min(contam) < 5
         d = sdf.caixa(P, c, t, raio=min(float(op.get("raio", 0)), 1.0 if fino else 99),
-                      chanfro=0.0 if fino else float(op.get("chanfro", 0)))
+                      chanfro=0.0 if fino else float(op.get("chanfro", 0)), arredondar=arr)
     elif tipo == "elipsoide":
         d = sdf.elipsoide(P, c, t)
     elif tipo == "cilindro":
@@ -331,6 +337,113 @@ def _avaliar(op, tipo, lado, g, caixas, peca, off, mat_de, onde):
         d = sdf.cone(P, c, t, eixo=op.get("eixo", "y"), sentido=int(op.get("sentido", 1)),
                      raio_ponta=float(op.get("raio_ponta", 0)))
     return sdf.ocupado(d), mn, mx, None
+
+
+def _tubo(op, esp, caixas, peca, mat_de, onde):
+    """Forma organica em curva (cauda, pescoco, tentaculo, corpo de serpente): uma curva de Bezier que sai de "de" e
+    passa pelos "pontos" (deslocamentos a partir do inicio), com o raio afinando de "r0" a "r1". A cor segue a
+    anatomia: "ventre" (faixa de baixo), "dorso" (faixa de cima), "aneis" (a cada N voxels do comprimento),
+    "escamas" (tijolo com borda) e "espinhos" (fileira no dorso). Corte em ossos com "segmentos" no osso da peca."""
+    p0 = _ponto_livre(op.get("de"), op, caixas, peca)
+    pts = op.get("pontos")
+    if not (isinstance(pts, list) and 1 <= len(pts) <= 6 and all(isinstance(d, dict) for d in pts)):
+        raise ErroFicha(f'{onde}: "tubo" precisa de "pontos": de 1 a 6 deslocamentos a partir do inicio, ex.: '
+                        '"pontos": [{"tras": 10, "cima": 2}, {"tras": 20, "cima": 6}, {"tras": 28}].')
+    try:
+        ctrl = np.array([esp(p0)] + [esp(p0 + desloc_semantico(d)) for d in pts], float)
+    except ValueError as e:
+        raise ErroFicha(f"{onde}: {e}") from None
+    r0 = float(op.get("r0", op.get("raio", 3)))
+    r1 = float(op.get("r1", round(r0 * 0.6, 1)))
+    if r0 < 1 or r1 < 0.5:
+        raise ErroFicha(f'{onde}: "r0" minimo 1 e "r1" minimo 0.5 (em voxels).')
+    n = int(max(8, 3 * np.linalg.norm(np.diff(ctrl, axis=0), axis=1).sum()))
+    u = np.linspace(0, 1, n + 1)
+    C = ctrl[None, :, :].repeat(n + 1, 0)                    # de Casteljau
+    while C.shape[1] > 1:
+        C = C[:, :-1] * (1 - u)[:, None, None] + C[:, 1:] * u[:, None, None]
+    C = C[:, 0]
+    seg = np.linalg.norm(np.diff(C, axis=0), axis=1)
+    S = np.concatenate([[0.0], np.cumsum(seg)])
+    comp = float(S[-1])
+    raios = op.get("raios")
+    if isinstance(raios, list) and len(raios) >= 2:          # perfil livre: [4, 5, 3, 1] ao longo do comprimento
+        R = np.interp(S / comp, np.linspace(0, 1, len(raios)), np.array(raios, float))
+    else:
+        R = r0 + (r1 - r0) * (S / comp)
+    esp_h = int((op.get("espinhos") or {}).get("altura", 0))
+    rm = float(R.max()) + 1 + esp_h
+    mn, mx = np.floor(C.min(0) - rm), np.ceil(C.max(0) + rm)
+    x, y, z = sdf.eixos((mx - mn).astype(int), mn)
+    forma = tuple((mx - mn).astype(int))
+    dmin = np.full(forma, 1e9, np.float32)
+    s_de = np.zeros(forma, np.float32)                       # comprimento ao longo da curva do ponto mais perto
+    off = np.zeros(forma + (3,), np.float32)                 # deslocamento em relacao a linha central
+    for i in range(n):
+        a, ab = C[i].astype(np.float32), (C[i + 1] - C[i]).astype(np.float32)
+        c2 = float(ab @ ab)
+        if c2 < 1e-9:
+            continue
+        px, py, pz = x - a[0], y - a[1], z - a[2]
+        t = np.clip((px * ab[0] + py * ab[1] + pz * ab[2]) / c2, 0.0, 1.0)
+        dx, dy, dz = px - ab[0] * t, py - ab[1] * t, pz - ab[2] * t
+        d = np.sqrt(dx * dx + dy * dy + dz * dz) - (R[i] + (R[i + 1] - R[i]) * t)
+        m = d < dmin
+        dmin = np.where(m, d, dmin)
+        s_de = np.where(m, S[i] + seg[i] * t, s_de)
+        for e, dd in enumerate((dx, dy, dz)):
+            off[..., e] = np.where(m, dd, off[..., e])
+    oc = dmin < 0
+    raio_aqui = np.interp(s_de, S, R).astype(np.float32)
+    mat = np.full(forma, mat_de(op.get("material", ""), onde), np.uint8)
+    # eixo "para cima" da secao: Y quando o tubo anda deitado, Z (para tras) quando sobe como um pescoco
+    tang = np.abs(C[-1] - C[0]) / (np.linalg.norm(C[-1] - C[0]) + 1e-9)
+    e_cima = 1 if tang[1] < 0.75 else 2
+    e_lado = 0
+    cima, lado_ = off[..., e_cima], off[..., e_lado]
+    esc_ = op.get("escamas")
+    if isinstance(esc_, dict):                               # tijolo: fileiras deslocadas meia escama, borda de 1 voxel
+        w, h = (list(esc_.get("tam", [3, 3])) + [3])[:2]
+        w, h = max(2, int(w)), max(2, int(h))
+        fileira = np.floor(s_de / h).astype(int)
+        volta = np.arctan2(lado_, cima) * raio_aqui + (fileira % 2) * (w / 2.0) + 1000.0
+        # nao contornar cada escama (vira grade preta): so um traco na metade de tras de cada uma, em tijolo
+        cheia = bool(esc_.get("contorno"))
+        borda = (((s_de % h) < 1.0) | ((volta % w) < 1.0)) if cheia else (((s_de % h) < 1.0) & ((volta % w) < w / 2.0))
+        if esc_.get("borda"):
+            mat[borda] = mat_de(esc_["borda"], onde)
+        if esc_.get("clara"):                                # uma em tres mais clara
+            celula = np.floor(volta / w).astype(int) + 2 * fileira
+            mat[(celula % 3 == 0) & ~borda] = mat_de(esc_["clara"], onde)
+    if op.get("dorso"):
+        mat[cima > 0.62 * raio_aqui] = mat_de(op["dorso"], onde)
+    if op.get("ventre"):
+        mat[cima < -0.45 * raio_aqui] = mat_de(op["ventre"], onde)
+    an = op.get("aneis")
+    if isinstance(an, dict):
+        passo, larg = max(2.0, float(an.get("passo", 6))), max(1.0, float(an.get("largura", 1)))
+        faixa = ((s_de + passo / 2) % passo) < larg
+        if an.get("so_ventre"):
+            faixa &= cima < -0.45 * raio_aqui
+        mat[faixa] = mat_de(an.get("material", op.get("material", "")), onde)
+    ep = op.get("espinhos")
+    if isinstance(ep, dict) and e_cima == 1:
+        passo, alt = max(2.0, float(ep.get("passo", 6))), max(1, int(ep.get("altura", 2)))
+        m_ep = mat_de(ep.get("material", op.get("material", "")), onde)
+        for sk in np.arange(passo * 0.6, comp * float(ep.get("ate", 0.92)), passo):
+            c = np.array([np.interp(sk, S, C[:, e]) for e in range(3)])
+            r = float(np.interp(sk, S, R))
+            h_k = max(1, int(round(alt * (0.5 + 0.5 * (1 - sk / comp)))))      # menores para a ponta
+            ix, iz = int(np.floor(c[0] - mn[0])), int(np.floor(c[2] - mn[2]))
+            y0 = int(np.floor(c[1] + r - mn[1])) - 1
+            for j in range(h_k + 1):
+                if 0 <= ix < forma[0] and 0 <= y0 + j < forma[1] and 0 <= iz < forma[2]:
+                    oc[ix, y0 + j, iz] = True
+                    mat[ix, y0 + j, iz] = m_ep
+                    if j < h_k // 2 and iz + 1 < forma[2]:   # base mais larga
+                        oc[ix, y0 + j, iz + 1] = True
+                        mat[ix, y0 + j, iz + 1] = m_ep
+    return oc, mn, mx, mat
 
 
 def _estampa(op, g, caixas, peca, off, mat_de, onde):

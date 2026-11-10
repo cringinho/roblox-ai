@@ -1,0 +1,1813 @@
+{
+ "id": "arquetipo.escorpiao",
+ "tipo": "arquetipo",
+ "versao": 2,
+ "nome": "Escorpiao",
+ "_ajuda": "Escorpiao: pincas a frente, corpo baixo, 4 pares de pernas em arco (tetrapode alternado), mesossoma de 3 blocos e cauda de 5 segmentos mais ferrao curvada em S sobre o corpo.",
+ "materiais": [
+  {
+   "nome": "corpo",
+   "como": "osso"
+  },
+  {
+   "nome": "detalhe",
+   "como": "ferro"
+  },
+  {
+   "nome": "escuro",
+   "como": "escuro"
+  },
+  {
+   "nome": "olho",
+   "como": "brilho_brasa"
+  }
+ ],
+ "andadura": {
+  "tipo": "artropode",
+  "apoio": 0.65,
+  "grupos": "alternados"
+ },
+ "armadilhas": [
+  "Perna em arco: coxa anda, femur sobe, tibia desce; o pe toca o chao na pose de repouso (pe_no_chao).",
+  "Tetrapode alternado: E1,D2,E3,D4 em fase 0; D1,E2,D3,E4 em 0,5. Apoio 0,65.",
+  "A cauda e uma cadeia de 5 ossos com giro de repouso que soma ~170 graus: o ferrao aponta para a frente, sobre o corpo.",
+  "Pinca: braco de 2 ossos, palma e dedo movel que fecha (canal esquerda)."
+ ],
+ "pecas": [
+  {
+   "nome": "Corpo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "t",
+     "tam": [
+      11,
+      4,
+      12
+     ],
+     "chanfro": 1,
+     "em": "chao",
+     "desloc": {
+      "cima": 2
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "estampa",
+     "em": "t",
+     "face": "topo",
+     "desloc": {
+      "frente": 3
+     },
+     "linhas": [
+      "OO..OO",
+      "OO..OO"
+     ],
+     "legenda": {
+      "O": "olho"
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      7,
+      1,
+      6
+     ],
+     "em": "t.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 1
+     },
+     "material": "detalhe",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Abdomen",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "m1",
+     "tam": [
+      9,
+      4,
+      4
+     ],
+     "em": "Corpo.t.tras",
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "m2",
+     "tam": [
+      8,
+      4,
+      4
+     ],
+     "em": "m1.tras",
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "nome": "m3",
+     "tam": [
+      7,
+      4,
+      4
+     ],
+     "em": "m2.tras",
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      6,
+      1,
+      2
+     ],
+     "em": "m2.topo",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar",
+     "repetir": {
+      "n": 1,
+      "passo": {
+       "tras": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "s",
+     "tam": [
+      4,
+      4,
+      4
+     ],
+     "em": "Abdomen.m3.tras",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "s",
+     "tam": [
+      4,
+      4,
+      4
+     ],
+     "em": "Cauda_1.s.tras",
+     "desloc": {},
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "s",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Cauda_2.s.tras",
+     "desloc": {},
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_4",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "s",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Cauda_3.s.tras",
+     "desloc": {},
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_5",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "s",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Cauda_4.s.tras",
+     "desloc": {},
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Ferrao",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "f",
+     "tam": [
+      3,
+      3,
+      3
+     ],
+     "em": "Cauda_5.s.tras",
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      3
+     ],
+     "em": "f.tras",
+     "material": "escuro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      2
+     ],
+     "em": "f.tras",
+     "desloc": {
+      "tras": 3
+     },
+     "material": "olho"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_1_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "frente": 4
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_1_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_1_D.dir",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_1_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_1_D.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_1_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "frente": 4
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_1_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_1_E.esq",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_1_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_1_E.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_2_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_2_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_2_D.dir",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_2_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_2_D.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_2_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_2_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_2_E.esq",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_2_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_2_E.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_3_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_3_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_3_D.dir",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_3_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_3_D.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_3_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_3_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      5,
+      2
+     ],
+     "em": "Coxa_3_E.esq",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_3_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      8,
+      2
+     ],
+     "em": "Femur_3_E.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_4_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "tras": 5
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_4_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      2
+     ],
+     "em": "Coxa_4_D.dir",
+     "desloc": {
+      "baixo": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_4_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      9,
+      2
+     ],
+     "em": "Femur_4_D.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Coxa_4_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      2
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "tras": 5
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Femur_4_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      2
+     ],
+     "em": "Coxa_4_E.esq",
+     "desloc": {
+      "baixo": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tibia_4_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      9,
+      2
+     ],
+     "em": "Femur_4_E.base",
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Braco_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "b",
+     "tam": [
+      3,
+      3,
+      8
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "direita": 3,
+      "baixo": 0
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pinca_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "p",
+     "tam": [
+      5,
+      4,
+      4
+     ],
+     "em": "Braco_D.b.frente",
+     "desloc": {
+      "direita": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "fx",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "p.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Dedo_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "d",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "Pinca_D.p.frente",
+     "desloc": {
+      "direita": 1
+     },
+     "material": "escuro"
+    }
+   ]
+  },
+  {
+   "nome": "Braco_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "b",
+     "tam": [
+      3,
+      3,
+      8
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "esquerda": 3,
+      "baixo": 0
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pinca_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "p",
+     "tam": [
+      5,
+      4,
+      4
+     ],
+     "em": "Braco_E.b.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "fx",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "p.frente",
+     "desloc": {
+      "direita": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Dedo_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "d",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "Pinca_E.p.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "escuro"
+    }
+   ]
+  }
+ ],
+ "ossos": [
+  {
+   "nome": "Corpo",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Corpo.t.base"
+   },
+   "papel": "corpo"
+  },
+  {
+   "nome": "Abdomen",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Abdomen.m1.frente"
+   },
+   "papel": "corpo",
+   "junta": 1,
+   "segmentos": 3,
+   "dobra": "livre",
+   "ganho_seguir": 0.8,
+   "atraso_seguir_s": 0.06,
+   "eixo": "z"
+  },
+  {
+   "nome": "Cauda_1",
+   "pai": "Abdomen_3",
+   "pivo": {
+    "em": "Cauda_1.s.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 45
+   }
+  },
+  {
+   "nome": "Cauda_2",
+   "pai": "Cauda_1",
+   "pivo": {
+    "em": "Cauda_2.s.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 30
+   }
+  },
+  {
+   "nome": "Cauda_3",
+   "pai": "Cauda_2",
+   "pivo": {
+    "em": "Cauda_3.s.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 30
+   }
+  },
+  {
+   "nome": "Cauda_4",
+   "pai": "Cauda_3",
+   "pivo": {
+    "em": "Cauda_4.s.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 30
+   }
+  },
+  {
+   "nome": "Cauda_5",
+   "pai": "Cauda_4",
+   "pivo": {
+    "em": "Cauda_5.s.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 25
+   }
+  },
+  {
+   "nome": "Ferrao",
+   "pai": "Cauda_5",
+   "pivo": {
+    "em": "Ferrao.f.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "repouso": {
+    "frente": 15
+   }
+  },
+  {
+   "nome": "Coxa_1_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_1_D.esq"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": 26
+   }
+  },
+  {
+   "nome": "Femur_1_D",
+   "pai": "Coxa_1_D",
+   "pivo": {
+    "em": "Femur_1_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -120
+   }
+  },
+  {
+   "nome": "Tibia_1_D",
+   "pai": "Femur_1_D",
+   "pivo": {
+    "em": "Tibia_1_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 100
+   }
+  },
+  {
+   "nome": "Coxa_1_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_1_E.dir"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": -26
+   }
+  },
+  {
+   "nome": "Femur_1_E",
+   "pai": "Coxa_1_E",
+   "pivo": {
+    "em": "Femur_1_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 120
+   }
+  },
+  {
+   "nome": "Tibia_1_E",
+   "pai": "Femur_1_E",
+   "pivo": {
+    "em": "Tibia_1_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -100
+   }
+  },
+  {
+   "nome": "Coxa_2_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_2_D.esq"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": 9
+   }
+  },
+  {
+   "nome": "Femur_2_D",
+   "pai": "Coxa_2_D",
+   "pivo": {
+    "em": "Femur_2_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -120
+   }
+  },
+  {
+   "nome": "Tibia_2_D",
+   "pai": "Femur_2_D",
+   "pivo": {
+    "em": "Tibia_2_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 100
+   }
+  },
+  {
+   "nome": "Coxa_2_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_2_E.dir"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": -9
+   }
+  },
+  {
+   "nome": "Femur_2_E",
+   "pai": "Coxa_2_E",
+   "pivo": {
+    "em": "Femur_2_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 120
+   }
+  },
+  {
+   "nome": "Tibia_2_E",
+   "pai": "Femur_2_E",
+   "pivo": {
+    "em": "Tibia_2_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -100
+   }
+  },
+  {
+   "nome": "Coxa_3_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_3_D.esq"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": -8
+   }
+  },
+  {
+   "nome": "Femur_3_D",
+   "pai": "Coxa_3_D",
+   "pivo": {
+    "em": "Femur_3_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -120
+   }
+  },
+  {
+   "nome": "Tibia_3_D",
+   "pai": "Femur_3_D",
+   "pivo": {
+    "em": "Tibia_3_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 100
+   }
+  },
+  {
+   "nome": "Coxa_3_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_3_E.dir"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": 8
+   }
+  },
+  {
+   "nome": "Femur_3_E",
+   "pai": "Coxa_3_E",
+   "pivo": {
+    "em": "Femur_3_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 120
+   }
+  },
+  {
+   "nome": "Tibia_3_E",
+   "pai": "Femur_3_E",
+   "pivo": {
+    "em": "Tibia_3_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -100
+   }
+  },
+  {
+   "nome": "Coxa_4_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_4_D.esq"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": -26
+   }
+  },
+  {
+   "nome": "Femur_4_D",
+   "pai": "Coxa_4_D",
+   "pivo": {
+    "em": "Femur_4_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -120
+   }
+  },
+  {
+   "nome": "Tibia_4_D",
+   "pai": "Femur_4_D",
+   "pivo": {
+    "em": "Tibia_4_D.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 100
+   }
+  },
+  {
+   "nome": "Coxa_4_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Coxa_4_E.dir"
+   },
+   "papel": "perna",
+   "repouso": {
+    "esquerda": 26
+   }
+  },
+  {
+   "nome": "Femur_4_E",
+   "pai": "Coxa_4_E",
+   "pivo": {
+    "em": "Femur_4_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": 120
+   }
+  },
+  {
+   "nome": "Tibia_4_E",
+   "pai": "Femur_4_E",
+   "pivo": {
+    "em": "Tibia_4_E.topo"
+   },
+   "papel": "perna",
+   "junta": 1,
+   "repouso": {
+    "tombar_direita": -100
+   }
+  },
+  {
+   "nome": "Braco_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Braco_D.b.tras"
+   },
+   "papel": "braco",
+   "segmentos": 2,
+   "dobra": "livre",
+   "eixo": "z",
+   "ganho_seguir": 0.6,
+   "atraso_seguir_s": 0.06,
+   "repouso": {
+    "esquerda": -12
+   }
+  },
+  {
+   "nome": "Pinca_D",
+   "pai": "Braco_D_2",
+   "pivo": {
+    "em": "Pinca_D.p.tras"
+   },
+   "papel": "mao",
+   "junta": 1
+  },
+  {
+   "nome": "Dedo_D",
+   "pai": "Pinca_D",
+   "pivo": {
+    "em": "Dedo_D.d.tras"
+   },
+   "papel": "mandibula",
+   "repouso": {
+    "esquerda": -8
+   }
+  },
+  {
+   "nome": "Braco_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Braco_E.b.tras"
+   },
+   "papel": "braco",
+   "segmentos": 2,
+   "dobra": "livre",
+   "eixo": "z",
+   "ganho_seguir": 0.6,
+   "atraso_seguir_s": 0.06,
+   "repouso": {
+    "esquerda": 12
+   }
+  },
+  {
+   "nome": "Pinca_E",
+   "pai": "Braco_E_2",
+   "pivo": {
+    "em": "Pinca_E.p.tras"
+   },
+   "papel": "mao",
+   "junta": 1
+  },
+  {
+   "nome": "Dedo_E",
+   "pai": "Pinca_E",
+   "pivo": {
+    "em": "Dedo_E.d.tras"
+   },
+   "papel": "mandibula",
+   "repouso": {
+    "esquerda": 8
+   }
+  }
+ ],
+ "soquetes": [
+  {
+   "nome": "Dorso",
+   "osso": "Abdomen",
+   "em": "Abdomen.m2.topo"
+  }
+ ],
+ "clipes": [
+  {
+   "nome": "Parado",
+   "duracao": 8.0,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "vida"
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.1,
+     "fase_por_osso": -0.12
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 3,
+     "harm": 2,
+     "fase": 0.4,
+     "fase_por_osso": -0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Ferrao",
+     "canal": "frente",
+     "amp": 6,
+     "harm": 3,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Dedo_D",
+     "canal": "esquerda",
+     "amp": 12,
+     "harm": 3,
+     "fase": 0.1,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Dedo_E",
+     "canal": "esquerda",
+     "amp": -12,
+     "harm": 3,
+     "fase": 0.18,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "esquerda",
+     "amp": 7,
+     "harm": 2,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "esquerda",
+     "amp": -6,
+     "harm": 2,
+     "fase": 0.55
+    },
+    {
+     "tipo": "onda",
+     "osso": "Femur_1_D",
+     "canal": "tombar_direita",
+     "amp": -4,
+     "harm": 6,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Femur_1_E",
+     "canal": "tombar_direita",
+     "amp": 4.5,
+     "harm": 5,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Abdomen",
+     "canal": "frente",
+     "amp": 2,
+     "harm": 3,
+     "fase": 0.1
+    }
+   ]
+  },
+  {
+   "nome": "Andar",
+   "duracao": 1.2,
+   "laco": true,
+   "camadas": [
+    {
+     "tipo": "passos",
+     "modo": "patas",
+     "apoio": 0.65,
+     "passada_H": 0.45,
+     "altura_H": 0.1,
+     "pes": [
+      {
+       "osso": "Coxa_1_D",
+       "fase": 0.02
+      },
+      {
+       "osso": "Coxa_1_E",
+       "fase": 0.5
+      },
+      {
+       "osso": "Coxa_2_D",
+       "fase": 0.555
+      },
+      {
+       "osso": "Coxa_2_E",
+       "fase": 0.965
+      },
+      {
+       "osso": "Coxa_3_D",
+       "fase": 0.09
+      },
+      {
+       "osso": "Coxa_3_E",
+       "fase": 0.43
+      },
+      {
+       "osso": "Coxa_4_D",
+       "fase": 0.625
+      },
+      {
+       "osso": "Coxa_4_E",
+       "fase": 0.895
+      }
+     ]
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "cima",
+     "amp": 0.012,
+     "harm": 2,
+     "forma": "abs",
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Corpo",
+     "canal": "tombar_direita",
+     "amp": 1.8,
+     "harm": 1,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.1,
+     "fase_por_osso": -0.1
+    },
+    {
+     "tipo": "onda",
+     "ossos": "Cauda_*",
+     "canal": "esquerda",
+     "amp": 4,
+     "harm": 1,
+     "fase": 0.3,
+     "fase_por_osso": -0.08
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 1,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "esquerda",
+     "amp": -5.5,
+     "harm": 1,
+     "fase": 0.27
+    },
+    {
+     "tipo": "onda",
+     "osso": "Abdomen",
+     "canal": "esquerda",
+     "amp": 4,
+     "harm": 1,
+     "fase": 0.35
+    }
+   ]
+  },
+  {
+   "nome": "Ataque",
+   "duracao": 1.1,
+   "marcadores": [
+    [
+     "Aviso",
+     0.0
+    ],
+    [
+     "Impacto",
+     0.55
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": -8,
+         "tras": 0.04
+        },
+        "Cauda_*": {
+         "frente": -14
+        },
+        "Ferrao": {
+         "frente": -12
+        },
+        "Abdomen": {
+         "frente": -6
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "frente": 10,
+         "frente_t": 0.08
+        },
+        "Cauda_*": {
+         "frente": 22
+        },
+        "Ferrao": {
+         "frente": 28
+        },
+        "Abdomen": {
+         "frente": 6
+        }
+       }
+      },
+      {
+       "t": 0.7,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": 4,
+         "frente_t": 0.04
+        },
+        "Cauda_*": {
+         "frente": 8
+        },
+        "Ferrao": {
+         "frente": 10
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Dedo_D": {
+         "esquerda": -30
+        },
+        "Dedo_E": {
+         "esquerda": 30
+        },
+        "Braco_D": {
+         "esquerda": 14
+        },
+        "Braco_E": {
+         "esquerda": -14
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Dedo_D": {
+         "esquerda": 16
+        },
+        "Dedo_E": {
+         "esquerda": -16
+        },
+        "Braco_D": {
+         "esquerda": -8
+        },
+        "Braco_E": {
+         "esquerda": 8
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Femur_1_D": {
+         "tombar_direita": -14
+        },
+        "Femur_1_E": {
+         "tombar_direita": 14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Dano",
+   "duracao": 0.4,
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -12,
+         "tras": 0.05
+        },
+        "Cauda_*": {
+         "frente": -18
+        },
+        "Abdomen": {
+         "frente": -14
+        }
+       }
+      },
+      {
+       "t": 0.55,
+       "curva": "suave",
+       "pose": {
+        "Corpo": {
+         "frente": 3
+        }
+       }
+      },
+      {
+       "t": 1,
+       "curva": "suave",
+       "pose": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nome": "Morte",
+   "duracao": 1.2,
+   "marcadores": [
+    [
+     "Queda",
+     0.6
+    ]
+   ],
+   "camadas": [
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.3,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "frente": -8,
+         "cima": 0.03
+        },
+        "Cauda_*": {
+         "frente": -18
+        }
+       }
+      },
+      {
+       "t": 0.6,
+       "curva": "golpe",
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 78,
+         "baixo": 0.2
+        },
+        "Cauda_*": {
+         "frente": -30
+        }
+       }
+      },
+      {
+       "t": 0.74,
+       "curva": "sai",
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 86,
+         "baixo": 0.22
+        },
+        "Cauda_*": {
+         "frente": -34
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Corpo": {
+         "tombar_direita": 84,
+         "baixo": 0.22
+        },
+        "Cauda_*": {
+         "frente": -34
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.3,
+       "curva": "sai",
+       "pose": {
+        "Femur_*_D": {
+         "tombar_direita": -20.0
+        },
+        "Femur_*_E": {
+         "tombar_direita": 20.0
+        }
+       }
+      },
+      {
+       "t": 0.75,
+       "curva": "suave",
+       "pose": {
+        "Femur_*_D": {
+         "tombar_direita": -40
+        },
+        "Femur_*_E": {
+         "tombar_direita": 40
+        },
+        "Tibia_*_D": {
+         "tombar_direita": 50
+        },
+        "Tibia_*_E": {
+         "tombar_direita": -50
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Femur_*_D": {
+         "tombar_direita": -40
+        },
+        "Femur_*_E": {
+         "tombar_direita": 40
+        },
+        "Tibia_*_D": {
+         "tombar_direita": 50
+        },
+        "Tibia_*_E": {
+         "tombar_direita": -50
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

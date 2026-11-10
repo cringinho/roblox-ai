@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.escorpiao",
+ "hash_ficha": "35ceffd0932b228c4a37703b42a36a46c7356de32764e6e702c7189c33395854",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Escorpiao.luau": "5295343030d6f0c9abc1c895df04f730d6047cd5d459211c56e7c3a3481c0c1a",
+  "Dados_Escorpiao.luau": "cf278856706584a19a56b7c7032ae32fbbc46d41d63ee60dfb27bc81f72b83a1",
+  "anim.gif": "93e9494324319b3a919b4d0158c1df40b8fbed3e6ae4c9f68774c29d68a248a6",
+  "anim_Andar.png": "ca98e6576610b0287a51d485a94ba463db53c1c7caec6703d57d0cc0ca178816",
+  "anim_Ataque.png": "d8ea3dad1324e944cc318be795b957b904482a0ad74834ff3aedcb4d2701b776",
+  "anim_Dano.png": "7d70dbf9530fbfc5490415db838925aa3cd01b114500038da1adb2937bc937f5",
+  "anim_Morte.png": "84b6927e550368ec29d723712cdc9c4200fb9e96f8402887f4f2eb67f56e8d89",
+  "anim_Parado.png": "c94062335fa5b697e95ff785865051d17b6be03da909ad27dea8250d857f700f",
+  "folha.png": "909791742ba619a59875006060da70499de390fe82098925a2c7c8292dc8c3c8",
+  "icone_64.png": "7b4cf510388843d846d6b627dcf05769a2fb1a438c0fa8060f0b19493d78f35b",
+  "modelo.glb": "65359b4ade716e2f6b135251125fab14bb8936846c48ade074747eb672f291fb",
+  "modelo.vox": "9cc2122b69456b1606a8554d1f6c3bd06637625b0a268101d20134cdc90c2470"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

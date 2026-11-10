@@ -163,13 +163,7 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Torax",
-     "canal": "cima",
-     "amp": 0.006,
-     "harm": 2,
-     "fase": 0.12,
-     "forma": "abs"
+     "tipo": "impacto"
     },
     {
      "tipo": "onda",

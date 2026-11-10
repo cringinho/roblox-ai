@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 saida/_teste_*/
+legado/forja_alta/saida*/
+legado/forja_alta/__pycache__/
+saida/forja_hidra_adulta/

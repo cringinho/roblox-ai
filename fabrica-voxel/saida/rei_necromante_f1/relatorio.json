@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "a4d54d8caebfbd75345c0abb63bdd7033f3bf96242947e2aecb23dd64af2e419",
+ "hash_ficha": "693ec53a6a7dadc3df0f85c3a700c7c182e1bf2ad9a7453e2e538f19c98857b4",
  "p1": {
   "passou": true,
   "regras": [
@@ -34,23 +34,23 @@
     "passou": true,
     "valor": {
      "tier": 7,
-     "voxels": 44728,
+     "voxels": 30400,
      "ossos": 26
     },
-    "limite": "T7: >= 13000 voxels e >= 24 ossos",
+    "limite": "T7: >= 13000 voxels e >= 20 ossos",
     "conserto": "Criatura simples demais para o tier 7. Mais ossos: \"segmentos\" nos bracos, pernas, cauda e pescoco, mandibula, orelhas, dedos, mais pecas com osso proprio. Mais voxels: garras, dentes e espinhos com \"repetir\", \"op\": \"placas\" no dorso, ou um corpo maior. Tabela: cartoes/monstro.md."
    },
    {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 2122,
+    "valor": 4646,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
    {
     "regra": "brilho",
     "passou": true,
-    "valor": 0.0054,
+    "valor": 0.005,
     "limite": 0.04,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -190,13 +190,13 @@
   ]
  },
  "malha": {
-  "triangulos": 11794,
+  "triangulos": 25050,
   "malhas": 30,
   "animacoes": 7,
-  "bytes": 989300
+  "bytes": 1891052
  },
  "p2": {
-  "nota": 95.8,
+  "nota": 86.2,
   "minimo": 75,
   "passou": true,
   "metricas": [
@@ -204,10 +204,10 @@
     "metrica": "grupos_de_valor",
     "nota": 1.0,
     "valor": {
-     "escuro": 0.32,
-     "medio": 0.425,
-     "claro": 0.25,
-     "brilho": 0.0054
+     "escuro": 0.379,
+     "medio": 0.35,
+     "claro": 0.266,
+     "brilho": 0.005
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -215,8 +215,8 @@
    },
    {
     "metrica": "tamanho_da_paleta",
-    "nota": 0.594,
-    "valor": 45,
+    "nota": 0.562,
+    "valor": 46,
     "alvo": "6 a 32 cores",
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
     "peso": 10
@@ -231,16 +231,16 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.994,
-    "valor": 0.0002,
+    "nota": 0.953,
+    "valor": 0.0014,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 1.0,
-    "valor": 0.402,
+    "nota": 0.419,
+    "valor": 0.205,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -249,8 +249,8 @@
     "metrica": "silhueta",
     "nota": 1.0,
     "valor": {
-     "frente": 0.764,
-     "grade": 0.562
+     "frente": 0.778,
+     "grade": 0.486
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -259,7 +259,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.1868,
+    "valor": 0.3138,
     "alvo": ">= 0.004",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 10
@@ -267,7 +267,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.53,
+    "valor": 0.578,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -275,28 +275,28 @@
   ],
   "piores": [
    {
+    "metrica": "area_de_descanso",
+    "nota": 0.419,
+    "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
+   },
+   {
     "metrica": "tamanho_da_paleta",
-    "nota": 0.594,
+    "nota": 0.562,
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal)."
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.994,
+    "nota": 0.953,
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
-   },
-   {
-    "metrica": "grupos_de_valor",
-    "nota": 1.0,
-    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
    }
   ]
  },
  "numeros": {
-  "voxels": 44728,
+  "voxels": 30400,
   "pecas": 26,
   "ossos": 27,
-  "cores": 45,
-  "triangulos": 11794,
+  "cores": 46,
+  "triangulos": 25050,
   "clipes": [
    "Parado",
    "Andar",
@@ -306,6 +306,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 53.03
+  "segundos": 65.44
  }
 }

@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "4965aac784c247fc1b688c9a58467f2bade408545863f39ffe540501faaee210",
+ "hash_ficha": "d033004557ee2517ab1b233a5b4b20125e87483777d90ff7385a00f006ee79ac",
  "p1": {
   "passou": true,
   "regras": [
@@ -34,7 +34,7 @@
     "passou": true,
     "valor": {
      "tier": 7,
-     "voxels": 421000,
+     "voxels": 386919,
      "ossos": 30
     },
     "limite": "T7: >= 13000 voxels e >= 20 ossos",
@@ -43,14 +43,14 @@
    {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 10146,
+    "valor": 15698,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
    {
     "regra": "brilho",
     "passou": true,
-    "valor": 0.0217,
+    "valor": 0.0231,
     "limite": 0.04,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -92,24 +92,24 @@
   ]
  },
  "malha": {
-  "triangulos": 37438,
+  "triangulos": 56644,
   "malhas": 43,
   "animacoes": 1,
-  "bytes": 2650488
+  "bytes": 3956600
  },
  "p2": {
-  "nota": 92.0,
+  "nota": 92.2,
   "minimo": 75,
   "passou": true,
   "metricas": [
    {
     "metrica": "grupos_de_valor",
-    "nota": 0.976,
+    "nota": 1.0,
     "valor": {
-     "escuro": 0.096,
-     "medio": 0.391,
+     "escuro": 0.103,
+     "medio": 0.382,
      "claro": 0.492,
-     "brilho": 0.0217
+     "brilho": 0.0231
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -117,8 +117,8 @@
    },
    {
     "metrica": "tamanho_da_paleta",
-    "nota": 0.25,
-    "valor": 56,
+    "nota": 0.219,
+    "valor": 57,
     "alvo": "6 a 32 cores",
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
     "peso": 10
@@ -133,8 +133,8 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.998,
-    "valor": 0.0001,
+    "nota": 0.999,
+    "valor": 0.0,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
@@ -142,7 +142,7 @@
    {
     "metrica": "area_de_descanso",
     "nota": 1.0,
-    "valor": 0.498,
+    "valor": 0.525,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -151,8 +151,8 @@
     "metrica": "silhueta",
     "nota": 1.0,
     "valor": {
-     "frente": 0.685,
-     "grade": 0.696
+     "frente": 0.678,
+     "grade": 0.694
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -161,7 +161,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.1764,
+    "valor": 0.1756,
     "alvo": ">= 0.004",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 10
@@ -169,7 +169,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.519,
+    "valor": 0.51,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -178,30 +178,30 @@
   "piores": [
    {
     "metrica": "tamanho_da_paleta",
-    "nota": 0.25,
+    "nota": 0.219,
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal)."
    },
    {
-    "metrica": "grupos_de_valor",
-    "nota": 0.976,
-    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
+    "metrica": "voxels_orfaos",
+    "nota": 0.999,
+    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
    },
    {
-    "metrica": "voxels_orfaos",
-    "nota": 0.998,
-    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
+    "metrica": "grupos_de_valor",
+    "nota": 1.0,
+    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
    }
   ]
  },
  "numeros": {
-  "voxels": 421000,
+  "voxels": 386919,
   "pecas": 30,
   "ossos": 31,
-  "cores": 56,
-  "triangulos": 37438,
+  "cores": 57,
+  "triangulos": 56644,
   "clipes": [
    "Parado"
   ],
-  "segundos": 81.48
+  "segundos": 96.66
  }
 }

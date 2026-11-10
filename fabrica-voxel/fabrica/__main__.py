@@ -47,6 +47,8 @@ def main(argv=None) -> int:
     s.add_argument("arquivo"); s.add_argument("--id", required=True); s.add_argument("--nome", default=None)
     s.add_argument("--tier", type=int, default=7); s.add_argument("--clipes", default=None, help="id da ficha de clipes, ex.: clipe.rei_f1")
     s.add_argument("--flutua", action="store_true", help="o modelo paira (nao precisa encostar no chao)")
+    s.add_argument("--lapidar", type=int, default=0, help="1 ou 2: tira as quinas dos blocos grossos")
+    s.add_argument("--capa", action="store_true", help="troca o manto de placas por uma capa com caimento de tecido")
     a = ap.parse_args(argv)
     if not a.cmd:
         ap.print_help()
@@ -124,7 +126,7 @@ def main(argv=None) -> int:
             return 0
         if a.cmd == "importar":
             from .importar_forja import importar
-            print(importar(a.arquivo, a.id, a.nome, a.tier, a.clipes, a.flutua))
+            print(importar(a.arquivo, a.id, a.nome, a.tier, a.clipes, a.flutua, a.lapidar, a.capa))
             return 0
         if a.cmd == "revisar":
             from .revisao import registrar

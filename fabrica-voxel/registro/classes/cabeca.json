@@ -9,8 +9,8 @@
     11,
     11
    ],
-   "raio": 3,
-   "olhos_y": 0,
+   "raio": 5,
+   "olhos_y": -1,
    "afast": 4
   },
   "longa": {
@@ -19,8 +19,8 @@
     10,
     11
    ],
-   "raio": 2,
-   "olhos_y": 1,
+   "raio": 4,
+   "olhos_y": 0,
    "afast": 2,
    "focinho": [
     6,
@@ -34,8 +34,8 @@
     10,
     11
    ],
-   "raio": 2,
-   "olhos_y": 0,
+   "raio": 4,
+   "olhos_y": -1,
    "afast": 6
   },
   "alta": {
@@ -44,9 +44,10 @@
     13,
     10
    ],
-   "raio": 2,
-   "olhos_y": 1,
+   "raio": 4,
+   "olhos_y": 0,
    "afast": 2
   }
- }
+ },
+ "_ajuda_rosto": "Rosto amavel: cabeca bem arredondada (raio alto), olhos grandes e abaixo do meio do rosto, boca pequena logo abaixo dos olhos, bochecha rosada. Fonte: esquema de bebe de Lorenz (docs/pesquisa/12-herois-amaveis-e-capas.md)."
 }

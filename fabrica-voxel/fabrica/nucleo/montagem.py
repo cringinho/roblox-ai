@@ -35,6 +35,9 @@ def materiais_da_ficha(lista, paleta: Paleta) -> list[Material]:
 
 
 def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = True) -> Modelo:
+    if ficha.get("legado"):                                 # modelo da forja antiga: ja vem esculpido, pintado e animado
+        from ..importar_legado import montar_legado
+        return montar_legado(ficha)
     tier = int(ficha.get("tier", 1) or 1)
     if tier > 1 and ficha.get("tipo") in ("monstro", "arquetipo", "npc") and not ficha.get("tier_manual"):
         from .tier import elevar
@@ -66,8 +69,27 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
             ossos.append(Osso(p.osso, "Raiz", (float((a[0] + b[0]) / 2), float(a[1]), float((a[2] + b[2]) / 2)), "corpo"))
     modelo = Modelo(id=ficha["id"].split(".", 1)[-1], nome=ficha.get("nome", ficha["id"]), pecas=pecas,
                     ossos=ossos, materiais=mats, meta={**dict(ficha.get("meta", {})), "tier": tier})
+    if ficha.get("lapidar"):                                # tira as quinas dos volumes grossos (menos quadrado)
+        from .tecido import lapidar
+        so = set(ficha.get("lapidar_pecas") or [])
+        for p in modelo.pecas:
+            if not so or p.nome in so:
+                p.grade.mat = lapidar(p.grade.mat, int(ficha["lapidar"]), int(ficha.get("lapidar_grosso", 4)))
+    if ficha.get("capas"):                                  # capa com caimento de tecido, em pedacos com osso proprio
+        from .tecido import capa
+        ind = {m.nome: i + 1 for i, m in enumerate(mats)}
+        for c in ficha["capas"]:
+            faltam = [c[k] for k in ("fora", "forro", "debrum") if c.get(k) not in ind]
+            if faltam:
+                raise ErroFicha(f'capa "{c.get("nome", "Manto")}": material {faltam} nao esta em "materiais". Declarados: {sorted(ind)}.')
+            novas = capa(modelo, c, ind, CORTES["grade"])
+            modelo.meta.setdefault("seguir", {})
+            modelo.meta.setdefault("_capas", []).append(novas)
     juntas = {o["nome"]: float(o["junta"]) for o in ficha.get("ossos", []) if o.get("junta")}
     _segmentar(modelo, ficha, juntas)
+    for novas in modelo.meta.pop("_capas", []):             # os pedacos de baixo acompanham o de cima, com atraso
+        for nm in novas[1:]:
+            modelo.meta["seguir"][nm] = {"modo": "livre", "ganho": 1.12, "atraso_s": 0.09}
     _juntas(modelo, juntas)
     nomes = {o.nome for o in modelo.ossos}
     for s in ficha.get("soquetes", []):
@@ -246,11 +268,12 @@ def _segmentar(modelo: Modelo, ficha: dict, juntas: dict):
             c[eixo] = ini + sentido * lim[i]                 # reta em repouso, que e o que o IK de dois ossos supoe
             c = np.round(c / (v / 2)) * (v / 2)
             modelo.ossos.append(Osso(n, nomes[i - 1], tuple(float(x) for x in c), f'{osso.papel}_seg', None, osso.mola,
-                                     _repouso({"nome": n, "repouso": (o.get("repouso_segmentos") or [None] * 9)[i - 1]})))
+                                     _repouso({"nome": n, "repouso": (list(o.get("repouso_segmentos") or []) + [None] * 64)[i - 1]})))
             ossos_cadeia.append(n)
             if o.get("junta"):
                 juntas[n] = float(o["junta"])
-            seguir[n] = {"modo": dobra, "ganho": float(o.get("ganho_seguir", 0.5)), "atraso_s": float(o.get("atraso_seguir_s", 0.07))}
+            seguir[n] = {"modo": dobra, "ganho": float(o.get("ganho_seguir", 1.12 if dobra == "livre" else 0.5)),
+                         "atraso_s": float(o.get("atraso_seguir_s", 0.05 if dobra == "livre" else 0.07))}
         cadeias[nome] = {"ossos": ossos_cadeia, "comprimentos": [round(c, 4) for c in compr[:len(ossos_cadeia)]],
                          "eixo": eixo, "sentido": sentido, "dobra": dobra}
     nomes = {x.nome for x in modelo.ossos}

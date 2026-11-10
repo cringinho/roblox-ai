@@ -1,4 +1,4 @@
-{"id":"monstro.rei_necromante_f3","tipo":"monstro","versao":1,"nome":"Rei Necromante, fase 3: o Colosso de Ossos","tier":7,"tier_manual":true,"origem":"Importado da Forja de blocos do dono: 747 blocos, 30 ossos. Nao edite a mao; reimporte.","campo":256,"materiais":[
+{"id":"monstro.rei_necromante_f3","tipo":"monstro","versao":1,"nome":"Rei Necromante, fase 3: o Colosso de Ossos","tier":7,"tier_manual":true,"origem":"Importado da Forja de blocos do dono: 747 blocos, 30 ossos. Nao edite a mao; reimporte.","campo":256,"lapidar":2,"materiais":[
 {"nome":"alma","rampa":"#B65CFF","perfil":"brilho","brilho":true},
 {"nome":"ametista","rampa":"#8A3FD1","perfil":"chapado","brilho":false},
 {"nome":"madeira","rampa":"#2B2030","perfil":"madeira","brilho":false},

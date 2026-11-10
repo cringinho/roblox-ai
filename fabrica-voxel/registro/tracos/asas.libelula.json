@@ -22,7 +22,15 @@
      "freq_hz": 3.5,
      "amort": 0.4,
      "max_graus": 30
-    }
+    },
+    "segmentos": [
+     0.4,
+     0.6
+    ],
+    "eixo": "x",
+    "dobra": "livre",
+    "ganho_seguir": 0.8,
+    "atraso_seguir_s": 0.05
    },
    "formas": [
     {
@@ -80,6 +88,35 @@
       "cima": 1,
       "tras": 3
      }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 9,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "nervura que liga as duas laminas (nao solta ao cortar em segmentos)"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "direita": 5,
+      "cima": 3,
+      "tras": 3
+     }
     }
    ]
   },
@@ -100,7 +137,15 @@
      "freq_hz": 3.5,
      "amort": 0.4,
      "max_graus": 30
-    }
+    },
+    "segmentos": [
+     0.4,
+     0.6
+    ],
+    "eixo": "x",
+    "dobra": "livre",
+    "ganho_seguir": 0.744,
+    "atraso_seguir_s": 0.054
    },
    "formas": [
     {
@@ -156,6 +201,35 @@
      "desloc": {
       "esquerda": 6,
       "cima": 1,
+      "tras": 3
+     }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 9,
+      "cima": 3,
+      "tras": 3
+     },
+     "_ajuda": "nervura que liga as duas laminas (nao solta ao cortar em segmentos)"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      6,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "esquerda": 5,
+      "cima": 3,
       "tras": 3
      }
     }

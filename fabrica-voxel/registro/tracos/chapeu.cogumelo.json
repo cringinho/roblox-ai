@@ -1,7 +1,7 @@
 {
  "id": "traco.chapeu.cogumelo",
  "tipo": "traco",
- "versao": 1,
+ "versao": 2,
  "nome": "Chapeu de cogumelo",
  "material": "chapeu",
  "pecas": [
@@ -28,11 +28,12 @@
       3,
       17
      ],
-     "chanfro": 2,
      "em": "Cabeca.cranio.topo",
      "desloc": {
       "baixo": 2
-     }
+     },
+     "raio": 7,
+     "arredondar": "y"
     },
     {
      "op": "caixa",
@@ -42,8 +43,9 @@
       3,
       12
      ],
-     "chanfro": 2,
-     "em": "aba.topo"
+     "em": "aba.topo",
+     "raio": 5,
+     "arredondar": "y"
     },
     {
      "op": "caixa",
@@ -52,7 +54,9 @@
       1,
       6
      ],
-     "em": "cupula.topo"
+     "em": "cupula.topo",
+     "raio": 2,
+     "arredondar": "y"
     },
     {
      "op": "caixa",

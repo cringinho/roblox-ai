@@ -39,6 +39,8 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
             for c in r["camadas"]:
                 if c["tipo"] == "onda":
                     c["amp"] *= cfg["amp"]
+                if c["tipo"] == "vida":
+                    c["intensidade"] = c.get("intensidade", 1.0) * cfg["amp"]
         cam = r["camadas"]
         laco = r.get("laco")
         if nome == "Parado":
@@ -57,6 +59,10 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
                             {"t": 0.72, "curva": "passa_e_volta", "pose": {"Tronco": {"tombar_direita": -3}}}, {"t": 0.95, "curva": "suave", "pose": {}}]})
             if est == "manco":
                 cam.append({"tipo": "onda", "osso": "Tronco", "canal": "tombar_direita", "amp": 3, "harm": 1, "fase": 0.4})
+        if nome == "Andar" and est in ("manco", "pesado"):
+            for c in cam:
+                if c["tipo"] == "impacto":                   # quem manca ou pesa afunda mais em cada pisada
+                    c["afunda_H"] = 0.024 if est == "manco" else 0.02
         if nome == "Andar" and est == "manco":
             for c in cam:
                 if c["tipo"] == "passos":
@@ -79,7 +85,7 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
             if voa and laco:                    # pairar: corpo e pernas sobem juntos; as pernas pendem um pouco para tras
                 h = modelo.meta.get("H", 3.0)
                 sobe = {"Tronco": {"cima": 0.25 / h}, "Perna_D": {"cima": 0.25 / h, "frente": 24}, "Perna_E": {"cima": 0.25 / h, "frente": 16}}
-                cam[:] = [c for c in cam if c.get("tipo") != "passos"]     # voando nao pisa
+                cam[:] = [c for c in cam if c.get("tipo") not in ("passos", "impacto")]     # voando nao pisa
                 if nome == "Andar":
                     r["vel_raiz"] = 8.0 / r["duracao"]
                 cam.append({"tipo": "onda", "ossos": ["Tronco", "Perna_D", "Perna_E"], "canal": "cima", "amp": 0.08 / h, "harm": 5})
@@ -87,8 +93,14 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
                 cam.append({"tipo": "onda", "osso": "Perna_E", "canal": "frente", "amp": 5, "harm": 2, "fase": 0.4})
                 cam.append({"tipo": "poses", "chaves": [{"t": 0, "pose": sobe}, {"t": 1, "pose": sobe}]})
         if "Cauda" in ossos and laco:
-            cam.append({"tipo": "onda", "osso": "Cauda", "canal": "esquerda", "amp": 14 if est != "pesado" else 6, "harm": 2 if nome == "Parado" else 1, "fase": 0.2, "harm2": 0.3})
-            cam.append({"tipo": "onda", "osso": "Cauda", "canal": "frente", "amp": 5, "harm": 2, "fase": 0.45})
+            # Parado: a camada "vida" anima a cauda (onda que viaja). Andar: onda elo a elo, atrasada, crescendo para a ponta
+            if nome != "Parado":
+                n_c = sum(1 for o in ossos if o == "Cauda" or o.startswith("Cauda_"))
+                cam.append({"tipo": "onda", "ossos": "Cauda*", "canal": "esquerda", "amp": (14 if est != "pesado" else 6) / (1 + 0.6 * (n_c - 1)),
+                            "harm": 1, "fase": 0.2, "harm2": 0.3, "fase_por_osso": -0.08, "ganho_por_osso": 0.5})
+            if nome != "Parado":
+                cam.append({"tipo": "onda", "ossos": "Cauda*", "canal": "frente", "amp": 5 / (1 + 0.6 * (n_c - 1)), "harm": 2, "fase": 0.45,
+                            "fase_por_osso": -0.08, "ganho_por_osso": 0.5})
         for mole in ("Gorro", "Chapeu", "Capa"):
             if mole in ossos and laco:
                 cam.append({"tipo": "onda", "osso": mole, "canal": "frente", "amp": -7 if mole == "Capa" and nome == "Andar" else 3, "harm": 2, "fase": 0.35})
@@ -186,6 +198,8 @@ def clipes_do_heroi(reg, modelo) -> list[dict]:
                 if c["tipo"] == "passos":
                     c["ciclos"], c["passada_H"] = ciclos, c["passada_H"] / ciclos
                     c["altura_H"] = min(c.get("altura_H", 0.05), 0.2 * L / modelo.meta.get("H", 4.0))
+                    if ciclos >= 3:                              # perna curta em passo rapido: mais folga antes de esticar
+                        c["ik_suave"] = 0.1
                 elif c["tipo"] == "onda":
                     c["harm"] = int(c.get("harm", 1)) * ciclos
         for c in r["camadas"]:                                   # mao que segura item balanca menos e fica um pouco a frente

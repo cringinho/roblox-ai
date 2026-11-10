@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.heroi_solto",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Heroi de pecas soltas",
  "_ajuda": "Base das linhagens e de NPCs humanoides: cabeca, tronco, maos e pes soltos. Para heroi de verdade use: python -m fabrica heroi <linhagem>. Este arquivo e a versao simples para NPC/monstro.",
  "materiais": [
@@ -509,19 +509,7 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "cima",
-     "amp": 0.012,
-     "harm": 2,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "tombar_direita",
-     "amp": 1.5,
-     "harm": 1
+     "tipo": "vida"
     },
     {
      "tipo": "onda",
@@ -583,21 +571,7 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "cima",
-     "amp": 0.02,
-     "harm": 2,
-     "forma": "abs",
-     "fase": 0.1
-    },
-    {
-     "tipo": "onda",
-     "osso": "Tronco",
-     "canal": "tombar_direita",
-     "amp": 2.5,
-     "harm": 1,
-     "fase": 0.2
+     "tipo": "impacto"
     },
     {
      "tipo": "onda",

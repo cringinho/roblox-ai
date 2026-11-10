@@ -69,6 +69,10 @@ def escalar_formas(pecas: list[dict], k: float, *, repetir: str = "tamanho") -> 
                     f[campo] = max(1, int(round(f[campo] * k)))
             if f.get("desloc"):
                 f["desloc"] = _d(f["desloc"], k)
+            if f.get("op") == "tubo":                       # a curva cresce; aneis, escamas e espinhos ficam do mesmo
+                f["pontos"] = [_d(d, k) for d in f.get("pontos", [])]      # tamanho e passam a ser mais
+                if isinstance(f.get("raios"), list):
+                    f["raios"] = [max(1, round(r * k, 1)) for r in f["raios"]]
             for campo in ("de", "ate"):
                 if isinstance(f.get(campo), dict) and f[campo].get("desloc"):
                     f[campo]["desloc"] = _d(f[campo]["desloc"], k)

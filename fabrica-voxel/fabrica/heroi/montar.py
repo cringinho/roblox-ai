@@ -65,7 +65,7 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         {"nome": "iris", "rampa": rampa("olhos", escolha.get("co", 0)), "perfil": "brilho" if brilho_olho else "chapado",
          "brilho": brilho_olho, "tom": 4 if brilho_olho else 1},
         {"nome": "roupa", "rampa": rampa("pele", escolha.get("cp", 0)) if esp.get("roupa_pele") else esp.get("roupa", "tecido_linho"),
-         "perfil": esp.get("perfil_pele", "pele") if esp.get("roupa_pele") else ("metal" if esp.get("roupa") == "ferro" else "tecido")},
+         "perfil": esp.get("perfil_pele", "pele") if esp.get("roupa_pele") else ("metal" if esp.get("roupa") == "ferro" else "pele")},
         {"nome": "gorro", "rampa": esp.get("gorro", "blood[1:6]"), "perfil": "tecido"},
         {"nome": "gola", "rampa": esp.get("gola", "blood[1:6]"), "perfil": "tecido"},
         {"nome": "ventre", "rampa": "sand", "perfil": "osso"},
@@ -77,12 +77,13 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         {"nome": "chapeu", "rampa": rampa("cabelo", escolha.get("ch", 0)), "perfil": "fungo"},
         {"nome": "chapeu_pinta", "rampa": "bone", "perfil": "chapado", "tom": 4},
         {"nome": "focinho", "rampa": rampa("pele", escolha.get("cp", 0)), "perfil": "chapado", "tom": 3},
+        {"nome": "bochecha", "rampa": "rose", "perfil": "chapado", "tom": 4},
         {"nome": "bico", "rampa": "gold", "perfil": "osso", "tom": 1},
         "olho_branco", "escuro", "boca", "ouro",
     ]
     tw, th, td = t["tronco"]
     pn, br = t["perna"], t["braco"]
-    tronco = [{"op": "caixa", "nome": "t", "tam": [tw + co["robusto"], th, td + co["robusto"]], "chanfro": 1,
+    tronco = [{"op": "caixa", "nome": "t", "tam": [tw + co["robusto"], th, td + co["robusto"]], "raio": max(1, min(tw, td) // 3),
                "em": "chao", "desloc": {"cima": pn["coxa"] + pn["canela"]}, "material": "roupa"}]
     if co["ombro"]:
         tronco.append({"op": "caixa", "tam": [tw + co["robusto"] + co["ombro"], max(2, th // 3), td + co["robusto"]],
@@ -117,7 +118,8 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         cabeca.append({"op": "caixa", "tam": esp["nariz"], "em": "cranio.frente", "desloc": {"baixo": 1}, "material": "pele"})
     if esp.get("sobrolho"):
         cabeca.append({"op": "caixa", "tam": [cw - 2, 2, 1], "em": "cranio.frente", "desloc": {"cima": 2}, "material": "pele"})
-    leg = {"B": "olho_branco", "P": "iris", "G": "iris", "E": "escuro", "C": "sobrancelha", "M": "boca", "W": "olho_branco"}
+    leg = {"B": "olho_branco", "P": "iris", "G": "iris", "E": "escuro", "C": "sobrancelha", "M": "boca", "W": "olho_branco",
+           "R": "bochecha"}
 
     def arte(tabela, chave, nome):
         if str(chave) not in rosto[tabela]:
@@ -137,8 +139,13 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
     if boca != ["."]:
         if foc and not esp.get("bico"):
             cabeca.append({"op": "estampa", "em": "focinho", "face": "frente", "desloc": {"baixo": 1}, "linhas": boca, "legenda": leg})
-        elif not foc:
-            cabeca.append({"op": "estampa", "em": "cranio", "face": "frente", "desloc": {"baixo": ch // 2 - 2}, "linhas": boca, "legenda": leg})
+        elif not foc:      # boca pequena e perto dos olhos (rosto de bebe), nao la embaixo no queixo
+            cabeca.append({"op": "estampa", "em": "cranio", "face": "frente",
+                           "desloc": {"baixo": -oy + len(olhos) / 2 + 1 + len(boca) / 2}, "linhas": boca, "legenda": leg})
+    boch = rosto.get("bochechas", {}).get(str(escolha.get("bc", esp.get("bochecha", 1))), ["."])
+    if boch != ["."] and not esp.get("olho_unico") and not foc and not esp.get("lapide"):
+        cabeca.append({"op": "estampa", "em": "cranio", "face": "frente", "desloc": {"baixo": -oy + len(olhos) / 2 + 0.5},
+                       "linhas": _linha_olhos(boch, afast + 2 * len(olhos[0]) - 2 * len(boch[0]) + 2), "legenda": leg})
     if esp.get("runas"):
         cabeca.append({"op": "estampa", "em": "cranio", "face": "frente", "desloc": {"baixo": 3},
                        "linhas": ["G.G", ".G.", "G.G"], "legenda": leg})
@@ -152,7 +159,7 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
     if h not in cabelos:
         raise ErroFicha(f'cabelo "{h}" nao existe; opcoes: ' + ", ".join(f'{k} ({v["nome"]})' for k, v in cabelos.items()))
     if cabelos[h]["formas"] and not esp.get("sem_cabelo"):
-        fs = _aplicar(copy.deepcopy(cabelos[h]["formas"]), {"w": cw, "h": ch, "d": cd if not esp.get("lapide") else 6})
+        fs = _aplicar(copy.deepcopy(cabelos[h]["formas"]), {"w": cw, "h": ch, "d": cd if not esp.get("lapide") else 6, "r": cc["raio"] + 1})
         for f in fs:
             f.setdefault("material", "cabelo")
         pecas.append({"nome": "Cabelo", "osso": "Cabeca", "formas": fs})
@@ -195,7 +202,7 @@ def ficha_heroi(reg: Registro, escolha: dict, corpo: str | None = None) -> dict:
         tr = reg.fichas[reg.achar("traco." + tid)]
         for p in copy.deepcopy(tr["pecas"]):
             o = p.pop("osso", "Cabeca")
-            p["formas"] = _aplicar(p["formas"], {"w": cw, "h": ch, "d": cd})
+            p["formas"] = _aplicar(p["formas"], {"w": cw, "h": ch, "d": cd, "r": cc["raio"] + 1})
             for f in p["formas"]:
                 f.setdefault("material", tr.get("material", "pele"))
             if isinstance(o, dict):
@@ -373,7 +380,8 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
         c = (np.asarray(cmn) + np.asarray(cmx)) / 2 / V
         tam = (np.asarray(cmx) - np.asarray(cmn)) / V
         if slot == "elmo":
-            ext = sdf.ocupado(sdf.caixa(Pg, c + [0, 0.5, 0], tam + [2, 1, 2], raio=3))
+            r_cab = float(reg.fichas["classe_cabeca.tabela"]["classes"][modelo.meta["classe_cabeca"]].get("raio", 3)) + 1
+            ext = sdf.ocupado(sdf.caixa(Pg, c + [0, 0.5, 0], tam + [2, 1, 2], raio=r_cab))
             regra = "elmo_fechado" if spec.get("tipo", "fechado") == "fechado" else "elmo_aberto"
             oc = ext & ~_na_rede(cab.grade, g)
             yy = (Pg[1] - c[1]) + 0 * Pg[0] + 0 * Pg[2]
@@ -395,8 +403,9 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
                 g.mat[cr] = det
         else:
             regra = "chapeu"
-            ext = sdf.ocupado(sdf.caixa(Pg, c + [0, tam[1] / 2 + 2.0, 0], [tam[0] + 2, 8, tam[2] + 2], raio=2))
-            aba = sdf.ocupado(sdf.caixa(Pg, c + [0, tam[1] / 2 - 1.5, 0], [tam[0] + 8, 1, tam[2] + 8], chanfro=2))
+            ext = sdf.ocupado(sdf.caixa(Pg, c + [0, tam[1] / 2 + 2.0, 0], [tam[0] + 2, 8, tam[2] + 2], raio=4))
+            aba = sdf.ocupado(sdf.caixa(Pg, c + [0, tam[1] / 2 - 1.5, 0], [tam[0] + 8, 1, tam[2] + 8], raio=(min(tam[0], tam[2]) + 8) / 2 - 1,
+                                        arredondar="y"))
             oc = (ext | aba) & ~_na_rede(cab.grade, g)
             g.mat = np.where(oc, mi(spec["material"]), 0).astype(np.uint8)
             fita = oc & ext & (np.abs((Pg[1] - c[1]) - tam[1] / 2 + 0.0) < 0.6 + 0 * Pg[0] + 0 * Pg[2])
@@ -435,27 +444,35 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
             g.mat[esp_] = mi(spec.get("detalhe", spec["material"]))
             modelo.pecas.append(Peca(nome=f"Ombreira_{nome}", osso="Tronco", grade=g))
             rel["pecas_novas"].append(f"Ombreira_{nome}")
-    # ---- capa: placa atras do tronco, com osso proprio e mola
+    # ---- capa: pano com caimento (abre para a barra, pregas, barra em pontas), em 2 pedacos com osso proprio
     if "capa" in conjunto and "capa" not in esc:
+        from ..nucleo.tecido import capa as gerar_capa
         spec = conjunto["capa"]
         tmn, tmx = caixas["Tronco.t"]
-        larg = (tmx[0] - tmn[0]) / V + 2
-        alt = tmx[1] / V - 2
-        c = np.array([0, (2 + tmx[1] / V) / 2, tmx[2] / V + 1.5])
-        g = _grade_caixa((c - [larg, alt, 2]) * V, (c + [larg, alt, 2]) * V, margem=1)
-        Pg = sdf.eixos(g.mat.shape, np.round(g.origem / V))
-        oc = sdf.ocupado(sdf.caixa(Pg, np.round(c * 2) / 2, [larg, alt, 1]))
-        gola = sdf.ocupado(sdf.caixa(Pg, [0, tmx[1] / V - 0.5, tmx[2] / V + 0.5], [larg, 1, 3]))
-        g.mat = np.where(oc | gola, mi(spec["material"]), 0).astype(np.uint8)
-        barra = oc & (Pg[1] < 3.5 + 0 * Pg[0] + 0 * Pg[2])
-        g.mat[barra & ((np.floor(Pg[0]) % 3 == 0) + 0 * Pg[1] + 0 * Pg[2] > 0)] = 0   # barra recortada
-        item = Peca(nome="Capa", osso="Capa", grade=g)
-        modelo.ossos.append(Osso("Capa", "Tronco", (0.0, float(tmx[1] - V), float(tmx[2] + V)), "capa",
-                                 mola={"freq_hz": 1.5, "amort": 0.6, "max_graus": 30}))
-        modelo.pecas.append(item)
-        recortar(item, "capa", mi(spec.get("detalhe", spec["material"])))
-        item.grade.mat, _ = _maior_componente(item.grade.mat)
-        rel["pecas_novas"].append("Capa")
+        larg = (tmx[0] - tmn[0]) / V
+        topo = tmx[1] / V - 1
+        base = max(2.0, (tmn[1] / V) * 0.35)
+        ind = {n: k + 1 for k, n in enumerate(nomes)}
+        det = spec.get("detalhe", spec["material"])
+        novas = gerar_capa(modelo, {"nome": "Capa", "pai": "Tronco", "topo": topo, "base": base, "larg_topo": larg + 2,
+                                    "larg_base": larg + 6 + (2 if modelo.meta["tamanho"] == "G" else 0), "z": tmx[2] / V + 1,
+                                    "afasta": max(2.0, (topo - base) * 0.16), "abraca": 1.0, "segmentos": 2, "prega": 1,
+                                    "passo_prega": 4, "espessura": 1, "barra": "pontas",
+                                    "fora": spec["material"], "forro": spec["material"], "debrum": det}, ind, V)
+        for k, nm in enumerate(novas):
+            item = next(p for p in modelo.pecas if p.nome == nm)
+            osso = modelo.osso(nm)
+            if k == 0:                                     # o primeiro pedaco chama-se "Capa": e o osso que o jeito anima
+                for o in modelo.ossos:
+                    if o.pai == nm:
+                        o.pai = "Capa"
+                item.nome = item.osso = osso.nome = "Capa"
+                osso.mola = {"freq_hz": 1.5, "amort": 0.6, "max_graus": 30}
+            else:
+                modelo.meta.setdefault("seguir", {})[nm] = {"modo": "livre", "ganho": 1.15, "atraso_s": 0.09}
+            recortar(item, "capa", mi(det))
+            item.grade.mat, _ = _maior_componente(item.grade.mat)
+            rel["pecas_novas"].append(item.nome)
     # ---- itens de mao: uma malha por item, presa na pegada
     for slot, mao in (("mao_principal", "Mao_D"), ("mao_secundaria", "Mao_E")):
         if slot not in conjunto or slot in esc:

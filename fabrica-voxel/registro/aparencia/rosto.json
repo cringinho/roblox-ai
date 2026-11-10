@@ -1,38 +1,44 @@
 {
  "id": "aparencia.rosto",
  "tipo": "aparencia",
- "_ajuda": "Arte em texto. Olhos: desenhe o olho da ESQUERDA da tela; o outro e espelhado. Letras: B branco, P iris/pupila, E escuro, G brilho, C sobrancelha (cor do cabelo), M boca, W dente.",
+ "_ajuda": "Arte em texto. Olhos: desenhe o olho da ESQUERDA da tela; o outro e espelhado. Letras: B brilho branco do olho, P iris (cor escolhida), E pupila escura, G brilho, C sobrancelha (cor do cabelo), M boca, W dente, R bochecha rosada. Regra do rosto amavel: olho alto (3 linhas) com o brilho B no canto de cima, boca em U pequena, sobrancelha fina ou nenhuma.",
  "olhos": {
   "1": [
-   "BP",
-   "BP"
+   "BE",
+   "EE",
+   "PP"
   ],
   "2": [
-   "PB",
-   "PB"
+   "EB",
+   "EE",
+   "PP"
   ],
   "3": [
-   "P",
-   "P"
+   "B",
+   "E",
+   "E"
   ],
   "4": [
-   "BBP",
-   "BPP",
-   "BPP"
+   "BEE",
+   "EEE",
+   "PPE"
   ],
   "5": [
+   "EE",
    "PP"
   ],
   "6": [
-   "BP",
-   "PP"
+   "BE",
+   "PE"
   ],
   "7": [
-   "PPB",
-   "BPP"
+   "EEB",
+   "EEE",
+   "PPP"
   ],
   "8": [
-   "P"
+   "E",
+   "E"
   ],
   "caveira": [
    "EE",
@@ -56,32 +62,34 @@
  },
  "bocas": {
   "1": [
-   "MM"
+   "M.M",
+   ".M."
   ],
   "2": [
    "M..M",
    ".MM."
   ],
   "3": [
-   "MMMM"
+   "MM"
   ],
   "4": [
    ".M."
   ],
   "5": [
-   ".MM.",
-   "M..M"
+   "..M",
+   "MM."
   ],
   "6": [
-   "MWWM"
+   "MWWM",
+   ".MM."
   ],
   "presas": [
-   "WMMW",
-   "W..W"
+   "W.MM.W",
+   ".M..M."
   ],
   "dentes_baixo": [
-   "MMMM",
-   "W..W"
+   "M..M",
+   "WMMW"
   ],
   "caveira": [
    "WEWEWE",
@@ -99,15 +107,26 @@
    "CC"
   ],
   "3": [
-   "C.",
-   ".C"
-  ],
-  "4": [
    ".C",
    "C."
   ],
+  "4": [
+   "C.",
+   ".C"
+  ],
   "5": [
-   "CCC"
+   "CC"
+  ]
+ },
+ "bochechas": {
+  "1": [
+   "RR"
+  ],
+  "2": [
+   "R"
+  ],
+  "nenhuma": [
+   "."
   ]
  }
 }

@@ -64,5 +64,8 @@ Leia **só** o cartão da tarefa. Não leia `docs/ARQUITETURA.md` a menos que v�
 - Nada começa e para junto: defase as camadas (`fase`).
 - Esquerda e direita nunca espelhadas: fases e amplitudes um pouco diferentes.
 - Ataque: preparação longa (40% do tempo), golpe curto, assentamento. Inimigo avisa por pelo menos 0,4 s.
-- Parado dura 6 a 8 s e tem pelo menos duas camadas.
+- Parado dura 6 a 12 s, começa com a camada `vida` e não repete a pose em menos de 5 s.
+- Andar tem `impacto` logo depois de `passos`: o corpo tem peso e o pé não desliza.
+- Aranha, inseto e centopeia andam com `passos` em `"modo": "patas"`; corpo segmentado usa `ondular`.
+- Nenhuma parte se move sozinha: toda onda tem um vizinho que responde atrasado ou ao contrário.
 - Criatura maior é mais lenta: a fábrica já multiplica os tempos pela raiz do porte.

@@ -10,6 +10,7 @@ from pathlib import Path
 
 import numpy as np
 
+from . import naturalidade
 from . import util_grade as ug
 from .anim import medir
 from .exporta import TETO_TRIANGULOS, contar_triangulos
@@ -125,10 +126,10 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
                   "Ha pedacos desconectados dentro da peca. Engrosse o detalhe (minimo 2 voxels), encoste-o no corpo "
                   "ou separe-o em outra peca com osso proprio."))
     cortes = sorted({float(p.grade.v) for p in modelo.pecas})
-    out.append(_r("um_tamanho_de_voxel", len(cortes) <= 1, cortes, "1 tamanho por modelo",
+    out.append(_r("um_tamanho_de_voxel", len(cortes) <= 1 or bool(modelo.meta.get("voxel_misto_de_origem")), cortes, "1 tamanho por modelo",
                   'Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo "corte" em todas as pecas do modelo; '
                   "se precisa de mais detalhe, suba o corte do modelo inteiro."))
-    if pf.get("voxels_min") or pf.get("ossos_min"):
+    if (pf.get("voxels_min") or pf.get("ossos_min")) and not modelo.meta.get("legado"):   # modelo antigo do dono: nao se cobra
         from .tier import minimos
         tier = int(modelo.meta.get("tier", 1) or 1)
         mi = minimos(tier)
@@ -179,6 +180,40 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
         minimo = min(2, len(modelo.ossos) - 1) if nome in ("Parado", "Andar", "Correr") else 1
         out.append(_r(f"clipe_{nome}_vivo", m["ossos_em_movimento"] >= minimo, m["ossos_em_movimento"], f">= {minimo} ossos",
                       "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."))
+        if cl.meta.get("erro_patas_studs") is not None:
+            out.append(_r(f"clipe_{nome}_patas_alcancam", cl.meta["erro_patas_studs"] <= 0.03, cl.meta["erro_patas_studs"],
+                          "<= 0.03 stud entre a ponta da pata e o ponto de pisada",
+                          'A pata nao alcanca o ponto de pisada. Diminua "passada_H" ou "altura_H" em "passos", ou reduza a onda '
+                          'do corpo (a amplitude de "Seg_*"). Pata curta precisa de passada curta.'))
+        nat = naturalidade.medir(modelo, cl) if nome in ("Parado", "Andar", "Correr") else {}
+        isento = bool(modelo.meta.get("legado"))            # modelo antigo do dono: mede e mostra, nao reprova
+        modelo.meta.setdefault("naturalidade", {})[nome] = nat
+        if "deslize_do_pe_pct" in nat:
+            articulada = bool(cl.meta.get("erro_patas_studs") is not None or any(
+                c["dobra"] in ("joelho", "reverso") for c in modelo.meta.get("cadeias", {}).values()))
+            lim = 2.5 if articulada else 8.0
+            out.append(_r(f"clipe_{nome}_pe_desliza", nat["deslize_do_pe_pct"] <= lim or isento, nat["deslize_do_pe_pct"],
+                          f"<= {lim}% do comprimento da perna",
+                          'O pe escorrega no chao durante o apoio: e o defeito que o olho ve primeiro. Diminua "passada_H" (a perna '
+                          'nao alcanca), aumente "agacho", ou troque a perna rigida por "segmentos": 2. Em aranha, inseto e '
+                          'centopeia use "passos" com "modo": "patas" no lugar de ondas nas patas.'))
+        if "peso_no_andar_pct" in nat and nat.get("pernas", 0) <= 4 and not modelo.meta.get("flutua"):
+            out.append(_r(f"clipe_{nome}_peso", nat["peso_no_andar_pct"] >= 3.0 or isento, nat["peso_no_andar_pct"],
+                          ">= 3% do comprimento da perna (para cima ou para o lado)",
+                          'O corpo desliza nivelado, sem peso. Ponha a camada {"tipo": "impacto"} logo depois de "passos": '
+                          'cada pisada afunda o corpo e ele vai para o lado do pe de apoio.'))
+        if "repete_em_s" in nat and not modelo.meta.get("flutua"):
+            minimo_s = round(min(5.0, 0.99 * cl.duracao), 2)
+            out.append(_r("clipe_Parado_repete", nat["repete_em_s"] >= minimo_s or isento,
+                          {"repete_em_s": nat["repete_em_s"], "ritmos": nat.get("ritmos_no_parado")}, f">= {minimo_s} s sem repetir",
+                          'O Parado volta a mesma pose cedo demais e o olho acha a emenda. Ponha a camada {"tipo": "vida"} (respira, '
+                          'troca o peso e gira em periodos diferentes) e use "harm" diferentes nas ondas (1, 2 e 3), nunca todas '
+                          'no mesmo.'))
+        if "atraso_por_elo_quadros" in nat:
+            out.append(_r(f"clipe_{nome}_cadeia_em_onda", nat["atraso_por_elo_quadros"] >= 0.5 or isento,
+                          {"atraso": nat["atraso_por_elo_quadros"], "cadeia": nat.get("cadeia_mais_dura")}, ">= 0.5 quadro por elo",
+                          'A cadeia (cauda, pescoco) gira em bloco, como uma vara. Use "fase_por_osso": -0.08 e '
+                          '"ganho_por_osso": 0.5 na onda, ou tire a onda e deixe a camada "vida" animar a cadeia.'))
         if nome in ("Parado", "Andar", "Correr"):
             out.append(_r(f"clipe_{nome}_gemeos", m["gemeos"] < 0.98, m["gemeos"], "< 0.98",
                           "Lado direito e esquerdo estao espelhados perfeitos (cara de codigo). Defase um lado em 3 a 8% "

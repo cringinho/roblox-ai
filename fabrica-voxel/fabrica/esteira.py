@@ -59,6 +59,8 @@ def finalizar(modelo, tipo: str, rel: dict | None = None, *, saida: Path | None 
     pf = perfil or _TIPO_PERFIL.get(tipo, "monstro")
     r1 = auditoria.p1(modelo, pf)
     rel["p1"] = {"passou": all(r["passou"] for r in r1), "regras": r1}
+    if modelo.meta.get("naturalidade"):                    # medidas de movimento no mundo, por clipe (dossie 17)
+        rel["naturalidade"] = modelo.meta["naturalidade"]
     arquivos = {}
     if exportar:
         idl = exporta._id_luau(modelo.id)

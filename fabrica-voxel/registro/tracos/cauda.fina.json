@@ -20,15 +20,46 @@
      "freq_hz": 2.5,
      "amort": 0.35,
      "max_graus": 35
-    }
+    },
+    "segmentos": [
+     3,
+     3,
+     3,
+     3,
+     2,
+     2
+    ],
+    "dobra": "livre",
+    "junta": 1,
+    "repouso": {
+     "frente": -6
+    },
+    "repouso_segmentos": [
+     {
+      "frente": -2
+     },
+     {
+      "frente": 0
+     },
+     {
+      "frente": 2
+     },
+     {
+      "frente": 4
+     },
+     {
+      "frente": 6
+     }
+    ]
    },
    "formas": [
     {
      "op": "caixa",
+     "nome": "c1",
      "tam": [
-      1,
-      1,
-      7
+      2,
+      2,
+      3
      ],
      "em": "Tronco.t.tras",
      "desloc": {
@@ -37,16 +68,53 @@
     },
     {
      "op": "caixa",
+     "nome": "c2",
+     "tam": [
+      2,
+      2,
+      3
+     ],
+     "em": "c1.tras"
+    },
+    {
+     "op": "caixa",
+     "nome": "c3",
      "tam": [
       1,
-      2,
-      1
+      1,
+      3
      ],
-     "em": "Tronco.t.tras",
-     "desloc": {
-      "baixo": 2,
-      "tras": 7
-     }
+     "em": "c2.tras"
+    },
+    {
+     "op": "caixa",
+     "nome": "c4",
+     "tam": [
+      1,
+      1,
+      3
+     ],
+     "em": "c3.tras"
+    },
+    {
+     "op": "caixa",
+     "nome": "c5",
+     "tam": [
+      1,
+      1,
+      2
+     ],
+     "em": "c4.tras"
+    },
+    {
+     "op": "caixa",
+     "nome": "c6",
+     "tam": [
+      1,
+      1,
+      2
+     ],
+     "em": "c5.tras"
     }
    ]
   }

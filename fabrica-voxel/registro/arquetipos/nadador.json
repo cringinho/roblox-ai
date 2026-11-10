@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.nadador",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Nadador",
  "_ajuda": "Peixe ou enguia: ondula no ar ou na agua, sem pes.",
  "materiais": [
@@ -29,7 +29,8 @@
  },
  "armadilhas": [
   "Sem apoio no chao: marque meta.flutua.",
-  "A ondulacao cresce para a cauda."
+  "A ondulacao cresce para a cauda.",
+  "A Cabeca e FILHA de Seg_1. Se ela for a mae, qualquer giro da cabeca arrasta o corpo inteiro como uma vara."
  ],
  "pecas": [
   {
@@ -257,19 +258,6 @@
      "op": "caixa",
      "tam": [
       1,
-      8,
-      4
-     ],
-     "em": "Seg_5.tras",
-     "desloc": {
-      "frente": 1
-     },
-     "material": "detalhe"
-    },
-    {
-     "op": "caixa",
-     "tam": [
-      1,
       2,
       1
      ],
@@ -283,6 +271,73 @@
        "baixo": 3
       }
      }
+    }
+   ]
+  },
+  {
+   "nome": "Seg_6",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      5,
+      4
+     ],
+     "em": "Seg_5.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_7",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      4,
+      4
+     ],
+     "em": "Seg_6.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Seg_8",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      4
+     ],
+     "em": "Seg_7.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      9,
+      4
+     ],
+     "em": "Seg_8.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
     }
    ]
   },
@@ -459,7 +514,7 @@
  "ossos": [
   {
    "nome": "Cabeca",
-   "pai": "Raiz",
+   "pai": "Seg_1",
    "pivo": {
     "em": "Cabeca.cranio.tras"
    },
@@ -467,7 +522,7 @@
   },
   {
    "nome": "Seg_1",
-   "pai": "Cabeca",
+   "pai": "Raiz",
    "pivo": {
     "em": "Seg_1.frente"
    },
@@ -506,6 +561,33 @@
    "pai": "Seg_4",
    "pivo": {
     "em": "Seg_5.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_6",
+   "pai": "Seg_5",
+   "pivo": {
+    "em": "Seg_6.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_7",
+   "pai": "Seg_6",
+   "pivo": {
+    "em": "Seg_7.frente"
+   },
+   "papel": "segmento",
+   "junta": 1
+  },
+  {
+   "nome": "Seg_8",
+   "pai": "Seg_7",
+   "pivo": {
+    "em": "Seg_8.frente"
    },
    "papel": "segmento",
    "junta": 1
@@ -584,13 +666,14 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "ossos": "Seg_*",
-     "canal": "esquerda",
-     "amp": 7,
-     "harm": 2,
-     "fase_por_osso": -0.2,
-     "ganho_por_osso": 0.05
+     "tipo": "ondular",
+     "ossos": [
+      "Seg_*"
+     ],
+     "graus": 4,
+     "ondas": 1.0,
+     "harm": 1,
+     "cresce": 0.3
     },
     {
      "tipo": "onda",
@@ -657,13 +740,14 @@
    "vel_raiz": 1.6,
    "camadas": [
     {
-     "tipo": "onda",
-     "ossos": "Seg_*",
-     "canal": "esquerda",
-     "amp": 16,
+     "tipo": "ondular",
+     "ossos": [
+      "Seg_*"
+     ],
+     "graus": 12,
+     "ondas": 1.0,
      "harm": 2,
-     "fase_por_osso": -0.2,
-     "ganho_por_osso": 0.05
+     "cresce": 0.3
     },
     {
      "tipo": "onda",

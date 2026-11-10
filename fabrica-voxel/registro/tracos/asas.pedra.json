@@ -22,7 +22,16 @@
      "freq_hz": 3.5,
      "amort": 0.4,
      "max_graus": 30
-    }
+    },
+    "segmentos": [
+     0.35,
+     0.4,
+     0.25
+    ],
+    "eixo": "x",
+    "dobra": "livre",
+    "ganho_seguir": 0.6,
+    "atraso_seguir_s": 0.09
    },
    "formas": [
     {
@@ -114,7 +123,16 @@
      "freq_hz": 3.5,
      "amort": 0.4,
      "max_graus": 30
-    }
+    },
+    "segmentos": [
+     0.35,
+     0.4,
+     0.25
+    ],
+    "eixo": "x",
+    "dobra": "livre",
+    "ganho_seguir": 0.558,
+    "atraso_seguir_s": 0.097
    },
    "formas": [
     {

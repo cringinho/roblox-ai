@@ -85,7 +85,8 @@ def parado_generico(ossos: list[dict]) -> list[dict]:
     return [{"nome": "Parado", "duracao": 6.0, "laco": True, "camadas": cam}]
 
 
-def converter(texto: str, ident: str, nome: str, tier: int, clipes: list | None = None, flutua: bool = False) -> dict:
+def converter(texto: str, ident: str, nome: str, tier: int, clipes: list | None = None, flutua: bool = False,
+              lapidar: int = 0, capa: bool = False) -> dict:
     pal = _paleta(texto)
     ossos_t, pecas_t, rots, vfx = _tabela(texto, "OSSOS"), _tabela(texto, "PECAS"), _tabela(texto, "ROTACOES"), _tabela(texto, "VFX")
     if not pecas_t or not ossos_t:
@@ -142,9 +143,29 @@ def converter(texto: str, ident: str, nome: str, tier: int, clipes: list | None 
             o["seguir_pai"] = {"modo": "livre", "ganho": 0.9, "atraso_s": 0.14}
         elif "coroa" in baixo:
             o["seguir_pai"] = {"modo": "livre", "ganho": 0.15, "atraso_s": 0.1}
+    capas = []
+    if capa:        # troca o manto de placas por uma capa com caimento: mesma altura e posicao, mais larga na barra
+        mantos = [o for o in ossos if o["nome"].lower().startswith("manto") and por_osso.get(o["nome"])]
+        if mantos:
+            fs = [f for o in mantos for f in por_osso[o["nome"]]]
+            mn = np.min([np.array(f["centro"]) - np.array(f["tam"]) / 2 for f in fs], 0)
+            mx = np.max([np.array(f["centro"]) + np.array(f["tam"]) / 2 for f in fs], 0)
+            nomes_m = {o["nome"] for o in mantos}
+            pai = next(o["pai"] for o in mantos if o["pai"] not in nomes_m)
+            cores = [f["material"] for f in fs]
+            mais = max(set(cores), key=cores.count)
+            capas.append({"nome": "Manto", "pai": pai, "topo": float(mx[1] + 2), "base": float(max(mn[1], 1) + (0 if flutua else 1)),
+                          "larg_topo": float((mx[0] - mn[0]) * 0.8), "larg_base": float((mx[0] - mn[0]) * 1.15), "z": float(mx[2] - 2),
+                          "afasta": float((mx[1] - mn[1]) * 0.14), "abraca": float((mx[2] - mn[2]) * 0.8), "segmentos": max(3, len(mantos)),
+                          "prega": 2, "passo_prega": 6, "espessura": 2, "barra": "pontas",
+                          "fora": "roxo" if "roxo" in pal else mais, "forro": "preto" if "preto" in pal else mais,
+                          "debrum": "ouro" if "ouro" in pal else mais})
+            for n in nomes_m:
+                por_osso[n] = []
+            ossos[:] = [o for o in ossos if o["nome"] not in nomes_m]
     mats = [{"nome": k, "rampa": "#" + h.upper(), "perfil": ("osso" if k.startswith("osso") else PERFIL.get(m, "chapado")),
              "brilho": m == "Neon"} for k, (h, m) in pal.items()]
-    usados = {f["material"] for fs in por_osso.values() for f in fs}
+    usados = {f["material"] for fs in por_osso.values() for f in fs} | {c[k] for c in capas for k in ("fora", "forro", "debrum")}
     alt = max((f["centro"][1] + f["tam"][1] / 2) for fs in por_osso.values() for f in fs)
     lado_max = max(max(abs(f["centro"][e]) + f["tam"][e] / 2 for fs in por_osso.values() for f in fs) for e in (0, 2))
     campo = int(max(160, np.ceil((alt + 40) / 32) * 32, np.ceil((2 * lado_max + 40) / 32) * 32))
@@ -155,7 +176,8 @@ def converter(texto: str, ident: str, nome: str, tier: int, clipes: list | None 
                         "abs": [v[2] * lado * FATOR, v[3] * FATOR, v[4] * FATOR]})
     return {"id": f"monstro.{ident}", "tipo": "monstro", "versao": 1, "nome": nome, "tier": tier, "tier_manual": True,
             "origem": f"Importado da Forja de blocos do dono: {n_blocos} blocos, {len(ossos)} ossos. Nao edite a mao; reimporte.",
-            "campo": campo, "materiais": [m for m in mats if m["nome"] in usados],
+            "campo": campo, **({"lapidar": int(lapidar)} if lapidar else {}), **({"capas": capas} if capas else {}),
+            "materiais": [m for m in mats if m["nome"] in usados],
             "pecas": [{"nome": o["nome"], "formas": por_osso[o["nome"]]} for o in ossos if por_osso.get(o["nome"])],
             "ossos": [o for o in ossos if por_osso.get(o["nome"]) or any(x["pai"] == o["nome"] for x in ossos)],
             "soquetes": [s for s in soq if por_osso.get(s["osso"])], "clipes": clipes or parado_generico(ossos),
@@ -163,12 +185,12 @@ def converter(texto: str, ident: str, nome: str, tier: int, clipes: list | None 
 
 
 def importar(arquivo: str, ident: str, nome: str | None = None, tier: int = 7, clipes: list | str | None = None,
-             flutua: bool = False) -> str:
+             flutua: bool = False, lapidar: int = 0, capa: bool = False) -> str:
     texto = Path(arquivo).read_text(encoding="utf-8")
     if isinstance(clipes, str):                               # id de uma ficha de clipe, ex.: "clipe.rei_necromante_f1"
         arq = RAIZ / "registro" / "clipes" / (clipes.split(".", 1)[-1] + ".json")
         clipes = json.loads(arq.read_text(encoding="utf-8"))["clipes"]
-    f = converter(texto, ident, nome or ident.replace("_", " ").title(), tier, clipes, flutua)
+    f = converter(texto, ident, nome or ident.replace("_", " ").title(), tier, clipes, flutua, lapidar, capa)
     # pedacos que ja eram soltos no desenho original (barras de gaiola, por exemplo) ficam registrados: o portao
     # voxels_soltos so reprova o que passar disso
     from .nucleo import auditoria

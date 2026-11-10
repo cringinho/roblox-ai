@@ -1,0 +1,23 @@
+{
+ "id": "arquetipo.serpente",
+ "hash_ficha": "6b3000fde5e9afba863afb370155333687a047d660cebc35ee1ab36b33c98118",
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_Serpente.luau": "7caa58867bce99ef25dfa259690a7ce329251633ad438a09ed5757e5ad0ea98a",
+  "Dados_Serpente.luau": "2e46fc77eebbf077f68a8f1d0077a9c2be27aff77531a46077247c830d813208",
+  "anim.gif": "1b392f6070bfcc437001c72717d147c97a7ff1d35d0d17c691e380f0bda83b57",
+  "anim_Andar.png": "1674ca4bd5e628211fd34e48651a1b00d11b3c6b0aaa8bff0f763a4c886f40a9",
+  "anim_Ataque.png": "cf9953e06b916e30bc9dc8ae4a1361976cf95fcfb60542fc41fad8ea0bc360d0",
+  "anim_Dano.png": "54afa004aea871b7497e655e2181e39ed9ffdb76c692a3b69e25dc07f44a3e2a",
+  "anim_Morte.png": "32d4e37ccc1d538aef1536addd1ae86b9521dcb960f967a44d8b74c28f9202be",
+  "anim_Parado.png": "4c55b61f31f9fb19880549b1b5938c5d671bb2f5ce94c802cb0632fbfe41a813",
+  "folha.png": "73e2fbf56a93dcaf8c0b6cba53531b3f6e154778290d64a3e6a8270dbd4c05aa",
+  "icone_64.png": "b82e1093d8e61a615fc8e9d32b3c20a3790e70aa0536e7d6697699bc02150226",
+  "modelo.glb": "bb26590bca1a2ac538a24838f02674461484e68b2a5d8d53ad51edbe2d7ed993",
+  "modelo.vox": "97abea7a9be8b5168dc984f646722bb151f27c4d0aba6474a9d96b0a5e2e044b"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

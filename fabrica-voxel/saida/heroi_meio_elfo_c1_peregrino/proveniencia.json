@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_meio_elfo_c1_peregrino",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiMeioElfoC1Peregrino.luau": "7595c723d2c9ed9be2de515f480843f65b30cc356e1d9892e2016d9bb7568caf",
+  "Dados_HeroiMeioElfoC1Peregrino.luau": "673eb330703625e0f3f05cc53bc6bd29a16e393ef38191d44f67b3e826f050a0",
+  "anim.gif": "c41710738bdbd2337a6cbcd1b9589037db1e939df3752ff4370c9c31e3beda92",
+  "anim_Andar.png": "643d9f77edb61858a9faf8e317c5c24679a8c66365bfebe1451bb2f2d650b7e7",
+  "anim_Dano.png": "a571c657114ba5a93cd0ae245175ff64f51c53c1a478c000a26e045ed85f1035",
+  "anim_Golpe.png": "bd0da65a96e2918c72fd1eab90aeb105e664f27b7486c42e992f035c58728959",
+  "anim_Morte.png": "8dcea8da4b67c82d73a3d1d7ddbd07ce2ece897cd5e72de4ccd6a49fb7cf4575",
+  "anim_Parado.png": "d733cecf77df011b932b7ea425ec9a752de0b5fc5efee5de4fad45d48e811284",
+  "folha.png": "c57bdea015803459fb0a74a490d14a10a2f9e2fce2595c0e391d319a3ae04cba",
+  "icone_64.png": "b561cf0e1c8391c5bedfffd2dcabc962cc9ac76f2985cca87c59f4cf903edf61",
+  "modelo.glb": "51db5739d6f9650704576f0b1f4a4f801f83ffcd164095e74802c140852cb8ab",
+  "modelo.vox": "351d216191f93cf5ac41b6a03b89feeaf1c12ba2d792eedf3f51c57dad65d473"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

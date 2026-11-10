@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.flutuante",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Flutuante",
  "_ajuda": "Espectro, olho ou medusa: paira, sem pernas, com panos em mola.",
  "materiais": [
@@ -565,6 +565,10 @@
    "duracao": 8,
    "laco": true,
    "camadas": [
+    {
+     "tipo": "vida",
+     "intensidade": 0.7
+    },
     {
      "tipo": "onda",
      "osso": "Corpo",

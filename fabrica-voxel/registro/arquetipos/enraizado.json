@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.enraizado",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Enraizado",
  "_ajuda": "Planta ou torreta presa ao chao: mandragora, flor carnivora, olho de cripta.",
  "materiais": [
@@ -635,6 +635,10 @@
    "duracao": 8,
    "laco": true,
    "camadas": [
+    {
+     "tipo": "vida",
+     "intensidade": 0.7
+    },
     {
      "tipo": "onda",
      "ossos": "Haste_*",

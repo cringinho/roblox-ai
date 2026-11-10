@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.bipede_bruto",
  "tipo": "arquetipo",
- "versao": 2,
+ "versao": 3,
  "nome": "Bipede bruto",
  "_ajuda": "Ombros e bracos enormes, cabeca pequena: ogro, ciclope, sineiro. Pegada 2x2.",
  "materiais": [
@@ -685,19 +685,7 @@
    "laco": true,
    "camadas": [
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.012,
-     "harm": 2,
-     "forma": "pulso"
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 1.5,
-     "harm": 1
+     "tipo": "vida"
     },
     {
      "tipo": "onda",
@@ -783,21 +771,7 @@
      ]
     },
     {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "cima",
-     "amp": 0.02,
-     "harm": 2,
-     "forma": "abs",
-     "fase": 0.1
-    },
-    {
-     "tipo": "onda",
-     "osso": "Corpo",
-     "canal": "tombar_direita",
-     "amp": 2.5,
-     "harm": 1,
-     "fase": 0.2
+     "tipo": "impacto"
     },
     {
      "tipo": "onda",
