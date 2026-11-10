@@ -44,8 +44,9 @@ Resultado [M]: 60 combinações (15 linhagens × 4 conjuntos) com 0% de voxels d
   pedida no balanço, em bípede, quadrúpede (frente e trás), dragão e digitígrado.
 - **Seguimento automático:** segmento sem camada copia o osso de cima com atraso (sobreposição). É o que os 12
   princípios chamam de overlapping action, sem custo de autoria.
-- **Limite honesto:** o quadril não sabe do balanço do corpo. As pernas pendem da Raiz, não do tronco; se um dia
-  penderem do tronco, o IK precisa compensar o movimento do quadril.
+- **Limite honesto:** o quadril não sabe do balanço do corpo. As pernas pendem da Raiz, não do tronco, para o pé
+  ficar parado enquanto o corpo respira; quando o corpo tomba mais de 30 graus (morte), a perna sem camada passa a
+  ir junto. Se um dia as pernas penderem do tronco, o IK precisa compensar o movimento do quadril.
 
 ## 5. Números depois da reforma [M]
 

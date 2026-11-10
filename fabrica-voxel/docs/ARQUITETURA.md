@@ -243,4 +243,6 @@ instâncias que faltarem são criadas por código, cliente e servidor isolados, 
 - **Portões novos no P1**: `um_tamanho_de_voxel`, `item_atravessa_corpo` (2% dos voxels do item, todo quadro),
   `detalhe_minimo` (monstro: 1000 voxels e 8 ossos).
 - **Correção**: no modo `perna` rígido a perna balançava ao contrário (o pé ia para a frente durante o apoio).
+- **`anim._pernas_acompanham`**: perna filha da Raiz que nenhuma camada animou acompanha o corpo quando ele gira
+  mais de 30 graus (morte, queda); antes o corpo tombava e as pernas ficavam em pé.
 - Pesquisa de apoio: `docs/pesquisa/04-empunhadura-e-ossos.md`.

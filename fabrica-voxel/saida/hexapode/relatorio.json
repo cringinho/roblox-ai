@@ -147,14 +147,14 @@
    {
     "regra": "clipe_Morte_giro",
     "passou": true,
-    "valor": 38.38,
+    "valor": 41.33,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Morte_vivo",
     "passou": true,
-    "valor": 5,
+    "valor": 11,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    }
@@ -164,7 +164,7 @@
   "triangulos": 1564,
   "malhas": 25,
   "animacoes": 5,
-  "bytes": 184748
+  "bytes": 191432
  },
  "p2": {
   "nota": 78.4,
@@ -275,6 +275,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 3.32
+  "segundos": 3.07
  }
 }

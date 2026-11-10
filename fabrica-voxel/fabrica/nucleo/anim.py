@@ -12,7 +12,7 @@ import fnmatch
 
 import numpy as np
 
-from .contrato import FPS, Clipe, Modelo, matriz_para_quat, quat_conj, quat_mul, quat_semantico
+from .contrato import FPS, Clipe, Modelo, matriz_para_quat, quat_conj, quat_mul, quat_para_matriz, quat_semantico
 
 CANAIS_ROT = ("frente", "esquerda", "tombar_direita")
 CANAIS_TRANS = {"direita": (0, 1), "esquerda_t": (0, -1), "cima": (1, 1), "baixo": (1, -1),
@@ -200,6 +200,37 @@ def _perna_ik(ac: _Acum, c: dict, k: int, cad: dict, z, y):
     ac.dirigidos |= {k, k2}
 
 
+def _pernas_acompanham(ac: _Acum):
+    """As pernas pendem da Raiz (para o pe ficar parado quando o corpo respira). Quando o corpo TOMBA de verdade
+    (morte, queda), perna que nenhuma camada animou passa a ir junto com ele, como se fosse filha do corpo."""
+    raiz = next((o.nome for o in ac.modelo.ossos if o.pai is None), None)
+    corpo = next((o for o in ac.modelo.ossos if o.pai == raiz and o.papel == "corpo"), None)
+    if corpo is None:
+        return
+    kc = ac.i[corpo.nome]
+    qc = np.array([quat_semantico(*ac.E[q, kc]) for q in range(ac.n)])
+    if kc in ac.Q:
+        qc = np.array([quat_mul(a, b) for a, b in zip(qc, ac.Q[kc])])
+    ang = 2 * np.degrees(np.arccos(np.clip(np.abs(qc[:, 3]), 0, 1)))
+    w = np.clip((ang - 30.0) / 25.0, 0, 1)
+    w = w * w * (3 - 2 * w)
+    if w.max() <= 0:
+        return
+    pC = np.array(corpo.pivo)
+    for o in ac.modelo.ossos:
+        if o.pai != raiz or o is corpo:
+            continue
+        k = ac.i[o.nome]
+        if k in ac.dirigidos or k in ac.Q or np.abs(ac.E[:, k]).max() > 1e-9 or np.abs(ac.T[:, k]).max() > 1e-9:
+            continue
+        pL = np.array(o.pivo)
+        Q = np.zeros((ac.n, 4))
+        for q in range(ac.n):
+            Q[q] = _nlerp(np.array([0, 0, 0, 1.0]), qc[q], w[q])
+            ac.T[q, k] += w[q] * ac.T[q, kc] + quat_para_matriz(Q[q]) @ (pL - pC) - (pL - pC)
+        ac.Q[k] = Q
+
+
 def _seguir_cadeias(ac: _Acum, laco: bool, antes: np.ndarray):
     """Segmentos de cadeia que nenhuma camada animou acompanham o pai com atraso: antebraco, canela fora do
     andar, cauda, pescoco. E o que da sobreposicao (overlap) sem ninguem escrever camada."""
@@ -357,6 +388,7 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
                 raise ValueError(f'tipo de camada "{tipo}" nao existe; use um de {list(TIPOS)}')
         except (KeyError, ValueError) as e:
             raise ValueError(f'clipe "{receita.get("nome")}", camada {i + 1} ({tipo}): {e}') from None
+    _pernas_acompanham(ac)
     _seguir_cadeias(ac, laco, antes)
     cl = Clipe.vazio(receita["nome"], dur, ac.nomes, laco=laco)
     cl.trans[:] = ac.T
