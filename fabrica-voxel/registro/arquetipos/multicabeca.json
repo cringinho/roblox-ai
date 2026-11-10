@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.multicabeca",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Multicabeca",
  "_ajuda": "Hidra: corpo baixo de quatro patas com tres pescocos, cada cabeca com fase propria.",
  "materiais": [
@@ -64,6 +64,25 @@
      },
      "material": "olho",
      "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "t.topo",
+     "desloc": {
+      "frente": 2
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 3,
+      "passo": {
+       "tras": 3
+      }
+     }
     }
    ]
   },
@@ -83,6 +102,40 @@
       "frente": 5
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      4,
+      2,
+      5
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -102,6 +155,40 @@
       "frente": 5
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      4,
+      2,
+      5
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -121,6 +208,40 @@
       "tras": 5
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      4,
+      2,
+      5
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -140,6 +261,40 @@
       "tras": 5
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      4,
+      2,
+      5
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -352,6 +507,182 @@
      "espelhar": true
     }
    ]
+  },
+  {
+   "nome": "Mandibula_C",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      3,
+      1,
+      6
+     ],
+     "em": "Cabeca_C.cranio.base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "q.frente",
+     "desloc": {
+      "cima": 1,
+      "direita": 1.0
+     },
+     "material": "detalhe",
+     "espelhar": true
+    }
+   ]
+  },
+  {
+   "nome": "Mandibula_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      3,
+      1,
+      6
+     ],
+     "em": "Cabeca_D.cranio.base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Mandibula_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      3,
+      1,
+      6
+     ],
+     "em": "Cabeca_E.cranio.base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Corpo.t.tras",
+     "desloc": {
+      "frente": 1,
+      "baixo": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      4
+     ],
+     "em": "Cauda_1.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cauda_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      4
+     ],
+     "em": "Cauda_2.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      4,
+      2
+     ],
+     "em": "Cauda_3.tras",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
   }
  ],
  "ossos": [
@@ -369,7 +700,10 @@
    "pivo": {
     "em": "Perna_DD.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "joelho",
+   "eixo": "y"
   },
   {
    "nome": "Perna_DE",
@@ -377,7 +711,10 @@
    "pivo": {
     "em": "Perna_DE.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "joelho",
+   "eixo": "y"
   },
   {
    "nome": "Perna_TD",
@@ -385,7 +722,10 @@
    "pivo": {
     "em": "Perna_TD.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "reverso",
+   "eixo": "y"
   },
   {
    "nome": "Perna_TE",
@@ -393,7 +733,10 @@
    "pivo": {
     "em": "Perna_TE.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "reverso",
+   "eixo": "y"
   },
   {
    "nome": "Pescoco_C",
@@ -402,7 +745,11 @@
     "em": "Pescoco_C.base"
    },
    "papel": "pescoco",
-   "junta": 2
+   "junta": 1,
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.6,
+   "eixo": "y"
   },
   {
    "nome": "Cabeca_C",
@@ -420,7 +767,11 @@
     "em": "Pescoco_D.base"
    },
    "papel": "pescoco",
-   "junta": 2
+   "junta": 1,
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.6,
+   "eixo": "y"
   },
   {
    "nome": "Cabeca_D",
@@ -438,7 +789,11 @@
     "em": "Pescoco_E.base"
    },
    "papel": "pescoco",
-   "junta": 2
+   "junta": 1,
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.6,
+   "eixo": "y"
   },
   {
    "nome": "Cabeca_E",
@@ -448,6 +803,67 @@
    },
    "papel": "cabeca",
    "junta": 2
+  },
+  {
+   "nome": "Mandibula_C",
+   "pai": "Cabeca_C",
+   "pivo": {
+    "em": "Mandibula_C.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Mandibula_D",
+   "pai": "Cabeca_D",
+   "pivo": {
+    "em": "Mandibula_D.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Mandibula_E",
+   "pai": "Cabeca_E",
+   "pivo": {
+    "em": "Mandibula_E.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Cauda_1",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Cauda_1.frente"
+   },
+   "papel": "cauda",
+   "junta": 1
+  },
+  {
+   "nome": "Cauda_2",
+   "pai": "Cauda_1",
+   "pivo": {
+    "em": "Cauda_2.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.95,
+    "atraso_s": 0.1
+   }
+  },
+  {
+   "nome": "Cauda_3",
+   "pai": "Cauda_2",
+   "pivo": {
+    "em": "Cauda_3.frente"
+   },
+   "papel": "cauda",
+   "junta": 1,
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.95,
+    "atraso_s": 0.1
+   }
   }
  ],
  "clipes": [
@@ -538,6 +954,50 @@
      "amp": -8,
      "harm": 1,
      "fase": 0.75
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_C",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_D",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_E",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cauda_1",
+     "canal": "esquerda",
+     "amp": 9,
+     "harm": 1,
+     "fase": 0.2,
+     "harm2": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cauda_1",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 2,
+     "fase": 0.5
     }
    ]
   },
@@ -620,6 +1080,46 @@
      "amp": 6,
      "harm": 2,
      "fase": 0.7
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_C",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_D",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula_E",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cauda_1",
+     "canal": "esquerda",
+     "amp": 8,
+     "harm": 1,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Cauda_1",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 2,
+     "fase": 0.1
     }
    ]
   },
@@ -794,6 +1294,99 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_C": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula_C": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_D": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula_D": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_E": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula_E": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -827,6 +1420,72 @@
        "pose": {
         "Corpo": {
          "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula_C": {
+         "frente": 22
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula_D": {
+         "frente": 22
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula_E": {
+         "frente": 22
         }
        }
       },
@@ -903,6 +1562,84 @@
         },
         "Cabeca_C": {
          "tombar_direita": 20
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_C": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula_C": {
+         "frente": 26
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_D": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula_D": {
+         "frente": 26
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula_E": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula_E": {
+         "frente": 26
         }
        }
       }

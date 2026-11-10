@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "4d99555419b0483311f3fc8f4f82c65a9c1f3aa818e1800fec244a863da522ee",
+ "hash_ficha": "639cc02a9a05a5390db3142456708c1d3159f3e41f71ff06d5b1704428380200",
  "p1": {
   "passou": true,
   "regras": [
@@ -30,16 +30,26 @@
     "conserto": "Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo \"corte\" em todas as pecas do modelo; se precisa de mais detalhe, suba o corte do modelo inteiro."
    },
    {
+    "regra": "detalhe_minimo",
+    "passou": true,
+    "valor": {
+     "voxels": 1621,
+     "ossos": 23
+    },
+    "limite": ">= 1000 voxels e >= 8 ossos",
+    "conserto": "Criatura simples demais. Mais ossos: \"segmentos\": 2 nos bracos e pernas, mandibula, orelhas, cauda em cadeia. Mais voxels: garras, dentes, espinhos e placas com \"repetir\"; ou aumente o corpo."
+   },
+   {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 284,
+    "valor": 316,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
    {
     "regra": "brilho",
     "passou": true,
-    "valor": 0.0031,
+    "valor": 0.011,
     "limite": 0.04,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -53,21 +63,21 @@
    {
     "regra": "clipe_Parado_giro",
     "passou": true,
-    "valor": 0.72,
+    "valor": 1.5,
     "limite": "70 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Parado_laco",
     "passou": true,
-    "valor": 0.5220000147819519,
+    "valor": 0.8223000168800354,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Parado_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 11,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -81,21 +91,21 @@
    {
     "regra": "clipe_Andar_giro",
     "passou": true,
-    "valor": 8.24,
+    "valor": 11.35,
     "limite": "70 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Andar_laco",
     "passou": true,
-    "valor": 0.3544999957084656,
+    "valor": 0.9550999999046326,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Andar_vivo",
     "passou": true,
-    "valor": 8,
+    "valor": 21,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -109,55 +119,55 @@
    {
     "regra": "clipe_Ataque_giro",
     "passou": true,
-    "valor": 24.14,
+    "valor": 29.86,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Ataque_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 7,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
    {
     "regra": "clipe_Dano_giro",
     "passou": true,
-    "valor": 19.53,
+    "valor": 18.95,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Dano_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 5,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
    {
     "regra": "clipe_Morte_giro",
     "passou": true,
-    "valor": 28.76,
+    "valor": 38.38,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Morte_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 5,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    }
   ]
  },
  "malha": {
-  "triangulos": 966,
-  "malhas": 9,
+  "triangulos": 1564,
+  "malhas": 25,
   "animacoes": 5,
-  "bytes": 93228
+  "bytes": 184748
  },
  "p2": {
-  "nota": 83.8,
+  "nota": 78.4,
   "minimo": 75,
   "passou": true,
   "metricas": [
@@ -165,10 +175,10 @@
     "metrica": "grupos_de_valor",
     "nota": 1.0,
     "valor": {
-     "escuro": 0.208,
-     "medio": 0.409,
-     "claro": 0.379,
-     "brilho": 0.0031
+     "escuro": 0.236,
+     "medio": 0.364,
+     "claro": 0.389,
+     "brilho": 0.011
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -177,7 +187,7 @@
    {
     "metrica": "tamanho_da_paleta",
     "nota": 1.0,
-    "valor": 10,
+    "valor": 12,
     "alvo": "6 a 32 cores",
     "conserto": "Cores demais viram ruido; de menos, chapado. Ajuste o numero de materiais (3 a 6 e o normal).",
     "peso": 10
@@ -192,16 +202,16 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.739,
-    "valor": 0.0078,
+    "nota": 0.0,
+    "valor": 0.0391,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 0.183,
-    "valor": 0.146,
+    "nota": 0.558,
+    "valor": 0.239,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -210,8 +220,8 @@
     "metrica": "silhueta",
     "nota": 1.0,
     "valor": {
-     "frente": 0.643,
-     "grade": 0.592
+     "frente": 0.663,
+     "grade": 0.582
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -220,7 +230,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.3394,
+    "valor": 0.2911,
     "alvo": ">= 0.004",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 10
@@ -228,7 +238,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.826,
+    "valor": 0.697,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -236,14 +246,14 @@
   ],
   "piores": [
    {
-    "metrica": "area_de_descanso",
-    "nota": 0.183,
-    "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
+    "metrica": "voxels_orfaos",
+    "nota": 0.0,
+    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
    },
    {
-    "metrica": "voxels_orfaos",
-    "nota": 0.739,
-    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
+    "metrica": "area_de_descanso",
+    "nota": 0.558,
+    "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
    },
    {
     "metrica": "grupos_de_valor",
@@ -253,11 +263,11 @@
   ]
  },
  "numeros": {
-  "voxels": 942,
-  "pecas": 8,
-  "ossos": 9,
-  "cores": 10,
-  "triangulos": 966,
+  "voxels": 1621,
+  "pecas": 23,
+  "ossos": 24,
+  "cores": 12,
+  "triangulos": 1564,
   "clipes": [
    "Parado",
    "Andar",
@@ -265,6 +275,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 1.63
+  "segundos": 3.32
  }
 }

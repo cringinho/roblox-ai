@@ -1,7 +1,7 @@
 {
  "id": "monstro.gargulho",
  "tipo": "monstro",
- "versao": 1,
+ "versao": 2,
  "nome": "Gargulho",
  "arquetipo": "alado",
  "tier": 2,
@@ -11,11 +11,12 @@
   {
    "nome": "corpo",
    "como": "pedra",
-   "rampa": "pele_pedra"
+   "rampa": "pele_pedra",
+   "perfil": "tecido"
   },
   {
    "nome": "detalhe",
-   "como": "pedra_escura"
+   "como": "ferro"
   },
   {
    "nome": "escuro",
@@ -29,9 +30,8 @@
  "acabamentos": [
   {
    "tipo": "musgo_em_cima",
-   "forca": 0.35,
+   "forca": 0.15,
    "pecas": [
-    "Corpo",
     "Cabeca"
    ]
   }

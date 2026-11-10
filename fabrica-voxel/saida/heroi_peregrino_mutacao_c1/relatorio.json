@@ -104,7 +104,7 @@
    {
     "regra": "clipe_Golpe_giro",
     "passou": true,
-    "valor": 98.83,
+    "valor": 103.99,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
@@ -261,6 +261,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 3.24
+  "segundos": 3.16
  }
 }

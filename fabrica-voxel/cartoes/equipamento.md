@@ -35,3 +35,12 @@ Slots: `elmo` (`fechado` ou `aberto`) **ou** `chapeu`, `tronco` (`faixas` por al
 **Sempre rode a matriz de prova:** `python -m fabrica matriz guarda`. Ela veste o conjunto em 6 corpos de teste
 (fada P, gnomo P, elfo M, demônio M, draconato G, gigante G) e mede: voxel solto, item partido pelo recorte,
 item no chão. Olhe `saida/_matriz/guarda.png`. Orelha, chifre, asa e cauda abrem o próprio furo sozinhos.
+
+**Item não atravessa o corpo (portão `item_atravessa_corpo`).** A fábrica faz três coisas sozinha:
+1. escolhe a empunhadura: o item inclina a partir da pose da classe (`"descanso"` em `registro/classes/pegada.json`)
+   até não tocar o corpo; escudo vira de lado; lanterna escorrega para fora em vez de inclinar;
+2. ajusta o golpe a cada corpo (plano do arco, centro mais à frente, raio maior) e recua pela guarda;
+3. afasta a mão nos quadros em que o item ainda tocaria o corpo.
+
+O relatório do herói mostra o que foi escolhido em `equipamento.empunhadura`. Se o portão reprovar, o item é grande
+demais para a classe de pegada: confira a `caixa_max` da classe.

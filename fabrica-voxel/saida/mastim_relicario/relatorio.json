@@ -9,7 +9,7 @@
   "passou": true,
   "erros": []
  },
- "hash_ficha": "44d0cda380e64880ec9891ec97b6972f34a94aa9727bf6c75b12d6f3dfcfb78d",
+ "hash_ficha": "d9994e4d09d1327a23b6e50faaf7cd927468c349eb8703ad9eb0e0563340fd28",
  "p1": {
   "passou": true,
   "regras": [
@@ -30,16 +30,26 @@
     "conserto": "Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo \"corte\" em todas as pecas do modelo; se precisa de mais detalhe, suba o corte do modelo inteiro."
    },
    {
+    "regra": "detalhe_minimo",
+    "passou": true,
+    "valor": {
+     "voxels": 1291,
+     "ossos": 16
+    },
+    "limite": ">= 1000 voxels e >= 8 ossos",
+    "conserto": "Criatura simples demais. Mais ossos: \"segmentos\": 2 nos bracos e pernas, mandibula, orelhas, cauda em cadeia. Mais voxels: garras, dentes, espinhos e placas com \"repetir\"; ou aumente o corpo."
+   },
+   {
     "regra": "triangulos_por_malha",
     "passou": true,
-    "valor": 320,
+    "valor": 372,
     "limite": 20000,
     "conserto": "Divida a peca maior em duas, ou simplifique o padrao de cor (cada troca de cor quebra a fusao de faces)."
    },
    {
     "regra": "brilho",
     "passou": true,
-    "valor": 0.0069,
+    "valor": 0.0058,
     "limite": 0.04,
     "conserto": "Brilho demais compete com os alvos. Deixe material de brilho so em olhos, nucleos e pontas."
    },
@@ -67,7 +77,7 @@
    {
     "regra": "clipe_Parado_vivo",
     "passou": true,
-    "valor": 5,
+    "valor": 8,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -81,21 +91,21 @@
    {
     "regra": "clipe_Andar_giro",
     "passou": true,
-    "valor": 9.75,
+    "valor": 45.13,
     "limite": "70 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Andar_laco",
     "passou": true,
-    "valor": 0.708299994468689,
+    "valor": 1.0319000482559204,
     "limite": "<= 2.5x um passo normal",
     "conserto": "O laco nao fecha. Em \"onda\" use \"harm\" inteiro; em \"poses\" a ultima chave deve voltar a primeira."
    },
    {
     "regra": "clipe_Andar_vivo",
     "passou": true,
-    "valor": 9,
+    "valor": 16,
     "limite": ">= 2 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -116,21 +126,21 @@
    {
     "regra": "clipe_Ataque_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 5,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
    {
     "regra": "clipe_Dano_giro",
     "passou": true,
-    "valor": 18.24,
+    "valor": 20.07,
     "limite": "150 graus/quadro",
     "conserto": "Algum osso estala. Aumente a duracao do trecho ou reduza a amplitude."
    },
    {
     "regra": "clipe_Dano_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 5,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    },
@@ -144,31 +154,31 @@
    {
     "regra": "clipe_Morte_vivo",
     "passou": true,
-    "valor": 2,
+    "valor": 5,
     "limite": ">= 1 ossos",
     "conserto": "Quase nada se mexe. Some camadas: respiracao no tronco e um 'seguir' ou 'onda' defasada na cabeca."
    }
   ]
  },
  "malha": {
-  "triangulos": 1022,
-  "malhas": 11,
+  "triangulos": 1442,
+  "malhas": 18,
   "animacoes": 5,
-  "bytes": 111688
+  "bytes": 164772
  },
  "p2": {
-  "nota": 88.8,
+  "nota": 87.2,
   "minimo": 75,
   "passou": true,
   "metricas": [
    {
     "metrica": "grupos_de_valor",
-    "nota": 0.928,
+    "nota": 0.838,
     "valor": {
-     "escuro": 0.599,
-     "medio": 0.306,
-     "claro": 0.088,
-     "brilho": 0.0069
+     "escuro": 0.593,
+     "medio": 0.328,
+     "claro": 0.073,
+     "brilho": 0.0058
     },
     "alvo": "3 grupos; maior <= 62%, menor >= 10%",
     "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno.",
@@ -192,16 +202,16 @@
    },
    {
     "metrica": "voxels_orfaos",
-    "nota": 0.863,
-    "valor": 0.0041,
+    "nota": 0.845,
+    "valor": 0.0046,
     "alvo": "<= 1.5% da superficie",
     "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel.",
     "peso": 15
    },
    {
     "metrica": "area_de_descanso",
-    "nota": 0.485,
-    "valor": 0.221,
+    "nota": 0.52,
+    "valor": 0.23,
     "alvo": "35% a 92% da superficie lisa",
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto.",
     "peso": 15
@@ -210,8 +220,8 @@
     "metrica": "silhueta",
     "nota": 1.0,
     "valor": {
-     "frente": 0.595,
-     "grade": 0.508
+     "frente": 0.634,
+     "grade": 0.506
     },
     "alvo": "ocupa 30% a 86% da caixa vista de frente",
     "conserto": "Silhueta de caixote (muito cheia) ou esfiapada (muito vazia). Acrescente 1 ou 2 formas que saiam do corpo (chifre, cauda, arma, ombreira) ou engrosse as partes finas.",
@@ -220,7 +230,7 @@
    {
     "metrica": "assimetria",
     "nota": 1.0,
-    "valor": 0.3498,
+    "valor": 0.347,
     "alvo": ">= 0.004",
     "conserto": "Simetria perfeita parece codigo. Acrescente 1 a 3 quebras intencionais sem espelho: uma ombreira so, um chifre quebrado, uma cicatriz, um remendo.",
     "peso": 10
@@ -228,7 +238,7 @@
    {
     "metrica": "claro_em_cima",
     "nota": 1.0,
-    "valor": 0.615,
+    "valor": 0.562,
     "alvo": ">= 45% da luz na metade de cima",
     "conserto": "A base esta mais clara que o topo. Escureca pes e base; clareie cabeca e ombros (o olho vai para o claro).",
     "peso": 5
@@ -237,27 +247,27 @@
   "piores": [
    {
     "metrica": "area_de_descanso",
-    "nota": 0.485,
+    "nota": 0.52,
     "conserto": "Detalhe em tudo = detalhe em nada (ou liso demais = chapado). Concentre o detalhe na cabeca/arma e deixe areas calmas no resto."
    },
    {
-    "metrica": "voxels_orfaos",
-    "nota": 0.863,
-    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
+    "metrica": "grupos_de_valor",
+    "nota": 0.838,
+    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
    },
    {
-    "metrica": "grupos_de_valor",
-    "nota": 0.928,
-    "conserto": "O modelo esta todo num valor so. Escolha rampas de luminancias diferentes para materiais vizinhos (um escuro, um medio, um claro) e mantenha um foco claro pequeno."
+    "metrica": "voxels_orfaos",
+    "nota": 0.845,
+    "conserto": "Ha voxels de cor isolada (ruido). Padrao so em clusters de 3 ou mais; tire estampas de 1 voxel."
    }
   ]
  },
  "numeros": {
-  "voxels": 1120,
-  "pecas": 9,
-  "ossos": 10,
+  "voxels": 1291,
+  "pecas": 16,
+  "ossos": 17,
   "cores": 17,
-  "triangulos": 1022,
+  "triangulos": 1442,
   "clipes": [
    "Parado",
    "Andar",
@@ -265,6 +275,6 @@
    "Dano",
    "Morte"
   ],
-  "segundos": 2.05
+  "segundos": 3.42
  }
 }

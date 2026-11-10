@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.aracnideo",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Aracnideo",
  "_ajuda": "Aranha de 8 pernas em dois grupos de quatro: aranha de cripta, chefes como a Myxilia.",
  "materiais": [
@@ -65,21 +65,6 @@
       "O": "olho",
       "E": "escuro"
      }
-    },
-    {
-     "op": "caixa",
-     "tam": [
-      1,
-      2,
-      2
-     ],
-     "em": "t.frente",
-     "desloc": {
-      "baixo": 1,
-      "direita": 1
-     },
-     "material": "detalhe",
-     "espelhar": true
     }
    ]
   },
@@ -113,6 +98,21 @@
      "encaixe": "dentro",
      "material": "detalhe",
      "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      3
+     ],
+     "em": "a.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "olho",
+     "modo": "pintar"
     }
    ]
   },
@@ -125,14 +125,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "direita": 6.0,
       "frente": 3.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -146,7 +146,7 @@
      "desloc": {
       "esquerda": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -159,14 +159,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "esquerda": 6.0,
       "frente": 3.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -180,7 +180,7 @@
      "desloc": {
       "direita": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -193,14 +193,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "direita": 6.0,
       "frente": 1.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -214,7 +214,7 @@
      "desloc": {
       "esquerda": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -227,14 +227,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "esquerda": 6.0,
       "frente": 1.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -248,7 +248,7 @@
      "desloc": {
       "direita": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -261,14 +261,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "direita": 6.0,
       "tras": 1.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -282,7 +282,7 @@
      "desloc": {
       "esquerda": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -295,14 +295,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "esquerda": 6.0,
       "tras": 1.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -316,7 +316,7 @@
      "desloc": {
       "direita": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -329,14 +329,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "direita": 6.0,
       "tras": 3.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -350,7 +350,7 @@
      "desloc": {
       "esquerda": 2
      },
-     "material": "corpo"
+     "material": "detalhe"
     }
    ]
   },
@@ -363,14 +363,14 @@
      "tam": [
       2,
       10,
-      2
+      3
      ],
      "em": "chao",
      "desloc": {
       "esquerda": 6.0,
       "tras": 3.0
      },
-     "material": "corpo"
+     "material": "detalhe"
     },
     {
      "op": "caixa",
@@ -384,7 +384,102 @@
      "desloc": {
       "direita": 2
      },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Quelicera_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "baixo": 1,
+      "direita": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Palpo_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      3
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "baixo": 0,
+      "direita": 3
+     },
      "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Quelicera_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "baixo": 1,
+      "esquerda": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Palpo_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      3
+     ],
+     "em": "Corpo.t.frente",
+     "desloc": {
+      "baixo": 0,
+      "esquerda": 3
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Fiandeira",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      2
+     ],
+     "em": "Abdomen.a.tras",
+     "desloc": {
+      "baixo": 2,
+      "frente": 1
+     },
+     "material": "detalhe"
     }
    ]
   }
@@ -418,7 +513,12 @@
    "pivo": {
     "em": "Perna1_D.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna1_E",
@@ -426,7 +526,12 @@
    "pivo": {
     "em": "Perna1_E.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna2_D",
@@ -434,7 +539,12 @@
    "pivo": {
     "em": "Perna2_D.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna2_E",
@@ -442,7 +552,12 @@
    "pivo": {
     "em": "Perna2_E.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna3_D",
@@ -450,7 +565,12 @@
    "pivo": {
     "em": "Perna3_D.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna3_E",
@@ -458,7 +578,12 @@
    "pivo": {
     "em": "Perna3_E.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna4_D",
@@ -466,7 +591,12 @@
    "pivo": {
     "em": "Perna4_D.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
   },
   {
    "nome": "Perna4_E",
@@ -474,7 +604,67 @@
    "pivo": {
     "em": "Perna4_E.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.7,
+   "atraso_seguir_s": 0.05,
+   "eixo": "y"
+  },
+  {
+   "nome": "Quelicera_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Quelicera_D.topo"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Palpo_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Palpo_D.tras"
+   },
+   "papel": "palpo",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.2,
+    "atraso_s": 0.1
+   }
+  },
+  {
+   "nome": "Quelicera_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Quelicera_E.topo"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Palpo_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Palpo_E.tras"
+   },
+   "papel": "palpo",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.2,
+    "atraso_s": 0.1
+   }
+  },
+  {
+   "nome": "Fiandeira",
+   "pai": "Abdomen",
+   "pivo": {
+    "em": "Fiandeira.frente"
+   },
+   "papel": "cauda",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.0,
+    "atraso_s": 0.1
+   }
   }
  ],
  "soquetes": [
@@ -521,6 +711,24 @@
      "amp": 3,
      "harm": 3,
      "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Quelicera_D",
+     "canal": "tombar_direita",
+     "amp": 7,
+     "harm": 3,
+     "fase": 0.1,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Quelicera_E",
+     "canal": "tombar_direita",
+     "amp": -7,
+     "harm": 3,
+     "fase": 0.17,
+     "forma": "pulso"
     }
    ]
   },
@@ -670,6 +878,72 @@
       {
        "t": 1,
        "curva": "suave",
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Quelicera_D": {
+         "tombar_direita": 28,
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Quelicera_D": {
+         "tombar_direita": -6,
+         "frente": 12
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Quelicera_E": {
+         "tombar_direita": -28,
+         "frente": -20
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Quelicera_E": {
+         "tombar_direita": 6,
+         "frente": 12
+        }
+       }
+      },
+      {
+       "t": 1,
        "pose": {}
       }
      ]

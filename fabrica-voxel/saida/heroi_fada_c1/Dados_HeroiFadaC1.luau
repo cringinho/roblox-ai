@@ -4,7 +4,7 @@
 return {
 	Id = "heroi_fada_c1", Nome = "Fada", VersaoFabrica = "4.0.0",
 	Altura = 3.125,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Tronco", Pai = "Raiz", Pivo = {0, 0.375, 0}, Papel = "corpo", Mola = nil},
 		{Nome = "Cabeca", Pai = "Tronco", Pivo = {0, 1.125, 0.0625}, Papel = "cabeca", Mola = nil},

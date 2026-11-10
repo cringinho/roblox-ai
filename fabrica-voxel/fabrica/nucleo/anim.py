@@ -58,6 +58,9 @@ class _Acum:
         self.n, self.H = n, H
         self.marc: list[tuple[str, float]] = []
         self.vel = 0.0
+        self.modelo = modelo
+        self.dirigidos: set[int] = set()      # ossos resolvidos por IK neste clipe (o seguimento automatico nao mexe)
+        self.agacho = None                    # quanto o corpo desceu para o joelho ter folga (uma vez por clipe)
 
     def ossos(self, spec) -> list[int]:
         pads = spec if isinstance(spec, list) else [spec]
@@ -157,15 +160,71 @@ def _passos(ac: _Acum, c: dict, fase_t, duracao: float):
         inclina = np.where(no_chao, 0.0, 22 * np.sin(2 * np.pi * s) * (1 - s))     # ponta sobe ao sair
         comp = float(pe.get("comprimento_H", c.get("perna_H", 0.25))) * ac.H
         for k in ac.ossos(pe["osso"]):
+            cad = ac.modelo.meta.get("cadeias", {}).get(ac.nomes[k])
+            if modo != "solto" and cad and len(cad["ossos"]) >= 2 and cad["eixo"] == 1 and cad["sentido"] < 0 \
+                    and cad["dobra"] in ("joelho", "reverso"):
+                _perna_ik(ac, c, k, cad, z, y)
+                continue
             if modo == "solto":
                 ac.T[:, k, 2] += -z
                 ac.T[:, k, 1] += y
                 ac.E[:, k, 0] += -inclina
             else:
-                ac.E[:, k, 0] += np.degrees(np.arctan2(z, comp))
+                ac.E[:, k, 0] += -np.degrees(np.arctan2(z, comp))   # "frente" positivo leva a ponta de baixo para tras
                 ac.T[:, k, 1] += y * 0.6
         for q in range(ciclos):
             ac.marc.append(("Pisada", ((q + (1 - pe.get("fase", 0.0)) % 1.0) / ciclos % 1.0) * duracao))
+
+
+def _perna_ik(ac: _Acum, c: dict, k: int, cad: dict, z, y):
+    """Perna de dois ossos (IK analitico, lei dos cossenos): o pe segue a trajetoria do passo e o joelho dobra.
+    Para o joelho ter folga, tudo que pende da Raiz desce um pouco ("agacho", fracao do comprimento da perna)."""
+    L1 = float(cad["comprimentos"][0])
+    L2 = float(sum(cad["comprimentos"][1:]))
+    L = L1 + L2
+    if ac.agacho is None:
+        ac.agacho = float(c.get("agacho", 0.07)) * L
+        raiz = next(o.nome for o in ac.modelo.ossos if o.pai is None)
+        for o in ac.modelo.ossos:
+            if o.pai == raiz:
+                ac.T[:, ac.i[o.nome], 1] -= ac.agacho
+    u = -L + ac.agacho + y                                   # altura do pe em relacao ao quadril
+    D = np.clip(np.sqrt(z * z + u * u), abs(L1 - L2) + 1e-4, L * 0.9995)
+    phi = np.arctan2(z, -u)                                  # direcao quadril -> pe, a partir de "reto para baixo"
+    alfa = np.arccos(np.clip((L1 * L1 + D * D - L2 * L2) / (2 * L1 * D), -1, 1))
+    beta = np.pi - np.arccos(np.clip((L1 * L1 + L2 * L2 - D * D) / (2 * L1 * L2), -1, 1))
+    s = 1.0 if cad["dobra"] == "joelho" else -1.0            # joelho aponta para a frente; reverso, para tras
+    k2 = ac.i[cad["ossos"][1]]
+    ac.E[:, k, 0] += -np.degrees(phi + s * alfa)             # "frente" positivo leva a ponta de baixo para tras
+    ac.E[:, k2, 0] += np.degrees(s * beta)
+    ac.dirigidos |= {k, k2}
+
+
+def _seguir_cadeias(ac: _Acum, laco: bool, antes: np.ndarray):
+    """Segmentos de cadeia que nenhuma camada animou acompanham o pai com atraso: antebraco, canela fora do
+    andar, cauda, pescoco. E o que da sobreposicao (overlap) sem ninguem escrever camada."""
+    seg = ac.modelo.meta.get("seguir", {})
+    pai = {o.nome: o.pai for o in ac.modelo.ossos}
+    for o in ac.modelo.ossos:                                # pais antes dos filhos: o atraso se propaga na cadeia
+        cfg = seg.get(o.nome)
+        if not cfg or o.nome not in ac.i or pai[o.nome] not in ac.i:
+            continue
+        k, kp = ac.i[o.nome], ac.i[pai[o.nome]]
+        if k in ac.dirigidos or np.abs(ac.E[:, k] - antes[:, k]).max() > 1e-9:
+            continue
+        d = max(1, int(round(cfg["atraso_s"] * FPS)))
+        src = ac.E[:, kp, :]
+        sh = np.roll(src, d, axis=0) if laco else np.concatenate([np.repeat(src[:1], d, 0), src[:-d]])[:ac.n]
+        g = cfg["ganho"]
+        if cfg["modo"] == "livre":
+            ac.E[:, k, :] += g * sh
+        else:
+            fr = sh[:, 0]                                    # < 0 = o osso de cima foi para a frente
+            if cfg["modo"] == "cotovelo":
+                ac.E[:, k, 0] += -np.clip(8 + 1.2 * g * np.maximum(-fr, 0) + 0.3 * g * np.abs(fr), 0, 110)
+            else:
+                flex = np.clip(1.6 * g * np.maximum(-fr, 0) + 0.4 * g * np.maximum(fr, 0), 0, 120)
+                ac.E[:, k, 0] += flex if cfg["modo"] == "joelho" else -flex
 
 
 def _seguir(ac: _Acum, c: dict, laco: bool):
@@ -278,6 +337,7 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
     n = Clipe.quadros_para(dur, laco)
     fase_t = np.arange(n) / (n if laco else max(n - 1, 1))
     ac = _Acum(modelo, n, H)
+    antes = ac.E.copy()
     for i, c in enumerate(receita.get("camadas", [])):
         tipo = c.get("tipo")
         try:
@@ -297,6 +357,7 @@ def assar_clipe(modelo: Modelo, receita: dict, *, H: float | None = None, fator_
                 raise ValueError(f'tipo de camada "{tipo}" nao existe; use um de {list(TIPOS)}')
         except (KeyError, ValueError) as e:
             raise ValueError(f'clipe "{receita.get("nome")}", camada {i + 1} ({tipo}): {e}') from None
+    _seguir_cadeias(ac, laco, antes)
     cl = Clipe.vazio(receita["nome"], dur, ac.nomes, laco=laco)
     cl.trans[:] = ac.T
     for q in range(n):

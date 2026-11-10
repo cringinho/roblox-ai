@@ -13,6 +13,7 @@
 | P1 `clipe_X_gemeos` | esquerda e direita espelhadas | mude `fase` de um lado em 0.03 a 0.08 |
 | P1 `um_tamanho_de_voxel` | peças com `corte` diferente no mesmo modelo | o mesmo `corte` em todas as peças |
 | P1 `item_atravessa_corpo` | a arma ou o escudo entra no corpo em algum quadro | confira `pegada`, soquetes `Pegada` e `Ponta` do item; em golpe novo, `centro_H.frente` maior ou `arco.raio_mao_H` maior |
+| P1 `detalhe_minimo` | criatura com menos de 1000 voxels ou menos de 8 ossos | `"segmentos": 2` em braços e pernas, mandíbula, orelhas, cauda; garras, dentes e espinhos com `"repetir"` |
 | P1 `triangulos_por_malha` | peça com cor demais ou grande demais | divida a peça; simplifique o padrão |
 | P2 `grupos_de_valor` | tudo no mesmo tom | materiais vizinhos com rampas de claridade diferente |
 | P2 `silhueta` | caixote ou esfiapado | acrescente 1 ou 2 formas que saiam do corpo, ou engrosse |

@@ -106,6 +106,29 @@ def _ponto_livre(spec, op, caixas, peca) -> np.ndarray:
     return p + desloc_semantico(spec if isinstance(spec, dict) else None)
 
 
+def _expandir(formas: list[dict]) -> list[dict]:
+    """"repetir": {"n": 4, "passo": {"tras": 3}} vira n copias da forma, cada uma deslocada um passo a mais.
+    Serve para dentes, garras, espinhos, costelas, placas. A copia i (a partir da 2a) chama-se <nome>_<i>."""
+    out = []
+    for op in formas:
+        r = op.get("repetir")
+        if not r:
+            out.append(op)
+            continue
+        if not isinstance(r, dict) or "n" not in r:
+            raise ErroFicha('"repetir" precisa de {"n": quantas, "passo": {"tras": 3}} (passo em voxels, com nome de direcao).')
+        for i in range(int(r["n"])):
+            c = {k: v for k, v in op.items() if k != "repetir"}
+            d = dict(c.get("desloc") or {})
+            for kk, vv in (r.get("passo") or {}).items():
+                d[kk] = d.get(kk, 0) + vv * i
+            c["desloc"] = d
+            if i and c.get("nome"):
+                c["nome"] = f'{c["nome"]}_{i + 1}'
+            out.append(c)
+    return out
+
+
 def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple[list[Peca], dict]:
     """Constroi todas as pecas. Devolve (pecas, ancoras em studs)."""
     indice = {n: i + 1 for i, n in enumerate(nomes_materiais)}
@@ -131,7 +154,7 @@ def construir_pecas(spec_pecas: list[dict], nomes_materiais: list[str]) -> tuple
         # as caixas guardadas estao em voxels DESTE corte quando todas as pecas usam o mesmo corte; pecas de
         # cortes diferentes sao convertidas por fator inteiro
         g = np.zeros((_CAMPO,) * 3, np.uint8)
-        for i, op in enumerate(sp.get("formas", [])):
+        for i, op in enumerate(_expandir(sp.get("formas", []))):
             onde = f'peca "{nome}", forma {i + 1}'
             tipo = op.get("op")
             if tipo not in OPS:

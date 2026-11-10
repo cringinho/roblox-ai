@@ -22,3 +22,5 @@ Nada deste runtime foi testado dentro do Studio. Este roteiro é o primeiro test
 
 O que anotar e me dizer: (a) as cores de vértice aparecem? (b) o modelo vem de frente ou de costas?
 (c) as juntas giram no lugar certo? (d) a animação fica lisa a 60 fps com 20 modelos?
+(e) a espada do herói aparece inclinada para a frente, fora da cabeça, mesmo antes de qualquer animação tocar?
+(é o campo `Repouso` dos dados, aplicado no `C0` da junta) (f) o joelho dobra ao andar e o pé não desliza?

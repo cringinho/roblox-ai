@@ -19,7 +19,8 @@ from .render import render_modelo
 
 PASTA_CONFIG = Path(__file__).resolve().parents[2] / "registro" / "config"
 PADRAO = {
-    "monstro": {"nota_minima": 75, "brilho_max": 0.04, "cores": [6, 32], "assimetria_min": 0.004},
+    "monstro": {"nota_minima": 75, "brilho_max": 0.04, "cores": [6, 32], "assimetria_min": 0.004,
+                "voxels_min": 1000, "ossos_min": 8},
     "heroi": {"nota_minima": 75, "brilho_max": 0.03, "cores": [8, 40], "assimetria_min": 0.0},
     "item": {"nota_minima": 70, "brilho_max": 0.40, "cores": [3, 24], "assimetria_min": 0.0},
     "prop": {"nota_minima": 70, "brilho_max": 0.08, "cores": [3, 32], "assimetria_min": 0.0},
@@ -123,6 +124,13 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
     out.append(_r("um_tamanho_de_voxel", len(cortes) <= 1, cortes, "1 tamanho por modelo",
                   'Ha pecas com tamanhos de voxel diferentes (mixels). Use o mesmo "corte" em todas as pecas do modelo; '
                   "se precisa de mais detalhe, suba o corte do modelo inteiro."))
+    if pf.get("voxels_min") or pf.get("ossos_min"):
+        nv, nb = modelo.n_voxels(), sum(1 for o in modelo.ossos if o.pai is not None)
+        ok = nv >= pf.get("voxels_min", 0) and nb >= pf.get("ossos_min", 0)
+        out.append(_r("detalhe_minimo", ok, {"voxels": nv, "ossos": nb},
+                      f'>= {pf.get("voxels_min", 0)} voxels e >= {pf.get("ossos_min", 0)} ossos',
+                      'Criatura simples demais. Mais ossos: "segmentos": 2 nos bracos e pernas, mandibula, orelhas, cauda em '
+                      'cadeia. Mais voxels: garras, dentes, espinhos e placas com "repetir"; ou aumente o corpo.'))
     tri = contar_triangulos(modelo)
     modelo.meta["triangulos"] = tri["total"]
     out.append(_r("triangulos_por_malha", tri["maior"] <= TETO_TRIANGULOS, tri["maior"], TETO_TRIANGULOS,

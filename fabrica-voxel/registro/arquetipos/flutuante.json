@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.flutuante",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Flutuante",
  "_ajuda": "Espectro, olho ou medusa: paira, sem pernas, com panos em mola.",
  "materiais": [
@@ -165,7 +165,28 @@
       "direita": 2,
       "frente": 2
      },
-     "material": "corpo"
+     "material": "corpo",
+     "nome": "palma"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "palma.base",
+     "desloc": {
+      "frente": 1,
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -185,7 +206,200 @@
       "frente": 2,
       "baixo": 1
      },
+     "material": "corpo",
+     "nome": "palma"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "palma.base",
+     "desloc": {
+      "frente": 1,
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
+    }
+   ]
+  },
+  {
+   "nome": "Mandibula",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      5,
+      2,
+      5
+     ],
+     "em": "Corpo.t.base",
+     "desloc": {
+      "frente": 1.5
+     },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Manga_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      6,
+      4
+     ],
+     "em": "Corpo.t.dir",
+     "desloc": {
+      "cima": 1,
+      "direita": -1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Manga_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      6,
+      4
+     ],
+     "em": "Corpo.t.esq",
+     "desloc": {
+      "cima": 1,
+      "esquerda": -1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Capuz",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      11,
+      5,
+      9
+     ],
+     "raio": 2,
+     "em": "Corpo.t.topo",
+     "desloc": {
+      "baixo": 2,
+      "tras": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      7,
+      3,
+      2
+     ],
+     "em": "c.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 1
+     },
+     "modo": "cortar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      3,
+      3
+     ],
+     "em": "c.tras",
+     "desloc": {
+      "frente": 1,
+      "baixo": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Tira_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      1
+     ],
+     "em": "Pano_2.base",
+     "desloc": {
+      "esquerda": 3
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Tira_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      1
+     ],
+     "em": "Pano_2.base",
+     "desloc": {
+      "direita": 3
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Tira_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      1
+     ],
+     "em": "Pano_2.base",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "detalhe"
     }
    ]
   }
@@ -242,6 +456,107 @@
     "em": "Mao_E.centro"
    },
    "papel": "mao"
+  },
+  {
+   "nome": "Mandibula",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Mandibula.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Manga_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Manga_D.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.2,
+   "atraso_seguir_s": 0.12
+  },
+  {
+   "nome": "Manga_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Manga_E.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.2,
+   "atraso_seguir_s": 0.12
+  },
+  {
+   "nome": "Capuz",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Capuz.c.base"
+   },
+   "papel": "pano",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.6,
+    "atraso_s": 0.15
+   }
+  },
+  {
+   "nome": "Tira_1",
+   "pai": "Pano_2",
+   "pivo": {
+    "em": "Tira_1.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.3,
+   "atraso_seguir_s": 0.12,
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.2000000000000002,
+    "atraso_s": 0.12000000000000001
+   }
+  },
+  {
+   "nome": "Tira_2",
+   "pai": "Pano_2",
+   "pivo": {
+    "em": "Tira_2.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.3,
+   "atraso_seguir_s": 0.12,
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.3,
+    "atraso_s": 0.14
+   }
+  },
+  {
+   "nome": "Tira_3",
+   "pai": "Pano_2",
+   "pivo": {
+    "em": "Tira_3.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.3,
+   "atraso_seguir_s": 0.12,
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.4000000000000001,
+    "atraso_s": 0.16
+   }
   }
  ],
  "clipes": [
@@ -296,6 +611,47 @@
      "amp": 0.035,
      "harm": 2,
      "fase": 0.6
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_D",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 2,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_D",
+     "canal": "tombar_direita",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_E",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 2,
+     "fase": 0.33
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_E",
+     "canal": "tombar_direita",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.8
     }
    ]
   },
@@ -352,6 +708,46 @@
      "amp": 6,
      "harm": 2,
      "fase_por_osso": -0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_D",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 2,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_D",
+     "canal": "tombar_direita",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_E",
+     "canal": "frente",
+     "amp": 8,
+     "harm": 2,
+     "fase": 0.33
+    },
+    {
+     "tipo": "onda",
+     "osso": "Manga_E",
+     "canal": "tombar_direita",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.8
     }
    ]
   },
@@ -442,6 +838,37 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -483,6 +910,28 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula": {
+         "frente": 22
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -514,6 +963,32 @@
         },
         "Pano_2": {
          "frente": 40
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula": {
+         "frente": 26
         }
        }
       }

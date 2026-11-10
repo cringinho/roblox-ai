@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.bipede_digitigrado",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Bipede digitigrado",
  "_ajuda": "Corpo horizontal equilibrado pela cauda: teropode, ave que nao voa, cocatriz.",
  "materiais": [
@@ -43,9 +43,9 @@
      "op": "caixa",
      "nome": "t",
      "tam": [
-      7,
-      7,
-      12
+      9,
+      8,
+      13
      ],
      "chanfro": 2,
      "em": "chao",
@@ -53,6 +53,25 @@
       "cima": 9
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "t.topo",
+     "desloc": {
+      "frente": 3
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 3,
+      "passo": {
+       "tras": 3
+      }
+     }
     }
    ]
   },
@@ -129,6 +148,19 @@
       "baixo": 1
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      4
+     ],
+     "em": "cranio.topo",
+     "desloc": {
+      "tras": 2
+     },
+     "material": "detalhe"
     }
    ]
   },
@@ -139,15 +171,49 @@
      "op": "caixa",
      "tam": [
       3,
-      10,
+      11,
       4
      ],
      "em": "chao",
      "desloc": {
-      "direita": 3,
+      "direita": 4,
       "frente": 0
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      3,
+      2,
+      7
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -158,15 +224,49 @@
      "op": "caixa",
      "tam": [
       3,
-      10,
+      11,
       4
      ],
      "em": "chao",
      "desloc": {
-      "esquerda": 3,
+      "esquerda": 4,
       "frente": 0
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "nome": "pe",
+     "tam": [
+      3,
+      2,
+      7
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "pe.frente",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 2,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -223,6 +323,118 @@
      "material": "corpo"
     }
    ]
+  },
+  {
+   "nome": "Mandibula",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      3,
+      1,
+      6
+     ],
+     "em": "Cabeca.cranio.base",
+     "desloc": {
+      "frente": 1.0
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "q.frente",
+     "desloc": {
+      "cima": 1,
+      "direita": 1.0
+     },
+     "material": "detalhe",
+     "espelhar": true
+    }
+   ]
+  },
+  {
+   "nome": "Braco_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      2
+     ],
+     "em": "Corpo.t.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 4.5,
+      "baixo": 3
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      1
+     ],
+     "em": "base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Braco_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      6,
+      2
+     ],
+     "em": "Corpo.t.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 4.5,
+      "baixo": 3
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      1
+     ],
+     "em": "base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "detalhe"
+    }
+   ]
   }
  ],
  "ossos": [
@@ -241,7 +453,11 @@
     "em": "Pescoco.base"
    },
    "papel": "pescoco",
-   "junta": 2
+   "junta": 1,
+   "segmentos": 2,
+   "dobra": "livre",
+   "ganho_seguir": 0.6,
+   "eixo": "y"
   },
   {
    "nome": "Cabeca",
@@ -258,7 +474,11 @@
    "pivo": {
     "em": "Perna_D.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "reverso",
+   "junta": 1,
+   "eixo": "y"
   },
   {
    "nome": "Perna_E",
@@ -266,7 +486,11 @@
    "pivo": {
     "em": "Perna_E.topo"
    },
-   "papel": "perna"
+   "papel": "perna",
+   "segmentos": 2,
+   "dobra": "reverso",
+   "junta": 1,
+   "eixo": "y"
   },
   {
    "nome": "Cauda_1",
@@ -309,6 +533,38 @@
     "amort": 0.35,
     "max_graus": 30
    }
+  },
+  {
+   "nome": "Mandibula",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Mandibula.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Braco_D",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Braco_D.topo"
+   },
+   "papel": "braco",
+   "segmentos": 2,
+   "dobra": "cotovelo",
+   "junta": 1,
+   "eixo": "y"
+  },
+  {
+   "nome": "Braco_E",
+   "pai": "Corpo",
+   "pivo": {
+    "em": "Braco_E.topo"
+   },
+   "papel": "braco",
+   "segmentos": 2,
+   "dobra": "cotovelo",
+   "junta": 1,
+   "eixo": "y"
   }
  ],
  "clipes": [
@@ -365,6 +621,31 @@
      "amp": 3,
      "harm": 2,
      "fase_por_osso": -0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "frente",
+     "amp": 5,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.45
     }
    ]
   },
@@ -440,6 +721,30 @@
      "amp": 3,
      "harm": 2,
      "fase_por_osso": -0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_D",
+     "canal": "frente",
+     "amp": 12,
+     "harm": 1,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Braco_E",
+     "canal": "frente",
+     "amp": 11,
+     "harm": 1,
+     "fase": 0.03
     }
    ]
   },
@@ -510,6 +815,37 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -543,6 +879,28 @@
        "pose": {
         "Corpo": {
          "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula": {
+         "frente": 22
         }
        }
       },
@@ -619,6 +977,32 @@
         },
         "Cabeca": {
          "tombar_direita": 20
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula": {
+         "frente": 26
         }
        }
       }

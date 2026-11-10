@@ -56,6 +56,8 @@ Leia **só** o cartão da tarefa. Não leia `docs/ARQUITETURA.md` a menos que v�
 - 1 a 3 assimetrias intencionais (uma ombreira, um chifre quebrado, uma orelha rasgada).
 - Nunca ruído: padrão só onde há lógica (musgo em cima, ferrugem na aresta).
 - Tudo no mesmo voxel de 0,125 stud (corte `grade`). Só estrutura e prop grande usam 0,25 (`mundo`).
+- Criatura tem 1000 voxels ou mais e 8 ossos ou mais: braço e perna em dois ossos (`"segmentos": 2`), mandíbula,
+  orelhas ou chifres que balançam (`seguir_pai`), garras e espinhos com `"repetir"`.
 
 ## Barra de movimento
 

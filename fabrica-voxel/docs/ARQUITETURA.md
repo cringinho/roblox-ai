@@ -59,7 +59,7 @@ Deslocamentos na ficha são sempre semânticos e em voxels inteiros do corte da 
 Cinemática direta: a transformação de um osso leva **coordenadas de repouso do modelo** para a pose:
 
 ```
-M_osso = M_pai · T(pivo) · T(trans) · R(rot) · S(escala) · T(−pivo)
+M_osso = M_pai · T(pivo) · R(repouso) · T(trans) · R(rot) · S(escala) · T(−pivo)
 ```
 
 Como o repouso não tem rotação, os voxels de uma peça ficam em coordenadas de repouso e basta aplicar `M_osso`.
@@ -225,3 +225,22 @@ StarterPlayer/StarterPlayerScripts/FabricaCliente.client.luau
 
 Regras de código: `game:GetService`, `pcall` em tudo que toca asset ou rede, `WaitForChild`/`FindFirstChild`,
 instâncias que faltarem são criadas por código, cliente e servidor isolados, comentário no topo dizendo onde colar.
+
+
+## Adendo 4.1: empunhadura, cadeias e detalhe mínimo
+
+- **Giro de repouso por osso** (`Osso.repouso`, quaternion). A grade continua reta; a peça gira como corpo rígido em
+  torno do pivô. No Roblox entra no `C0` do Motor6D (`Rig.luau`); no GLB, na rotação do nó. As trilhas dos clipes
+  Luau não o incluem; os canais do GLB incluem, porque no glTF o canal substitui a rotação do nó.
+- **`fabrica/nucleo/colisao.py`**: `escolher_empunhadura` (giro de repouso do item por medição),
+  `desviar_itens` (afasta a mão nos quadros com contato; uma direção por clipe, alargada e suavizada no tempo).
+- **`anim._golpe`**: recuperação pela guarda; `centro_H` na ficha do golpe; a mão desfaz o giro de repouso do item.
+  `heroi/cli._ajustar_golpe` procura plano, centro e raio por herói.
+- **Cadeias** (`montagem._segmentar`): `"segmentos"` no osso corta a peça; pivôs dos filhos ficam na reta do pivô do
+  osso. `anim._perna_ik` (IK analítico de dois ossos na camada `passos`) e `anim._seguir_cadeias`
+  (seguimento automático de segmentos sem camada). `modelo.meta["cadeias"]` e `["seguir"]` guardam a estrutura.
+- **Forma**: `"repetir"` expande uma forma em n cópias.
+- **Portões novos no P1**: `um_tamanho_de_voxel`, `item_atravessa_corpo` (2% dos voxels do item, todo quadro),
+  `detalhe_minimo` (monstro: 1000 voxels e 8 ossos).
+- **Correção**: no modo `perna` rígido a perna balançava ao contrário (o pé ia para a frente durante o apoio).
+- Pesquisa de apoio: `docs/pesquisa/04-empunhadura-e-ossos.md`.

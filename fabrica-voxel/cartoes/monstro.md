@@ -38,3 +38,7 @@
 
 Erros comuns: esquecer um dos quatro materiais; `extras` numa peça que não existe (a mensagem lista as peças);
 detalhe de 1 voxel solto no ar (encoste na peça).
+
+**Detalhe mínimo (portão `detalhe_minimo`):** toda criatura precisa de 1000 voxels ou mais e de 8 ossos ou mais.
+Os 20 arquétipos já passam (11 a 25 ossos). Se a sua variante reprovar, veja em `cartoes/forma.md` os campos
+`segmentos`, `seguir_pai` e `repetir`.

@@ -35,3 +35,20 @@ A primeira forma do modelo usa `"em": "chao"`. Frente da criatura = para onde el
 `junta: 2` põe uma esfera de raio 2 no pivô, para a junta não abrir fresta quando gira.
 
 Regras: nada menor que 1 voxel; detalhe fino com 2 voxels de espessura; peça pequena (lado < 5) não leva chanfro.
+
+**Repetir** (dentes, garras, espinhos, costelas, placas): uma forma vira várias, cada uma um passo adiante.
+```json
+{"op": "caixa", "tam": [1, 2, 1], "em": "t.topo", "desloc": {"frente": 4}, "material": "detalhe",
+ "repetir": {"n": 4, "passo": {"tras": 3}}}
+```
+
+**Mais ossos sem redesenhar** (no osso, não na peça):
+
+| Campo do osso | O que faz |
+| --- | --- |
+| `"segmentos": 2` | corta a peça em dois ossos em cadeia (coxa e canela, braço e antebraço). Nascem `<Nome>_2`, `<Nome>_3`. Use `"eixo": "y"` em braço e perna |
+| `"dobra"` | `joelho` (perna), `reverso` (perna de trás de quadrúpede, perna de ave), `cotovelo` (braço), `livre` (cauda, pescoço, asa, tentáculo) |
+| `"seguir_pai": {"modo": "livre", "ganho": 0.8, "atraso_s": 0.1}` | o osso acompanha o pai com atraso, sem camada no clipe: orelha, chifre, bolsa, pano |
+| `"repouso": {"frente": 12}` | giro fixo do osso em graus (a grade continua reta) |
+
+Uma peça pode pender de um segmento: `"pai": "Braco_D_2"` (a mão na ponta do antebraço).

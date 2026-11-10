@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.enraizado",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Enraizado",
  "_ajuda": "Planta ou torreta presa ao chao: mandragora, flor carnivora, olho de cripta.",
  "materiais": [
@@ -93,6 +93,32 @@
       "baixo": 1
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "tras",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
     }
    ]
   },
@@ -111,6 +137,32 @@
       "baixo": 1
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "tras",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
     }
    ]
   },
@@ -129,6 +181,32 @@
       "baixo": 1
      },
      "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "frente",
+     "desloc": {
+      "cima": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      1
+     ],
+     "em": "tras",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
     }
    ]
   },
@@ -185,16 +263,20 @@
      "op": "caixa",
      "tam": [
       2,
-      3,
+      4,
       2
      ],
      "em": "cranio.topo",
      "desloc": {
-      "direita": 2
+      "tras": 2
      },
-     "material": "detalhe",
-     "espelhar": true
-    },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Petala_D",
+   "formas": [
     {
      "op": "caixa",
      "tam": [
@@ -202,9 +284,186 @@
       4,
       2
      ],
-     "em": "cranio.topo",
+     "em": "Cabeca.cranio.topo",
      "desloc": {
+      "direita": 2.0,
+      "tras": 0
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Petala_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      4,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "esquerda": 2.0,
+      "tras": 0
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Mandibula",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      6,
+      2,
+      7
+     ],
+     "em": "Cabeca.cranio.base",
+     "desloc": {
+      "frente": 0.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      4,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "q.frente",
+     "desloc": {
+      "cima": 1,
+      "direita": 2.5
+     },
+     "material": "detalhe",
+     "espelhar": true
+    }
+   ]
+  },
+  {
+   "nome": "Folha_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "f",
+     "tam": [
+      8,
+      1,
+      3
+     ],
+     "em": "Haste_2.dir",
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      5
+     ],
+     "em": "f.dir",
+     "encaixe": "dentro",
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Folha_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "f",
+     "tam": [
+      8,
+      1,
+      3
+     ],
+     "em": "Haste_2.esq",
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      5
+     ],
+     "em": "f.esq",
+     "encaixe": "dentro",
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Raiz_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      6
+     ],
+     "em": "Base.t.frente",
+     "desloc": {
+      "baixo": 1,
+      "esquerda": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Raiz_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      6,
+      2,
+      2
+     ],
+     "em": "Base.t.dir",
+     "desloc": {
+      "baixo": 1,
       "tras": 2
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Raiz_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      6
+     ],
+     "em": "Base.t.tras",
+     "desloc": {
+      "baixo": 1,
+      "esquerda": 2
      },
      "material": "detalhe"
     }
@@ -270,6 +529,104 @@
    },
    "papel": "cabeca",
    "junta": 2
+  },
+  {
+   "nome": "Petala_D",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Petala_D.base"
+   },
+   "papel": "orelha",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.9,
+    "atraso_s": 0.09
+   }
+  },
+  {
+   "nome": "Petala_E",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Petala_E.base"
+   },
+   "papel": "orelha",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.8,
+    "atraso_s": 0.12
+   }
+  },
+  {
+   "nome": "Mandibula",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Mandibula.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Folha_D",
+   "pai": "Haste_2",
+   "pivo": {
+    "em": "Haste_2.dir"
+   },
+   "papel": "folha",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "eixo": "x",
+   "ganho_seguir": 1.1,
+   "atraso_seguir_s": 0.12
+  },
+  {
+   "nome": "Folha_E",
+   "pai": "Haste_2",
+   "pivo": {
+    "em": "Haste_2.esq"
+   },
+   "papel": "folha",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "eixo": "x",
+   "ganho_seguir": 1.1,
+   "atraso_seguir_s": 0.12
+  },
+  {
+   "nome": "Raiz_1",
+   "pai": "Base",
+   "pivo": {
+    "em": "Raiz_1.tras"
+   },
+   "papel": "raiz_planta",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.0
+  },
+  {
+   "nome": "Raiz_2",
+   "pai": "Base",
+   "pivo": {
+    "em": "Raiz_2.esq"
+   },
+   "papel": "raiz_planta",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.0
+  },
+  {
+   "nome": "Raiz_3",
+   "pai": "Base",
+   "pivo": {
+    "em": "Raiz_3.frente"
+   },
+   "papel": "raiz_planta",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.0
   }
  ],
  "clipes": [
@@ -302,6 +659,71 @@
      "amp": 10,
      "harm": 1,
      "harm2": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_D",
+     "canal": "tombar_direita",
+     "amp": 9,
+     "harm": 2,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_D",
+     "canal": "esquerda",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_E",
+     "canal": "tombar_direita",
+     "amp": -9,
+     "harm": 2,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_E",
+     "canal": "esquerda",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.75
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_1",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_2",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_3",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.6000000000000001
     }
    ]
   },
@@ -317,6 +739,70 @@
      "amp": 8,
      "harm": 1,
      "fase_por_osso": -0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_D",
+     "canal": "tombar_direita",
+     "amp": 9,
+     "harm": 2,
+     "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_D",
+     "canal": "esquerda",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_E",
+     "canal": "tombar_direita",
+     "amp": -9,
+     "harm": 2,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Folha_E",
+     "canal": "esquerda",
+     "amp": 5,
+     "harm": 1,
+     "fase": 0.75
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_1",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_2",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Raiz_3",
+     "canal": "esquerda",
+     "amp": 6,
+     "harm": 2,
+     "fase": 0.6000000000000001
     }
    ]
   },
@@ -401,6 +887,101 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Folha_D": {
+         "tombar_direita": -30
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Folha_D": {
+         "tombar_direita": 22,
+         "esquerda": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.42,
+       "curva": "suave",
+       "pose": {
+        "Folha_E": {
+         "tombar_direita": 30
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Folha_E": {
+         "tombar_direita": -22,
+         "esquerda": -30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -442,6 +1023,28 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula": {
+         "frente": 22
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -471,6 +1074,32 @@
         },
         "Cabeca": {
          "frente": 30
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula": {
+         "frente": 26
         }
        }
       }

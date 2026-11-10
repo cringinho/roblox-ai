@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.heroi_solto",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Heroi de pecas soltas",
  "_ajuda": "Base das linhagens e de NPCs humanoides: cabeca, tronco, maos e pes soltos. Para heroi de verdade use: python -m fabrica heroi <linhagem>. Este arquivo e a versao simples para NPC/monstro.",
  "materiais": [
@@ -52,6 +52,21 @@
       "cima": 6
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      8,
+      1,
+      5
+     ],
+     "em": "t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "cima": 2
+     },
+     "material": "detalhe",
+     "modo": "pintar"
     }
    ]
   },
@@ -160,6 +175,18 @@
       "frente": 0.5
      },
      "material": "escuro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      4
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
     }
    ]
   },
@@ -179,6 +206,175 @@
       "frente": 0.5
      },
      "material": "escuro"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      1,
+      4
+     ],
+     "em": "base",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Mandibula",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "q",
+     "tam": [
+      8,
+      2,
+      8
+     ],
+     "em": "Cabeca.cranio.base",
+     "desloc": {
+      "frente": 1.5
+     },
+     "material": "corpo"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      6,
+      1,
+      1
+     ],
+     "em": "q.topo_frente",
+     "encaixe": "dentro",
+     "material": "escuro",
+     "modo": "pintar"
+    }
+   ]
+  },
+  {
+   "nome": "Orelha_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "direita": 6.5,
+      "tras": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Orelha_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      3,
+      2
+     ],
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "esquerda": 6.5,
+      "tras": 1
+     },
+     "material": "corpo"
+    }
+   ]
+  },
+  {
+   "nome": "Cabelo",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      12,
+      3,
+      11
+     ],
+     "raio": 1,
+     "em": "Cabeca.cranio.topo",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      12,
+      6,
+      2
+     ],
+     "em": "c.tras",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 4,
+      "tras": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      2,
+      1
+     ],
+     "em": "c.frente",
+     "desloc": {
+      "baixo": 2,
+      "direita": 3
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Capa",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      8,
+      10,
+      1
+     ],
+     "em": "Tronco.t.tras",
+     "desloc": {
+      "baixo": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Bolsa",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      3,
+      2
+     ],
+     "em": "Tronco.t.esq",
+     "encaixe": "dentro",
+     "desloc": {
+      "baixo": 3,
+      "esquerda": 1,
+      "frente": 1
+     },
+     "material": "detalhe"
     }
    ]
   }
@@ -231,6 +427,79 @@
     "em": "Pe_E.centro"
    },
    "papel": "pe"
+  },
+  {
+   "nome": "Mandibula",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Mandibula.q.topo_tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Orelha_D",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Orelha_D.base"
+   },
+   "papel": "orelha",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.9,
+    "atraso_s": 0.09
+   }
+  },
+  {
+   "nome": "Orelha_E",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Orelha_E.base"
+   },
+   "papel": "orelha",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.8,
+    "atraso_s": 0.12
+   }
+  },
+  {
+   "nome": "Cabelo",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Cabelo.c.base"
+   },
+   "papel": "cabelo",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 0.3,
+    "atraso_s": 0.12
+   }
+  },
+  {
+   "nome": "Capa",
+   "pai": "Tronco",
+   "pivo": {
+    "em": "Capa.topo"
+   },
+   "papel": "pano",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.2,
+   "atraso_seguir_s": 0.12
+  },
+  {
+   "nome": "Bolsa",
+   "pai": "Tronco",
+   "pivo": {
+    "em": "Bolsa.topo"
+   },
+   "papel": "adorno",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.5,
+    "atraso_s": 0.1
+   }
   }
  ],
  "clipes": [
@@ -270,6 +539,23 @@
      "amp": 3,
      "harm": 3,
      "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 3,
+     "harm": 3,
+     "fase": 0.15,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Capa",
+     "canal": "frente",
+     "amp": -4,
+     "harm": 2,
+     "fase": 0.3
     }
    ]
   },
@@ -344,6 +630,43 @@
      "amp": 0.11,
      "harm": 1,
      "fase": 0.03
+    },
+    {
+     "tipo": "onda",
+     "osso": "Mandibula",
+     "canal": "frente",
+     "amp": 4,
+     "harm": 2,
+     "fase": 0.4
+    },
+    {
+     "tipo": "onda",
+     "osso": "Capa",
+     "canal": "frente",
+     "amp": -8,
+     "harm": 2,
+     "fase": 0.2
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {
+        "Capa": {
+         "frente": -14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Capa": {
+         "frente": -14
+        }
+       }
+      }
+     ]
     }
    ]
   },
@@ -425,6 +748,37 @@
        "pose": {}
       }
      ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 34
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Mandibula": {
+         "frente": 2
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
     }
    ]
   },
@@ -458,6 +812,28 @@
        "pose": {
         "Tronco": {
          "frente": 4
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.2,
+       "curva": "sai",
+       "pose": {
+        "Mandibula": {
+         "frente": 22
         }
        }
       },
@@ -534,6 +910,32 @@
         },
         "Cabeca": {
          "tombar_direita": 20
+        }
+       }
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.6,
+       "curva": "suave",
+       "pose": {
+        "Mandibula": {
+         "frente": 30
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {
+        "Mandibula": {
+         "frente": 26
         }
        }
       }

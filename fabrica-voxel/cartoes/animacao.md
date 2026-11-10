@@ -26,3 +26,10 @@ Receita de ataque que funciona: `t 0` repouso → `t 0.42` recua (curva `suave`)
 
 Fases de andadura: bípede `0` e `0.52`; quadrúpede passo TE `0`, DE `0.25`, TD `0.5`, DD `0.75`; trote pares
 diagonais `0` e `0.5`; seis pernas em tripé alternado; oito em dois grupos de quatro.
+
+**Perna de dois ossos:** se o osso da perna tem `"segmentos": 2` e `"dobra": "joelho"` ou `"reverso"`, a camada
+`passos` em `"modo": "perna"` resolve o joelho sozinha: o pé fica parado no chão durante o apoio e o corpo desce um
+pouco (`"agacho": 0.07`, fração do comprimento da perna) para o joelho ter folga. Não escreva camada para `<Perna>_2`.
+
+**Segmentos que ninguém animou** (antebraço, canela fora do andar, ponta de cauda, orelha) acompanham o osso de cima
+com atraso. Para a cauda inteira ondular, anime só `Cauda_1`; o resto vem atrás.

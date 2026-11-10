@@ -25,7 +25,8 @@ _MODELO = {
     "materiais": (list, True, 'nomes da tabela padrao ("ferro") ou {"nome", "como", "rampa", "perfil", "brilho", "tom"}'),
     "pecas": (list, True, 'lista de {"nome", "osso", "corte", "formas": [...]}'),
     "+pecas": (list, False, "acrescenta pecas as herdadas"),
-    "ossos": (list, False, '{"nome", "pai", "pivo": {"em": ancora, "desloc": {...}}, "papel", "junta", "mola"}'),
+    "ossos": (list, False, '{"nome", "pai", "pivo": {"em": ancora, "desloc": {...}}, "papel", "junta", "mola", "repouso": {"frente": graus}, '
+                     '"segmentos": 2 (corta a peca em coxa e canela), "dobra": joelho|reverso|cotovelo|livre, "seguir_pai": {"modo", "ganho"}}'),
     "+ossos": (list, False, "acrescenta ossos aos herdados"),
     "soquetes": (list, False, '{"nome", "osso", "em": ancora, "desloc": {...}}'),
     "+soquetes": (list, False, "acrescenta soquetes"),

@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.corrente",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Corrente",
  "_ajuda": "Serpente, verme ou centopeia: segmentos rigidos curtos com onda viajante.",
  "materiais": [
@@ -39,9 +39,9 @@
      "op": "caixa",
      "nome": "cranio",
      "tam": [
+      7,
       6,
-      5,
-      6
+      7
      ],
      "raio": 1,
      "em": "chao",
@@ -86,9 +86,9 @@
     {
      "op": "caixa",
      "tam": [
+      6,
       5,
-      4,
-      4
+      5
      ],
      "em": "Cabeca.cranio.tras",
      "desloc": {
@@ -109,6 +109,16 @@
       "cima": 2
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "topo",
+     "material": "detalhe"
     }
    ]
   },
@@ -118,9 +128,9 @@
     {
      "op": "caixa",
      "tam": [
+      6,
       5,
-      4,
-      4
+      5
      ],
      "em": "Seg_1.tras",
      "desloc": {
@@ -150,9 +160,9 @@
     {
      "op": "caixa",
      "tam": [
+      6,
       5,
-      4,
-      4
+      5
      ],
      "em": "Seg_2.tras",
      "desloc": {
@@ -173,6 +183,16 @@
       "cima": 2
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "topo",
+     "material": "detalhe"
     }
    ]
   },
@@ -182,9 +202,9 @@
     {
      "op": "caixa",
      "tam": [
+      6,
       5,
-      4,
-      4
+      5
      ],
      "em": "Seg_3.tras",
      "desloc": {
@@ -214,9 +234,9 @@
     {
      "op": "caixa",
      "tam": [
+      5,
       4,
-      3,
-      4
+      5
      ],
      "em": "Seg_4.tras",
      "desloc": {
@@ -237,6 +257,16 @@
       "cima": 2
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "topo",
+     "material": "detalhe"
     }
    ]
   },
@@ -246,9 +276,9 @@
     {
      "op": "caixa",
      "tam": [
+      5,
       4,
-      3,
-      4
+      5
      ],
      "em": "Seg_5.tras",
      "desloc": {
@@ -278,9 +308,9 @@
     {
      "op": "caixa",
      "tam": [
+      5,
       4,
-      3,
-      4
+      5
      ],
      "em": "Seg_6.tras",
      "desloc": {
@@ -301,6 +331,16 @@
       "cima": 2
      },
      "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      2
+     ],
+     "em": "topo",
+     "material": "detalhe"
     }
    ]
   },
@@ -310,9 +350,9 @@
     {
      "op": "caixa",
      "tam": [
-      3,
-      3,
-      4
+      4,
+      4,
+      5
      ],
      "em": "Seg_7.tras",
      "desloc": {
@@ -331,6 +371,124 @@
      "desloc": {
       "tras": 2,
       "cima": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      3
+     ],
+     "em": "tras",
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pinca_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "p",
+     "tam": [
+      1,
+      2,
+      4
+     ],
+     "em": "Cabeca.cranio.frente",
+     "desloc": {
+      "baixo": 1,
+      "direita": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      1
+     ],
+     "em": "p.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Antena_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      5
+     ],
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 2,
+      "frente": 4
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pinca_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "p",
+     "tam": [
+      1,
+      2,
+      4
+     ],
+     "em": "Cabeca.cranio.frente",
+     "desloc": {
+      "baixo": 1,
+      "esquerda": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      1
+     ],
+     "em": "p.frente",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Antena_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      1,
+      5
+     ],
+     "em": "Cabeca.cranio.topo",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 2,
+      "frente": 4
      },
      "material": "detalhe"
     }
@@ -417,6 +575,46 @@
    },
    "papel": "segmento",
    "junta": 1
+  },
+  {
+   "nome": "Pinca_D",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Pinca_D.p.tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Antena_D",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Antena_D.tras"
+   },
+   "papel": "antena",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.0
+  },
+  {
+   "nome": "Pinca_E",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Pinca_E.p.tras"
+   },
+   "papel": "mandibula"
+  },
+  {
+   "nome": "Antena_E",
+   "pai": "Cabeca",
+   "pivo": {
+    "em": "Antena_E.tras"
+   },
+   "papel": "antena",
+   "segmentos": 2,
+   "dobra": "livre",
+   "junta": 0,
+   "ganho_seguir": 1.0
   }
  ],
  "meta": {},
@@ -449,6 +647,56 @@
      "canal": "frente",
      "amp": 4,
      "harm": 3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Pinca_D",
+     "canal": "esquerda",
+     "amp": 8,
+     "harm": 3,
+     "fase": 0.1,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_D",
+     "canal": "esquerda",
+     "amp": 12,
+     "harm": 2,
+     "fase": 0.15
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_D",
+     "canal": "frente",
+     "amp": 7,
+     "harm": 3,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Pinca_E",
+     "canal": "esquerda",
+     "amp": -8,
+     "harm": 3,
+     "fase": 0.16,
+     "forma": "pulso"
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_E",
+     "canal": "esquerda",
+     "amp": 12,
+     "harm": 2,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_E",
+     "canal": "frente",
+     "amp": 7,
+     "harm": 3,
+     "fase": 0.05
     }
    ]
   },
@@ -474,6 +722,38 @@
      "amp": -9.6,
      "harm": 2,
      "fase": 0.1
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_D",
+     "canal": "esquerda",
+     "amp": 12,
+     "harm": 2,
+     "fase": 0.15
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_D",
+     "canal": "frente",
+     "amp": 7,
+     "harm": 3,
+     "fase": 0.3
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_E",
+     "canal": "esquerda",
+     "amp": 12,
+     "harm": 2,
+     "fase": 0.5
+    },
+    {
+     "tipo": "onda",
+     "osso": "Antena_E",
+     "canal": "frente",
+     "amp": 7,
+     "harm": 3,
+     "fase": 0.05
     }
    ]
   },
@@ -550,6 +830,68 @@
       {
        "t": 1,
        "curva": "suave",
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Pinca_D": {
+         "esquerda": -30
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Pinca_D": {
+         "esquerda": 14
+        }
+       }
+      },
+      {
+       "t": 1,
+       "pose": {}
+      }
+     ]
+    },
+    {
+     "tipo": "poses",
+     "chaves": [
+      {
+       "t": 0,
+       "pose": {}
+      },
+      {
+       "t": 0.4,
+       "curva": "suave",
+       "pose": {
+        "Pinca_E": {
+         "esquerda": 30
+        }
+       }
+      },
+      {
+       "t": 0.56,
+       "curva": "golpe",
+       "pose": {
+        "Pinca_E": {
+         "esquerda": -14
+        }
+       }
+      },
+      {
+       "t": 1,
        "pose": {}
       }
      ]

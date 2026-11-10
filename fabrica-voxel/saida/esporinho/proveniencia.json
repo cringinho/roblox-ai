@@ -1,20 +1,20 @@
 {
  "id": "monstro.esporinho",
- "hash_ficha": "fc476545b04ee4fb75bbde69bae786f27abd36b82ec3f7118fa5b7516b8c69e0",
+ "hash_ficha": "90d4d1c2a46fe5cbadd4e6cb06931fbd4acd035249fc0d87db6ef44231e20cf1",
  "semente": 0,
  "fabrica": "4.0.0",
  "data": "",
  "arquivos": {
-  "Clipes_Esporinho.luau": "52cccf1de5c6de222e6799ee16d6872eeaeaac51216e19f0171cd0513d9322f2",
-  "Dados_Esporinho.luau": "2936564df6b97c25307d67fd1a4a8e064b4d08ba01f70a085915561a54d4df34",
-  "anim.gif": "3c2dfcaf1258bcfcf989624cbbaec8e465b9be17d57203255c9824d10b6a27cc",
-  "anim_Andar.png": "07b8b8b9ecb594bed913eb804c1b754dc5ccf525c89e14354630ac35740680f8",
-  "anim_Ataque.png": "689577231dc80e9b0635059fe86f45ae851c5b09e36c497a384ab278e1c9552a",
-  "anim_Parado.png": "a4a2967137e1ac43d03f19e138e990a2a68dbb3a93ad456c3c9e45d5042197cb",
-  "folha.png": "3bc5222e47ca1fd6942ffdbd8ed7af505593c7d3ed86ee854843dd484f426a38",
-  "icone_64.png": "5663569866e44cab54b4f1e2d3f93d8429aae7f03639d36b812be3c5cd9f2aff",
-  "modelo.glb": "ae06efd82b2b63ff467b990fdcc50db2d8853743189df2a3ef4f598ade366184",
-  "modelo.vox": "84e14740adec15d1a7ebf56798316ab0686e9f1a05ed4cec8b405e779ca1be9b"
+  "Clipes_Esporinho.luau": "3b2b419be5cec188e3651c45a2d4398bb2fc5fa21cf1ccf37b471fbda1aeb59a",
+  "Dados_Esporinho.luau": "7a86ec60919c568ec40a1da50c01175aec3e86d0bd3ca8bdf4d48950c9667e1f",
+  "anim.gif": "e7a813a7df9563cf7612850dacd1e4efcd4892236572d1eef0cbe1821e86b953",
+  "anim_Andar.png": "93972e003bdf1dbec3d1c6dd0c51c4641ff296486b4ccc0033fe150335ad410e",
+  "anim_Ataque.png": "68569955ad0c53f25a30cf0369c86bf711e7c6649e73dfbcbc93a2d2ed0da6e9",
+  "anim_Parado.png": "a34befbdee6ce40c7a83857f14664b8b77c4fff2fa1864dd89ca3ce357e0d842",
+  "folha.png": "fca3450dfeeda24366cd708c96a9181c217ce1f0f439fa7d916de67d0ced43e4",
+  "icone_64.png": "6507778f557cb480a3be446c2952443ad189d4179bcc87e2ab0907eaae26ce09",
+  "modelo.glb": "83375508cae2d735153f78cd78cd517faddbf5322407250903d4a6dfe838459c",
+  "modelo.vox": "860b704568cb7a54ec9b53dcc9b60e9bf367858b32303131937952c78fe7b2ca"
  },
  "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
  "responsavel": ""

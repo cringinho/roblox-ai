@@ -1,7 +1,7 @@
 {
  "id": "arquetipo.objeto_animado",
  "tipo": "arquetipo",
- "versao": 1,
+ "versao": 2,
  "nome": "Objeto animado",
  "_ajuda": "Mimico: bau, sino, relicario ou livro que ganha vida. Parado e indistinguivel de um prop.",
  "materiais": [
@@ -145,6 +145,26 @@
      },
      "material": "detalhe",
      "espelhar": true
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "t.topo",
+     "desloc": {
+      "frente": 4.5,
+      "esquerda": 4
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 5,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -201,6 +221,26 @@
      "legenda": {
       "O": "olho"
      }
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      1,
+      2,
+      1
+     ],
+     "em": "t.base",
+     "desloc": {
+      "frente": 4.5,
+      "esquerda": 5
+     },
+     "material": "detalhe",
+     "repetir": {
+      "n": 6,
+      "passo": {
+       "direita": 2
+      }
+     }
     }
    ]
   },
@@ -221,6 +261,228 @@
       "frente": 1
      },
      "material": "olho"
+    }
+   ]
+  },
+  {
+   "nome": "Pata_1",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Corpo.t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 5,
+      "frente": 3,
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "c.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pata_2",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Corpo.t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 5,
+      "frente": 3,
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "c.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pata_3",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Corpo.t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "direita": 5,
+      "tras": 3,
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "c.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Pata_4",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "c",
+     "tam": [
+      2,
+      3,
+      2
+     ],
+     "em": "Corpo.t.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "esquerda": 5,
+      "tras": 3,
+      "baixo": 1
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      1,
+      3
+     ],
+     "em": "c.base",
+     "encaixe": "dentro",
+     "desloc": {
+      "frente": 1
+     },
+     "material": "detalhe"
+    }
+   ]
+  },
+  {
+   "nome": "Olho_D",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "h",
+     "tam": [
+      1,
+      3,
+      1
+     ],
+     "em": "Tampa.t.topo",
+     "desloc": {
+      "direita": 4,
+      "frente": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "h.topo",
+     "material": "olho"
+    }
+   ]
+  },
+  {
+   "nome": "Olho_E",
+   "formas": [
+    {
+     "op": "caixa",
+     "nome": "h",
+     "tam": [
+      1,
+      3,
+      1
+     ],
+     "em": "Tampa.t.topo",
+     "desloc": {
+      "esquerda": 4,
+      "frente": 2
+     },
+     "material": "detalhe"
+    },
+    {
+     "op": "caixa",
+     "tam": [
+      2,
+      2,
+      2
+     ],
+     "em": "h.topo",
+     "material": "olho"
+    }
+   ]
+  },
+  {
+   "nome": "Tranca",
+   "formas": [
+    {
+     "op": "caixa",
+     "tam": [
+      3,
+      4,
+      1
+     ],
+     "em": "Tampa.t.frente",
+     "desloc": {
+      "baixo": 3
+     },
+     "material": "detalhe"
     }
    ]
   }
@@ -248,7 +510,82 @@
    "pivo": {
     "em": "Lingua.tras"
    },
-   "papel": "lingua"
+   "papel": "lingua",
+   "segmentos": 3,
+   "dobra": "livre",
+   "ganho_seguir": 1.3,
+   "atraso_seguir_s": 0.07
+  },
+  {
+   "nome": "Pata_1",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Pata_1.c.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Pata_2",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Pata_2.c.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Pata_3",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Pata_3.c.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Pata_4",
+   "pai": "Raiz",
+   "pivo": {
+    "em": "Pata_4.c.topo"
+   },
+   "papel": "perna"
+  },
+  {
+   "nome": "Olho_D",
+   "pai": "Tampa",
+   "pivo": {
+    "em": "Olho_D.h.base"
+   },
+   "papel": "antena",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.5,
+    "atraso_s": 0.1
+   }
+  },
+  {
+   "nome": "Olho_E",
+   "pai": "Tampa",
+   "pivo": {
+    "em": "Olho_E.h.base"
+   },
+   "papel": "antena",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.3,
+    "atraso_s": 0.1
+   }
+  },
+  {
+   "nome": "Tranca",
+   "pai": "Tampa",
+   "pivo": {
+    "em": "Tranca.topo"
+   },
+   "papel": "adorno",
+   "seguir_pai": {
+    "modo": "livre",
+    "ganho": 1.6,
+    "atraso_s": 0.12
+   }
   }
  ],
  "clipes": [
@@ -376,6 +713,32 @@
          "frente": -10
         }
        }
+      }
+     ]
+    },
+    {
+     "tipo": "passos",
+     "modo": "perna",
+     "apoio": 0.5,
+     "passada_H": 0.3,
+     "altura_H": 0.05,
+     "perna_H": 0.2,
+     "pes": [
+      {
+       "osso": "Pata_1",
+       "fase": 0.0
+      },
+      {
+       "osso": "Pata_2",
+       "fase": 0.5
+      },
+      {
+       "osso": "Pata_3",
+       "fase": 0.55
+      },
+      {
+       "osso": "Pata_4",
+       "fase": 0.05
       }
      ]
     }
