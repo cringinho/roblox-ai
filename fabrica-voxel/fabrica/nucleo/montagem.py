@@ -5,7 +5,7 @@ import numpy as np
 
 from . import sdf
 from .anim import assar_clipe
-from .contrato import CORTES, Material, Modelo, Osso, Soquete
+from .contrato import CORTES, Material, Modelo, Osso, Soquete, quat_semantico
 from .forma import ErroFicha, construir_pecas
 from .paleta import Paleta
 from .pintura import pintar
@@ -49,7 +49,7 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
         v = CORTES["grade"]
         piv = np.round(np.asarray(piv) / (v / 2)) * (v / 2)
         ossos.append(Osso(o["nome"], o.get("pai", "Raiz") if o["nome"] != "Raiz" else None, tuple(float(x) for x in piv),
-                          o.get("papel", "corpo"), o.get("limites"), o.get("mola")))
+                          o.get("papel", "corpo"), o.get("limites"), o.get("mola"), _repouso(o)))
     for p in pecas:                       # peca sem osso declarado: osso proprio, pivo na base, filho da Raiz
         if p.osso not in {o.nome for o in ossos}:
             a, b = p.grade.caixa()
@@ -75,6 +75,17 @@ def montar(ficha: dict, paleta: Paleta, *, semente: int = 0, com_clipes: bool = 
             cl = assar_clipe(modelo, r, H=H, fator_tempo=float(np.sqrt(k)) if ficha.get("tempo_por_porte", True) else 1.0)
             modelo.clipes[cl.nome] = cl
     return modelo
+
+
+def _repouso(o: dict):
+    """"repouso": {"frente": 12, "esquerda": 0, "tombar_direita": 0} -> quaternion. Sem o campo, osso reto."""
+    r = o.get("repouso")
+    if not r:
+        return (0.0, 0.0, 0.0, 1.0)
+    ruins = set(r) - {"frente", "esquerda", "tombar_direita"}
+    if ruins:
+        raise ErroFicha(f'osso "{o["nome"]}": "repouso" aceita frente, esquerda e tombar_direita (graus); nao {sorted(ruins)}.')
+    return tuple(float(x) for x in quat_semantico(r.get("frente", 0), r.get("esquerda", 0), r.get("tombar_direita", 0)))
 
 
 def _ordenar(ossos):

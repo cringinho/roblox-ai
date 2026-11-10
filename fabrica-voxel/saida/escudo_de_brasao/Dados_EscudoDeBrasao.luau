@@ -4,7 +4,7 @@
 return {
 	Id = "escudo_de_brasao", Nome = "Escudo de brasao", VersaoFabrica = "4.0.0",
 	Altura = 1.375,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Item", Pai = "Raiz", Pivo = {0.0625, -0.125, 0}, Papel = "corpo", Mola = nil},
 	},

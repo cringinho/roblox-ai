@@ -455,6 +455,12 @@ def vestir(modelo, conjunto: dict, reg: Registro, paleta, resolver, caixas) -> d
         rel["pecas_novas"].append(nome)
     from ..nucleo.contrato import ordem_topologica
     modelo.ossos[:] = ordem_topologica(modelo.ossos)
+    # ---- empunhadura: cada item inclina ate nao tocar o corpo (pose preferida vem da classe de pegada)
+    from ..nucleo import colisao
+    classes = reg.fichas.get("classe_pegada.tabela", {}).get("classes", {})
+    for nome, info in modelo.meta.get("itens", {}).items():
+        info["empunhadura"] = colisao.escolher_empunhadura(modelo, nome, classes.get(info["pegada"], {}).get("descanso"))
+    rel["empunhadura"] = {n: i["empunhadura"] for n, i in modelo.meta.get("itens", {}).items()}
     modelo.meta["equipamento"] = {"conjunto": conjunto.get("id"), **rel}
     return rel
 

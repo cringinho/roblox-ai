@@ -1,0 +1,23 @@
+{
+ "id": "heroi.heroi_anao_c3_placas_de_cripta",
+ "hash_ficha": null,
+ "semente": 0,
+ "fabrica": "4.0.0",
+ "data": "",
+ "arquivos": {
+  "Clipes_HeroiAnaoC3PlacasDeCripta.luau": "7b1ee97302d16f8dec839703627d1668ae10301e9c541c3e19005f0a3a4c31dc",
+  "Dados_HeroiAnaoC3PlacasDeCripta.luau": "1ea35a178d63163f97ce19473b01c45602c8c313fe96a9270bcba9dcedd00a84",
+  "anim.gif": "b12830f0a60800e96a7cc072b2f7024eadddc004efcb58a10a79dc0ddfd7fd24",
+  "anim_Andar.png": "77bdf4857cf9bc4bfd877d45374f1d242040735c853b224213c20b726ec8fb73",
+  "anim_Dano.png": "a88345d0f76a2bd0d701acd9e45ad86db5df4e5d5907b4b8ccee854bb5c4bef0",
+  "anim_Golpe.png": "47e69df3fd6db3524221189c0a0a6a764d3f8f88c1b8d98154045dd48d012ec2",
+  "anim_Morte.png": "56ca71531a20eb38b08499f0a66e2de52ccf0539bbfdd44284644e762fa31796",
+  "anim_Parado.png": "34ff8807c14d414206e32e871ba40d793cb0eec0e46d3e417eb43cf0528db4ee",
+  "folha.png": "2b71715a9b05c7f4ebbd09bc716b47d850b761fcbf37637d1bdff275f8af1519",
+  "icone_64.png": "b8b9aa6bfad6150e49c84d58351dfa4baba17fb4254123ea2a4aeac7c3ffe461",
+  "modelo.glb": "5b3b7650699d8084bec06104d42331d1d46cf16e80894f2352b210a701876170",
+  "modelo.vox": "be01a594e32344e68eb2de86885ac035e814a4033ee5a274d2b3cab7a8c233dd"
+ },
+ "metodo": "Gerado por codigo procedural a partir de uma ficha de dados. Sem IA de imagem, sem modelos de terceiros, sem digitalizacao. A ficha e o codigo foram escritos com assistencia de IA de texto, sob direcao de arte humana.",
+ "responsavel": ""
+}

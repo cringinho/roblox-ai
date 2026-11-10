@@ -4,7 +4,7 @@
 return {
 	Id = "dragao", Nome = "Dragao", VersaoFabrica = "4.0.0",
 	Altura = 3.5,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Corpo", Pai = "Raiz", Pivo = {0.0625, 0.875, 0}, Papel = "corpo", Mola = nil},
 		{Nome = "Pescoco", Pai = "Corpo", Pivo = {0.0625, 1.75, -0.8125}, Papel = "pescoco", Mola = nil},

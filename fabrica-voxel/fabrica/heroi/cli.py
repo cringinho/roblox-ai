@@ -94,6 +94,43 @@ def jeito(receitas: list[dict], modelo) -> list[dict]:
     return out
 
 
+def _ajustar_golpe(m, receita, cam, H) -> dict:
+    """O mesmo golpe serve em corpos de larguras diferentes: abaixa o plano, leva o centro para a frente e abre o
+    raio ate o arco passar por fora deste corpo. Fica com o primeiro candidato limpo (o mais perto da ficha)."""
+    from ..nucleo import colisao
+    from ..nucleo.anim import assar_clipe
+    base = cam["ficha"]
+    cenas = [colisao._Cena(m, it) for it in colisao.itens(m)]
+
+    def pior(cl):
+        from ..nucleo.contrato import matrizes_do_quadro
+        return max(c.dentro(matrizes_do_quadro(m, cl, q)) for q in range(cl.n_quadros) for c in cenas)
+
+    melhor = (pior(m.clipes[receita["nome"]]), None, m.clipes[receita["nome"]])
+    if melhor[0] > 0:
+        for plano in (base.get("plano_graus", 35), 25, 15, 5):
+            for frente in (0.0, 0.06, 0.12, 0.18):
+                for raio in (base["arco"].get("raio_mao_H", 0.30), 0.36, 0.42, 0.50):
+                    f = copy.deepcopy(base)
+                    f["plano_graus"] = plano
+                    f["arco"]["raio_mao_H"] = raio
+                    f.setdefault("centro_H", {})["frente"] = frente
+                    cam["ficha"] = f
+                    cl = assar_clipe(m, receita, H=H)
+                    d = pior(cl)
+                    if d < melhor[0] - 1e-9:
+                        melhor = (d, {"plano_graus": plano, "centro_frente_H": frente, "raio_mao_H": raio}, cl)
+                    if d == 0:
+                        break
+                if melhor[0] == 0:
+                    break
+            if melhor[0] == 0:
+                break
+        cam["ficha"] = base
+        m.clipes[receita["nome"]] = melhor[2]
+    return {"dentro_antes_do_desvio": round(melhor[0], 4), "mudou": melhor[1]}
+
+
 def clipes_do_heroi(reg, modelo) -> list[dict]:
     base = reg.fichas["clipe.heroi"]["clipes"]
     return jeito(base, modelo)
@@ -105,8 +142,14 @@ def construir_heroi(reg, pal, linhagem, *, corpo=None, predef=1, conjunto=None, 
     H = {"P": 3.0, "M": 4.0, "G": 5.0}[m.meta["tamanho"]]
     m.meta["H"] = H
     if com_clipes:
+        from ..nucleo import colisao
         for r in clipes_do_heroi(reg, m):
             m.clipes[r["nome"]] = assar_clipe(m, r, H=H)
+            cam = next((c for c in r["camadas"] if c.get("tipo") == "golpe"), None)
+            if cam is not None and colisao.itens(m):
+                m.meta["golpe_ajustado"] = _ajustar_golpe(m, r, cam, H)
+
+        m.meta["desvios"] = colisao.desviar_itens(m)      # mao sai da frente onde o item ainda tocaria o corpo
     return m
 
 

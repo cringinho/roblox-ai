@@ -4,7 +4,7 @@
 return {
 	Id = "esporinho", Nome = "Esporinho", VersaoFabrica = "4.0.0",
 	Altura = 2.25,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0.625, 0}, Papel = "corpo", Mola = nil},
 		{Nome = "Chapeu", Pai = "Corpo", Pivo = {0, 1.5, 0}, Papel = "cabeca", Mola = {FreqHz = 3, Amort = 0.45, MaxGraus = 14}},

@@ -4,7 +4,7 @@
 return {
 	Id = "flutuante", Nome = "Flutuante", VersaoFabrica = "4.0.0",
 	Altura = 2.75,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Corpo", Pai = "Raiz", Pivo = {0.0625, 2.125, 0}, Papel = "corpo", Mola = nil},
 		{Nome = "Pano_1", Pai = "Corpo", Pivo = {0.0625, 1.5, 0}, Papel = "pano", Mola = {FreqHz = 1.5, Amort = 0.6, MaxGraus = 25}},

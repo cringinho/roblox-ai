@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from . import util_grade as ug
-from .contrato import Clipe, Modelo, matrizes_do_quadro
+from .contrato import Clipe, Modelo, matrizes_do_quadro, matrizes_dos_ossos
 from .paleta import hex_para_rgb
 
 FUNDO = (46, 40, 54)
@@ -39,6 +39,8 @@ def _camera(guinada, inclinacao):
 def _faces(modelo: Modelo, matrizes=None):
     """Junta todas as faces expostas: cantos [n,4,3] em studs, cor idx [n], indice de face [n], normal no mundo."""
     cs, cores, luzes, nrms = [], [], [], []
+    if matrizes is None and any(tuple(o.repouso) != (0.0, 0.0, 0.0, 1.0) for o in modelo.ossos):
+        matrizes = matrizes_dos_ossos(modelo.ossos)          # ha osso com giro de repouso: desenha a pose de repouso
     for peca in modelo.pecas:
         g = peca.grade
         oc = g.mat > 0

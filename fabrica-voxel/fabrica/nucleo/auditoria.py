@@ -40,6 +40,59 @@ def _r(regra, passou, val, limite, conserto):
     return {"regra": regra, "passou": bool(passou), "valor": val, "limite": limite, "conserto": conserto}
 
 
+def atravessamento(modelo, *, passo: int = 2, so_repouso: bool = False) -> dict:
+    """Quanto cada item de mao (osso de papel "item") entra no corpo, no repouso e em cada clipe.
+    Devolve {"pior": fracao 0..1 dos voxels do item dentro de outra peca, "onde": ..., "repouso": fracao, "itens": {...}}.
+    Nao conta a mao que segura o item, os filhos dela nem outro item."""
+    from .contrato import matrizes_do_quadro, matrizes_dos_ossos
+    papel = {o.nome: o.papel for o in modelo.ossos}
+    pai = {o.nome: o.pai for o in modelo.ossos}
+    itens = [o.nome for o in modelo.ossos if o.papel == "item"]
+    res = {"pior": 0.0, "onde": None, "repouso": 0.0, "itens": {}}
+    if not itens:
+        return res
+    poses = [("repouso", 0, matrizes_dos_ossos(modelo.ossos))]
+    if not so_repouso:
+        for nome, cl in modelo.clipes.items():
+            poses += [(nome, q, matrizes_do_quadro(modelo, cl, q)) for q in range(0, cl.n_quadros, passo)]
+    for it in itens:
+        pts = []
+        for p in modelo.pecas:
+            if p.osso == it:
+                g = p.grade
+                idx = np.argwhere(ug.superficie(g.mat > 0))
+                pts.append(g.origem + (idx + 0.5) * g.v)
+        if not pts:
+            continue
+        P = np.concatenate(pts)
+        P1 = np.concatenate([P, np.ones((len(P), 1))], 1)
+        corpo = [p for p in modelo.pecas if papel.get(p.osso) != "item" and p.osso != pai.get(it) and pai.get(p.osso) != pai.get(it)]
+        pior_it = (0.0, None)
+        for clipe, q, M in poses:
+            mundo = P1 @ M[it].T
+            dentro = np.zeros(len(P), bool)
+            por_peca = {}
+            for b in corpo:
+                loc = mundo @ np.linalg.inv(M[b.osso]).T
+                ijk = np.floor((loc[:, :3] - b.grade.origem) / b.grade.v).astype(int)
+                ok = np.all((ijk >= 0) & (ijk < np.array(b.grade.mat.shape)), axis=1)
+                h = np.zeros(len(P), bool)
+                h[ok] = b.grade.mat[ijk[ok, 0], ijk[ok, 1], ijk[ok, 2]] > 0
+                if h.any():
+                    por_peca[b.nome] = int(h.sum())
+                    dentro |= h
+            f = float(dentro.mean())
+            if clipe == "repouso":
+                res["repouso"] = max(res["repouso"], f)
+            if f > pior_it[0]:
+                pior_it = (f, {"item": it, "clipe": clipe, "quadro": q, "pecas": por_peca})
+        res["itens"][it] = round(pior_it[0], 4)
+        if pior_it[0] > res["pior"]:
+            res["pior"], res["onde"] = pior_it[0], pior_it[1]
+    res["pior"], res["repouso"] = round(res["pior"], 4), round(res["repouso"], 4)
+    return res
+
+
 def p1(modelo, tipo: str = "monstro") -> list[dict]:
     pf = perfil(tipo)
     out = []
@@ -81,6 +134,15 @@ def p1(modelo, tipo: str = "monstro") -> list[dict]:
     out.append(_r("pe_no_chao", abs(mn[1]) <= 0.26 or modelo.meta.get("flutua"), round(float(mn[1]), 3), "0 +- 0.25",
                   'O modelo nao encosta no chao. A primeira forma deve usar "em": "chao"; se ele flutua de proposito, '
                   'ponha "meta": {"flutua": true}.'))
+    if any(o.papel == "item" for o in modelo.ossos):
+        at = atravessamento(modelo, passo=1)
+        onde = at["onde"] or {}
+        out.append(_r("item_atravessa_corpo", at["pior"] <= 0.02,
+                      {"pior": at["pior"], "repouso": at["repouso"], "clipe": onde.get("clipe"), "quadro": onde.get("quadro"),
+                       "pecas": onde.get("pecas")}, "<= 2% dos voxels do item dentro do corpo, em todo quadro",
+                      "O item de mao entra no corpo. Confira se o item tem os soquetes Pegada e Ponta, se a classe de pegada "
+                      'esta certa ("pegada" na ficha do item) e se a caixa do item cabe no limite da classe. Em golpe novo, '
+                      "leve o arco para a frente do corpo (centro_H.frente) ou abra o raio (arco.raio_mao_H)."))
     for nome, cl in modelo.clipes.items():
         m = medir(modelo, cl, papeis)
         lim = 70 if cl.laco else 150       # acao (golpe) pode ter quadro de borrao; laco nao pode estalar

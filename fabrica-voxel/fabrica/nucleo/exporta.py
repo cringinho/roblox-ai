@@ -12,7 +12,7 @@ import struct
 import numpy as np
 
 from . import util_grade as ug
-from .contrato import VERSAO_FABRICA, Clipe, Modelo
+from .contrato import VERSAO_FABRICA, Clipe, Modelo, quat_mul, quat_para_matriz
 from .paleta import hex_para_rgb
 
 TETO_TRIANGULOS = 20000
@@ -158,6 +158,8 @@ def escrever_glb(modelo: Modelo, caminho, *, escala: float = 1.0, com_animacao: 
         nos.append({"name": o.nome if not any(p.nome == o.nome for p in modelo.pecas) else f"Osso_{o.nome}",
                     "translation": [float((a - b) * escala) for a, b in zip(o.pivo, pai)], "children": [],
                     "extras": {"papel": o.papel}})
+        if tuple(o.repouso) != (0.0, 0.0, 0.0, 1.0):
+            nos[-1]["rotation"] = [float(x) for x in o.repouso]
         idx_no[o.nome] = len(nos) - 1
         nos[idx_no[o.pai] if o.pai else 0]["children"].append(len(nos) - 1)
     tri_total = 0
@@ -190,12 +192,18 @@ def escrever_glb(modelo: Modelo, caminho, *, escala: float = 1.0, com_animacao: 
                 o = modelo.osso(nome)
                 pai = np.array(modelo.osso(o.pai).pivo) if o.pai else np.zeros(3)
                 rep = (np.array(o.pivo) - pai)
+                tem_rep = tuple(o.repouso) != (0.0, 0.0, 0.0, 1.0)
+                tr_k, rot_k = cl.trans[:, k], cl.rot[:, k]
+                if tem_rep:                       # glTF: o canal substitui a rotacao do no, entao inclui o repouso
+                    Rr = quat_para_matriz(o.repouso)[:3, :3]
+                    tr_k = tr_k @ Rr.T
+                    rot_k = np.array([quat_mul(o.repouso, q) for q in rot_k])
                 if np.abs(cl.trans[:, k]).max() > 1e-5:
-                    a = buf.por(((rep + cl.trans[:, k]) * escala).astype(np.float32), "VEC3", 5126)
+                    a = buf.por(((rep + tr_k) * escala).astype(np.float32), "VEC3", 5126)
                     samp.append({"input": a_t, "output": a, "interpolation": "LINEAR"})
                     chan.append({"sampler": len(samp) - 1, "target": {"node": idx_no[nome], "path": "translation"}})
                 if np.abs(cl.rot[:, k, :3]).max() > 1e-5:
-                    a = buf.por(cl.rot[:, k].astype(np.float32), "VEC4", 5126)
+                    a = buf.por(rot_k.astype(np.float32), "VEC4", 5126)
                     samp.append({"input": a_t, "output": a, "interpolation": "LINEAR"})
                     chan.append({"sampler": len(samp) - 1, "target": {"node": idx_no[nome], "path": "rotation"}})
                 if cl.escala is not None and np.abs(cl.escala[:, k] - 1).max() > 1e-5:
@@ -303,11 +311,12 @@ def luau_dados(modelo: Modelo, *, com_caixas: bool = True) -> str:
          "return {",
          f'\tId = "{modelo.id}", Nome = "{modelo.nome}", VersaoFabrica = "{VERSAO_FABRICA}",',
          f"\tAltura = {_n(modelo.caixa()[1][1])},",
-         "\tOssos = { -- pais antes dos filhos"]
+         "\tOssos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)"]
     for o in modelo.ossos:
         mola = "nil" if not o.mola else ("{FreqHz = " + _n(o.mola.get("freq_hz", 2.5)) + ", Amort = " +
                                          _n(o.mola.get("amort", 0.6)) + ", MaxGraus = " + _n(o.mola.get("max_graus", 25)) + "}")
-        L.append(f'\t\t{{Nome = "{o.nome}", Pai = "{o.pai or ""}", Pivo = {v3(o.pivo)}, Papel = "{o.papel}", Mola = {mola}}},')
+        rep = "" if tuple(o.repouso) == (0.0, 0.0, 0.0, 1.0) else ", Repouso = {" + ", ".join(_n(x) for x in o.repouso) + "}"
+        L.append(f'\t\t{{Nome = "{o.nome}", Pai = "{o.pai or ""}", Pivo = {v3(o.pivo)}, Papel = "{o.papel}", Mola = {mola}{rep}}},')
     L += ["\t},", "\tPecas = { -- uma malha (MeshPart) por peca; varias pecas podem usar o mesmo osso"]
     for p in modelo.pecas:
         a, b = p.grade.caixa()

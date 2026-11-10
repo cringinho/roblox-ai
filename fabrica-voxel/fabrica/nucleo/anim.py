@@ -12,7 +12,7 @@ import fnmatch
 
 import numpy as np
 
-from .contrato import FPS, Clipe, Modelo, matriz_para_quat, quat_mul, quat_semantico
+from .contrato import FPS, Clipe, Modelo, matriz_para_quat, quat_conj, quat_mul, quat_semantico
 
 CANAIS_ROT = ("frente", "esquerda", "tombar_direita")
 CANAIS_TRANS = {"direita": (0, 1), "esquerda_t": (0, -1), "cima": (1, 1), "baixo": (1, -1),
@@ -212,12 +212,24 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
         elif t < tp[3]:
             u = curva("sai", (t - tp[2]) / (tp[3] - tp[2])); ang[q] = a1 + (passa - a1) * u; peso[q] = 1
         else:
-            u = curva("suave", (t - tp[3]) / (1 - tp[3])); ang[q] = passa; peso[q] = 1 - u
+            # recuperacao: primeiro a arma volta PELA FRENTE ate a guarda (nunca em linha reta por dentro do corpo),
+            # so entao a mao solta para o repouso
+            u = (t - tp[3]) / (1 - tp[3])
+            guarda = np.radians(f["arco"].get("guarda_graus", 35))
+            if u < 0.6:
+                ang[q] = passa + (guarda - passa) * curva("suave", u / 0.6); peso[q] = 1
+            else:
+                ang[q] = guarda; peso[q] = 1 - curva("suave", (u - 0.6) / 0.4)
     p = np.radians(f.get("plano_graus", 35))
     e1 = np.array([0.0, 0.0, -1.0])                                   # frente
     e2 = np.array([lado * np.cos(p), np.sin(p), 0.0])                 # lado da arma, subindo com o plano
     tronco = modelo.osso(c.get("tronco", "Tronco"))
-    centro = np.array(tronco.pivo) + np.array([lado * 0.12, 0.30, 0]) * ac.H
+    ctr = f.get("centro_H", {})
+    centro = np.array(tronco.pivo) + np.array([lado * float(ctr.get("lado", 0.12)), float(ctr.get("cima", 0.30)),
+                                                -float(ctr.get("frente", 0.0))]) * ac.H
+    # o item pode ter giro de repouso (empunhadura): a mao desfaz esse giro para a lamina seguir o arco
+    item = next((o for o in modelo.ossos if o.pai == ac.nomes[k] and o.papel == "item"), None)
+    q_item = quat_conj(item.repouso) if item is not None else np.array([0, 0, 0, 1.0])
     raio_mao = float(f["arco"].get("raio_mao_H", 0.30)) * ac.H
     rep = np.array(modelo.osso(ac.nomes[k]).pivo)
     Q = np.zeros((ac.n, 4)); Q[:, 3] = 1
@@ -228,7 +240,7 @@ def _golpe(ac: _Acum, c: dict, fase_t, modelo: Modelo):
         ac.T[q, k] += (alvo - rep) * peso[q]
         x = np.cross(u_r, tg)
         Rm = np.stack([x, u_r, tg], axis=1)                           # colunas = eixos X, Y, Z da mao
-        qa = matriz_para_quat(Rm)
+        qa = quat_mul(matriz_para_quat(Rm), q_item)
         Q[q] = _nlerp(np.array([0, 0, 0, 1.0]), qa, peso[q])
     ac.Q[k] = Q
     tr = f.get("tronco", {})

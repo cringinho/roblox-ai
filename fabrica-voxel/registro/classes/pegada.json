@@ -10,7 +10,11 @@
    ],
    "golpes": [
     "golpe.uma_mao_diagonal"
-   ]
+   ],
+   "descanso": {
+    "frente": 50,
+    "fora": 8
+   }
   },
   "duas_maos": {
    "caixa_max": [
@@ -20,7 +24,11 @@
    ],
    "golpes": [
     "golpe.duas_maos_vertical"
-   ]
+   ],
+   "descanso": {
+    "frente": 40,
+    "fora": 8
+   }
   },
   "haste": {
    "caixa_max": [
@@ -30,7 +38,11 @@
    ],
    "golpes": [
     "golpe.haste_estocada"
-   ]
+   ],
+   "descanso": {
+    "frente": 10,
+    "fora": 8
+   }
   },
   "escudo": {
    "caixa_max": [
@@ -38,7 +50,16 @@
     16,
     4
    ],
-   "golpes": []
+   "golpes": [],
+   "descanso": {
+    "frente": 0,
+    "fora": 0,
+    "giros": [
+     0,
+     90
+    ],
+    "max_inclinacao": 16
+   }
   },
   "luz": {
    "caixa_max": [
@@ -48,7 +69,12 @@
    ],
    "golpes": [
     "golpe.luz_erguer"
-   ]
+   ],
+   "descanso": {
+    "frente": 0,
+    "fora": 0,
+    "max_inclinacao": 16
+   }
   },
   "arremesso": {
    "caixa_max": [
@@ -56,7 +82,11 @@
     14,
     6
    ],
-   "golpes": []
+   "golpes": [],
+   "descanso": {
+    "frente": 30,
+    "fora": 8
+   }
   },
   "arco": {
    "caixa_max": [
@@ -64,7 +94,12 @@
     26,
     10
    ],
-   "golpes": []
+   "golpes": [],
+   "descanso": {
+    "frente": 30,
+    "fora": 8
+   }
   }
- }
+ },
+ "_ajuda_descanso": "descanso = como o item fica na mao parado, em graus: \"frente\" inclina a ponta para a frente, \"fora\" para o lado da mao. A fabrica parte daqui e inclina mais ate o item nao tocar o corpo. \"giros\": [0, 90] deixa a fabrica virar o item de lado (escudo preso ao braco) se de frente ele tocar o corpo."
 }

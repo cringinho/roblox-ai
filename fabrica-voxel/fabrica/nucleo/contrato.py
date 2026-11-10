@@ -228,6 +228,7 @@ class Osso:
     papel: str = "corpo"               # raiz, corpo, cabeca, mandibula, mao, pe, perna, braco, cauda, asa, orelha, ...
     limites: Optional[dict] = None     # {"frente": [-30, 45], "esquerda": [-20, 20], "tombar_direita": [-10, 10]}
     mola: Optional[dict] = None        # {"freq_hz": 2.5, "amort": 0.7, "max_graus": 25}
+    repouso: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 1.0)   # quat xyzw: giro de repouso em torno do pivo
 
 
 @dataclass
@@ -334,7 +335,9 @@ def matrizes_dos_ossos(ossos: list[Osso], trans=None, rot=None, escala=None, nom
 
     ossos: lista do modelo. trans/rot/escala: arrays [nb, 3], [nb, 4], [nb, 3] na ordem de `nomes`
     (ossos ausentes de `nomes` ficam em repouso). Devolve {nome: M 4x4} onde M leva coordenadas de
-    REPOUSO do modelo para a pose:  M = M_pai . T(pivo) . T(trans) . R(rot) . S(escala) . T(-pivo)
+    REPOUSO do modelo para a pose:  M = M_pai . T(pivo) . R(repouso) . T(trans) . R(rot) . S(escala) . T(-pivo)
+    "repouso" e o giro fixo do osso (empunhadura inclinada, cotovelo dobrado): a grade continua reta, a peca
+    inteira gira como corpo rigido. No Roblox e o C0 do Motor6D; as trilhas dos clipes nao o incluem.
     """
     indice = {n: i for i, n in enumerate(nomes or [])}
     saida: dict[str, np.ndarray] = {}
@@ -345,6 +348,8 @@ def matrizes_dos_ossos(ossos: list[Osso], trans=None, rot=None, escala=None, nom
         s = escala[i] if (escala is not None and i is not None) else (1.0, 1.0, 1.0)
         piv = np.asarray(o.pivo, dtype=float)
         local = matriz_translacao(piv) @ matriz_trs(t, q, s) @ matriz_translacao(-piv)
+        if tuple(o.repouso) != (0.0, 0.0, 0.0, 1.0):
+            local = matriz_translacao(piv) @ matriz_trs((0, 0, 0), o.repouso) @ matriz_trs(t, q, s) @ matriz_translacao(-piv)
         saida[o.nome] = (saida[o.pai] @ local) if o.pai else local
     return saida
 

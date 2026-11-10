@@ -82,9 +82,15 @@ function Rig.montar(modelo: Model, dados)
 			porOsso[osso.Nome] = porOsso[osso.Nome] or {}
 		end
 	end
-	-- 3) juntas: C0 = pivo no espaco da mae, C1 = pivo no espaco da filha (repouso sem rotacao)
+	-- 3) juntas: C0 = pivo no espaco da mae (vezes o giro de repouso, se houver), C1 = pivo no espaco da filha
 	local juntas: { [string]: Motor6D } = {}
 	local raiz: BasePart? = nil
+	-- fotografa a pose reta de todas as pecas ANTES de criar juntas: uma junta com giro de repouso move a peca
+	-- na hora, e as filhas dela precisam ser medidas na pose reta
+	local reto: { [BasePart]: CFrame } = {}
+	for _, osso in ipairs(dados.Ossos) do
+		reto[principal[osso.Nome]] = principal[osso.Nome].CFrame
+	end
 	for _, osso in ipairs(dados.Ossos) do
 		local p1 = principal[osso.Nome]
 		p1.CanCollide = false
@@ -119,8 +125,16 @@ function Rig.montar(modelo: Model, dados)
 			local motor = m :: Motor6D
 			motor.Part0 = p0
 			motor.Part1 = p1
-			motor.C0 = p0.CFrame:ToObjectSpace(pivo)
-			motor.C1 = p1.CFrame:ToObjectSpace(pivo)
+			-- Repouso = giro fixo do osso (arma inclinada na mao, cotovelo dobrado). Vai no C0; os clipes somam por cima.
+			local repouso = CFrame.identity
+			if osso.Repouso then
+				local okRep, cf = pcall(CFrame.new, 0, 0, 0, osso.Repouso[1], osso.Repouso[2], osso.Repouso[3], osso.Repouso[4])
+				if okRep then
+					repouso = cf
+				end
+			end
+			motor.C0 = reto[p0]:ToObjectSpace(pivo) * repouso
+			motor.C1 = reto[p1]:ToObjectSpace(pivo)
 			p1.Anchored = false
 			p1.Massless = true
 			juntas[osso.Nome] = motor

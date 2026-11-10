@@ -4,7 +4,7 @@
 return {
 	Id = "aracnideo", Nome = "Aracnideo", VersaoFabrica = "4.0.0",
 	Altura = 1.5,
-	Ossos = { -- pais antes dos filhos
+	Ossos = { -- pais antes dos filhos; Repouso = quaternion {x, y, z, w} do giro fixo do osso (vai no C0)
 		{Nome = "Raiz", Pai = "", Pivo = {0, 0, 0}, Papel = "raiz", Mola = nil},
 		{Nome = "Corpo", Pai = "Raiz", Pivo = {0, 0.625, 0}, Papel = "corpo", Mola = nil},
 		{Nome = "Abdomen", Pai = "Corpo", Pivo = {0.0625, 1, 0.375}, Papel = "corpo", Mola = {FreqHz = 2, Amort = 0.5, MaxGraus = 10}},
